@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd2a167f9fe84344a6f6a3ac9eb281c, type: 3}
+  m_Name: CD_Gun
+  m_EditorClassIdentifier: 
+  Data:
+    guns:
+    - GunId: 0
+      GunName: Pistol
+      StartDamage: 5
+      CurrentDamage: 5
+      Delay: 0.5
+      Level: 1
+    - GunId: 1
+      GunName: Pistol
+      StartDamage: 5
+      CurrentDamage: 5
+      Delay: 0.5
+      Level: 1
+    - GunId: 2
+      GunName: Pistol
+      StartDamage: 5
+      CurrentDamage: 5
+      Delay: 0.5
+      Level: 1
+    - GunId: 3
+      GunName: Pistol
+      StartDamage: 5
+      CurrentDamage: 5
+      Delay: 0.5
+      Level: 1
+    - GunId: 4
+      GunName: Pistol
+      StartDamage: 5
+      CurrentDamage: 5
+      Delay: 0.5
+      Level: 1
+    - GunId: 5
+      GunName: Pistol
+      StartDamage: 5
+      CurrentDamage: 5
+      Delay: 0.5
+      Level: 1
+  Levels: 010000000200000003000000040000000500000006000000
