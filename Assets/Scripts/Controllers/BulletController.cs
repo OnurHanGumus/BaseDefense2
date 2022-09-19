@@ -45,7 +45,7 @@ namespace Controllers
 
         private void Move()
         {
-            _rig.AddRelativeForce(Vector3.forward, ForceMode.Impulse);
+            _rig.AddRelativeForce(Vector3.forward * 500f, ForceMode.Force);
         }
     }
 }

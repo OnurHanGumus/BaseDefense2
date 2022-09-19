@@ -17,12 +17,31 @@ namespace Controllers
         [SerializeField] private Transform currentTarget;
         [SerializeField] private Transform targetGameObject;
 
+        [SerializeField] private GameObject currentBullet;
+        [SerializeField] private Transform nisangah;
+
 
 
 
         #endregion
 
         #endregion
+
+
+        private void Awake()
+        {
+            Init();
+        }
+
+        private void Init()
+        {
+            currentBullet = Resources.Load<GameObject>("Bullets/" + manager.CurrentGunId.ToString());
+        }
+
+        private void Start()
+        {
+            StartCoroutine(Shoot());
+        }
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Enemy"))
@@ -60,6 +79,17 @@ namespace Controllers
                 targetGameObject.localPosition = new Vector3(0, 7.5f, 10f);
 
             }
+        }
+
+        private IEnumerator Shoot()
+        {
+            if (targetList.Count > 0)
+            {
+                Instantiate(currentBullet, nisangah.transform.position, nisangah.rotation);
+            }
+            yield return new WaitForSeconds(0.5f);
+            StartCoroutine(Shoot());
+
         }
     }
 }

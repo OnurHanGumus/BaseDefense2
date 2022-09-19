@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &139064829586492671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6006609440030971289}
+  m_Layer: 0
+  m_Name: Nisangah
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6006609440030971289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139064829586492671}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3150468062137329148}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &170343792137285829
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687768454fe296a419757e04fd1c0e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentGunId: 0
 --- !u!114 &569411625863441415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1492,8 +1523,8 @@ MonoBehaviour:
         transform: {fileID: 0}
         weight: 0
     m_Offset: {x: 0, y: 0, z: 0}
-    m_MinLimit: -120
-    m_MaxLimit: 120
+    m_MinLimit: -180
+    m_MaxLimit: 180
     m_AimAxis: 4
     m_UpAxis: 2
     m_WorldUpType: 0
@@ -1830,7 +1861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3150468062137329148
 Transform:
   m_ObjectHideFlags: 0
@@ -1842,6 +1873,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.012999985, z: 0.16200002}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
+  - {fileID: 6006609440030971289}
   - {fileID: 77250788649389513}
   m_Father: {fileID: 6728342115300616263}
   m_RootOrder: 0
@@ -2083,6 +2115,8 @@ MonoBehaviour:
   targetList: []
   currentTarget: {fileID: 0}
   targetGameObject: {fileID: 5930617826244063657}
+  currentBullet: {fileID: 0}
+  nisangah: {fileID: 6006609440030971289}
 --- !u!1 &8209507290292646619
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,6 +2694,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56bcbedba06abc14eb4c9620c5e2dace, type: 3}
+--- !u!4 &4264928393302064708 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6803778411222929583, guid: 56bcbedba06abc14eb4c9620c5e2dace, type: 3}
+  m_PrefabInstance: {fileID: 7303696942558949099}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1447436155147048726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8164360024769821181, guid: 56bcbedba06abc14eb4c9620c5e2dace, type: 3}
@@ -2668,11 +2707,6 @@ Transform:
 --- !u!4 &7525206673349596821 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 951691314526943358, guid: 56bcbedba06abc14eb4c9620c5e2dace, type: 3}
-  m_PrefabInstance: {fileID: 7303696942558949099}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4264928393302064708 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6803778411222929583, guid: 56bcbedba06abc14eb4c9620c5e2dace, type: 3}
   m_PrefabInstance: {fileID: 7303696942558949099}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8357880812812367668
@@ -2688,7 +2722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8281938844579478269, guid: 95bfa097858bfaa4a852893caa015330, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8281938844579478269, guid: 95bfa097858bfaa4a852893caa015330, type: 3}
       propertyPath: m_LocalPosition.x

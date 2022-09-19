@@ -16,6 +16,7 @@ namespace Managers
         #region Self Variables
 
         #region Public Variables
+        public int CurrentGunId = 0;
 
 
         #endregion
@@ -36,7 +37,6 @@ namespace Managers
 
         #endregion
 
-        private int _currentGunId = 0;
         #endregion
 
         private void Awake()
@@ -91,7 +91,7 @@ namespace Managers
 
         private void Start()
         {
-            _currentGunId = SaveSignals.Instance.onGetSelectedGun();
+            CurrentGunId = SaveSignals.Instance.onGetSelectedGun();
 
         }
 
@@ -108,7 +108,7 @@ namespace Managers
         public void SetAnimBool(PlayerAnimStates state, bool value)
         {
             _animationController.SetAnimBool(state, value);
-            _rigController.SetAnimationRig(value, _currentGunId);
+            _rigController.SetAnimationRig(value, CurrentGunId);
         }
 
         public void ResetAnimState(PlayerAnimStates state)
@@ -118,7 +118,7 @@ namespace Managers
 
         public void OnGunSelected(int id)
         {
-            _currentGunId = id;
+            CurrentGunId = id;
         }
 
 
