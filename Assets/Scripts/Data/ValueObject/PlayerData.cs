@@ -8,5 +8,6 @@ namespace Data.ValueObject
     {
         public float Speed = 2f;
         public float RotationSpeed = 2f;
+        public int Health = 100;
     }
 }

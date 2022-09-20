@@ -47,12 +47,12 @@ namespace Managers
         private void Init()
         {
 
-            _data = GetPlayerData();
+            _data = GetData();
             _movementController = GetComponent<PlayerMovementController>();
             _animationController = GetComponent<PlayerAnimationController>();
             _rigController = GetComponent<PlayerRiggingController1>();
         }
-        public PlayerData GetPlayerData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
+        private PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
 
 
         #region Event Subscription
@@ -79,12 +79,12 @@ namespace Managers
             PlayerSignals.Instance.onGetPlayer -= OnGetPlayer;
             PlayerSignals.Instance.onPlayerSelectGun -= OnGunSelected;
             PlayerSignals.Instance.onEnemyDie -= aimController.OnRemoveFromTargetList;
-
-
-
-
         }
 
+        public PlayerData GetPlayerData()
+        {
+            return _data;
+        }
         private void OnDisable()
         {
             UnsubscribeEvents();
