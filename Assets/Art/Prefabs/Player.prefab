@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentGunId: 0
+  aimController: {fileID: 7146503969275144216}
 --- !u!114 &569411625863441415
 MonoBehaviour:
   m_ObjectHideFlags: 0

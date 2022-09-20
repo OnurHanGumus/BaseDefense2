@@ -23,7 +23,7 @@ namespace Managers
 
         #region Serialized Variables
 
-
+        [SerializeField] private PlayerAimController2 aimController;
 
 
         #endregion
@@ -68,6 +68,7 @@ namespace Managers
             InputSignals.Instance.onInputDragged += _animationController.SetSpeedVariable;
             PlayerSignals.Instance.onGetPlayer += OnGetPlayer;
             PlayerSignals.Instance.onPlayerSelectGun += OnGunSelected;
+            PlayerSignals.Instance.onEnemyDie += aimController.OnRemoveFromTargetList;
         }
 
         private void UnsubscribeEvents()
@@ -77,6 +78,8 @@ namespace Managers
             InputSignals.Instance.onInputDragged -= _animationController.SetSpeedVariable;
             PlayerSignals.Instance.onGetPlayer -= OnGetPlayer;
             PlayerSignals.Instance.onPlayerSelectGun -= OnGunSelected;
+            PlayerSignals.Instance.onEnemyDie -= aimController.OnRemoveFromTargetList;
+
 
 
 

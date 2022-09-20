@@ -10,6 +10,7 @@ using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Enums;
+using System.Collections;
 
 namespace Managers
 {
@@ -103,6 +104,7 @@ namespace Managers
                 attackController.SetAnimation(EnemyAnimationState.Die);
                 _movementController.DeathMove(_dieDirection);
                 triggerRange.SetActive(false);
+                Destroy(gameObject, _enemyData.DestroyDelay);
             }
             else if (State.Equals(EnemyState.Walk))
             {
@@ -137,6 +139,8 @@ namespace Managers
             ChangeState(EnemyState.Deactive);
             _dieDirection = dieVector;
         }
+
+
 
 
 

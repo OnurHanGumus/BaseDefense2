@@ -9,5 +9,6 @@ namespace Data.ValueObject
         public float Speed = 8f;
         public int Damage = 5;
         public int Health = 100;
+        public float DestroyDelay = 1.5f;
     }
 }

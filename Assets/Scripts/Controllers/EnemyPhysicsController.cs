@@ -41,6 +41,7 @@ namespace Controllers
                 if (_health <= 0)
                 {
                     manager.DieState(other.attachedRigidbody.velocity);
+                    PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
                 }
             }
         }

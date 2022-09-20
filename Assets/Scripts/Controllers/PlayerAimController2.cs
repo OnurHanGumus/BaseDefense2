@@ -69,7 +69,13 @@ namespace Controllers
         {
             if (targetList.Count > 0)
             {
+                
                 currentTarget = targetList[0];
+                if (currentTarget.Equals(null))
+                {
+                    targetList.RemoveAt(0);
+                    return;
+                }
                 targetGameObject.position = currentTarget.position;
             }
 
@@ -90,6 +96,14 @@ namespace Controllers
             yield return new WaitForSeconds(0.5f);
             StartCoroutine(Shoot());
 
+        }
+
+        public void OnRemoveFromTargetList(Transform deadEnemy)
+        {
+            if (targetList.Contains(deadEnemy))
+            {
+                targetList.Remove(deadEnemy);
+            }
         }
     }
 }
