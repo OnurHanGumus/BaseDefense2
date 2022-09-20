@@ -20,7 +20,8 @@ namespace Controllers
         #region Private Variables
         private Rigidbody _rig;
         private EnemyManager _manager;
-        private PlayerData _data;
+        private EnemyData _data;
+
         #endregion
         #endregion
 
@@ -33,12 +34,8 @@ namespace Controllers
         {
             _rig = GetComponent<Rigidbody>();
             _manager = GetComponent<EnemyManager>();
-            //_data = _manager.GetPlayerData();
-        }
-
-        private void Start()
-        {
-            
+            _data = _manager.GetEnemyData();
+            speed = _data.Speed;
         }
 
         public void ChasePlayer(Vector3 direction, Transform lookAtObject)
@@ -61,6 +58,11 @@ namespace Controllers
             {
                 transform.LookAt(tarpos);
             }
+        }
+
+        public void DeathMove(Vector3 dieDirection)
+        {
+            _rig.AddForce(dieDirection);
         }
     }
 }

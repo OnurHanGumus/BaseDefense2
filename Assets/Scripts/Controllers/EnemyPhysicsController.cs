@@ -4,6 +4,8 @@ using Signals;
 using UnityEngine;
 using Managers;
 using Enums;
+using Data.ValueObject;
+using Sirenix.OdinInspector;
 
 namespace Controllers
 {
@@ -16,37 +18,32 @@ namespace Controllers
         [SerializeField] private EnemyManager manager;
 
         #endregion
-
+        #region Private Variables
+        private EnemyData _data;
+        [ShowInInspector] private int _health = 100, 
+            _getDamageAmount = 50;
+        
         #endregion
+        #endregion
+
+        private void Start()
+        {
+            _data = manager.GetEnemyData();
+            _health = _data.Health;
+        }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Bullet"))
             {
-                manager.ChangeState(EnemyState.Run);
+                _health -= _getDamageAmount;
 
-                return;
-            }
-
-        }
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                manager.SetDirection((other.transform.position - transform.position).normalized, other.transform);
-
-                return;
+                if (_health <= 0)
+                {
+                    manager.DieState(other.attachedRigidbody.velocity);
+                }
             }
         }
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                manager.ChangeState(EnemyState.Walk);
-
-                return;
-            }
-        }
     }
 }

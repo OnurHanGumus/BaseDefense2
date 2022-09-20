@@ -36,9 +36,12 @@ namespace Managers
         private Vector3 _currentDirection;
         private Transform _playerTransform;
         private Transform _defaultTarget;
+        private EnemyData _enemyData;
         
 
         private EnemyMovementController _movementController;
+
+        private Vector3 _dieDirection;
 
 
         #endregion
@@ -52,11 +55,12 @@ namespace Managers
         private void Init()
         {
             _movementController = GetComponent<EnemyMovementController>();
+            _enemyData = GetData();
             targets = GameObject.FindGameObjectsWithTag("EnemyTarget");
 
             SetDefaultTarget();
         }
-        public Material GetMaterial() => Resources.Load<Material>("Materials/TurretFloor/" + (LevelSignals.Instance.onGetCurrentModdedLevel() + 1).ToString());
+        private EnemyData GetData() => Resources.Load<CD_Enemy>("Data/CD_Enemy").Data;
 
         #region Event Subscription
 
@@ -83,6 +87,11 @@ namespace Managers
 
         #endregion
 
+        public EnemyData GetEnemyData()
+        {
+            return _enemyData;
+        }
+
         private void FixedUpdate()
         {
             if (State.Equals(EnemyState.Walk))
@@ -94,6 +103,10 @@ namespace Managers
             else if (State.Equals(EnemyState.Run))
             {
                 _movementController.ChasePlayer(_currentDirection, _playerTransform);
+            }
+            else if (State.Equals(EnemyState.Deactive))
+            {
+                _movementController.DeathMove(_dieDirection);
             }
         }
 
@@ -110,6 +123,12 @@ namespace Managers
         {
             _currentDirection = direction;
             _playerTransform = lookAtObject;
+        }
+
+        public void DieState(Vector3 dieVector)
+        {
+            ChangeState(EnemyState.Deactive);
+            _dieDirection = dieVector;
         }
 
 

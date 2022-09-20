@@ -21,31 +21,31 @@ MonoBehaviour:
       Delay: 0.5
       Level: 1
     - GunId: 1
-      GunName: Pistol
+      GunName: Shotgun
       StartDamage: 5
       CurrentDamage: 5
       Delay: 0.5
       Level: 1
     - GunId: 2
-      GunName: Pistol
+      GunName: SMG
       StartDamage: 5
       CurrentDamage: 5
       Delay: 0.5
       Level: 1
     - GunId: 3
-      GunName: Pistol
+      GunName: Assault Rifle
       StartDamage: 5
       CurrentDamage: 5
       Delay: 0.5
       Level: 1
     - GunId: 4
-      GunName: Pistol
+      GunName: Bomb Launcher
       StartDamage: 5
       CurrentDamage: 5
       Delay: 0.5
       Level: 1
     - GunId: 5
-      GunName: Pistol
+      GunName: Minigun
       StartDamage: 5
       CurrentDamage: 5
       Delay: 0.5

@@ -604,6 +604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2439606927719867671}
   - component: {fileID: 2439606927719867670}
+  - component: {fileID: 3817830957950128015}
   m_Layer: 0
   m_Name: Physics
   m_TagString: Untagged
@@ -638,6 +639,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.64599663, y: 0.7269998, z: 0.36369064}
   m_Center: {x: 0.015683811, y: 0.36503673, z: -0.00000020662945}
+--- !u!114 &3817830957950128015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439606927719867656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7837bde52ab52745a3e2addd0702524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 1969818160}
 --- !u!1 &2567888250319009307
 GameObject:
   m_ObjectHideFlags: 0
