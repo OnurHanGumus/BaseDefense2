@@ -6,6 +6,7 @@ namespace Commands
 {
     public class SaveGameCommand
     {
+
         public void OnSaveData(SaveLoadStates states, int newValue, string fileName = "SaveFile")
         {
             //if (states.Equals(SaveLoadStates.Level))
@@ -34,11 +35,6 @@ namespace Commands
             //    return;
             //}
             ES3.Save(states.ToString(), newValue, fileName+ ".es3");
-
-
-
-
-            
         }
 
         public void OnSaveList(SaveLoadStates states, int newValue, string fileName = "SaveFile")
@@ -97,85 +93,98 @@ namespace Commands
             //}
         }
 
-        public void OnSaveArray(SaveLoadStates states, int[] array)
+        public void OnSaveArray(SaveLoadStates states, int[] array, string fileName = "SaveFile")
         {
-            if (states.Equals(SaveLoadStates.OpenedAreasCounts))
-            {
-                ES3.Save("CurrentLevelOpenedAreaCounts", array, "WorkerCurrentCounts.es3");
-                return;
-            }
-            if (states.Equals(SaveLoadStates.OpenedTurretsCounts))
-            {
-                ES3.Save("CurrentLevelOpenedTurretsCounts", array, "WorkerCurrentCounts.es3");
-                return;
-            }
-            if (states.Equals(SaveLoadStates.OpenedTurretOwnersCounts))
-            {
-                ES3.Save("CurrentLevelOpenedTurretOwnersCounts", array, "WorkerCurrentCounts.es3");
-                return;
-            }
-            if (states.Equals(SaveLoadStates.OpenedEnemyAreaCounts))
-            {
-                ES3.Save("CurrentLevelOpenedEnemyAreaCounts", array, "WorkerCurrentCounts.es3");
-                return;
-            }
-            if (states.Equals(SaveLoadStates.GunLevels))
-            {
-                ES3.Save("GunLevels", array, "Guns.es3");
-                return;
-            }
+            ES3.Save(states.ToString(), array, fileName + ".es3");
+
+            //if (states.Equals(SaveLoadStates.OpenedAreasCounts))
+            //{
+            //    return;
+            //}
+            //if (states.Equals(SaveLoadStates.OpenedTurretsCounts))
+            //{
+            //    ES3.Save("CurrentLevelOpenedTurretsCounts", array, "WorkerCurrentCounts.es3");
+            //    return;
+            //}
+            //if (states.Equals(SaveLoadStates.OpenedTurretOwnersCounts))
+            //{
+            //    ES3.Save("CurrentLevelOpenedTurretOwnersCounts", array, "WorkerCurrentCounts.es3");
+            //    return;
+            //}
+            //if (states.Equals(SaveLoadStates.OpenedEnemyAreaCounts))
+            //{
+            //    ES3.Save("CurrentLevelOpenedEnemyAreaCounts", array, "WorkerCurrentCounts.es3");
+            //    return;
+            //}
+            //if (states.Equals(SaveLoadStates.GunLevels))
+            //{
+            //    ES3.Save("GunLevels", array, "Guns.es3");
+            //    return;
+            //}
         }
 
-        public void OnResetList(SaveLoadStates states)
+        public void OnResetList(SaveLoadStates states, string fileName = "SaveFile")
         {
-            if (states.Equals(SaveLoadStates.CurrentLevelOpenedAreas))
-            {
-                List<int> tempList = new List<int>();
-                ES3.Save("CurrentLevelOpenedAreas", tempList);
-                return;
-            }
-            if (states.Equals(SaveLoadStates.OpenedTurrets))
-            {
-                List<int> tempList = new List<int>();
-                ES3.Save("CurrentLevelOpenedTurrets", tempList, "WorkerCurrentCounts.es3");
-                return;
-            }
-            if (states.Equals(SaveLoadStates.OpenedTurretOwners))
-            {
-                List<int> tempList = new List<int>();
-                ES3.Save("CurrentLevelOpenedTurretOwners", tempList, "WorkerCurrentCounts.es3");
-                return;
-            }
-            if (states.Equals(SaveLoadStates.OpenedEnemyAreas))
-            {
-                List<int> tempList = new List<int>();
-                ES3.Save("CurrentLevelOpenedEnemyAreas", tempList, "WorkerCurrentCounts.es3");
-                return;
-            }
-            if (states.Equals(SaveLoadStates.OpenedAreasCounts))
-            {
-                int[] tempArray = new int[2] { -1, -1 };
-                ES3.Save("CurrentLevelOpenedAreaCounts", tempArray, "WorkerCurrentCounts.es3");
-                return;
-            }
-            if (states.Equals(SaveLoadStates.OpenedTurretsCounts))
-            {
-                int[] tempArray = new int[2] { -1, -1 };
-                ES3.Save("CurrentLevelOpenedTurretsCounts", tempArray, "WorkerCurrentCounts.es3");
-                return;
-            }
-            if (states.Equals(SaveLoadStates.OpenedTurretOwnersCounts))
-            {
-                int[] tempArray = new int[2] { -1, -1 };
-                ES3.Save("CurrentLevelOpenedTurretOwnersCounts", tempArray, "WorkerCurrentCounts.es3");
-                return;
-            }
-            if (states.Equals(SaveLoadStates.OpenedEnemyAreaCounts))
-            {
-                int[] tempArray = new int[2] { -1, -1 };
-                ES3.Save("CurrentLevelOpenedEnemyAreaCounts", tempArray, "WorkerCurrentCounts.es3");
-                return;
-            }
+            List<int> tempList = new List<int>();
+            ES3.Save(states.ToString(), tempList, fileName + ".es3");
+
+            //if (states.Equals(SaveLoadStates.CurrentLevelOpenedAreas))
+            //{
+            //    List<int> tempList = new List<int>();
+            //    ES3.Save("CurrentLevelOpenedAreas", tempList);
+            //    return;
+            //}
+            //if (states.Equals(SaveLoadStates.OpenedTurrets))
+            //{
+            //    List<int> tempList = new List<int>();
+            //    ES3.Save("CurrentLevelOpenedTurrets", tempList, "WorkerCurrentCounts.es3");
+            //    return;
+            //}
+            //if (states.Equals(SaveLoadStates.OpenedTurretOwners))
+            //{
+            //    List<int> tempList = new List<int>();
+            //    ES3.Save("CurrentLevelOpenedTurretOwners", tempList, "WorkerCurrentCounts.es3");
+            //    return;
+            //}
+            //if (states.Equals(SaveLoadStates.OpenedEnemyAreas))
+            //{
+            //    List<int> tempList = new List<int>();
+            //    ES3.Save("CurrentLevelOpenedEnemyAreas", tempList, "WorkerCurrentCounts.es3");
+            //    return;
+            //}
         }
+
+        public void OnResetArray(SaveLoadStates states, string fileName = "SaveFile")
+        {
+            int[] tempArray = new int[2] { -1, -1 };
+            ES3.Save(states.ToString(), tempArray, fileName+".es3");
+
+            //if (states.Equals(SaveLoadStates.OpenedAreasCounts))
+            //{
+            //    int[] tempArray = new int[2] { -1, -1 };
+            //    ES3.Save("CurrentLevelOpenedAreaCounts", tempArray, "WorkerCurrentCounts.es3");
+            //    return;
+            //}
+            //if (states.Equals(SaveLoadStates.OpenedTurretsCounts))
+            //{
+            //    int[] tempArray = new int[2] { -1, -1 };
+            //    ES3.Save("CurrentLevelOpenedTurretsCounts", tempArray, "WorkerCurrentCounts.es3");
+            //    return;
+            //}
+            //if (states.Equals(SaveLoadStates.OpenedTurretOwnersCounts))
+            //{
+            //    int[] tempArray = new int[2] { -1, -1 };
+            //    ES3.Save("CurrentLevelOpenedTurretOwnersCounts", tempArray, "WorkerCurrentCounts.es3");
+            //    return;
+            //}
+            //if (states.Equals(SaveLoadStates.OpenedEnemyAreaCounts))
+            //{
+            //    int[] tempArray = new int[2] { -1, -1 };
+            //    ES3.Save("CurrentLevelOpenedEnemyAreaCounts", tempArray, "WorkerCurrentCounts.es3");
+            //    return;
+            //}
+        }
+
+
     }
 }

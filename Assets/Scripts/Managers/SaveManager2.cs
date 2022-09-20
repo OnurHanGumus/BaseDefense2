@@ -155,9 +155,10 @@ namespace Managers
 
         }
 
-        private void OnUpgradePlayer(PlayerUpgrades playerUpgrades,int id)
+        private void OnUpgradePlayer(SaveLoadStates updateType, int id)
         {
-            _saveGameCommand.OnSaveData(SaveLoadStates.UpgradePlayerCapacity, id, playerUpgrades.ToString());
+            int value = _loadGameCommand.OnLoadGameData(updateType, SaveFiles.PlayerImprovements.ToString());
+            _saveGameCommand.OnSaveData(updateType, value + 1, SaveFiles.PlayerImprovements.ToString());
         }
 
         private void OnSaveCollectables(SaveLoadStates type, int amount)
@@ -172,12 +173,13 @@ namespace Managers
             _saveGameCommand.OnSaveData(SaveLoadStates.Gem, _loadGameCommand.OnLoadGameData(SaveLoadStates.Gem));
 
             _saveGameCommand.OnResetList(SaveLoadStates.CurrentLevelOpenedAreas);
-            _saveGameCommand.OnResetList(SaveLoadStates.OpenedTurrets);
-            _saveGameCommand.OnResetList(SaveLoadStates.OpenedTurretOwners);
-            _saveGameCommand.OnResetList(SaveLoadStates.OpenedAreasCounts);
-            _saveGameCommand.OnResetList(SaveLoadStates.OpenedTurretsCounts);
-            _saveGameCommand.OnResetList(SaveLoadStates.OpenedTurretOwnersCounts);
-            _saveGameCommand.OnResetList(SaveLoadStates.OpenedEnemyAreaCounts);
+            _saveGameCommand.OnResetList(SaveLoadStates.OpenedTurrets, SaveFiles.WorkerCurrentCounts.ToString());
+            _saveGameCommand.OnResetList(SaveLoadStates.OpenedTurretOwners, SaveFiles.WorkerCurrentCounts.ToString());
+
+            _saveGameCommand.OnResetArray(SaveLoadStates.OpenedAreasCounts, SaveFiles.WorkerCurrentCounts.ToString());
+            _saveGameCommand.OnResetArray(SaveLoadStates.OpenedTurretsCounts, SaveFiles.WorkerCurrentCounts.ToString());
+            _saveGameCommand.OnResetArray(SaveLoadStates.OpenedTurretOwnersCounts, SaveFiles.WorkerCurrentCounts.ToString());
+            _saveGameCommand.OnResetArray(SaveLoadStates.OpenedEnemyAreaCounts, SaveFiles.WorkerCurrentCounts.ToString());
         }
         //Area
         private void WriteSavesToScriptable(SaveLoadStates type, ref List<int> scriptableData)
@@ -210,29 +212,40 @@ namespace Managers
         private void SetSaveValues(SaveLoadStates type)
         {
             List<int> selectedData = new List<int>();
+            SaveFiles fileType;
 
             if (type.Equals(SaveLoadStates.OpenedAreasCounts))
             {
                 selectedData = _areaData;
+                fileType = SaveFiles.WorkerCurrentCounts;
             }
             else if (type.Equals(SaveLoadStates.OpenedTurretsCounts))
             {
                 selectedData = _turretAreaData;
+                fileType = SaveFiles.WorkerCurrentCounts;
+
             }
             else if (type.Equals(SaveLoadStates.OpenedTurretOwnersCounts))
             {
                 selectedData = _turretOwnerData;
+                fileType = SaveFiles.WorkerCurrentCounts;
+
             }
             else if (type.Equals(SaveLoadStates.OpenedEnemyAreaCounts))
             {
                 selectedData = _enemyAreaData;
+                fileType = SaveFiles.WorkerCurrentCounts;
+
             }
             else if (type.Equals(SaveLoadStates.GunLevels))
             {
                 selectedData = _gunLevelData;
+                fileType = SaveFiles.Guns;
+
             }
             else
             {
+                fileType = SaveFiles.SaveFile;
 
             }
 
@@ -242,7 +255,7 @@ namespace Managers
             {
                 temp[i] = selectedData[i];
             }
-            _saveGameCommand.OnSaveArray(type, temp);
+            _saveGameCommand.OnSaveArray(type, temp, fileType.ToString());
         }
 
 

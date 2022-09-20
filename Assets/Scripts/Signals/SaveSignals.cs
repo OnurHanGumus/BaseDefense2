@@ -19,7 +19,7 @@ namespace Signals
 
         public Func<int> onGetSelectedGun = delegate { return 0; };
 
-        public UnityAction<PlayerUpgrades,int> onUpgradePlayer = delegate { };
+        public UnityAction<SaveLoadStates,int> onUpgradePlayer = delegate { };
 
     }
 }
