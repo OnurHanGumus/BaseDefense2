@@ -24,6 +24,7 @@ namespace Managers
         #region Serialized Variables
 
         [SerializeField] private PlayerAimController2 aimController;
+        [SerializeField] private PlayerPhysicsController1 physicsController;
 
 
         #endregion
@@ -69,6 +70,8 @@ namespace Managers
             PlayerSignals.Instance.onGetPlayer += OnGetPlayer;
             PlayerSignals.Instance.onPlayerSelectGun += OnGunSelected;
             PlayerSignals.Instance.onEnemyDie += aimController.OnRemoveFromTargetList;
+
+            SaveSignals.Instance.onInitializePlayerHealth += physicsController.OnGetHealthData;
         }
 
         private void UnsubscribeEvents()
@@ -79,6 +82,9 @@ namespace Managers
             PlayerSignals.Instance.onGetPlayer -= OnGetPlayer;
             PlayerSignals.Instance.onPlayerSelectGun -= OnGunSelected;
             PlayerSignals.Instance.onEnemyDie -= aimController.OnRemoveFromTargetList;
+
+            SaveSignals.Instance.onInitializePlayerHealth -= physicsController.OnGetHealthData;
+
         }
 
         public PlayerData GetPlayerData()

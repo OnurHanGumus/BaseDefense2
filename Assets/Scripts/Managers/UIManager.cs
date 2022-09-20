@@ -156,9 +156,17 @@ namespace Managers
             PlayerSignals.Instance.onPlayerSelectGun?.Invoke(id);
         }
 
-        public void PlayerUpgradeCapacity(int id)
+        public void PlayerUpgradeCapacity()
         {
             SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerCapacity, 1);
+        }
+        public void PlayerUpgradeSpeed()
+        {
+            SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerMoveSpeed, 1);
+        }
+        public void PlayerUpgradeHealth()
+        {
+            SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerHealth, 1);
         }
 
     }

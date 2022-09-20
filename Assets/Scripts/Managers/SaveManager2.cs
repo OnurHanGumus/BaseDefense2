@@ -61,6 +61,7 @@ namespace Managers
             WriteSavesToScriptable(SaveLoadStates.GunLevels, ref _gunLevelData);
 
             SendCollectablesInformation();
+            SendPlayerUpgradesInformation();
         }
 
         public List<int> GetAreaData() => Resources.Load<CD_Area>("Data/Counts/CD_Area").totalLevelAreaData.Base[LevelSignals.Instance.onGetCurrentModdedLevel()].UnlockValues;
@@ -268,7 +269,12 @@ namespace Managers
             SaveSignals.Instance.onInitializeSetMoney?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.Money));
             SaveSignals.Instance.onInitializeSetGem?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.Gem));
         }
-
+        private void SendPlayerUpgradesInformation()
+        {
+            SaveSignals.Instance.onInitializePlayerCapacity?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.UpgradePlayerCapacity, SaveFiles.PlayerImprovements.ToString()));
+            SaveSignals.Instance.onInitializePlayerSpeed?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.UpgradePlayerMoveSpeed, SaveFiles.PlayerImprovements.ToString()));
+            SaveSignals.Instance.onInitializePlayerHealth?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.UpgradePlayerHealth, SaveFiles.PlayerImprovements.ToString()));
+        }
         private int OnGetSelectedGunId()
         {
             Debug.Log(_loadGameCommand.OnLoadGameData(SaveLoadStates.GunId));

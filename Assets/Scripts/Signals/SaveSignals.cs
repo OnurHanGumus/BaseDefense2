@@ -15,6 +15,13 @@ namespace Signals
 
         public UnityAction<int> onInitializeSetMoney = delegate { };
         public UnityAction<int> onInitializeSetGem = delegate { };
+
+        public UnityAction<int> onInitializePlayerCapacity = delegate { };
+        public UnityAction<int> onInitializePlayerSpeed = delegate { };
+        public UnityAction<int> onInitializePlayerHealth = delegate { };
+
+
+
         public UnityAction<SaveLoadStates, int> onSaveCollectables = delegate { };
 
         public Func<int> onGetSelectedGun = delegate { return 0; };

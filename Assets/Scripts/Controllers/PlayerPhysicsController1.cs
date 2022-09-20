@@ -5,6 +5,7 @@ using UnityEngine;
 using Managers;
 using Enums;
 using Data.ValueObject;
+using Sirenix.OdinInspector;
 
 namespace Controllers
 {
@@ -65,6 +66,12 @@ namespace Controllers
             //    manager.SetAnimBool(PlayerAnimStates.Base, false);
             //    return;
             //}
+        }
+
+        public void OnGetHealthData(int healthLevel)
+        {
+            healthLevel += 1;
+            _health += (10 * healthLevel);
         }
     }
 }

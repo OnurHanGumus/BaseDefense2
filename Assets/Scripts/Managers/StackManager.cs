@@ -158,9 +158,6 @@ namespace Managers
 
         private void RemoveItem()
         {
-            //Destroy(collectable.gameObject);
-            //CollectableStack.Remove(collectable);
-
             foreach (var i in CollectableStack)
             {
                 Destroy(i.gameObject);
