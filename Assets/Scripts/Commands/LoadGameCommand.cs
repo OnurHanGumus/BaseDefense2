@@ -29,9 +29,9 @@ namespace Commands
             }
 
             if (saveLoadStates == SaveLoadStates.CurrentLevelOpenedAreas) return ES3.Load("CurrentLevelOpenedAreas", new List<int>());
-            else if (saveLoadStates == SaveLoadStates.OpenedTurrets) return ES3.Load("CurrentLevelOpenedTurrets", "WorkerCurrentCounts.es3", new List<int>());
-            else if (saveLoadStates == SaveLoadStates.OpenedTurretOwners) return ES3.Load("CurrentLevelOpenedTurretOwners", "WorkerCurrentCounts.es3", new List<int>());
-            else if (saveLoadStates == SaveLoadStates.OpenedEnemyAreas) return ES3.Load("CurrentLevelOpenedEnemyAreas", "WorkerCurrentCounts.es3", new List<int>());
+            else if (saveLoadStates == SaveLoadStates.OpenedTurrets) return ES3.Load("OpenedTurrets", "WorkerCurrentCounts.es3", new List<int>());
+            else if (saveLoadStates == SaveLoadStates.OpenedTurretOwners) return ES3.Load("OpenedTurretOwners", "WorkerCurrentCounts.es3", new List<int>());
+            else if (saveLoadStates == SaveLoadStates.OpenedEnemyAreas) return ES3.Load("OpenedEnemyAreas", "WorkerCurrentCounts.es3", new List<int>());
             else
             {
                 Debug.Log("çalışmadı");

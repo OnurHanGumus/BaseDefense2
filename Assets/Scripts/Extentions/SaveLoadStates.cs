@@ -23,5 +23,10 @@ namespace Enums
 
         GunId,
         GunLevels,
+
+        UpgradePlayerCapacity,
+        UpgradePlayerMoveSpeed,
+        UpgradePlayerHealth,
+
     }
 }

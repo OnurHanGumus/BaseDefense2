@@ -89,6 +89,7 @@ namespace Managers
             PlayerSignals.Instance.onPlayerSelectGun += OnChangeGun;
             SaveSignals.Instance.onSaveCollectables += OnSaveCollectables;
             SaveSignals.Instance.onGetSelectedGun += OnGetSelectedGunId;
+            SaveSignals.Instance.onUpgradePlayer += OnUpgradePlayer;
         }
 
         private void UnsubscribeEvents()
@@ -102,6 +103,10 @@ namespace Managers
             PlayerSignals.Instance.onPlayerSelectGun -= OnChangeGun;
             SaveSignals.Instance.onSaveCollectables -= OnSaveCollectables;
             SaveSignals.Instance.onGetSelectedGun -= OnGetSelectedGunId;
+            SaveSignals.Instance.onUpgradePlayer -= OnUpgradePlayer;
+
+
+
 
         }
 
@@ -114,40 +119,45 @@ namespace Managers
 
         private void OnBuyArea(int id)
         {
-            _saveGameCommand.OnSaveData(SaveLoadStates.CurrentLevelOpenedAreas, id);
+            _saveGameCommand.OnSaveList(SaveLoadStates.CurrentLevelOpenedAreas, id);
             SetSaveValues(SaveLoadStates.OpenedAreasCounts);
         }
 
         private void OnBuyTurret(int id)
         {
-            _saveGameCommand.OnSaveData(SaveLoadStates.OpenedTurrets, id);
+            _saveGameCommand.OnSaveList(SaveLoadStates.OpenedTurrets, id, SaveFiles.WorkerCurrentCounts.ToString());
             SetSaveValues(SaveLoadStates.OpenedTurretsCounts);
 
         }
         private void OnBuyTurretOwners(int id)
         {
-            _saveGameCommand.OnSaveData(SaveLoadStates.OpenedTurretOwners, id);
+            _saveGameCommand.OnSaveList(SaveLoadStates.OpenedTurretOwners, id, SaveFiles.WorkerCurrentCounts.ToString());
             SetSaveValues(SaveLoadStates.OpenedTurretOwnersCounts);
 
         }
 
         private void OnBuyEnemyAreas(int id)
         {
-            _saveGameCommand.OnSaveData(SaveLoadStates.OpenedEnemyAreas, id);
+            _saveGameCommand.OnSaveList(SaveLoadStates.OpenedEnemyAreas, id, SaveFiles.WorkerCurrentCounts.ToString());
             SetSaveValues(SaveLoadStates.OpenedEnemyAreaCounts);
 
         }
 
         private void OnChangeGun(int id)
         {
-            _saveGameCommand.OnSaveData(SaveLoadStates.GunId, id);
+            _saveGameCommand.OnSaveData(SaveLoadStates.GunId, id, SaveFiles.Guns.ToString());
         }
 
         private void OnUpgradeGuns(int id)
         {
-            _saveGameCommand.OnSaveData(SaveLoadStates.GunLevels, id);
+            _saveGameCommand.OnSaveList(SaveLoadStates.GunLevels, id, SaveFiles.Guns.ToString());
             SetSaveValues(SaveLoadStates.OpenedEnemyAreaCounts);
 
+        }
+
+        private void OnUpgradePlayer(PlayerUpgrades playerUpgrades,int id)
+        {
+            _saveGameCommand.OnSaveData(SaveLoadStates.UpgradePlayerCapacity, id, playerUpgrades.ToString());
         }
 
         private void OnSaveCollectables(SaveLoadStates type, int amount)
