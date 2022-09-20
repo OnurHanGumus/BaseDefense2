@@ -7,5 +7,6 @@ namespace Enums
     {
         Walk,
         Attack,
+        Die,
     }
 }

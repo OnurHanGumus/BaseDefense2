@@ -35,9 +35,9 @@ namespace Controllers
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Enemy"))
             {
-                //PlayerSignals.Instance.onInteractionCollectable?.Invoke(other.gameObject);
+                Destroy(gameObject);
                 return;
             }
 
@@ -45,7 +45,7 @@ namespace Controllers
 
         private void Move()
         {
-            _rig.AddRelativeForce(Vector3.forward * 500f, ForceMode.Force);
+            _rig.AddRelativeForce(Vector3.forward * 1500f, ForceMode.Force);
         }
     }
 }

@@ -62,7 +62,8 @@ namespace Controllers
 
         public void DeathMove(Vector3 dieDirection)
         {
-            _rig.AddForce(dieDirection);
+            _rig.velocity = Vector3.zero;
+            _rig.AddForce(dieDirection * 500);
         }
     }
 }

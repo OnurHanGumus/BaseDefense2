@@ -25,6 +25,9 @@ namespace Managers
         #region Serialized Variables
 
         [SerializeField] private GameObject[] targets;
+        [SerializeField] private EnemyAttackController attackController;
+        [SerializeField] private GameObject triggerRange;
+
 
 
         #endregion
@@ -40,6 +43,7 @@ namespace Managers
         
 
         private EnemyMovementController _movementController;
+
 
         private Vector3 _dieDirection;
 
@@ -94,7 +98,13 @@ namespace Managers
 
         private void FixedUpdate()
         {
-            if (State.Equals(EnemyState.Walk))
+            if (State.Equals(EnemyState.Deactive))
+            {
+                attackController.SetAnimation(EnemyAnimationState.Die);
+                _movementController.DeathMove(_dieDirection);
+                triggerRange.SetActive(false);
+            }
+            else if (State.Equals(EnemyState.Walk))
             {
                 _currentTarget = _defaultTarget.position;
                 _currentDirection = (_defaultTarget.position - transform.position).normalized;
@@ -104,10 +114,7 @@ namespace Managers
             {
                 _movementController.ChasePlayer(_currentDirection, _playerTransform);
             }
-            else if (State.Equals(EnemyState.Deactive))
-            {
-                _movementController.DeathMove(_dieDirection);
-            }
+            
         }
 
         private void SetDefaultTarget()

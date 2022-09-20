@@ -42,7 +42,7 @@ namespace Controllers
 
         }
 
-        private void SetAnimation(EnemyAnimationState animationState)
+        public void SetAnimation(EnemyAnimationState animationState)
         {
             animator.SetTrigger(animationState.ToString());
 
