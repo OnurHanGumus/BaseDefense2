@@ -85,8 +85,6 @@ namespace Managers
 
         private void Update()
         {
-            
-
             if (Input.GetMouseButton(0))
             {
                 if (_isPlayerDead)
