@@ -19,6 +19,8 @@ namespace Managers
         
         #region Public Variables
         public List<GameObject> CollectableStack = new List<GameObject>();
+        public List<GameObject> Temp = new List<GameObject>();
+
         public ItemAddOnStackCommand ItemAddOnStack;
 
         #endregion
@@ -35,6 +37,7 @@ namespace Managers
         private Transform _playerTransform;
         private Vector3 _rotation;
         private bool _canReleaseCollectablesToBase = true;
+        private int _capacityLevel = 1; 
 
 
         #endregion
@@ -72,6 +75,8 @@ namespace Managers
             CoreGameSignals.Instance.onReset += OnReset;
             PlayerSignals.Instance.onInteractionCollectable += OnInteractionWithCollectable;
             PlayerSignals.Instance.onPlayerReachBase += OnReleaseCollectablesToBase;
+            SaveSignals.Instance.onInitializePlayerCapacity += ItemAddOnStack.OnCarryLevel;
+            
 
         }
         private void UnSubscribeEvent()
@@ -79,6 +84,9 @@ namespace Managers
             CoreGameSignals.Instance.onReset -= OnReset;
             PlayerSignals.Instance.onInteractionCollectable -= OnInteractionWithCollectable;
             PlayerSignals.Instance.onPlayerReachBase -= OnReleaseCollectablesToBase;
+            SaveSignals.Instance.onInitializePlayerCapacity -= OnGetCapacity;
+            SaveSignals.Instance.onInitializePlayerCapacity -= ItemAddOnStack.OnCarryLevel;
+
 
 
         }
@@ -95,17 +103,11 @@ namespace Managers
         private void StackMove()
         {
             StackFollowPlayer();
-
-            if (gameObject.transform.childCount > 0)
-            {
-                //_stackMoveController.StackItemsMoveOrigin(_playerTransform.transform.position, CollectableStack);
-            }
         }
 
         private void StackFollowPlayer()
         {
             transform.position = _playerTransform.position;
-
             transform.rotation = _playerTransform.rotation;
 
         }
@@ -113,7 +115,6 @@ namespace Managers
         private void OnInteractionWithCollectable(GameObject collectableGameObject)
         {
             ItemAddOnStack.Execute(collectableGameObject);
-            collectableGameObject.tag = "Collected";
         }
 
 
@@ -135,6 +136,7 @@ namespace Managers
             }
             if (CollectableStack.Count > 0)
             {
+                ItemAddOnStack.ResetTowerCount();
                 _canReleaseCollectablesToBase = false;
                 StartCoroutine(Wait05s());
             }
@@ -142,14 +144,29 @@ namespace Managers
 
         }
 
+        private void OnGetCapacity(int capacityLevel)
+        {
+            Debug.Log(capacityLevel);
+            _capacityLevel = capacityLevel + 1;
+        }
+
         private IEnumerator Wait05s()
         {
-            int count = CollectableStack.Count;
+            Temp.Clear();
+            foreach (var i in CollectableStack)
+            {
+                Temp.Add(i);
+            }
+
+            CollectableStack.Clear();
+
+
+            int count = Temp.Count;
             for (int i = count - 1; i >= 0; i--)
             {
-                Vector3 pos1 = new Vector3(CollectableStack[i].transform.localPosition.x + Random.Range(-4, 4), CollectableStack[i].transform.localPosition.y + 10, CollectableStack[i].transform.localPosition.z + Random.Range(-4, 4));
-                Vector3 pos2 = new Vector3(CollectableStack[i].transform.localPosition.x + Random.Range(-4, 4), CollectableStack[i].transform.localPosition.y - 30, CollectableStack[i].transform.localPosition.z + Random.Range(-4, 4));
-                CollectableStack[i].transform.DOLocalPath(new Vector3[2] { pos1, pos2 }, 0.5f);
+                Vector3 pos1 = new Vector3(Temp[i].transform.localPosition.x + Random.Range(-4, 4), Temp[i].transform.localPosition.y + 10, Temp[i].transform.localPosition.z + Random.Range(-4, 4));
+                Vector3 pos2 = new Vector3(Temp[i].transform.localPosition.x + Random.Range(-4, 4), Temp[i].transform.localPosition.y - 30, Temp[i].transform.localPosition.z + Random.Range(-4, 4));
+                Temp[i].transform.DOLocalPath(new Vector3[2] { pos1, pos2 }, 0.5f);
                 yield return new WaitForSeconds(0.1f);
             }
             yield return new WaitForSeconds(0.5f);
@@ -158,11 +175,11 @@ namespace Managers
 
         private void RemoveItem()
         {
-            foreach (var i in CollectableStack)
+            foreach (var i in Temp)
             {
                 Destroy(i.gameObject);
             }
-            CollectableStack.Clear();
+            Temp.Clear();
             _canReleaseCollectablesToBase = true;
         }
     }

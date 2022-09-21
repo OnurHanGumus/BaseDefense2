@@ -9,8 +9,9 @@ namespace Commands
     {
         public int OnLoadGameData(SaveLoadStates saveLoadStates, string fileName = "SaveFile")
         {
-           
-            if (!ES3.FileExists(fileName+ ".es3")/* || !ES3.KeyExists("Money")*/) return 0;
+
+            if (!ES3.FileExists(fileName + ".es3")/* || !ES3.KeyExists("Money")*/) {  return 0; }
+            //Debug.Log(ES3.Load<int>(saveLoadStates.ToString(), fileName + ".es3", 0));
             return ES3.Load<int>(saveLoadStates.ToString(), fileName+ ".es3", 0);
 
             //if (saveLoadStates == SaveLoadStates.Level) return ES3.Load<int>("Level", 0);

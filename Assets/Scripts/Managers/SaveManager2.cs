@@ -277,7 +277,6 @@ namespace Managers
         }
         private int OnGetSelectedGunId()
         {
-            Debug.Log(_loadGameCommand.OnLoadGameData(SaveLoadStates.GunId));
             return _loadGameCommand.OnLoadGameData(SaveLoadStates.GunId);
         }
     }
