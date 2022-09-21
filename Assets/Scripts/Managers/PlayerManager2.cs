@@ -18,6 +18,7 @@ namespace Managers
         #region Public Variables
         public int CurrentGunId = 0;
         public bool IsPlayerDead = false;
+        public List<GameObject> Guns;
 
 
         #endregion
@@ -102,7 +103,9 @@ namespace Managers
         private void Start()
         {
             CurrentGunId = SaveSignals.Instance.onGetSelectedGun();
-            
+            aimController.SetCurrentNisangah(Guns[CurrentGunId].transform.GetChild(0));
+
+
 
         }
 
@@ -130,6 +133,7 @@ namespace Managers
         public void OnGunSelected(int id)
         {
             CurrentGunId = id;
+            aimController.SetCurrentNisangah(Guns[CurrentGunId].transform.GetChild(0));
         }
 
 

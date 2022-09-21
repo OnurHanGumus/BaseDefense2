@@ -110,5 +110,10 @@ namespace Controllers
                 targetList.Remove(deadEnemy);
             }
         }
+
+        public void SetCurrentNisangah(Transform nisangah)
+        {
+            this.nisangah = nisangah; 
+        }
     }
 }

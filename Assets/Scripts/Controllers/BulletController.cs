@@ -31,6 +31,7 @@ namespace Controllers
         private void Start()
         {
             Move();
+            Destroy(gameObject, 3f);
 
         }
         private void OnTriggerEnter(Collider other)

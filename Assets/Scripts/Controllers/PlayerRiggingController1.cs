@@ -15,7 +15,6 @@ namespace Controllers
 
         [SerializeField] private PlayerManager2 manager;
         [SerializeField] private RigBuilder rigBuilder;
-        [SerializeField] private List<GameObject> guns;
 
 
         #endregion
@@ -27,7 +26,7 @@ namespace Controllers
         {
             if (isOnBase.Equals(true))
             {
-                guns[gunType].SetActive(false);
+                manager.Guns[gunType].SetActive(false);
 
                 ResetAnimationRig();
                 return;
@@ -47,7 +46,7 @@ namespace Controllers
 
             }
             SetAllGunsDeactive();
-            guns[gunType].SetActive(true);
+            manager.Guns[gunType].SetActive(true);
 
             SetSpesificRigActiveness(0, true);
         }
@@ -67,7 +66,7 @@ namespace Controllers
 
         private void SetAllGunsDeactive()
         {
-            foreach (var i in guns)
+            foreach (var i in manager.Guns)
             {
                 i.SetActive(false);
             }
