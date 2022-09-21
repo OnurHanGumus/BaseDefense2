@@ -15,3 +15,4 @@ MonoBehaviour:
   Data:
     Speed: 50
     RotationSpeed: 500
+    Health: 1

@@ -19,6 +19,8 @@ namespace Signals
         public UnityAction<int> onPlayerSelectGun = delegate { };
 
         public UnityAction<Transform> onEnemyDie = delegate { };
+        public UnityAction onPlayerDie = delegate { };
+        public UnityAction onPlayerSpawned = delegate { };
 
     }
 }

@@ -23,18 +23,15 @@ namespace Controllers
         #region Private Variables
         private PlayerData _data;
         private int _health = 100;
+        private int _healtLevel = 1;
+        private bool _isDead = false;
         #endregion
         #endregion
-
-        private void Awake()
-        {
-
-        }
 
         private void Start()
         {
             _data = manager.GetPlayerData();
-            _health = _data.Health;
+            SetHealth();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -47,7 +44,6 @@ namespace Controllers
             if (other.CompareTag("BaseTrigger"))
             {
                 PlayerSignals.Instance.onPlayerReachBase?.Invoke();
-                //manager.SetAnimBool(PlayerAnimStates.Base, true);
                 manager.SetAnimBool(PlayerAnimStates.Base, true);
                 return;
             }
@@ -56,22 +52,44 @@ namespace Controllers
                 manager.SetAnimBool(PlayerAnimStates.Base, false);
                 return;
             }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            //if (other.CompareTag("Base"))
-            //{
-            //    //manager.ResetAnimState(PlayerAnimStates.Base);
-            //    manager.SetAnimBool(PlayerAnimStates.Base, false);
-            //    return;
-            //}
+            if (other.CompareTag("Damage"))
+            {
+                if (_isDead)
+                {
+                    return;
+                }
+                _health -= 10;
+                Debug.Log(_health);
+                if (_health <= 0)
+                {
+                    _isDead = true;
+                    manager.SetAnimState(PlayerAnimStates.Die);
+                    PlayerSignals.Instance.onPlayerDie?.Invoke();
+                    StartCoroutine(PlayerRespawn());
+                }
+                return;
+            }
         }
 
         public void OnGetHealthData(int healthLevel)
         {
-            healthLevel += 1;
-            _health += (10 * healthLevel);
+            _healtLevel = healthLevel + 1;
+        }
+
+        private void SetHealth()
+        {
+            _health = _data.Health + (10 * _healtLevel);
+
+        }
+
+        private IEnumerator PlayerRespawn()
+        {
+            yield return new WaitForSeconds(1.5f);
+            _isDead = false;
+            PlayerSignals.Instance.onPlayerSpawned?.Invoke();
+            SetHealth();
+            transform.parent.position = new Vector3(0, 0.4f, 0);
+            manager.SetAnimState(PlayerAnimStates.Idle);
         }
     }
 }

@@ -57,7 +57,7 @@ namespace Commands
             _currentTowerCount = 1;
         }
 
-        public void OnCarryLevel(int carryLevel)
+        public void OnGetCarryLevel(int carryLevel)
         {
             _carryLevel = carryLevel;
         }

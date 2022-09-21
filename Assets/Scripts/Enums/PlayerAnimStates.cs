@@ -9,6 +9,7 @@ namespace Enums
         Run,
         GunIdle,
         RunIdle,
-        Base
+        Base,
+        Die,
     }
 }

@@ -166,7 +166,6 @@ GameObject:
   - component: {fileID: 1106656471784565536}
   - component: {fileID: 1106656471784565537}
   - component: {fileID: 8426043131186153990}
-  - component: {fileID: 4833799599568722406}
   - component: {fileID: 1984798681388567489}
   - component: {fileID: 1106656471784565535}
   - component: {fileID: 964196589902088739}
@@ -250,58 +249,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4833799599568722406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 629755085849249561}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boneShape: 1
-  drawBones: 1
-  drawTripods: 0
-  boneSize: 1
-  tripodSize: 1
-  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
-  m_Transforms:
-  - {fileID: 7109916429849543857}
-  - {fileID: 6791529323009798027}
-  - {fileID: 1588631587377590692}
-  - {fileID: 7933578731507095040}
-  - {fileID: 2732126346925767356}
-  - {fileID: 6062293432181860720}
-  - {fileID: 101565565858687527}
-  - {fileID: 6777999421428704858}
-  - {fileID: 7368051609774080981}
-  - {fileID: 1500702725214804556}
-  - {fileID: 7440682969842834581}
-  - {fileID: 2658441566805894265}
-  - {fileID: 6769088363738319590}
-  - {fileID: 4352070983764971312}
-  - {fileID: 2880148519258375243}
-  - {fileID: 5739508463679339831}
-  - {fileID: 8440666368979225096}
-  - {fileID: 5462353283076984484}
-  - {fileID: 6168265396290785056}
-  - {fileID: 8990129975678208974}
-  - {fileID: 7089549267545171059}
-  - {fileID: 586944078532599510}
-  - {fileID: 2877626239045537760}
-  - {fileID: 2146409366468461952}
-  - {fileID: 8455902571886197998}
-  - {fileID: 4004712286276010563}
-  - {fileID: 6285202054062712141}
-  - {fileID: 5223864352806892690}
-  - {fileID: 868366054314073140}
-  - {fileID: 3172085031022914784}
-  - {fileID: 7771057016295132226}
-  - {fileID: 4810196342216159498}
-  - {fileID: 7670183482830822293}
 --- !u!114 &1984798681388567489
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -36,10 +36,7 @@ namespace Controllers
             _data = _manager.GetPlayerData();
         }
 
-        private void Start()
-        {
-            
-        }
+
         private void FixedUpdate()
         {
             _rig.velocity = new Vector3(_xValue * _data.Speed, 0, _zValue * _data.Speed);

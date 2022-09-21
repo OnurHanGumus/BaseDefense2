@@ -34,6 +34,7 @@ namespace Managers
         private float _currentVelocity; //ref type
         private Vector2? _mousePosition; //ref type
         private Vector3 _moveVector; //ref type
+        private bool _isPlayerDead = false;
 
         #endregion
 
@@ -61,6 +62,8 @@ namespace Managers
             InputSignals.Instance.onDisableInput += OnDisableInput;
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onReset += OnReset;
+            PlayerSignals.Instance.onPlayerDie += OnChangePlayerLivingState;
+            PlayerSignals.Instance.onPlayerSpawned += OnChangePlayerLivingState;
         }
 
         private void UnsubscribeEvents()
@@ -69,6 +72,8 @@ namespace Managers
             InputSignals.Instance.onDisableInput -= OnDisableInput;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onReset -= OnReset;
+            PlayerSignals.Instance.onPlayerDie -= OnChangePlayerLivingState;
+            PlayerSignals.Instance.onPlayerSpawned -= OnChangePlayerLivingState;
         }
 
         private void OnDisable()
@@ -80,9 +85,14 @@ namespace Managers
 
         private void Update()
         {
+            
 
             if (Input.GetMouseButton(0))
             {
+                if (_isPlayerDead)
+                {
+                    return;
+                }
                 InputSignals.Instance.onInputDragged?.Invoke(new InputParams()
                 {
                     XValue = joystick.Horizontal,
@@ -99,57 +109,7 @@ namespace Managers
                     ZValue = 0
                 });
             }
-                
-            //if (!isReadyForTouch) return;
-
-            //if (Input.GetMouseButtonUp(0) && !IsPointerOverUIElement())
-            //{
-            //    _isTouching = false;
-            //    InputSignals.Instance.onInputReleased?.Invoke();
-            //}
-
-
-            //if (Input.GetMouseButtonDown(0) && !IsPointerOverUIElement())
-            //{
-            //    _isTouching = true;
-            //    InputSignals.Instance.onInputTaken?.Invoke();
-            //    if (!isFirstTimeTouchTaken)
-            //    {
-            //        isFirstTimeTouchTaken = true;
-            //        InputSignals.Instance.onFirstTimeTouchTaken?.Invoke();
-            //    }
-
-            //    _mousePosition = Input.mousePosition;
-            //}
-
-            //if (Input.GetMouseButton(0) && !IsPointerOverUIElement())
-            //{
-            //    if (_isTouching)
-            //    {
-            //        if (_mousePosition != null)
-            //        {
-            //            Vector2 mouseDeltaPos = (Vector2) Input.mousePosition - _mousePosition.Value;
-
-
-            //            if (mouseDeltaPos.x > Data.HorizontalInputSpeed)
-            //                _moveVector.x = Data.HorizontalInputSpeed / 10f * mouseDeltaPos.x;
-            //            else if (mouseDeltaPos.x < -Data.HorizontalInputSpeed)
-            //                _moveVector.x = -Data.HorizontalInputSpeed / 10f * -mouseDeltaPos.x;
-            //            else
-            //                _moveVector.x = Mathf.SmoothDamp(_moveVector.x, 0f, ref _currentVelocity,
-            //                    Data.ClampSpeed);
-
-            //            _mousePosition = Input.mousePosition;
-
-            //            InputSignals.Instance.onInputDragged?.Invoke(new InputParams()
-            //            {
-            //                XValue = joystick.Horizontal,
-            //                ZValue = joystick.Vertical
-            //                //ClampValues = new Vector2(Data.ClampSides.x, Data.ClampSides.y)
-            //            });
-            //        }
-            //    }
-            //}
+ 
         }
 
         private void OnEnableInput()
@@ -183,16 +143,10 @@ namespace Managers
             isFirstTimeTouchTaken = false;
         }
 
-        private void JoystickInput()
+        private void OnChangePlayerLivingState()
         {
-            //_moveVector.x = floatingJoystick.Horizontal;
-            //_moveVector.z = floatingJoystick.Vertical;
-
-            //InputSignals.Instance.onJoystickDragged?.Invoke(new IdleInputParams()
-            //{
-            //    ValueX = _moveVector.x,
-            //    ValueZ = _moveVector.z
-            //});
+            _isPlayerDead = !_isPlayerDead;
         }
+
     }
 }

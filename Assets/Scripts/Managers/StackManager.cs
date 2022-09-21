@@ -75,7 +75,8 @@ namespace Managers
             CoreGameSignals.Instance.onReset += OnReset;
             PlayerSignals.Instance.onInteractionCollectable += OnInteractionWithCollectable;
             PlayerSignals.Instance.onPlayerReachBase += OnReleaseCollectablesToBase;
-            SaveSignals.Instance.onInitializePlayerCapacity += ItemAddOnStack.OnCarryLevel;
+            SaveSignals.Instance.onInitializePlayerCapacity += ItemAddOnStack.OnGetCarryLevel;
+            PlayerSignals.Instance.onPlayerDie += OnPlayerDie;
             
 
         }
@@ -85,10 +86,8 @@ namespace Managers
             PlayerSignals.Instance.onInteractionCollectable -= OnInteractionWithCollectable;
             PlayerSignals.Instance.onPlayerReachBase -= OnReleaseCollectablesToBase;
             SaveSignals.Instance.onInitializePlayerCapacity -= OnGetCapacity;
-            SaveSignals.Instance.onInitializePlayerCapacity -= ItemAddOnStack.OnCarryLevel;
-
-
-
+            SaveSignals.Instance.onInitializePlayerCapacity -= ItemAddOnStack.OnGetCarryLevel;
+            PlayerSignals.Instance.onPlayerDie -= OnPlayerDie;
         }
         private void OnDisable()
         {
@@ -181,6 +180,24 @@ namespace Managers
             }
             Temp.Clear();
             _canReleaseCollectablesToBase = true;
+        }
+
+        private void OnPlayerDie()
+        {
+            ItemAddOnStack.ResetTowerCount();
+
+            foreach (var i in CollectableStack)
+            {
+                Destroy(i.gameObject);
+            }
+            foreach (var i in Temp)
+            {
+                Destroy(i.gameObject);
+            }
+            CollectableStack.Clear();
+            Temp.Clear();
+            _canReleaseCollectablesToBase = true;
+
         }
     }
 }
