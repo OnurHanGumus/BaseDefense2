@@ -101,6 +101,7 @@ namespace Managers
         private void Start()
         {
             CurrentGunId = SaveSignals.Instance.onGetSelectedGun();
+            
 
         }
 

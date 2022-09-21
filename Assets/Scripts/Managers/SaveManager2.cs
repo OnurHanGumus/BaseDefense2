@@ -277,7 +277,7 @@ namespace Managers
         }
         private int OnGetSelectedGunId()
         {
-            return _loadGameCommand.OnLoadGameData(SaveLoadStates.GunId);
+            return _loadGameCommand.OnLoadGameData(SaveLoadStates.GunId, SaveFiles.Guns.ToString());
         }
     }
 }
