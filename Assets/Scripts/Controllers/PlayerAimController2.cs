@@ -89,7 +89,12 @@ namespace Controllers
 
         private IEnumerator Shoot()
         {
-            if (targetList.Count > 0)
+            if (manager.IsPlayerDead)
+            {
+                //just wait
+            }
+
+            else if (targetList.Count > 0)
             {
                 Instantiate(currentBullet, nisangah.transform.position, nisangah.rotation);
             }

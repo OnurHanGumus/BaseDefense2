@@ -24,7 +24,6 @@ namespace Controllers
         private PlayerData _data;
         private int _health = 100;
         private int _healtLevel = 1;
-        private bool _isDead = false;
         #endregion
         #endregion
 
@@ -54,7 +53,7 @@ namespace Controllers
             }
             if (other.CompareTag("Damage"))
             {
-                if (_isDead)
+                if (manager.IsPlayerDead)
                 {
                     return;
                 }
@@ -62,7 +61,7 @@ namespace Controllers
                 Debug.Log(_health);
                 if (_health <= 0)
                 {
-                    _isDead = true;
+                    manager.IsPlayerDead = true;
                     manager.SetAnimState(PlayerAnimStates.Die);
                     PlayerSignals.Instance.onPlayerDie?.Invoke();
                     StartCoroutine(PlayerRespawn());
@@ -85,7 +84,7 @@ namespace Controllers
         private IEnumerator PlayerRespawn()
         {
             yield return new WaitForSeconds(1.5f);
-            _isDead = false;
+            manager.IsPlayerDead = false;
             PlayerSignals.Instance.onPlayerSpawned?.Invoke();
             SetHealth();
             transform.parent.position = new Vector3(0, 0.4f, 0);
