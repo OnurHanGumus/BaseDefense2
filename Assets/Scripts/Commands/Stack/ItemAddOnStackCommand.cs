@@ -59,7 +59,7 @@ namespace Commands
 
         public void OnGetCarryLevel(int carryLevel)
         {
-            _carryLevel = carryLevel;
+            _carryLevel = carryLevel + 1;
         }
     }
 }

@@ -54,11 +54,11 @@ namespace Managers
             _enemyAreaData = GetEnemyAreaData();
             _gunLevelData = GetGunLevelData();
 
-            WriteSavesToScriptable(SaveLoadStates.OpenedAreasCounts, ref _areaData);
-            WriteSavesToScriptable(SaveLoadStates.OpenedTurretsCounts, ref _turretAreaData);
-            WriteSavesToScriptable(SaveLoadStates.OpenedTurretOwnersCounts, ref _turretOwnerData);
-            WriteSavesToScriptable(SaveLoadStates.OpenedEnemyAreaCounts, ref _enemyAreaData);
-            WriteSavesToScriptable(SaveLoadStates.GunLevels, ref _gunLevelData);
+            WriteSavesToScriptable(SaveLoadStates.OpenedAreasCounts, ref _areaData, SaveFiles.WorkerCurrentCounts);
+            WriteSavesToScriptable(SaveLoadStates.OpenedTurretsCounts, ref _turretAreaData, SaveFiles.WorkerCurrentCounts);
+            WriteSavesToScriptable(SaveLoadStates.OpenedTurretOwnersCounts, ref _turretOwnerData, SaveFiles.WorkerCurrentCounts);
+            WriteSavesToScriptable(SaveLoadStates.OpenedEnemyAreaCounts, ref _enemyAreaData, SaveFiles.WorkerCurrentCounts);
+            WriteSavesToScriptable(SaveLoadStates.GunLevels, ref _gunLevelData, SaveFiles.WorkerCurrentCounts);
 
             SendCollectablesInformation();
             SendPlayerUpgradesInformation();
@@ -183,9 +183,9 @@ namespace Managers
             _saveGameCommand.OnResetArray(SaveLoadStates.OpenedEnemyAreaCounts, SaveFiles.WorkerCurrentCounts.ToString());
         }
         //Area
-        private void WriteSavesToScriptable(SaveLoadStates type, ref List<int> scriptableData)
+        private void WriteSavesToScriptable(SaveLoadStates type, ref List<int> scriptableData, SaveFiles saveFile)
         {
-            int[] _saveArray = _loadGameCommand.OnLoadArray(type);
+            int[] _saveArray = _loadGameCommand.OnLoadArray(type, saveFile.ToString());
             bool isFirstInitialize = false;
             if (_saveArray[0].Equals(-1))
             {

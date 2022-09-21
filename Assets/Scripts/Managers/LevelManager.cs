@@ -9,6 +9,7 @@ using Keys;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Enums;
 
 namespace Managers
 {
@@ -78,15 +79,15 @@ namespace Managers
 
         private List<int> GetActiveTurrets()
         {
-            return _loadGameCommand.OnLoadList(Enums.SaveLoadStates.OpenedTurrets);
+            return _loadGameCommand.OnLoadList(Enums.SaveLoadStates.OpenedTurrets, SaveFiles.WorkerCurrentCounts.ToString());
         }
         private List<int> GetActiveTurretOwners()
         {
-            return _loadGameCommand.OnLoadList(Enums.SaveLoadStates.OpenedTurretOwners);
+            return _loadGameCommand.OnLoadList(Enums.SaveLoadStates.OpenedTurretOwners, SaveFiles.WorkerCurrentCounts.ToString());
         }
         private List<int> GetActiveOpenedEnemyAreas()
         {
-            return _loadGameCommand.OnLoadList(Enums.SaveLoadStates.OpenedEnemyAreas);
+            return _loadGameCommand.OnLoadList(Enums.SaveLoadStates.OpenedEnemyAreas, SaveFiles.WorkerCurrentCounts.ToString());
         }
 
         private CurrentLevelAreaData GetLevelData()
