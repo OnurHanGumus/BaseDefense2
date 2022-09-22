@@ -102,6 +102,7 @@ namespace Managers
         {
             if (type.Equals(ScoreTypeEnums.Money))
             {
+                Debug.Log(amount);
                 _money += amount;
             }
             else

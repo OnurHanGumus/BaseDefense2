@@ -12,6 +12,7 @@ using UnityEngine;
 using Enums;
 using System.Collections;
 using TMPro;
+using DG.Tweening;
 
 namespace Managers
 {
@@ -22,12 +23,13 @@ namespace Managers
         #region Serialized Variables
 
         [SerializeField] private List<TextMeshProUGUI> levelTxt;
+        [SerializeField] private List<TextMeshProUGUI> upgradeTxt;
         [SerializeField] private List<int> itemLevels;
         [SerializeField] private int currentSelectedGun;
 
 
         #endregion
-        private GunData _data;
+        private AllGunPricesData _data;
         #endregion
 
 
@@ -36,8 +38,16 @@ namespace Managers
         {
             Init();
         }
+
+
         private void Init()
         {
+            _data = GetData();
+        }
+        private AllGunPricesData GetData() => Resources.Load<CD_GunPrices>("Data/StoreBuyPrices/CD_GunPrices").Data;
+        private void Start()
+        {
+            UpdateTexts();
 
         }
 
@@ -66,33 +76,52 @@ namespace Managers
 
         #endregion
 
-        private void UpgradeItem()
+        public void UpgradeItem(int id)
         {
-
+            itemLevels[id] = itemLevels[id] + 1;
+            UISignals.Instance.onChangeGunLevels?.Invoke(itemLevels);
+            UpdateTexts();
         }
 
-        private void BuyGun(int id)
+        public void SelectGun(int id)
         {
-            
-        }
-        private void SelectGun(int id)
-        {
-
+            if (itemLevels[id] > 0) //çoktan satýn alýnmýþsa
+            {
+                PlayerSignals.Instance.onPlayerSelectGun?.Invoke(id);
+            }
         }
 
         private void OnGetItemLevels(List<int> levels)
         {
             if (levels.Count.Equals(0))
             {
-                levels = new List<int>() { 0, 0, 0, 0, 0, 0 };
+                levels = new List<int>() { 1, 0, 0, 0, 0, 0 };
             }
 
             itemLevels = levels;
-            Debug.Log(levels.Count);
-            for (int i = 0; i < levels.Count; i++)
+            //UpdateTexts();
+        }
+
+        private void UpdateTexts()
+        {
+            for (int i = 0; i < itemLevels.Count; i++)//textleri initialize et
             {
-                levelTxt[i].text = "LEVEL " + levels[i].ToString();
+                if (itemLevels[i] == 0)
+                {
+                    levelTxt[i].text = "LOCKED";
+                    upgradeTxt[i].text = "BUY\n" + _data.gunPrices[i].gunPrices[itemLevels[i]];
+                }
+                else
+                {
+                    levelTxt[i].text = "LEVEL " + itemLevels[i].ToString();
+                    upgradeTxt[i].text = "UPGRADE\n" + _data.gunPrices[i].gunPrices[itemLevels[i]];
+                }
             }
+        }
+
+        public void CloseBtn()
+        {
+            UISignals.Instance.onCloseStorePanel?.Invoke(UIPanels.GunStorePanel);
         }
 
 

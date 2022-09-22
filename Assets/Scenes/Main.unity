@@ -210,7 +210,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8042923}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: SelectGun
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8042923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,7 +1352,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 130244690}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: SelectGun
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &130244690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4049,7 +4073,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 462138789}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: SelectGun
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &462138789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4790,7 +4826,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 494779058}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: SelectGun
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &494779058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5803,7 +5851,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 593011936}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: UpgradeItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &593011936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7704,7 +7764,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 770514683}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: UpgradeItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &770514683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8221,7 +8293,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 797124299}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: SelectGun
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &797124299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9037,7 +9121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 881043420}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: UpgradeItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &881043420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11057,7 +11153,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1109002946}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: CloseBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1109002946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11421,6 +11529,13 @@ MonoBehaviour:
   - {fileID: 2059011242}
   - {fileID: 1111566145}
   - {fileID: 489827358}
+  upgradeTxt:
+  - {fileID: 549115538}
+  - {fileID: 1528737225}
+  - {fileID: 649796416}
+  - {fileID: 1868819326}
+  - {fileID: 2143655459}
+  - {fileID: 860309079}
   itemLevels: 
   currentSelectedGun: 0
 --- !u!225 &1120476535
@@ -14808,7 +14923,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1548934313}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: UpgradeItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1548934313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15463,7 +15590,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1585223397}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: UpgradeItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1585223397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19247,7 +19386,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1924643731}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: UpgradeItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1924643731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20042,7 +20193,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2026777970}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120476534}
+        m_TargetAssemblyTypeName: Managers.GunStoreManager, Assembly-CSharp
+        m_MethodName: SelectGun
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2026777970
 MonoBehaviour:
   m_ObjectHideFlags: 0

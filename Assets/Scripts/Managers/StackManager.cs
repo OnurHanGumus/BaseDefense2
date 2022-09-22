@@ -135,11 +135,11 @@ namespace Managers
             }
             if (CollectableStack.Count > 0)
             {
+                ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Money, CollectableStack.Count);
                 ItemAddOnStack.ResetTowerCount();
                 _canReleaseCollectablesToBase = false;
                 StartCoroutine(Wait05s());
             }
-            ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Money, CollectableStack.Count);
 
         }
 
