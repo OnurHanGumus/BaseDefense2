@@ -8,6 +8,5 @@ namespace Data.UnityObject
     public class CD_Gun : ScriptableObject
     {
         public AllGunsData Data;
-        public List<int> Levels;
     }
 }

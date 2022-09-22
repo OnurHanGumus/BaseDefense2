@@ -37,10 +37,8 @@ namespace Commands
             ES3.Save(states.ToString(), newValue, fileName+ ".es3");
         }
 
-        public void OnSaveList(SaveLoadStates states, int newValue, string fileName = "SaveFile")
+        public void OnSaveListAddElement(SaveLoadStates states, int newValue, string fileName = "SaveFile")
         {
-
-
             List<int> tempList = ES3.Load(states.ToString(), fileName + ".es3", new List<int>());
             if (tempList.Contains(newValue))
             {
@@ -91,6 +89,11 @@ namespace Commands
             //    tempList.Add(newValue);
             //    ES3.Save("CurrentLevelOpenedEnemyAreas", tempList, "WorkerCurrentCounts.es3");
             //}
+        }
+
+        public void OnSaveList(SaveLoadStates states, List<int> listToSave, string fileName = "SaveFile")
+        {
+            ES3.Save(states.ToString(), listToSave, fileName + ".es3");
         }
 
         public void OnSaveArray(SaveLoadStates states, int[] array, string fileName = "SaveFile")

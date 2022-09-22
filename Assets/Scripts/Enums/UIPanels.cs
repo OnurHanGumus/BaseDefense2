@@ -7,9 +7,9 @@ namespace Enums
     {
         StartPanel,
         GamePanel,
-        WinPanel,
-        FailPanel,
-        LevelPanel,
-        MiniGamePanel,
+        GunStorePanel,
+        PlayerImprovementsPanel,
+        WorkerImprovementsPanel,
+
     }
 }

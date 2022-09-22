@@ -52,24 +52,26 @@ namespace Managers
             _turretAreaData = GetTurretAreaData();
             _turretOwnerData = GetTurretOwnerAreaData();
             _enemyAreaData = GetEnemyAreaData();
-            _gunLevelData = GetGunLevelData();
+            //_gunLevelData = GetGunLevelData();
 
             WriteSavesToScriptable(SaveLoadStates.OpenedAreasCounts, ref _areaData, SaveFiles.WorkerCurrentCounts);
             WriteSavesToScriptable(SaveLoadStates.OpenedTurretsCounts, ref _turretAreaData, SaveFiles.WorkerCurrentCounts);
             WriteSavesToScriptable(SaveLoadStates.OpenedTurretOwnersCounts, ref _turretOwnerData, SaveFiles.WorkerCurrentCounts);
             WriteSavesToScriptable(SaveLoadStates.OpenedEnemyAreaCounts, ref _enemyAreaData, SaveFiles.WorkerCurrentCounts);
-            WriteSavesToScriptable(SaveLoadStates.GunLevels, ref _gunLevelData, SaveFiles.WorkerCurrentCounts);
+            //WriteSavesToScriptable(SaveLoadStates.GunLevels, ref _gunLevelData, SaveFiles.Guns);
 
             SendCollectablesInformation();
             SendPlayerUpgradesInformation();
+            SendGunLevelsInformation();
         }
+
 
         public List<int> GetAreaData() => Resources.Load<CD_Area>("Data/Counts/CD_Area").totalLevelAreaData.Base[LevelSignals.Instance.onGetCurrentModdedLevel()].UnlockValues;
         public List<int> GetTurretAreaData() => Resources.Load<CD_Area>("Data/Counts/CD_Turret").totalLevelAreaData.Base[LevelSignals.Instance.onGetCurrentModdedLevel()].UnlockValues;
         public List<int> GetTurretOwnerAreaData() => Resources.Load<CD_Area>("Data/Counts/CD_TurretOwner").totalLevelAreaData.Base[LevelSignals.Instance.onGetCurrentModdedLevel()].UnlockValues;
         public List<int> GetEnemyAreaData() => Resources.Load<CD_Area>("Data/Counts/CD_EnemyArea").totalLevelAreaData.Base[LevelSignals.Instance.onGetCurrentModdedLevel()].UnlockValues;
         //public AllGunsData GetGunLevelData() => Resources.Load<CD_Gun>("Data/CD_Gun").Data;
-        public List<int> GetGunLevelData() => Resources.Load<CD_Gun>("Data/CD_Gun").Levels;
+        //public List<int> GetGunLevelData() => Resources.Load<CD_Gun>("Data/CD_Gun").Levels;
 
 
         #region Event Subscription
@@ -91,6 +93,8 @@ namespace Managers
             SaveSignals.Instance.onSaveCollectables += OnSaveCollectables;
             SaveSignals.Instance.onGetSelectedGun += OnGetSelectedGunId;
             SaveSignals.Instance.onUpgradePlayer += OnUpgradePlayer;
+            UISignals.Instance.onChangeGunLevels += OnUpgradeGuns;
+            UISignals.Instance.onGetGunLevels += OnGetGunLevels;
         }
 
         private void UnsubscribeEvents()
@@ -105,10 +109,8 @@ namespace Managers
             SaveSignals.Instance.onSaveCollectables -= OnSaveCollectables;
             SaveSignals.Instance.onGetSelectedGun -= OnGetSelectedGunId;
             SaveSignals.Instance.onUpgradePlayer -= OnUpgradePlayer;
-
-
-
-
+            UISignals.Instance.onChangeGunLevels -= OnUpgradeGuns;
+            UISignals.Instance.onGetGunLevels -= OnGetGunLevels;
         }
 
         private void OnDisable()
@@ -120,26 +122,26 @@ namespace Managers
 
         private void OnBuyArea(int id)
         {
-            _saveGameCommand.OnSaveList(SaveLoadStates.CurrentLevelOpenedAreas, id);
+            _saveGameCommand.OnSaveListAddElement(SaveLoadStates.CurrentLevelOpenedAreas, id);
             SetSaveValues(SaveLoadStates.OpenedAreasCounts);
         }
 
         private void OnBuyTurret(int id)
         {
-            _saveGameCommand.OnSaveList(SaveLoadStates.OpenedTurrets, id, SaveFiles.WorkerCurrentCounts.ToString());
+            _saveGameCommand.OnSaveListAddElement(SaveLoadStates.OpenedTurrets, id, SaveFiles.WorkerCurrentCounts.ToString());
             SetSaveValues(SaveLoadStates.OpenedTurretsCounts);
 
         }
         private void OnBuyTurretOwners(int id)
         {
-            _saveGameCommand.OnSaveList(SaveLoadStates.OpenedTurretOwners, id, SaveFiles.WorkerCurrentCounts.ToString());
+            _saveGameCommand.OnSaveListAddElement(SaveLoadStates.OpenedTurretOwners, id, SaveFiles.WorkerCurrentCounts.ToString());
             SetSaveValues(SaveLoadStates.OpenedTurretOwnersCounts);
 
         }
 
         private void OnBuyEnemyAreas(int id)
         {
-            _saveGameCommand.OnSaveList(SaveLoadStates.OpenedEnemyAreas, id, SaveFiles.WorkerCurrentCounts.ToString());
+            _saveGameCommand.OnSaveListAddElement(SaveLoadStates.OpenedEnemyAreas, id, SaveFiles.WorkerCurrentCounts.ToString());
             SetSaveValues(SaveLoadStates.OpenedEnemyAreaCounts);
 
         }
@@ -149,10 +151,10 @@ namespace Managers
             _saveGameCommand.OnSaveData(SaveLoadStates.GunId, id, SaveFiles.Guns.ToString());
         }
 
-        private void OnUpgradeGuns(int id)
+        private void OnUpgradeGuns(List<int> listToSave)
         {
-            _saveGameCommand.OnSaveList(SaveLoadStates.GunLevels, id, SaveFiles.Guns.ToString());
-            SetSaveValues(SaveLoadStates.OpenedEnemyAreaCounts);
+            _saveGameCommand.OnSaveList(SaveLoadStates.GunLevels, listToSave, SaveFiles.Guns.ToString());
+            //SetSaveValues(SaveLoadStates.OpenedEnemyAreaCounts);
 
         }
 
@@ -275,9 +277,18 @@ namespace Managers
             SaveSignals.Instance.onInitializePlayerSpeed?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.UpgradePlayerMoveSpeed, SaveFiles.PlayerImprovements.ToString()));
             SaveSignals.Instance.onInitializePlayerHealth?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.UpgradePlayerHealth, SaveFiles.PlayerImprovements.ToString()));
         }
+        private void SendGunLevelsInformation()
+        {
+            UISignals.Instance.onInitializeGunLevels?.Invoke(_loadGameCommand.OnLoadList(SaveLoadStates.GunLevels, SaveFiles.Guns.ToString()));
+        }
+
         private int OnGetSelectedGunId()
         {
             return _loadGameCommand.OnLoadGameData(SaveLoadStates.GunId, SaveFiles.Guns.ToString());
+        }
+        private List<int> OnGetGunLevels()
+        {
+            return _loadGameCommand.OnLoadList(SaveLoadStates.GunLevels, SaveFiles.Guns.ToString());
         }
     }
 }
