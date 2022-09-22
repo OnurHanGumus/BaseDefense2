@@ -57,9 +57,13 @@ namespace Commands
             _currentTowerCount = 1;
         }
 
-        public void OnGetCarryLevel(int carryLevel)
+        public void OnGetCarryLevel(List<int> upgradeList)
         {
-            _carryLevel = carryLevel + 1;
+            if (upgradeList.Count < 3)
+            {
+                upgradeList = new List<int>() { 0, 0, 0 };
+            }
+            _carryLevel = upgradeList[0] + 1;
         }
     }
 }

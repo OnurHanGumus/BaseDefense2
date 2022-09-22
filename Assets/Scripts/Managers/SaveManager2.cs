@@ -158,10 +158,9 @@ namespace Managers
 
         }
 
-        private void OnUpgradePlayer(SaveLoadStates updateType, int id)
+        private void OnUpgradePlayer(List<int> listToSave)
         {
-            int value = _loadGameCommand.OnLoadGameData(updateType, SaveFiles.PlayerImprovements.ToString());
-            _saveGameCommand.OnSaveData(updateType, value + 1, SaveFiles.PlayerImprovements.ToString());
+            _saveGameCommand.OnSaveList(SaveLoadStates.PlayerUpgrades, listToSave, SaveFiles.PlayerImprovements.ToString());
         }
 
         private void OnSaveCollectables(SaveLoadStates type, int amount)
@@ -273,9 +272,12 @@ namespace Managers
         }
         private void SendPlayerUpgradesInformation()
         {
-            SaveSignals.Instance.onInitializePlayerCapacity?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.UpgradePlayerCapacity, SaveFiles.PlayerImprovements.ToString()));
-            SaveSignals.Instance.onInitializePlayerSpeed?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.UpgradePlayerMoveSpeed, SaveFiles.PlayerImprovements.ToString()));
-            SaveSignals.Instance.onInitializePlayerHealth?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.UpgradePlayerHealth, SaveFiles.PlayerImprovements.ToString()));
+            List<int> temp = _loadGameCommand.OnLoadList(SaveLoadStates.PlayerUpgrades, SaveFiles.PlayerImprovements.ToString());
+            //SaveSignals.Instance.onInitializePlayerCapacity?.Invoke(temp[0]);
+            //SaveSignals.Instance.onInitializePlayerSpeed?.Invoke(temp[1]);
+            //SaveSignals.Instance.onInitializePlayerHealth?.Invoke(temp[2]);
+
+            SaveSignals.Instance.onInitializePlayerUpgrades?.Invoke(temp);
         }
         private void SendGunLevelsInformation()
         {

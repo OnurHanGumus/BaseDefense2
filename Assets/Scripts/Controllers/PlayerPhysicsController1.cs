@@ -6,6 +6,7 @@ using Managers;
 using Enums;
 using Data.ValueObject;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 
 namespace Controllers
 {
@@ -70,9 +71,13 @@ namespace Controllers
             }
         }
 
-        public void OnGetHealthData(int healthLevel)
+        public void OnGetHealthData(List<int> upgradeList)
         {
-            _healtLevel = healthLevel + 1;
+            if (upgradeList.Count < 3)
+            {
+                upgradeList = new List<int>() { 0, 0, 0 };
+            }
+            _healtLevel = upgradeList[0] + 1;
         }
 
         private void SetHealth()

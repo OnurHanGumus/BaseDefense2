@@ -30,6 +30,7 @@ namespace Controllers
 
         public void OpenStoreMenu(UIPanels storeMenu)
         {
+            Debug.Log((int)storeMenu);
             panels[(int)storeMenu].GetComponent<CanvasGroup>().DOFade(1f, 0.5f);
             panels[(int)storeMenu].GetComponent<CanvasGroup>().blocksRaycasts = true;
         }

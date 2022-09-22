@@ -73,7 +73,7 @@ namespace Managers
             PlayerSignals.Instance.onPlayerSelectGun += OnGunSelected;
             PlayerSignals.Instance.onEnemyDie += aimController.OnRemoveFromTargetList;
 
-            SaveSignals.Instance.onInitializePlayerHealth += physicsController.OnGetHealthData;
+            SaveSignals.Instance.onInitializePlayerUpgrades += physicsController.OnGetHealthData;
         }
 
         private void UnsubscribeEvents()
@@ -85,7 +85,7 @@ namespace Managers
             PlayerSignals.Instance.onPlayerSelectGun -= OnGunSelected;
             PlayerSignals.Instance.onEnemyDie -= aimController.OnRemoveFromTargetList;
 
-            SaveSignals.Instance.onInitializePlayerHealth -= physicsController.OnGetHealthData;
+            SaveSignals.Instance.onInitializePlayerUpgrades -= physicsController.OnGetHealthData;
 
         }
 

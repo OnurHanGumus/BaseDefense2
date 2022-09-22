@@ -20,13 +20,15 @@ namespace Signals
         public UnityAction<int> onInitializePlayerSpeed = delegate { };
         public UnityAction<int> onInitializePlayerHealth = delegate { };
 
+        public UnityAction<List<int>> onInitializePlayerUpgrades = delegate { };
+
 
 
         public UnityAction<SaveLoadStates, int> onSaveCollectables = delegate { };
 
         public Func<int> onGetSelectedGun = delegate { return 0; };
 
-        public UnityAction<SaveLoadStates,int> onUpgradePlayer = delegate { };
+        public UnityAction<List<int>> onUpgradePlayer = delegate { };
 
     }
 }

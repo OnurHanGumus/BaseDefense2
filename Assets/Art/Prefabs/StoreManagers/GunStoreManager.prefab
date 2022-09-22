@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 4585838094053748083}
   - component: {fileID: 4770390034813807208}
   m_Layer: 0
-  m_Name: StoreManager
+  m_Name: GunStoreManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1240bac3d5182214fb96b5fdb34e3f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
+  releatedPanel: 2
 --- !u!65 &844066591731429339
 BoxCollider:
   m_ObjectHideFlags: 0

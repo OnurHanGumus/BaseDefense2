@@ -27,6 +27,7 @@ namespace Enums
         UpgradePlayerCapacity,
         UpgradePlayerMoveSpeed,
         UpgradePlayerHealth,
+        PlayerUpgrades,
 
     }
 }

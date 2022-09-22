@@ -75,7 +75,7 @@ namespace Managers
             CoreGameSignals.Instance.onReset += OnReset;
             PlayerSignals.Instance.onInteractionCollectable += OnInteractionWithCollectable;
             PlayerSignals.Instance.onPlayerReachBase += OnReleaseCollectablesToBase;
-            SaveSignals.Instance.onInitializePlayerCapacity += ItemAddOnStack.OnGetCarryLevel;
+            SaveSignals.Instance.onInitializePlayerUpgrades += ItemAddOnStack.OnGetCarryLevel;
             PlayerSignals.Instance.onPlayerDie += OnPlayerDie;
             
 
@@ -85,8 +85,7 @@ namespace Managers
             CoreGameSignals.Instance.onReset -= OnReset;
             PlayerSignals.Instance.onInteractionCollectable -= OnInteractionWithCollectable;
             PlayerSignals.Instance.onPlayerReachBase -= OnReleaseCollectablesToBase;
-            SaveSignals.Instance.onInitializePlayerCapacity -= OnGetCapacity;
-            SaveSignals.Instance.onInitializePlayerCapacity -= ItemAddOnStack.OnGetCarryLevel;
+            SaveSignals.Instance.onInitializePlayerUpgrades -= ItemAddOnStack.OnGetCarryLevel;
             PlayerSignals.Instance.onPlayerDie -= OnPlayerDie;
         }
         private void OnDisable()

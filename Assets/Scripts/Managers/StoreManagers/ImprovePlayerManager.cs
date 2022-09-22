@@ -16,7 +16,7 @@ using DG.Tweening;
 
 namespace Managers
 {
-    public class GunStoreManager : MonoBehaviour
+    public class ImprovePlayerManager : MonoBehaviour
     {
         #region Self Variables
 
@@ -25,7 +25,6 @@ namespace Managers
         [SerializeField] private List<TextMeshProUGUI> levelTxt;
         [SerializeField] private List<TextMeshProUGUI> upgradeTxt;
         [SerializeField] private List<int> itemLevels;
-        [SerializeField] private int currentSelectedGun;
 
 
         #endregion
@@ -44,7 +43,7 @@ namespace Managers
         {
             _data = GetData();
         }
-        private AllItemPricesData GetData() => Resources.Load<CD_GunPrices>("Data/StoreBuyPrices/CD_GunPrices").Data;
+        private AllItemPricesData GetData() => Resources.Load<CD_GunPrices>("Data/StoreBuyPrices/CD_PlayerUpgradePrices").Data;
         private void Start()
         {
             UpdateTexts();
@@ -60,12 +59,12 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            UISignals.Instance.onInitializeGunLevels += OnGetItemLevels;
+            SaveSignals.Instance.onInitializePlayerUpgrades += OnGetItemLevels;
         }
 
         private void UnsubscribeEvents()
         {
-            UISignals.Instance.onInitializeGunLevels -= OnGetItemLevels;
+            SaveSignals.Instance.onInitializePlayerUpgrades -= OnGetItemLevels;
 
         }
 
@@ -79,23 +78,15 @@ namespace Managers
         public void UpgradeItem(int id)
         {
             itemLevels[id] = itemLevels[id] + 1;
-            UISignals.Instance.onChangeGunLevels?.Invoke(itemLevels);
+            SaveSignals.Instance.onUpgradePlayer?.Invoke(itemLevels);
             UpdateTexts();
-        }
-
-        public void SelectGun(int id)
-        {
-            if (itemLevels[id] > 0) //çoktan satýn alýnmýþsa
-            {
-                PlayerSignals.Instance.onPlayerSelectGun?.Invoke(id);
-            }
         }
 
         private void OnGetItemLevels(List<int> levels)
         {
             if (levels.Count.Equals(0))
             {
-                levels = new List<int>() { 1, 0, 0, 0, 0, 0 };
+                levels = new List<int>() { 0, 0, 0};
             }
 
             itemLevels = levels;
@@ -106,25 +97,14 @@ namespace Managers
         {
             for (int i = 0; i < itemLevels.Count; i++)//textleri initialize et
             {
-                if (itemLevels[i] == 0)
-                {
-                    levelTxt[i].text = "LOCKED";
-                    upgradeTxt[i].text = "BUY\n" + _data.itemPrices[i].prices[itemLevels[i]];
-                }
-                else
-                {
-                    levelTxt[i].text = "LEVEL " + itemLevels[i].ToString();
-                    upgradeTxt[i].text = "UPGRADE\n" + _data.itemPrices[i].prices[itemLevels[i]];
-                }
+                levelTxt[i].text = "LEVEL " + (itemLevels[i] + 1).ToString();
+                upgradeTxt[i].text =  _data.itemPrices[i].prices[itemLevels[i]].ToString();
             }
         }
 
         public void CloseBtn()
         {
-            UISignals.Instance.onCloseStorePanel?.Invoke(UIPanels.GunStorePanel);
+            UISignals.Instance.onCloseStorePanel?.Invoke(UIPanels.PlayerImprovementsPanel);
         }
-
-
-
     }
 }

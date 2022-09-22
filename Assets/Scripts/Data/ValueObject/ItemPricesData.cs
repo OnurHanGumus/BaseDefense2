@@ -5,10 +5,9 @@ using UnityEngine;
 namespace Data.ValueObject
 {
     [Serializable]
-    public class AllGunPricesData
+    public class ItemPricesData
     {
-        public List<GunPricesData> gunPrices;
-
+        public List<int> prices;
 
     }
 }

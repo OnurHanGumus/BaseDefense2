@@ -16,7 +16,6 @@ namespace Managers
         [SerializeField] private TextMeshProUGUI moneyText, gemText;
         //[SerializeField] private LevelPanelController levelPanelController;
         [SerializeField] private GameObject holder;
-        [SerializeField] private GameObject base1;
         #endregion
 
         #endregion
@@ -171,15 +170,15 @@ namespace Managers
 
         public void PlayerUpgradeCapacity()
         {
-            SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerCapacity, 1);
+            //SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerCapacity, 1);
         }
         public void PlayerUpgradeSpeed()
         {
-            SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerMoveSpeed, 1);
+            //SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerMoveSpeed, 1);
         }
         public void PlayerUpgradeHealth()
         {
-            SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerHealth, 1);
+            //SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerHealth, 1);
         }
 
     }

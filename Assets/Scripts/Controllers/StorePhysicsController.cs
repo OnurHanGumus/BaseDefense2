@@ -12,7 +12,7 @@ namespace Controllers
         #region Self Variables
 
         #region Serialized Variables
-
+        [SerializeField] private UIPanels releatedPanel;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace Controllers
             if (other.CompareTag("Player"))
             {
                 //UISignals.Instance.onInitializeGunLevels?.Invoke(UISignals.Instance.onGetGunLevels());
-                UISignals.Instance.onOpenStorePanel?.Invoke(UIPanels.GunStorePanel);
+                UISignals.Instance.onOpenStorePanel?.Invoke(releatedPanel);
                 return;
             }
     
@@ -34,7 +34,7 @@ namespace Controllers
             if (other.CompareTag("Player"))
             {
                 //UISignals.Instance.onInitializeGunLevels?.Invoke(UISignals.Instance.onGetGunLevels());
-                UISignals.Instance.onCloseStorePanel?.Invoke(UIPanels.GunStorePanel);
+                UISignals.Instance.onCloseStorePanel?.Invoke(releatedPanel);
                 return;
             }
 
