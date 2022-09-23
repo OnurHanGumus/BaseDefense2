@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3543327394757689954}
   m_Layer: 0
   m_Name: 5
-  m_TagString: Bullet
+  m_TagString: MinigunBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,3 +156,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28be5233e49bb7146bd14991b37a6df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletThrowForce: 1500

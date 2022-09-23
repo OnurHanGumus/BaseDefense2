@@ -15,8 +15,14 @@ TagManager:
   - Base
   - Enemy
   - EnemyTarget
-  - Bullet
   - Damage
+  - PistolBullet
+  - ShotgunBullet
+  - SMGBullet
+  - AssaultBullet
+  - RocketBullet
+  - MinigunBullet
+  - Wall
   layers:
   - Default
   - TransparentFX
