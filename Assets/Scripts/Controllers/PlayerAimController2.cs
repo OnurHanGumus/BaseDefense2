@@ -41,13 +41,13 @@ namespace Controllers
             _data = GetData();
         }
         private AllGunsData GetData() => Resources.Load<CD_Gun>("Data/CD_Gun").Data;
+        private GameObject GetBullet() => Resources.Load<GameObject>("Bullets/" + manager.CurrentGunId.ToString());
 
 
         private void Start()
         {
             StartCoroutine(Shoot());
-            Debug.Log(manager.CurrentGunId.ToString());
-            currentBullet = Resources.Load<GameObject>("Bullets/" + manager.CurrentGunId.ToString());
+            currentBullet = GetBullet();
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -118,9 +118,11 @@ namespace Controllers
             }
         }
 
-        public void SetCurrentNisangah(Transform nisangah)
+        public void SetGunSettings(Transform nisangah)
         {
-            this.nisangah = nisangah; 
+            this.nisangah = nisangah;
+            currentBullet = GetBullet();
+            GetData();
         }
     }
 }

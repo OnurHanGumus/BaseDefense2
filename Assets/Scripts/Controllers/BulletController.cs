@@ -12,7 +12,7 @@ namespace Controllers
         #region Self Variables
 
         #region Serialized Variables
-
+        [SerializeField] private int bulletThrowForce = 1500;
 
         #endregion
 
@@ -46,7 +46,7 @@ namespace Controllers
 
         private void Move()
         {
-            _rig.AddRelativeForce(Vector3.forward * 1500f, ForceMode.Force);
+            _rig.AddRelativeForce(Vector3.forward * bulletThrowForce, ForceMode.Force);
         }
     }
 }

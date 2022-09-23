@@ -127,7 +127,7 @@ namespace Managers
         public void OnGunSelected(int id)
         {
             CurrentGunId = id;
-            aimController.SetCurrentNisangah(Guns[CurrentGunId].transform.GetChild(0));
+            aimController.SetGunSettings(Guns[CurrentGunId].transform.GetChild(0));
         }
 
 
