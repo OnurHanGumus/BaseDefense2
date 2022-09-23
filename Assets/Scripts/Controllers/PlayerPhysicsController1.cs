@@ -25,9 +25,14 @@ namespace Controllers
         private PlayerData _data;
         private int _health = 100;
         private int _healtLevel = 1;
+        private BoxCollider _collider;
         #endregion
         #endregion
 
+        private void Awake()
+        {
+            _collider = GetComponent<BoxCollider>();
+        }
         private void Start()
         {
             _data = manager.GetPlayerData();

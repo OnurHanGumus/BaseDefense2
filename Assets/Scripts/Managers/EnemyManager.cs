@@ -76,11 +76,12 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-
+            //PlayerSignals.Instance.onPlayerReachBase += OnPlayerDisapear;
         }
 
         private void UnsubscribeEvents()
         {
+            //PlayerSignals.Instance.onPlayerReachBase -= OnPlayerDisapear;
 
 
         }
@@ -140,10 +141,10 @@ namespace Managers
             _dieDirection = dieVector;
         }
 
+        private void OnPlayerDisapear()
+        {
+            ChangeState(EnemyState.Walk);
 
-
-
-
-
+        }
     }
 }
