@@ -1,3 +1,5 @@
+using Data.UnityObject;
+using Data.ValueObject;
 using Managers;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,9 +22,10 @@ namespace Controllers
         [SerializeField] private GameObject currentBullet;
         [SerializeField] private Transform nisangah;
 
+        #region Private Variables
+        private AllGunsData _data;
 
-
-
+        #endregion
         #endregion
 
         #endregion
@@ -35,8 +38,10 @@ namespace Controllers
 
         private void Init()
         {
-            
+            _data = GetData();
         }
+        private AllGunsData GetData() => Resources.Load<CD_Gun>("Data/CD_Gun").Data;
+
 
         private void Start()
         {
@@ -100,7 +105,7 @@ namespace Controllers
             {
                 Instantiate(currentBullet, nisangah.transform.position, nisangah.rotation);
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(_data.guns[manager.CurrentGunId].Delay);
             StartCoroutine(Shoot());
 
         }
