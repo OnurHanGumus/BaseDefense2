@@ -35,12 +35,14 @@ namespace Controllers
 
         private void Init()
         {
-            currentBullet = Resources.Load<GameObject>("Bullets/" + manager.CurrentGunId.ToString());
+            
         }
 
         private void Start()
         {
             StartCoroutine(Shoot());
+            Debug.Log(manager.CurrentGunId.ToString());
+            currentBullet = Resources.Load<GameObject>("Bullets/" + manager.CurrentGunId.ToString());
         }
         private void OnTriggerEnter(Collider other)
         {

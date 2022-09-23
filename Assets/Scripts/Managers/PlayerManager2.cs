@@ -73,6 +73,7 @@ namespace Managers
             PlayerSignals.Instance.onPlayerSelectGun += OnGunSelected;
             PlayerSignals.Instance.onEnemyDie += aimController.OnRemoveFromTargetList;
 
+            SaveSignals.Instance.onInitializeSelectedGunId += OnGunSelected;
             SaveSignals.Instance.onInitializePlayerUpgrades += physicsController.OnGetHealthData;
         }
 
@@ -85,6 +86,8 @@ namespace Managers
             PlayerSignals.Instance.onPlayerSelectGun -= OnGunSelected;
             PlayerSignals.Instance.onEnemyDie -= aimController.OnRemoveFromTargetList;
 
+
+            SaveSignals.Instance.onInitializeSelectedGunId -= OnGunSelected;
             SaveSignals.Instance.onInitializePlayerUpgrades -= physicsController.OnGetHealthData;
 
         }
@@ -99,15 +102,6 @@ namespace Managers
         }
 
         #endregion
-
-        private void Start()
-        {
-            CurrentGunId = SaveSignals.Instance.onGetSelectedGun();
-            aimController.SetCurrentNisangah(Guns[CurrentGunId].transform.GetChild(0));
-
-
-
-        }
 
         private Transform OnGetPlayer()
         {

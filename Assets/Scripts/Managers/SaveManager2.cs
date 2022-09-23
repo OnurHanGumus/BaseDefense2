@@ -63,6 +63,7 @@ namespace Managers
             SendCollectablesInformation();
             SendPlayerUpgradesInformation();
             SendGunLevelsInformation();
+            SendSelectedGunIdInformation();
         }
 
 
@@ -282,6 +283,11 @@ namespace Managers
         private void SendGunLevelsInformation()
         {
             UISignals.Instance.onInitializeGunLevels?.Invoke(_loadGameCommand.OnLoadList(SaveLoadStates.GunLevels, SaveFiles.Guns.ToString()));
+        }
+
+        private void SendSelectedGunIdInformation()
+        {
+            SaveSignals.Instance.onInitializeSelectedGunId?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.GunId, SaveFiles.Guns.ToString()));
         }
 
         private int OnGetSelectedGunId()

@@ -21,6 +21,7 @@ namespace Signals
         public UnityAction<int> onInitializePlayerHealth = delegate { };
 
         public UnityAction<List<int>> onInitializePlayerUpgrades = delegate { };
+        public UnityAction<int> onInitializeSelectedGunId = delegate { };
 
 
 
