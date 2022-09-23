@@ -18,6 +18,7 @@ namespace Controllers
 
         [SerializeField] private PlayerManager2 manager;
 
+        [SerializeField] private BoxCollider boxCollider;
 
 
         #endregion
@@ -25,14 +26,10 @@ namespace Controllers
         private PlayerData _data;
         private int _health = 100;
         private int _healtLevel = 1;
-        private BoxCollider _collider;
         #endregion
         #endregion
 
-        private void Awake()
-        {
-            _collider = GetComponent<BoxCollider>();
-        }
+
         private void Start()
         {
             _data = manager.GetPlayerData();
@@ -50,11 +47,17 @@ namespace Controllers
             {
                 PlayerSignals.Instance.onPlayerReachBase?.Invoke();
                 manager.SetAnimBool(PlayerAnimStates.Base, true);
+                manager.IsOnBase = true;
+                ChangeColliderActiveness(false);
                 return;
             }
             if (other.CompareTag("OutTrigger"))
             {
                 manager.SetAnimBool(PlayerAnimStates.Base, false);
+                manager.IsOnBase = false;
+
+                ChangeColliderActiveness(true);
+
                 return;
             }
             if (other.CompareTag("Damage"))
@@ -99,6 +102,11 @@ namespace Controllers
             SetHealth();
             transform.parent.position = new Vector3(0, 0.4f, 0);
             manager.SetAnimState(PlayerAnimStates.Idle);
+        }
+
+        private void ChangeColliderActiveness(bool state)
+        {
+            boxCollider.enabled = state;
         }
     }
 }

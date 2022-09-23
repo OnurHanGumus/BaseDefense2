@@ -23,6 +23,7 @@ TagManager:
   - RocketBullet
   - MinigunBullet
   - Wall
+  - PlayerOutOfBase
   layers:
   - Default
   - TransparentFX

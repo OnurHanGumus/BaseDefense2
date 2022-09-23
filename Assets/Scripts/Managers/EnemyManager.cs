@@ -76,12 +76,12 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            //PlayerSignals.Instance.onPlayerReachBase += OnPlayerDisapear;
+            PlayerSignals.Instance.onPlayerReachBase += OnPlayerDisapear;
         }
 
         private void UnsubscribeEvents()
         {
-            //PlayerSignals.Instance.onPlayerReachBase -= OnPlayerDisapear;
+            PlayerSignals.Instance.onPlayerReachBase -= OnPlayerDisapear;
 
 
         }

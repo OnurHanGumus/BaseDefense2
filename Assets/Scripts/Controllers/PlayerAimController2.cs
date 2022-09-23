@@ -96,7 +96,7 @@ namespace Controllers
 
         private IEnumerator Shoot()
         {
-            if (manager.IsPlayerDead)
+            if (manager.IsPlayerDead || manager.IsOnBase)
             {
                 //just wait
             }

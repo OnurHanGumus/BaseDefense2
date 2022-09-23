@@ -18,6 +18,7 @@ namespace Managers
         #region Public Variables
         public int CurrentGunId = 0;
         public bool IsPlayerDead = false;
+        public bool IsOnBase = true;
         public List<GameObject> Guns;
 
 
