@@ -25,7 +25,7 @@ namespace Managers
 
         #region Serialized Variables
 
-
+        [SerializeField] private GameObject worker;
         #endregion
 
         #region Private Variables
@@ -65,7 +65,7 @@ namespace Managers
 
         public void InstantiateWorker()
         {
-            Instantiate(new GameObject());
+            Instantiate(worker, transform.position, new Quaternion(0,180f,0f,0f));
         }
     }
 }
