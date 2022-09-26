@@ -7,7 +7,7 @@ namespace Signals
 {
     public class StackSignals : MonoSingleton<StackSignals>
     {
-        public Func<int> onGetStackCount = delegate { return 0; };
+        public Func<int> onGetStackRemainPlace = delegate { return 0; };
      
     }
 }

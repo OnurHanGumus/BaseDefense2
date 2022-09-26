@@ -78,6 +78,8 @@ namespace Managers
             SaveSignals.Instance.onInitializePlayerUpgrades += ItemAddOnStack.OnGetCarryLevel;
             SaveSignals.Instance.onUpgradePlayer += ItemAddOnStack.OnGetCarryLevel;
             PlayerSignals.Instance.onPlayerDie += OnPlayerDie;
+
+            StackSignals.Instance.onGetStackRemainPlace += OnGetStackCount;
             
 
         }
@@ -89,6 +91,8 @@ namespace Managers
             SaveSignals.Instance.onInitializePlayerUpgrades -= ItemAddOnStack.OnGetCarryLevel;
             SaveSignals.Instance.onUpgradePlayer -= ItemAddOnStack.OnGetCarryLevel;
             PlayerSignals.Instance.onPlayerDie -= OnPlayerDie;
+
+            StackSignals.Instance.onGetStackRemainPlace -= OnGetStackCount;
         }
         private void OnDisable()
         {
@@ -144,12 +148,6 @@ namespace Managers
 
         }
 
-        private void OnGetCapacity(int capacityLevel)
-        {
-            Debug.Log(capacityLevel);
-            _capacityLevel = capacityLevel + 1;
-        }
-
         private IEnumerator Wait05s()
         {
             Temp.Clear();
@@ -199,6 +197,11 @@ namespace Managers
             Temp.Clear();
             _canReleaseCollectablesToBase = true;
 
+        }
+
+        private int OnGetStackCount()
+        {
+            return (ItemAddOnStack.CarryLevel * 10) - CollectableStack.Count;
         }
     }
 }

@@ -9,11 +9,14 @@ namespace Commands
     public class ItemAddOnStackCommand
     {
         #region Self Variables
+        #region Public Variables
+        public int CarryLevel = 2; //save'e 0 olarak kaydediliyor. Buraya gelince hemen 1 arttırılıyor.
+
+        #endregion
         #region Private Variables
         private List<GameObject> _collectableStack;
         private Transform _transform;
         private StackData _stackData;
-        private int _carryLevel = 2; //save'e 0 olarak kaydediliyor. Buraya gelince hemen 1 arttırılıyor.
         private int _maxHeight = 10;
         private int _currentTowerCount = 1;
         #endregion
@@ -28,7 +31,7 @@ namespace Commands
         
         public void Execute(GameObject _collectableGameObject)
         {
-            if (_carryLevel < _currentTowerCount)
+            if (CarryLevel < _currentTowerCount)
             {
                 return;
             }
@@ -63,7 +66,7 @@ namespace Commands
             {
                 upgradeList = new List<int>() { 0, 0, 0 };
             }
-            _carryLevel = upgradeList[0] + 1;
+            CarryLevel = upgradeList[0] + 1;
         }
     }
 }
