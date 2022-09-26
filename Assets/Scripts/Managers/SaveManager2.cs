@@ -32,7 +32,7 @@ namespace Managers
         [ShowInInspector] private int _levelID;
         private LoadGameCommand _loadGameCommand;
         private SaveGameCommand _saveGameCommand;
-        private List<int> _areaData, _turretAreaData, _turretOwnerData, _enemyAreaData, _gunLevelData;
+        private List<int> _areaData, _turretAreaData, _turretOwnerData, _enemyAreaData, _gunLevelData, _ammoWorkerData, _moneyWorkerData;
 
 
 
@@ -52,12 +52,16 @@ namespace Managers
             _turretAreaData = GetTurretAreaData();
             _turretOwnerData = GetTurretOwnerAreaData();
             _enemyAreaData = GetEnemyAreaData();
+            _ammoWorkerData = GetAmmoWorkerData();
+            _moneyWorkerData = GetMoneyWorkerData();
             //_gunLevelData = GetGunLevelData();
 
             WriteSavesToScriptable(SaveLoadStates.OpenedAreasCounts, ref _areaData, SaveFiles.WorkerCurrentCounts);
             WriteSavesToScriptable(SaveLoadStates.OpenedTurretsCounts, ref _turretAreaData, SaveFiles.WorkerCurrentCounts);
             WriteSavesToScriptable(SaveLoadStates.OpenedTurretOwnersCounts, ref _turretOwnerData, SaveFiles.WorkerCurrentCounts);
             WriteSavesToScriptable(SaveLoadStates.OpenedEnemyAreaCounts, ref _enemyAreaData, SaveFiles.WorkerCurrentCounts);
+            WriteSavesToScriptable(SaveLoadStates.AmmoWorkerAreaCounts, ref _ammoWorkerData, SaveFiles.WorkerCurrentCounts);
+            WriteSavesToScriptable(SaveLoadStates.MoneyWorkerAreaCounts, ref _moneyWorkerData, SaveFiles.WorkerCurrentCounts);
             //WriteSavesToScriptable(SaveLoadStates.GunLevels, ref _gunLevelData, SaveFiles.Guns);
 
             SendCollectablesInformation();
@@ -71,6 +75,8 @@ namespace Managers
         public List<int> GetTurretAreaData() => Resources.Load<CD_Area>("Data/Counts/CD_Turret").totalLevelAreaData.Base[LevelSignals.Instance.onGetCurrentModdedLevel()].UnlockValues;
         public List<int> GetTurretOwnerAreaData() => Resources.Load<CD_Area>("Data/Counts/CD_TurretOwner").totalLevelAreaData.Base[LevelSignals.Instance.onGetCurrentModdedLevel()].UnlockValues;
         public List<int> GetEnemyAreaData() => Resources.Load<CD_Area>("Data/Counts/CD_EnemyArea").totalLevelAreaData.Base[LevelSignals.Instance.onGetCurrentModdedLevel()].UnlockValues;
+        public List<int> GetAmmoWorkerData() => Resources.Load<CD_Area>("Data/Counts/CD_AmmoWorker").totalLevelAreaData.Base[LevelSignals.Instance.onGetCurrentModdedLevel()].UnlockValues;
+        public List<int> GetMoneyWorkerData() => Resources.Load<CD_Area>("Data/Counts/CD_MoneyWorker").totalLevelAreaData.Base[LevelSignals.Instance.onGetCurrentModdedLevel()].UnlockValues;
         //public AllGunsData GetGunLevelData() => Resources.Load<CD_Gun>("Data/CD_Gun").Data;
         //public List<int> GetGunLevelData() => Resources.Load<CD_Gun>("Data/CD_Gun").Levels;
 
@@ -94,8 +100,10 @@ namespace Managers
             SaveSignals.Instance.onSaveCollectables += OnSaveCollectables;
             SaveSignals.Instance.onGetSelectedGun += OnGetSelectedGunId;
             SaveSignals.Instance.onUpgradePlayer += OnUpgradePlayer;
+            SaveSignals.Instance.onIncreaseAmmoWorkerCount += OnIncreaseWorkerCount;
             UISignals.Instance.onChangeGunLevels += OnUpgradeGuns;
             UISignals.Instance.onGetGunLevels += OnGetGunLevels;
+
         }
 
         private void UnsubscribeEvents()
@@ -110,6 +118,7 @@ namespace Managers
             SaveSignals.Instance.onSaveCollectables -= OnSaveCollectables;
             SaveSignals.Instance.onGetSelectedGun -= OnGetSelectedGunId;
             SaveSignals.Instance.onUpgradePlayer -= OnUpgradePlayer;
+            SaveSignals.Instance.onIncreaseAmmoWorkerCount -= OnIncreaseWorkerCount;
             UISignals.Instance.onChangeGunLevels -= OnUpgradeGuns;
             UISignals.Instance.onGetGunLevels -= OnGetGunLevels;
         }
@@ -169,6 +178,11 @@ namespace Managers
             _saveGameCommand.OnSaveData(type, amount);
         }
 
+        private void OnIncreaseWorkerCount(SaveLoadStates type)
+        {
+            int temp = _loadGameCommand.OnLoadGameData(SaveLoadStates.AmmoWorkerCounts, SaveFiles.WorkerCurrentCounts.ToString());
+            _saveGameCommand.OnSaveData(type, temp, SaveFiles.WorkerCurrentCounts.ToString());
+        }
         private void OnSaveGameData()
         {
             _saveGameCommand.OnSaveData(SaveLoadStates.Level, _loadGameCommand.OnLoadGameData(SaveLoadStates.Level) + 1);
@@ -183,6 +197,8 @@ namespace Managers
             _saveGameCommand.OnResetArray(SaveLoadStates.OpenedTurretsCounts, SaveFiles.WorkerCurrentCounts.ToString());
             _saveGameCommand.OnResetArray(SaveLoadStates.OpenedTurretOwnersCounts, SaveFiles.WorkerCurrentCounts.ToString());
             _saveGameCommand.OnResetArray(SaveLoadStates.OpenedEnemyAreaCounts, SaveFiles.WorkerCurrentCounts.ToString());
+
+            _saveGameCommand.OnResetArray(SaveLoadStates.AmmoWorkerAreaCounts, SaveFiles.WorkerCurrentCounts.ToString());
         }
         //Area
         private void WriteSavesToScriptable(SaveLoadStates type, ref List<int> scriptableData, SaveFiles saveFile)
@@ -244,6 +260,18 @@ namespace Managers
             {
                 selectedData = _gunLevelData;
                 fileType = SaveFiles.Guns;
+
+            }
+            else if (type.Equals(SaveLoadStates.AmmoWorkerAreaCounts))
+            {
+                selectedData = _ammoWorkerData;
+                fileType = SaveFiles.WorkerCurrentCounts;
+
+            }
+            else if (type.Equals(SaveLoadStates.MoneyWorkerAreaCounts))
+            {
+                selectedData = _moneyWorkerData;
+                fileType = SaveFiles.WorkerCurrentCounts;
 
             }
             else

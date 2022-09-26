@@ -25,7 +25,7 @@ namespace Managers
         #endregion
 
         #region Serialized Variables
-        [SerializeField] private TextMeshPro valueText;
+        [SerializeField] protected TextMeshPro valueText;
         [SerializeField] private AreaDataType areaDataType;
         [SerializeField] private MeshRenderer meshRenderer;
 
@@ -114,7 +114,7 @@ namespace Managers
             }
         }
 
-        public void SetDeactive()
+        public virtual void SetDeactive()
         {
             gameObject.SetActive(false);
         }

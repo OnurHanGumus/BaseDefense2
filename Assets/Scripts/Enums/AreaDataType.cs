@@ -9,5 +9,7 @@ namespace Enums
         CD_Turret,
         CD_TurretOwner,
         CD_EnemyArea,
+        CD_AmmoWorker,
+        CD_MoneyWorker,
     }
 }

@@ -29,5 +29,9 @@ namespace Enums
         UpgradePlayerHealth,
         PlayerUpgrades,
 
+        AmmoWorkerCounts,
+        MoneyWorkerCounts,
+        AmmoWorkerAreaCounts,
+        MoneyWorkerAreaCounts,
     }
 }
