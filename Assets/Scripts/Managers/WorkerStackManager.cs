@@ -13,7 +13,7 @@ using Random = UnityEngine.Random;
 
 namespace Managers
 {
-    public class StackManager : MonoBehaviour
+    public class WorkerStackManager : MonoBehaviour
     {
         #region Self Variables
         
@@ -26,16 +26,11 @@ namespace Managers
         #endregion
 
         #region Seralized Veriables
-        [SerializeField] private GameObject levelHolder;
         #endregion
 
         #region Private Variables
 
         private StackData _stackData;
-        //private StackMoveController _stackMoveController;
-        private ItemRemoveOnStackCommand _itemRemoveOnStackCommand;
-        private Transform _playerTransform;
-        private bool _canReleaseCollectablesToBase = true;
 
 
         #endregion
@@ -47,19 +42,12 @@ namespace Managers
             Init();
         }
 
-        private void Start()
-        {
-            //_playerTransform = PlayerSignals.Instance.onGetPlayer();
-            _playerTransform = GameObject.FindGameObjectWithTag("PlayerStackPos").transform;
-            
-        }
-
         private StackData GetStackData() => Resources.Load<CD_Stack>("Data/CD_Stack").Data;
 
         private void Init()
         {
             ItemAddOnStack = new ItemAddOnStackCommand(ref CollectableStack, transform, _stackData);
-            _itemRemoveOnStackCommand = new ItemRemoveOnStackCommand(ref CollectableStack, ref levelHolder);
+          
         }
 
         #region Event Subscription
@@ -71,26 +59,20 @@ namespace Managers
         private void SubscribeEvent()
         {
             CoreGameSignals.Instance.onReset += OnReset;
-            PlayerSignals.Instance.onInteractionCollectable += OnInteractionWithCollectable;
-            PlayerSignals.Instance.onPlayerReachBase += OnReleaseCollectablesToBase;
             SaveSignals.Instance.onInitializePlayerUpgrades += ItemAddOnStack.OnGetCarryLevel;
             SaveSignals.Instance.onUpgradePlayer += ItemAddOnStack.OnGetCarryLevel;
-            PlayerSignals.Instance.onPlayerDie += OnPlayerDie;
 
-            StackSignals.Instance.onGetStackRemainPlace += OnGetStackCount;
+            //StackSignals.Instance.onGetStackRemainPlace += OnGetStackCount;
             
 
         }
         private void UnSubscribeEvent()
         {
             CoreGameSignals.Instance.onReset -= OnReset;
-            PlayerSignals.Instance.onInteractionCollectable -= OnInteractionWithCollectable;
-            PlayerSignals.Instance.onPlayerReachBase -= OnReleaseCollectablesToBase;
             SaveSignals.Instance.onInitializePlayerUpgrades -= ItemAddOnStack.OnGetCarryLevel;
             SaveSignals.Instance.onUpgradePlayer -= ItemAddOnStack.OnGetCarryLevel;
-            PlayerSignals.Instance.onPlayerDie -= OnPlayerDie;
 
-            StackSignals.Instance.onGetStackRemainPlace -= OnGetStackCount;
+            //StackSignals.Instance.onGetStackRemainPlace -= OnGetStackCount;
         }
         private void OnDisable()
         {
@@ -98,28 +80,27 @@ namespace Managers
         }
         #endregion
 
-        private void Update()
+        public void InteractionWithCollectable(GameObject collectableGameObject)
         {
-            StackMove();
-        }
-        private void StackMove()
-        {
-            StackFollowPlayer();
-        }
+            collectableGameObject.transform.parent = transform;
+            Vector3 newPos;
 
-        private void StackFollowPlayer()
-        {
-            transform.position = _playerTransform.position;
-            transform.rotation = _playerTransform.rotation;
+            newPos = new Vector3(0, (_stackData.OffsetY* 0.1f) * (CollectableStack.Count), 0);
 
-        }
 
-        private void OnInteractionWithCollectable(GameObject collectableGameObject)
-        {
-            ItemAddOnStack.Execute(collectableGameObject);
+
+            //collectableGameObject.transform.DOLocalMove(newPos, 1f).OnComplete(() => SetPosition(collectableGameObject, newPos)).SetEase(Ease.InOutBack);
+            //collectableGameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            CollectableStack.Add(collectableGameObject);
+            SetPosition(collectableGameObject, newPos);
+
         }
 
+        private void SetPosition(GameObject _collectableGameObject, Vector3 newPos)
+        {
+            _collectableGameObject.transform.localPosition = newPos;
 
+        }
 
         private void OnReset()
         {
@@ -130,17 +111,11 @@ namespace Managers
             CollectableStack.Clear();
         }
 
-        private void OnReleaseCollectablesToBase()
+        public void ReleaseCollectablesToTurret()
         {
-            if (!_canReleaseCollectablesToBase)
-            {
-                return;
-            }
+
             if (CollectableStack.Count > 0)
             {
-                ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Money, CollectableStack.Count);
-                ItemAddOnStack.ResetTowerCount();
-                _canReleaseCollectablesToBase = false;
                 StartCoroutine(Wait05s());
             }
 
@@ -176,30 +151,13 @@ namespace Managers
                 Destroy(i.gameObject);
             }
             Temp.Clear();
-            _canReleaseCollectablesToBase = true;
         }
 
-        private void OnPlayerDie()
-        {
-            ItemAddOnStack.ResetTowerCount();
 
-            foreach (var i in CollectableStack)
-            {
-                Destroy(i.gameObject);
-            }
-            foreach (var i in Temp)
-            {
-                Destroy(i.gameObject);
-            }
-            CollectableStack.Clear();
-            Temp.Clear();
-            _canReleaseCollectablesToBase = true;
 
-        }
-
-        private int OnGetStackCount()
-        {
-            return ((ItemAddOnStack.CarryLevel * 10) - CollectableStack.Count);
-        }
+        //public int OnGetStackCount()
+        //{
+        //    //return (ItemAddOnStack.CarryLevel * 10) - CollectableStack.Count;
+        //}
     }
 }

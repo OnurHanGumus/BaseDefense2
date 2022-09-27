@@ -24,6 +24,7 @@ TagManager:
   - MinigunBullet
   - Wall
   - PlayerOutOfBase
+  - AmmoWorker
   layers:
   - Default
   - TransparentFX

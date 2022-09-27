@@ -31,6 +31,15 @@ namespace Controllers
                 }
                 return;
             }
+            if (other.CompareTag("AmmoWorker"))
+            {
+                int temp = 3;
+                if (temp > pool.Count)
+                {
+                    StartCoroutine(InstantiateBulletBox(temp - pool.Count));
+                }
+                return;
+            }
 
         }
 
@@ -45,6 +54,7 @@ namespace Controllers
 
         private IEnumerator InstantiateBulletBox(int count)
         {
+            Debug.Log(count);
             for (int i = 0; i < count; i++)
             {
                 yield return new WaitForSeconds(0.01f);

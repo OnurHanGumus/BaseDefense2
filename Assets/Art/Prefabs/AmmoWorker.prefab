@@ -444,9 +444,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5314733324322909654}
   - component: {fileID: 5314733324322909648}
+  - component: {fileID: 8869414711383666992}
   m_Layer: 0
   m_Name: Physics (1)
-  m_TagString: Untagged
+  m_TagString: AmmoWorker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -478,6 +479,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.64599663, y: 0.7269998, z: 0.36369064}
   m_Center: {x: 0.015683811, y: 0.36503673, z: -0.00000020662945}
+--- !u!114 &8869414711383666992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314733324322909655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8658d6f3b1d8a04ab667283d6d79a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stackManager: {fileID: 3690567717010189577}
 --- !u!1 &5614996271606812297
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +538,7 @@ GameObject:
   - component: {fileID: 5631769000639049165}
   m_Layer: 0
   m_Name: AmmoWorker
-  m_TagString: Untagged
+  m_TagString: AmmoWorker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -543,6 +557,7 @@ Transform:
   - {fileID: 663034586151491580}
   - {fileID: 9069918234059019017}
   - {fileID: 5314733324322909654}
+  - {fileID: 4835317322203822636}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -754,6 +769,51 @@ Transform:
   m_Father: {fileID: 2921988615736982731}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 3.5568764e-27, y: 1.5902773e-15, z: -1.2814998e-10}
+--- !u!1 &6098567613495901970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4835317322203822636}
+  - component: {fileID: 3690567717010189577}
+  m_Layer: 0
+  m_Name: Stack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4835317322203822636
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098567613495901970}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5000051932758669160}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3690567717010189577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098567613495901970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cc5902df239da4c9ef73f92431abf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollectableStack: []
+  Temp: []
 --- !u!1 &6291553067640323128
 GameObject:
   m_ObjectHideFlags: 0
