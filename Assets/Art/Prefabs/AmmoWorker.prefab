@@ -536,6 +536,7 @@ GameObject:
   - component: {fileID: 5000051932758669160}
   - component: {fileID: 5631769000639049164}
   - component: {fileID: 5631769000639049165}
+  - component: {fileID: 6432573300963297439}
   m_Layer: 0
   m_Name: AmmoWorker
   m_TagString: AmmoWorker
@@ -596,6 +597,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6432573300963297439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631769000639049170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa212393a2dcfe4bba6d693c4d93b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedWayObject: {fileID: 0}
+  selectedWay: []
+  childWays: []
+  ammoManager: {fileID: 0}
+  waysOnScene: []
+  openedTurrets: 
 --- !u!1 &5799519797336860526
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +813,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6098567613495901970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.245, z: -0.194}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5000051932758669160}

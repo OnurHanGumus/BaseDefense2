@@ -68,6 +68,7 @@ namespace Managers
             SendPlayerUpgradesInformation();
             SendGunLevelsInformation();
             SendSelectedGunIdInformation();
+            SendOpenedTurretsInformation();
         }
 
 
@@ -316,6 +317,10 @@ namespace Managers
         private void SendSelectedGunIdInformation()
         {
             SaveSignals.Instance.onInitializeSelectedGunId?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.GunId, SaveFiles.Guns.ToString()));
+        }
+        private void SendOpenedTurretsInformation()
+        {
+            SaveSignals.Instance.onInitializeOpenedTurretInfo?.Invoke(_loadGameCommand.OnLoadList(Enums.SaveLoadStates.OpenedTurrets, SaveFiles.WorkerCurrentCounts.ToString()));
         }
 
         private int OnGetSelectedGunId()

@@ -25,6 +25,11 @@ TagManager:
   - Wall
   - PlayerOutOfBase
   - AmmoWorker
+  - 0way
+  - 1way
+  - 2way
+  - 3way
+  - 4way
   layers:
   - Default
   - TransparentFX

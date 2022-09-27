@@ -30,6 +30,8 @@ namespace Signals
         public Func<int> onGetSelectedGun = delegate { return 0; };
 
         public UnityAction<List<int>> onUpgradePlayer = delegate { };
+
+        public UnityAction<List<int>> onInitializeOpenedTurretInfo = delegate { };
         //------------------------------------------------------------
         public UnityAction<SaveLoadStates> onIncreaseMoneyWorkerCount = delegate { };
         public UnityAction<SaveLoadStates> onIncreaseAmmoWorkerCount = delegate { };

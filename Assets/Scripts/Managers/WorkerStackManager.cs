@@ -83,14 +83,15 @@ namespace Managers
         public void InteractionWithCollectable(GameObject collectableGameObject)
         {
             collectableGameObject.transform.parent = transform;
+            collectableGameObject.tag = "Collected";
             Vector3 newPos;
 
-            newPos = new Vector3(0, (_stackData.OffsetY* 0.1f) * (CollectableStack.Count), 0);
+            newPos = new Vector3(0, (_stackData.OffsetY * 0.1f) * (CollectableStack.Count), 0);
 
 
 
             //collectableGameObject.transform.DOLocalMove(newPos, 1f).OnComplete(() => SetPosition(collectableGameObject, newPos)).SetEase(Ease.InOutBack);
-            //collectableGameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            collectableGameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
             CollectableStack.Add(collectableGameObject);
             SetPosition(collectableGameObject, newPos);
 
