@@ -78,11 +78,14 @@ namespace Managers
         private void SubscribeEvents()
         {
             SaveSignals.Instance.onInitializeOpenedTurretInfo += OnGetOpenedTurrets;
+            LevelSignals.Instance.onBuyTurret += OnBuyTurrets;
+                
         }
 
         private void UnsubscribeEvents()
         {
             SaveSignals.Instance.onInitializeOpenedTurretInfo -= OnGetOpenedTurrets;
+            LevelSignals.Instance.onBuyTurret -= OnBuyTurrets;
 
 
         }
@@ -139,6 +142,10 @@ namespace Managers
         {
             this.openedTurrets = openedTurrets;
             openedTurrets.Insert(0, -1);
+        }
+        private void OnBuyTurrets(int turretId)
+        {
+            this.openedTurrets.Add(turretId);
         }
 
     }

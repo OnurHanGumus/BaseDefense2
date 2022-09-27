@@ -73,6 +73,7 @@ namespace Managers
             CoreGameSignals.Instance.onReset += OnReset;
             PlayerSignals.Instance.onInteractionCollectable += OnInteractionWithCollectable;
             PlayerSignals.Instance.onPlayerReachBase += OnReleaseCollectablesToBase;
+            PlayerSignals.Instance.onPlayerReachTurretAmmoArea += OnReleaseAmmosToTurretArea;
             SaveSignals.Instance.onInitializePlayerUpgrades += ItemAddOnStack.OnGetCarryLevel;
             SaveSignals.Instance.onUpgradePlayer += ItemAddOnStack.OnGetCarryLevel;
             PlayerSignals.Instance.onPlayerDie += OnPlayerDie;
@@ -86,6 +87,7 @@ namespace Managers
             CoreGameSignals.Instance.onReset -= OnReset;
             PlayerSignals.Instance.onInteractionCollectable -= OnInteractionWithCollectable;
             PlayerSignals.Instance.onPlayerReachBase -= OnReleaseCollectablesToBase;
+            PlayerSignals.Instance.onPlayerReachTurretAmmoArea -= OnReleaseAmmosToTurretArea;
             SaveSignals.Instance.onInitializePlayerUpgrades -= ItemAddOnStack.OnGetCarryLevel;
             SaveSignals.Instance.onUpgradePlayer -= ItemAddOnStack.OnGetCarryLevel;
             PlayerSignals.Instance.onPlayerDie -= OnPlayerDie;
@@ -177,6 +179,21 @@ namespace Managers
             }
             Temp.Clear();
             _canReleaseCollectablesToBase = true;
+        }
+
+        private void OnReleaseAmmosToTurretArea(GameObject releaseObject)
+        {
+            StartCoroutine(ReleaseAmmosToTurret(releaseObject));
+        }
+        private IEnumerator ReleaseAmmosToTurret(GameObject releaseObject)
+        {
+            foreach (var i in CollectableStack)
+            {
+                yield return new WaitForSeconds(0.05f);
+                i.transform.parent = releaseObject.transform;
+                i.transform.DOMove(releaseObject.transform.position, 0.5f);
+            }
+            CollectableStack.Clear();
         }
 
         private void OnPlayerDie()

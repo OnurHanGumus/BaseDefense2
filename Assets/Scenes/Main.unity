@@ -7878,6 +7878,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmmoWorker
       objectReference: {fileID: 0}
+    - target: {fileID: 5631769000639049170, guid: 24527d7b885949241a6be54d97d41eb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6432573300963297439, guid: 24527d7b885949241a6be54d97d41eb2, type: 3}
       propertyPath: ammoManager
       value: 

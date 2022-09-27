@@ -14,6 +14,9 @@ namespace Signals
         public UnityAction onPlayerReachBase = delegate { };
         public UnityAction onPlayerLeaveBase = delegate { };
 
+        public UnityAction<GameObject> onPlayerReachTurretAmmoArea = delegate { };
+
+
         public UnityAction<SaveLoadStates> onPlayerLeaveBuyArea = delegate { };
 
         public UnityAction<int> onPlayerSelectGun = delegate { };

@@ -51,6 +51,11 @@ namespace Controllers
                 ChangeColliderActiveness(false);
                 return;
             }
+            if (other.CompareTag("TurretAmmoArea"))
+            {
+                PlayerSignals.Instance.onPlayerReachTurretAmmoArea?.Invoke(other.gameObject);
+                return;
+            }
             if (other.CompareTag("OutTrigger"))
             {
                 manager.SetAnimBool(PlayerAnimStates.Base, false);
