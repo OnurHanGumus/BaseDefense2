@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1349165496609744716}
   - component: {fileID: 2051561531122541392}
   - component: {fileID: 1843862427003949064}
+  - component: {fileID: 6758552687595479776}
   m_Layer: 0
   m_Name: TurretAmmoArea 1
   m_TagString: TurretAmmoArea
@@ -62,6 +63,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9999999, y: 123.63845, z: 0.9999999}
   m_Center: {x: -0.00000045542282, y: 61.319233, z: 0.000000056927853}
+--- !u!114 &6758552687595479776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23291720276765917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a80215456f3e4f4b8d9b38099a8d10d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &174157480047741670
 GameObject:
   m_ObjectHideFlags: 0

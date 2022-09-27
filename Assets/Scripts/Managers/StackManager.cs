@@ -183,6 +183,7 @@ namespace Managers
 
         private void OnReleaseAmmosToTurretArea(GameObject releaseObject)
         {
+            ItemAddOnStack.ResetTowerCount();
             StartCoroutine(ReleaseAmmosToTurret(releaseObject));
         }
         private IEnumerator ReleaseAmmosToTurret(GameObject releaseObject)
