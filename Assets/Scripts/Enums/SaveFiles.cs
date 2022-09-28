@@ -9,6 +9,7 @@ namespace Enums
         Guns,
         WorkerCurrentCounts,
         PlayerImprovements,
+        WorkerUpgrades,
 
     }
 }

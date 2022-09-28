@@ -23,6 +23,7 @@ namespace Signals
         public UnityAction<List<int>> onInitializePlayerUpgrades = delegate { };
         public UnityAction<int> onInitializeSelectedGunId = delegate { };
 
+        public UnityAction<List<int>> onInitializeWorkerUpgrades = delegate { };
 
 
         public UnityAction<SaveLoadStates, int> onSaveCollectables = delegate { };
@@ -30,6 +31,7 @@ namespace Signals
         public Func<int> onGetSelectedGun = delegate { return 0; };
 
         public UnityAction<List<int>> onUpgradePlayer = delegate { };
+        public UnityAction<List<int>> onUpgradeWorker = delegate { };
 
         public UnityAction<List<int>> onInitializeOpenedTurretInfo = delegate { };
 

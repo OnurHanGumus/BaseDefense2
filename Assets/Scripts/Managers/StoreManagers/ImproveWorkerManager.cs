@@ -16,7 +16,7 @@ using DG.Tweening;
 
 namespace Managers
 {
-    public class ImprovePlayerManager : MonoBehaviour
+    public class ImproveWorkerManager : MonoBehaviour
     {
         #region Self Variables
 
@@ -44,7 +44,7 @@ namespace Managers
         {
             _data = GetData();
         }
-        private AllItemPricesData GetData() => Resources.Load<CD_GunPrices>("Data/StoreBuyPrices/CD_PlayerUpgradePrices").Data;
+        private AllItemPricesData GetData() => Resources.Load<CD_GunPrices>("Data/StoreBuyPrices/CD_WorkerUpgradePrices").Data;
         private void Start()
         {
             UpdateTexts();
@@ -60,12 +60,12 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            SaveSignals.Instance.onInitializePlayerUpgrades += OnGetItemLevels;
+            SaveSignals.Instance.onInitializeWorkerUpgrades += OnGetItemLevels;
         }
 
         private void UnsubscribeEvents()
         {
-            SaveSignals.Instance.onInitializePlayerUpgrades -= OnGetItemLevels;
+            SaveSignals.Instance.onInitializeWorkerUpgrades -= OnGetItemLevels;
 
         }
 
@@ -79,7 +79,7 @@ namespace Managers
         public void UpgradeItem(int id)
         {
             itemLevels[id] = itemLevels[id] + 1;
-            SaveSignals.Instance.onUpgradePlayer?.Invoke(itemLevels);
+            SaveSignals.Instance.onUpgradeWorker?.Invoke(itemLevels);
             UpdateTexts();
         }
 
@@ -87,7 +87,7 @@ namespace Managers
         {
             if (levels.Count.Equals(0))
             {
-                levels = new List<int>() { 0, 0, 0};
+                levels = new List<int>() { 0, 0};
             }
 
             itemLevels = levels;
@@ -96,6 +96,8 @@ namespace Managers
 
         private void UpdateTexts()
         {
+            Debug.Log(itemLevels.Count);
+
             for (int i = 0; i < itemLevels.Count; i++)//textleri initialize et
             {
                 levelTxt[i].text = "LEVEL " + (itemLevels[i] + 1).ToString();
@@ -105,7 +107,7 @@ namespace Managers
 
         public void CloseBtn()
         {
-            UISignals.Instance.onCloseStorePanel?.Invoke(UIPanels.PlayerImprovementsPanel);
+            UISignals.Instance.onCloseStorePanel?.Invoke(UIPanels.WorkerImprovementsPanel);
         }
     }
 }

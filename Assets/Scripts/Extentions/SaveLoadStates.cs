@@ -28,6 +28,7 @@ namespace Enums
         UpgradePlayerMoveSpeed,
         UpgradePlayerHealth,
         PlayerUpgrades,
+        WorkerUpgrades,
 
         AmmoWorkerCounts,
         MoneyWorkerCounts,

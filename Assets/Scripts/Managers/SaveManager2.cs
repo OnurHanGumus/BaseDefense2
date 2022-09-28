@@ -68,6 +68,7 @@ namespace Managers
             SendPlayerUpgradesInformation();
             SendGunLevelsInformation();
             SendSelectedGunIdInformation();
+            SendWorkerUpgradesInformation();
         }
 
 
@@ -100,6 +101,7 @@ namespace Managers
             SaveSignals.Instance.onSaveCollectables += OnSaveCollectables;
             SaveSignals.Instance.onGetSelectedGun += OnGetSelectedGunId;
             SaveSignals.Instance.onUpgradePlayer += OnUpgradePlayer;
+            SaveSignals.Instance.onUpgradeWorker += OnUpgradeWorker;
             SaveSignals.Instance.onIncreaseAmmoWorkerCount += OnIncreaseWorkerCount;
             SaveSignals.Instance.onGetOpenedTurrets += OnGetOpenedTurrets;
             UISignals.Instance.onChangeGunLevels += OnUpgradeGuns;
@@ -119,6 +121,7 @@ namespace Managers
             SaveSignals.Instance.onSaveCollectables -= OnSaveCollectables;
             SaveSignals.Instance.onGetSelectedGun -= OnGetSelectedGunId;
             SaveSignals.Instance.onUpgradePlayer -= OnUpgradePlayer;
+            SaveSignals.Instance.onUpgradeWorker -= OnUpgradeWorker;
             SaveSignals.Instance.onIncreaseAmmoWorkerCount -= OnIncreaseWorkerCount;
             SaveSignals.Instance.onGetOpenedTurrets -= OnGetOpenedTurrets;
             UISignals.Instance.onChangeGunLevels -= OnUpgradeGuns;
@@ -173,6 +176,10 @@ namespace Managers
         private void OnUpgradePlayer(List<int> listToSave)
         {
             _saveGameCommand.OnSaveList(SaveLoadStates.PlayerUpgrades, listToSave, SaveFiles.PlayerImprovements.ToString());
+        }
+        private void OnUpgradeWorker(List<int> listToSave)
+        {
+            _saveGameCommand.OnSaveList(SaveLoadStates.WorkerUpgrades, listToSave, SaveFiles.WorkerUpgrades.ToString());
         }
 
         private void OnSaveCollectables(SaveLoadStates type, int amount)
@@ -304,11 +311,16 @@ namespace Managers
         private void SendPlayerUpgradesInformation()
         {
             List<int> temp = _loadGameCommand.OnLoadList(SaveLoadStates.PlayerUpgrades, SaveFiles.PlayerImprovements.ToString());
-            //SaveSignals.Instance.onInitializePlayerCapacity?.Invoke(temp[0]);
-            //SaveSignals.Instance.onInitializePlayerSpeed?.Invoke(temp[1]);
-            //SaveSignals.Instance.onInitializePlayerHealth?.Invoke(temp[2]);
+
 
             SaveSignals.Instance.onInitializePlayerUpgrades?.Invoke(temp);
+        }
+        private void SendWorkerUpgradesInformation()
+        {
+            List<int> temp = _loadGameCommand.OnLoadList(SaveLoadStates.WorkerUpgrades, SaveFiles.WorkerUpgrades.ToString());
+
+
+            SaveSignals.Instance.onInitializeWorkerUpgrades?.Invoke(temp);
         }
         private void SendGunLevelsInformation()
         {
