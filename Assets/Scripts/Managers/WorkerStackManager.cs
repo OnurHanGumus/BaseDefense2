@@ -16,12 +16,11 @@ namespace Managers
     public class WorkerStackManager : MonoBehaviour
     {
         #region Self Variables
-        
+        public int Capacity = 3;
         #region Public Variables
         public List<GameObject> CollectableStack = new List<GameObject>();
         public List<GameObject> Temp = new List<GameObject>();
 
-        public ItemAddOnStackCommand ItemAddOnStack;
 
         #endregion
 
@@ -29,7 +28,7 @@ namespace Managers
         #endregion
 
         #region Private Variables
-
+        
         private StackData _stackData;
 
 
@@ -46,8 +45,7 @@ namespace Managers
 
         private void Init()
         {
-            ItemAddOnStack = new ItemAddOnStackCommand(ref CollectableStack, transform, _stackData);
-          
+            GetCapacityData();
         }
 
         #region Event Subscription
@@ -58,18 +56,14 @@ namespace Managers
 
         private void SubscribeEvent()
         {
-            CoreGameSignals.Instance.onReset += OnReset;
-            SaveSignals.Instance.onInitializePlayerUpgrades += ItemAddOnStack.OnGetCarryLevel;
-            SaveSignals.Instance.onUpgradePlayer += ItemAddOnStack.OnGetCarryLevel;
-
-            
+            CoreGameSignals.Instance.onReset += OnReset; 
+            SaveSignals.Instance.onUpgradeWorker += OnUpgradeWorkerCapacityData;
 
         }
         private void UnSubscribeEvent()
         {
             CoreGameSignals.Instance.onReset -= OnReset;
-            SaveSignals.Instance.onInitializePlayerUpgrades -= ItemAddOnStack.OnGetCarryLevel;
-            SaveSignals.Instance.onUpgradePlayer -= ItemAddOnStack.OnGetCarryLevel;
+            SaveSignals.Instance.onUpgradeWorker -= OnUpgradeWorkerCapacityData;
 
         }
         private void OnDisable()
@@ -112,7 +106,6 @@ namespace Managers
 
         public void ReleaseAmmosToTurretArea(GameObject releaseObject)
         {
-            ItemAddOnStack.ResetTowerCount();
             StartCoroutine(ReleaseAmmosToTurret(releaseObject));
         }
         private IEnumerator ReleaseAmmosToTurret(GameObject releaseObject)
@@ -125,6 +118,25 @@ namespace Managers
                 i.transform.position = releaseObject.transform.position;
             }
             CollectableStack.Clear();
+        }
+
+        public void GetCapacityData()
+        {
+            List<int> upgradeList = SaveSignals.Instance.onGetWorkerUpgrades();
+            if (upgradeList.Count < 2)
+            {
+                upgradeList = new List<int>() { 2, 0 };
+            }
+            Capacity = upgradeList[0] + 1;
+        }
+
+        public void OnUpgradeWorkerCapacityData(List<int> upgradeList)
+        {
+            if (upgradeList.Count < 2)
+            {
+                upgradeList = new List<int>() { 2, 0 };
+            }
+            Capacity = upgradeList[0] + 1;
         }
     }
 }

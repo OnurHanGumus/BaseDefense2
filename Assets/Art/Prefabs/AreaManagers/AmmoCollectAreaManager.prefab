@@ -76,6 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletBox: {fileID: 5495938375531215040, guid: 45775c9401a6a2244aa8711639ad2dd9, type: 3}
   pool: []
+  manager: {fileID: 5959217194722354686}
 --- !u!1 &5239475241433385415
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,8 +88,9 @@ GameObject:
   - component: {fileID: 1311020391455305850}
   - component: {fileID: 6925789134744092776}
   - component: {fileID: 2128697956663707507}
+  - component: {fileID: 5959217194722354686}
   m_Layer: 0
-  m_Name: AmmoManager
+  m_Name: AmmoCollectAreaManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,3 +160,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5959217194722354686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5239475241433385415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7225518b4cc5984f8aab56d765d2b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorkerCapacity: 3

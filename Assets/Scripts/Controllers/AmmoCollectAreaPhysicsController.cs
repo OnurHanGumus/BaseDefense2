@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Controllers
 {
-    public class AmmoAreaPhysicsController : MonoBehaviour
+    public class AmmoCollectAreaPhysicsController : MonoBehaviour
     {
         #region Self Variables
 
@@ -16,6 +16,7 @@ namespace Controllers
 
         [SerializeField] private GameObject bulletBox;
         [SerializeField] private List<GameObject> pool;
+        [SerializeField] private AmmoCollectAreaManager manager;
         #endregion
 
         #endregion
@@ -33,7 +34,7 @@ namespace Controllers
             }
             if (other.CompareTag("AmmoWorker"))
             {
-                int temp = 3;
+                int temp = manager.WorkerCapacity;
                 if (temp > pool.Count)
                 {
                     StartCoroutine(InstantiateBulletBox(temp - pool.Count));
@@ -59,7 +60,6 @@ namespace Controllers
 
         private IEnumerator InstantiateBulletBox(int count)
         {
-            Debug.Log(count);
             for (int i = 0; i < count; i++)
             {
                 yield return new WaitForSeconds(0.01f);

@@ -46,7 +46,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6728048470896858007}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -1272,8 +1272,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Managers.ImprovePlayerManager, Assembly-CSharp
+      - m_Target: {fileID: 4018434375586703087}
+        m_TargetAssemblyTypeName: Managers.ImproveWorkerManager, Assembly-CSharp
         m_MethodName: UpgradeItem
         m_Mode: 3
         m_Arguments:
@@ -2395,8 +2395,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Managers.ImprovePlayerManager, Assembly-CSharp
+      - m_Target: {fileID: 4018434375586703087}
+        m_TargetAssemblyTypeName: Managers.ImproveWorkerManager, Assembly-CSharp
         m_MethodName: UpgradeItem
         m_Mode: 3
         m_Arguments:

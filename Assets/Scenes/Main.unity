@@ -15032,33 +15032,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpgradeWorkerStorePanel
       objectReference: {fileID: 0}
-    - target: {fileID: 6728048470896858026, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
-      propertyPath: m_Alpha
+    - target: {fileID: 6728048472102393922, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6728048471990380472, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8843076630234785835}
-    - target: {fileID: 6728048471990380472, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpgradeItem
+    - target: {fileID: 6728048472102393922, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6728048471990380472, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Managers.ImproveWorkerManager, Assembly-CSharp
+    - target: {fileID: 6728048472102393922, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6728048472530017941, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8843076630234785835}
-    - target: {fileID: 6728048472530017941, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpgradeItem
+    - target: {fileID: 6728048472102393922, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6728048472530017941, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Managers.ImproveWorkerManager, Assembly-CSharp
+    - target: {fileID: 6728048472102393922, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728048472102393922, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728048472354579230, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728048472354579230, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728048472354579230, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728048472354579230, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728048472354579230, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
@@ -15355,14 +15371,3 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6728048470896858007, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
   m_PrefabInstance: {fileID: 2875054851842718653}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8843076630234785835 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4018434375586703087, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
-  m_PrefabInstance: {fileID: 2875054851842718653}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8843076630234785834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e2689a81487b5548bd53ef0dde13806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

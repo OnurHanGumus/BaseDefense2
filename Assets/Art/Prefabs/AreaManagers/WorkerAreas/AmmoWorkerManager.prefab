@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 8112365398960156057}
-  type: 20
+  type: 21
 --- !u!1 &1588083718533170546
 GameObject:
   m_ObjectHideFlags: 0

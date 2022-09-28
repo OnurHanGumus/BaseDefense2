@@ -104,6 +104,8 @@ namespace Managers
             SaveSignals.Instance.onUpgradeWorker += OnUpgradeWorker;
             SaveSignals.Instance.onIncreaseAmmoWorkerCount += OnIncreaseWorkerCount;
             SaveSignals.Instance.onGetOpenedTurrets += OnGetOpenedTurrets;
+            SaveSignals.Instance.onGetWorkerUpgrades += OnGetWorkerUpgrades;
+
             UISignals.Instance.onChangeGunLevels += OnUpgradeGuns;
             UISignals.Instance.onGetGunLevels += OnGetGunLevels;
 
@@ -123,6 +125,7 @@ namespace Managers
             SaveSignals.Instance.onUpgradePlayer -= OnUpgradePlayer;
             SaveSignals.Instance.onUpgradeWorker -= OnUpgradeWorker;
             SaveSignals.Instance.onIncreaseAmmoWorkerCount -= OnIncreaseWorkerCount;
+            SaveSignals.Instance.onGetWorkerUpgrades -= OnGetWorkerUpgrades;
             SaveSignals.Instance.onGetOpenedTurrets -= OnGetOpenedTurrets;
             UISignals.Instance.onChangeGunLevels -= OnUpgradeGuns;
             UISignals.Instance.onGetGunLevels -= OnGetGunLevels;
@@ -319,7 +322,6 @@ namespace Managers
         {
             List<int> temp = _loadGameCommand.OnLoadList(SaveLoadStates.WorkerUpgrades, SaveFiles.WorkerUpgrades.ToString());
 
-
             SaveSignals.Instance.onInitializeWorkerUpgrades?.Invoke(temp);
         }
         private void SendGunLevelsInformation()
@@ -343,6 +345,11 @@ namespace Managers
         private List<int> OnGetOpenedTurrets()
         {
             return _loadGameCommand.OnLoadList(SaveLoadStates.OpenedTurrets, SaveFiles.WorkerCurrentCounts.ToString());
+
+        }
+        private List<int> OnGetWorkerUpgrades()
+        {
+            return _loadGameCommand.OnLoadList(SaveLoadStates.WorkerUpgrades, SaveFiles.WorkerUpgrades.ToString());
 
         }
     }

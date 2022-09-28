@@ -36,6 +36,7 @@ namespace Signals
         public UnityAction<List<int>> onInitializeOpenedTurretInfo = delegate { };
 
         public Func<List<int>> onGetOpenedTurrets = delegate { return null; };
+        public Func<List<int>> onGetWorkerUpgrades = delegate { return null; };
 
         //------------------------------------------------------------
         public UnityAction<SaveLoadStates> onIncreaseMoneyWorkerCount = delegate { };

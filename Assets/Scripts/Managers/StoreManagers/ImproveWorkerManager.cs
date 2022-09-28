@@ -85,9 +85,10 @@ namespace Managers
 
         private void OnGetItemLevels(List<int> levels)
         {
+
             if (levels.Count.Equals(0))
             {
-                levels = new List<int>() { 0, 0};
+                levels = new List<int>() { 2, 0};
             }
 
             itemLevels = levels;
@@ -96,7 +97,6 @@ namespace Managers
 
         private void UpdateTexts()
         {
-            Debug.Log(itemLevels.Count);
 
             for (int i = 0; i < itemLevels.Count; i++)//textleri initialize et
             {

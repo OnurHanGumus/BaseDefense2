@@ -36,7 +36,11 @@ namespace Controllers
         {
             if (other.CompareTag("Collectable"))
             {
-                stackManager.InteractionWithCollectable(other.gameObject);
+                if (stackManager.CollectableStack.Count < stackManager.Capacity)
+                {
+                    stackManager.InteractionWithCollectable(other.gameObject);
+
+                }
                 return;
             }
             if (other.CompareTag("TurretAmmoArea"))

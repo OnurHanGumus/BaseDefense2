@@ -39,7 +39,6 @@ namespace Controllers
             if (other.CompareTag("Collected"))
             {
                 int moddedIndeks = _indeks %_locations.Count;
-                Debug.Log(new Vector3(_locations[moddedIndeks].x, (int)(_indeks / 4) * 0.5f, _locations[moddedIndeks].z)) ;
                 other.transform.DOLocalMove(new Vector3(_locations[moddedIndeks].x, (int)(_indeks / 4) * 0.5f , _locations[moddedIndeks].z), 1f);
                 StartCoroutine(ResetCollectableRotation(other.transform));
                 ++_indeks;

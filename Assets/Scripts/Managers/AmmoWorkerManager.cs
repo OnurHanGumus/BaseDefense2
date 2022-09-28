@@ -39,7 +39,7 @@ namespace Managers
         #endregion
 
         #region Private Variables
-
+        public int _speed = 1;
 
         private int _indeks = 0;
 
@@ -66,6 +66,8 @@ namespace Managers
 
         private void Start()
         {
+            GetSpeedData();
+
             GoToAmmoManager();
             GetOpenedTurrets();
 
@@ -81,12 +83,14 @@ namespace Managers
 
         private void SubscribeEvents()
         {
+            SaveSignals.Instance.onUpgradeWorker += OnUpgradeWorkerSpeedData;
             LevelSignals.Instance.onBuyTurret += OnBuyTurrets;
-                
+
         }
 
         private void UnsubscribeEvents()
         {
+            SaveSignals.Instance.onUpgradeWorker -= OnUpgradeWorkerSpeedData;
             LevelSignals.Instance.onBuyTurret -= OnBuyTurrets;
 
 
@@ -105,7 +109,7 @@ namespace Managers
         //}
         private void GoToAmmoManager()
         {
-            transform.DOMove(ammoManager.position, 16).SetSpeedBased(true).OnComplete(GoToTurret).SetEase(Ease.Linear);
+            transform.DOMove(ammoManager.position, 4 * _speed).SetSpeedBased(true).OnComplete(GoToTurret).SetEase(Ease.Linear);
             transform.DOLookAt(ammoManager.position, 1);
         }
         private void GoToTurret()
@@ -117,14 +121,14 @@ namespace Managers
                 selectedWay.Add(selectedWayObject.GetChild(i).position);
 
             }
-            transform.DOPath(selectedWay.ToArray(), 16, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(GoBackToAmmoManager);
+            transform.DOPath(selectedWay.ToArray(), 4 * _speed, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(GoBackToAmmoManager);
         }
 
         private void GoBackToAmmoManager()
         {
 
             selectedWay.Reverse();
-            transform.DOPath(selectedWay.ToArray(), 16, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(GoToAmmoManager);
+            transform.DOPath(selectedWay.ToArray(), 4 * _speed, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(GoToAmmoManager);
 
             _indeks++;
             if (_indeks >= openedTurrets.Count)
@@ -150,6 +154,23 @@ namespace Managers
             this.openedTurrets = SaveSignals.Instance.onGetOpenedTurrets();
             openedTurrets.Insert(0, -1);
 
+        }
+        public void GetSpeedData()
+        {
+            List<int> upgradeList = SaveSignals.Instance.onGetWorkerUpgrades();
+            if (upgradeList.Count < 2)
+            {
+                upgradeList = new List<int>() { 2, 0 };
+            }
+            _speed = upgradeList[1] + 1;
+        }
+        public void OnUpgradeWorkerSpeedData(List<int> upgradeList)
+        {
+            if (upgradeList.Count < 2)
+            {
+                upgradeList = new List<int>() { 2, 0 };
+            }
+            _speed = upgradeList[1] + 1;
         }
 
     }
