@@ -112,7 +112,23 @@ namespace Managers
             CollectableStack.Clear();
         }
 
-        public void ReleaseCollectablesToTurret()
+        public void ReleaseAmmosToTurretArea(GameObject releaseObject)
+        {
+            ItemAddOnStack.ResetTowerCount();
+            StartCoroutine(ReleaseAmmosToTurret(releaseObject));
+        }
+        private IEnumerator ReleaseAmmosToTurret(GameObject releaseObject)
+        {
+            foreach (var i in CollectableStack)
+            {
+                yield return new WaitForSeconds(0.05f);
+                i.transform.parent = releaseObject.transform;
+                //i.transform.DOMove(releaseObject.transform.position, 0.2f);
+                i.transform.position = releaseObject.transform.position;
+            }
+            CollectableStack.Clear();
+        }
+        private void ReleaseCollectablesToTurret()
         {
 
             if (CollectableStack.Count > 0)

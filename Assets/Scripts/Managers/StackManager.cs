@@ -192,7 +192,8 @@ namespace Managers
             {
                 yield return new WaitForSeconds(0.05f);
                 i.transform.parent = releaseObject.transform;
-                i.transform.DOMove(releaseObject.transform.position, 0.5f);
+                //i.transform.DOMove(releaseObject.transform.position, 0.2f);
+                i.transform.position = releaseObject.transform.position;
             }
             CollectableStack.Clear();
         }

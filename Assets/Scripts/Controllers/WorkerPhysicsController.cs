@@ -39,6 +39,11 @@ namespace Controllers
                 stackManager.InteractionWithCollectable(other.gameObject);
                 return;
             }
+            if (other.CompareTag("TurretAmmoArea"))
+            {
+                stackManager.ReleaseAmmosToTurretArea(other.gameObject);
+                return;
+            }
         }
     }
 }

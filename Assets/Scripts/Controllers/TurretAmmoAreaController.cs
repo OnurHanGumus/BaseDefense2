@@ -39,14 +39,20 @@ namespace Controllers
             if (other.CompareTag("Collected"))
             {
                 int moddedIndeks = _indeks %_locations.Count;
-                //Debug.Log((_indeks / (_locations.Count - 1)) * 0.5f);
-                other.transform.DOLocalMove(new Vector3(_locations[moddedIndeks].x, 0, _locations[moddedIndeks].z), 0.5f);
-                other.transform.rotation = Quaternion.Euler(Vector3.zero);
+                Debug.Log(new Vector3(_locations[moddedIndeks].x, (int)(_indeks / 4) * 0.5f, _locations[moddedIndeks].z)) ;
+                other.transform.DOLocalMove(new Vector3(_locations[moddedIndeks].x, (int)(_indeks / 4) * 0.5f , _locations[moddedIndeks].z), 1f);
+                StartCoroutine(ResetCollectableRotation(other.transform));
                 ++_indeks;
-                
                 return;
             }
     
+        }
+
+        private IEnumerator ResetCollectableRotation(Transform ammoBox)
+        {
+            yield return new WaitForSeconds(0.5f);
+            ammoBox.rotation = Quaternion.Euler(Vector3.zero);
+
         }
 
         private void OnTriggerExit(Collider other)

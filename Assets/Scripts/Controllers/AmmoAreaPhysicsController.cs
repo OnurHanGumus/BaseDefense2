@@ -50,6 +50,11 @@ namespace Controllers
                 StartCoroutine(RemoveFromPool());
                 return;
             }
+            if (other.CompareTag("AmmoWorker"))
+            {
+                StartCoroutine(RemoveFromPool());
+                return;
+            }
         }
 
         private IEnumerator InstantiateBulletBox(int count)
