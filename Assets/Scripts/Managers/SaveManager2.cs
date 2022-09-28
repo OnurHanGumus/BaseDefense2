@@ -68,7 +68,6 @@ namespace Managers
             SendPlayerUpgradesInformation();
             SendGunLevelsInformation();
             SendSelectedGunIdInformation();
-            SendOpenedTurretsInformation();
         }
 
 
@@ -102,6 +101,7 @@ namespace Managers
             SaveSignals.Instance.onGetSelectedGun += OnGetSelectedGunId;
             SaveSignals.Instance.onUpgradePlayer += OnUpgradePlayer;
             SaveSignals.Instance.onIncreaseAmmoWorkerCount += OnIncreaseWorkerCount;
+            SaveSignals.Instance.onGetOpenedTurrets += OnGetOpenedTurrets;
             UISignals.Instance.onChangeGunLevels += OnUpgradeGuns;
             UISignals.Instance.onGetGunLevels += OnGetGunLevels;
 
@@ -120,6 +120,7 @@ namespace Managers
             SaveSignals.Instance.onGetSelectedGun -= OnGetSelectedGunId;
             SaveSignals.Instance.onUpgradePlayer -= OnUpgradePlayer;
             SaveSignals.Instance.onIncreaseAmmoWorkerCount -= OnIncreaseWorkerCount;
+            SaveSignals.Instance.onGetOpenedTurrets -= OnGetOpenedTurrets;
             UISignals.Instance.onChangeGunLevels -= OnUpgradeGuns;
             UISignals.Instance.onGetGunLevels -= OnGetGunLevels;
         }
@@ -318,10 +319,6 @@ namespace Managers
         {
             SaveSignals.Instance.onInitializeSelectedGunId?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.GunId, SaveFiles.Guns.ToString()));
         }
-        private void SendOpenedTurretsInformation()
-        {
-            SaveSignals.Instance.onInitializeOpenedTurretInfo?.Invoke(_loadGameCommand.OnLoadList(Enums.SaveLoadStates.OpenedTurrets, SaveFiles.WorkerCurrentCounts.ToString()));
-        }
 
         private int OnGetSelectedGunId()
         {
@@ -330,6 +327,11 @@ namespace Managers
         private List<int> OnGetGunLevels()
         {
             return _loadGameCommand.OnLoadList(SaveLoadStates.GunLevels, SaveFiles.Guns.ToString());
+        }
+        private List<int> OnGetOpenedTurrets()
+        {
+            return _loadGameCommand.OnLoadList(SaveLoadStates.OpenedTurrets, SaveFiles.WorkerCurrentCounts.ToString());
+
         }
     }
 }

@@ -677,7 +677,7 @@ MonoBehaviour:
   valueText: {fileID: 8784348830099365165}
   areaDataType: 4
   meshRenderer: {fileID: 6049053918623167070}
-  worker: {fileID: 0}
+  worker: {fileID: 5631769000639049170, guid: 24527d7b885949241a6be54d97d41eb2, type: 3}
 --- !u!1 &5336056991834582695
 GameObject:
   m_ObjectHideFlags: 0

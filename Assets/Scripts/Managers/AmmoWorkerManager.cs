@@ -53,6 +53,8 @@ namespace Managers
         }
         private void Init()
         {
+            ammoManager = GameObject.FindGameObjectWithTag("CollectAmmoArea").transform;
+
             waysOnScene.Add(GameObject.FindGameObjectWithTag("0way").transform);
             waysOnScene.Add(GameObject.FindGameObjectWithTag("1way").transform);
             waysOnScene.Add(GameObject.FindGameObjectWithTag("2way").transform);
@@ -65,6 +67,8 @@ namespace Managers
         private void Start()
         {
             GoToAmmoManager();
+            GetOpenedTurrets();
+
         }
         private EnemyData GetData() => Resources.Load<CD_Enemy>("Data/CD_Enemy").Data;
 
@@ -77,14 +81,12 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            SaveSignals.Instance.onInitializeOpenedTurretInfo += OnGetOpenedTurrets;
             LevelSignals.Instance.onBuyTurret += OnBuyTurrets;
                 
         }
 
         private void UnsubscribeEvents()
         {
-            SaveSignals.Instance.onInitializeOpenedTurretInfo -= OnGetOpenedTurrets;
             LevelSignals.Instance.onBuyTurret -= OnBuyTurrets;
 
 
@@ -138,14 +140,16 @@ namespace Managers
             selectedWayObject = waysOnScene[openedTurrets[_indeks] + 1]; //+1 ekliyoruz çünkü oyun baþýnda açýk olan taret numarasýz, diðerleri ise indeks 0'dan baþlayarak kaydediliyor.
         }
 
-        private void OnGetOpenedTurrets(List<int> openedTurrets)
-        {
-            this.openedTurrets = openedTurrets;
-            openedTurrets.Insert(0, -1);
-        }
         private void OnBuyTurrets(int turretId)
         {
             this.openedTurrets.Add(turretId);
+        }
+
+        private void GetOpenedTurrets()
+        {
+            this.openedTurrets = SaveSignals.Instance.onGetOpenedTurrets();
+            openedTurrets.Insert(0, -1);
+
         }
 
     }

@@ -62,7 +62,6 @@ namespace Managers
             SaveSignals.Instance.onInitializePlayerUpgrades += ItemAddOnStack.OnGetCarryLevel;
             SaveSignals.Instance.onUpgradePlayer += ItemAddOnStack.OnGetCarryLevel;
 
-            //StackSignals.Instance.onGetStackRemainPlace += OnGetStackCount;
             
 
         }
@@ -72,7 +71,6 @@ namespace Managers
             SaveSignals.Instance.onInitializePlayerUpgrades -= ItemAddOnStack.OnGetCarryLevel;
             SaveSignals.Instance.onUpgradePlayer -= ItemAddOnStack.OnGetCarryLevel;
 
-            //StackSignals.Instance.onGetStackRemainPlace -= OnGetStackCount;
         }
         private void OnDisable()
         {
@@ -128,53 +126,5 @@ namespace Managers
             }
             CollectableStack.Clear();
         }
-        private void ReleaseCollectablesToTurret()
-        {
-
-            if (CollectableStack.Count > 0)
-            {
-                StartCoroutine(Wait05s());
-            }
-
-        }
-
-        private IEnumerator Wait05s()
-        {
-            Temp.Clear();
-            foreach (var i in CollectableStack)
-            {
-                Temp.Add(i);
-            }
-
-            CollectableStack.Clear();
-
-
-            int count = Temp.Count;
-            for (int i = count - 1; i >= 0; i--)
-            {
-                Vector3 pos1 = new Vector3(Temp[i].transform.localPosition.x + Random.Range(-4, 4), Temp[i].transform.localPosition.y + 10, Temp[i].transform.localPosition.z + Random.Range(-4, 4));
-                Vector3 pos2 = new Vector3(Temp[i].transform.localPosition.x + Random.Range(-4, 4), Temp[i].transform.localPosition.y - 30, Temp[i].transform.localPosition.z + Random.Range(-4, 4));
-                Temp[i].transform.DOLocalPath(new Vector3[2] { pos1, pos2 }, 0.5f);
-                yield return new WaitForSeconds(0.1f);
-            }
-            yield return new WaitForSeconds(0.5f);
-            RemoveItem();
-        }
-
-        private void RemoveItem()
-        {
-            foreach (var i in Temp)
-            {
-                Destroy(i.gameObject);
-            }
-            Temp.Clear();
-        }
-
-
-
-        //public int OnGetStackCount()
-        //{
-        //    //return (ItemAddOnStack.CarryLevel * 10) - CollectableStack.Count;
-        //}
     }
 }

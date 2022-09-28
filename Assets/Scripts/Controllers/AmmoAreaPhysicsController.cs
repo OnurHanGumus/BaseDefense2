@@ -70,7 +70,7 @@ namespace Controllers
 
         private IEnumerator RemoveFromPool()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.05f);
 
             for (int i = pool.Count - 1; i >= 0; i--)
             {

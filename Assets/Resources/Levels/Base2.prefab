@@ -2461,6 +2461,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmmoWorkerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5151677754888437801, guid: aac952f74d0e7bf40b5b303f2ff0bafb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aac952f74d0e7bf40b5b303f2ff0bafb, type: 3}
 --- !u!4 &8017553392160877555 stripped

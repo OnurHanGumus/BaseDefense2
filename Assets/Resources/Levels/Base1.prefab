@@ -1711,14 +1711,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmmoWorkerManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7468155615006215501, guid: aac952f74d0e7bf40b5b303f2ff0bafb, type: 3}
-      propertyPath: type
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8112365398960156057, guid: aac952f74d0e7bf40b5b303f2ff0bafb, type: 3}
-      propertyPath: worker
-      value: 
-      objectReference: {fileID: 5631769000639049170, guid: 24527d7b885949241a6be54d97d41eb2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aac952f74d0e7bf40b5b303f2ff0bafb, type: 3}
 --- !u!4 &4277501471893075326 stripped
