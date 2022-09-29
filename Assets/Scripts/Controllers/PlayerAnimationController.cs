@@ -53,10 +53,13 @@ namespace Controllers
         public void OnPlayerUseTurret(bool value)
         {
             _isPlayerUseTurret = value;
-
-            if (value.Equals(false))
+            if (value.Equals(true))
             {
-                SetAnimState(PlayerAnimStates.Base);
+                SetAnimBool(PlayerAnimStates.UseTurret, true);
+            }
+            else
+            {
+                SetAnimBool(PlayerAnimStates.UseTurret, false);
             }
         }
 

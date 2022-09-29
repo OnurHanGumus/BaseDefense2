@@ -11,5 +11,6 @@ namespace Enums
         RunIdle,
         Base,
         Die,
+        UseTurret,
     }
 }
