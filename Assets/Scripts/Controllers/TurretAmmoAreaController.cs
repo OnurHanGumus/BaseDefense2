@@ -12,16 +12,17 @@ namespace Controllers
     public class TurretAmmoAreaController : MonoBehaviour
     {
         #region Self Variables
+        #region Public Variables
 
+        #endregion
         #region Serialized Variables
-
+        [SerializeField] private TurretManager manager;
 
         #endregion
 
         #region Private Variables
         private int _indeks = 0;
         private List<Vector3> _locations;
-        private int _floor = 0;
         #endregion
         #endregion
 
@@ -38,6 +39,7 @@ namespace Controllers
         {
             if (other.CompareTag("Collected"))
             {
+                manager.AmmoBoxList.Add(other.transform);
                 int moddedIndeks = _indeks %_locations.Count;
                 other.transform.DOLocalMove(new Vector3(_locations[moddedIndeks].x, (int)(_indeks / 4) * 0.5f , _locations[moddedIndeks].z), 1f);
                 StartCoroutine(ResetCollectableRotation(other.transform));
@@ -51,7 +53,6 @@ namespace Controllers
         {
             yield return new WaitForSeconds(0.5f);
             ammoBox.rotation = Quaternion.Euler(Vector3.zero);
-
         }
 
         private void OnTriggerExit(Collider other)

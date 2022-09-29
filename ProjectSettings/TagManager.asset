@@ -32,6 +32,7 @@ TagManager:
   - 4way
   - TurretAmmoArea
   - CollectAmmoArea
+  - TurretBullet
   layers:
   - Default
   - TransparentFX

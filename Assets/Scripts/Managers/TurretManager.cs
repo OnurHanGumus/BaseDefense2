@@ -18,23 +18,20 @@ namespace Managers
         #region Self Variables
 
         #region Public Variables
+        public bool HasOwner = false;
+        public List<Transform> AmmoBoxList = new List<Transform>();
 
 
         #endregion
 
         #region Serialized Variables
-        [SerializeField] private List<int> turretOwnersList;
-        [SerializeField] private GameObject turretOwnerGameObject;
-        [SerializeField] private int turretId = 1;
-        [SerializeField] private bool hasOwner = false;
-        [SerializeField] private List<MeshRenderer> meshList;
 
+        [SerializeField] private TurretRangeController rangeController;
 
         #endregion
 
         #region Private Variables
 
-        private Material _material;
 
 
         #endregion
@@ -47,12 +44,7 @@ namespace Managers
         }
         private void Init()
         {
-            _material = GetMaterial();
 
-            foreach (var i in meshList)
-            {
-                i.material = _material;
-            }
         }
         public Material GetMaterial() => Resources.Load<Material>("Materials/TurretFloor/" + (LevelSignals.Instance.onGetCurrentModdedLevel() + 1).ToString());
 
@@ -65,14 +57,13 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            SaveSignals.Instance.onInitializeTurretOwners += OnSetTurretOwners;
-            LevelSignals.Instance.onBuyTurretOwners += OnSetActiveOwner;
+            PlayerSignals.Instance.onEnemyDie += rangeController.OnRemoveFromTargetList;
         }
 
         private void UnsubscribeEvents()
         {
-            SaveSignals.Instance.onInitializeTurretOwners -= OnSetTurretOwners;
-            LevelSignals.Instance.onBuyTurretOwners -= OnSetActiveOwner;
+
+            PlayerSignals.Instance.onEnemyDie -= rangeController.OnRemoveFromTargetList;
 
         }
 
@@ -83,26 +74,6 @@ namespace Managers
 
         #endregion
 
-        private void OnSetTurretOwners(List<int> ownersList)
-        {
-            turretOwnersList = ownersList;
 
-            foreach (var i in ownersList)
-            {
-                if (i.Equals(turretId))
-                {
-                    hasOwner = true;
-                    turretOwnerGameObject.SetActive(true);
-                }
-            }
-        }
-
-        private void OnSetActiveOwner(int id)
-        {
-            if (turretId.Equals(id))
-            {
-                turretOwnerGameObject.SetActive(true);
-            }
-        }
     }
 }

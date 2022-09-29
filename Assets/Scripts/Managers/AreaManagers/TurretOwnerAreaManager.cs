@@ -26,6 +26,7 @@ namespace Managers
         #region Serialized Variables
 
         [SerializeField] private GameObject turretOwnerGameObject;
+        [SerializeField] private TurretManager turretManager;
 
         #endregion
 
@@ -36,7 +37,7 @@ namespace Managers
         #endregion
 
         #endregion
-
+ 
         private new void Start()
         {
             base.Start();
@@ -53,6 +54,8 @@ namespace Managers
             {
                 LevelSignals.Instance.onBuyTurretOwners?.Invoke(AreaID);
                 SetActiveOwner();
+                turretManager.HasOwner = true;
+
                 SetDeactive();
             }
         }
@@ -61,6 +64,8 @@ namespace Managers
             if (UnlockValue.Equals(0))
             {
                 turretOwnerGameObject.SetActive(true);
+                turretManager.HasOwner = true;
+
             }
 
         }

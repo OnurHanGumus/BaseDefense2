@@ -16,14 +16,14 @@ namespace Controllers
         #region Serialized Variables
 
         [SerializeField] private EnemyManager manager;
-        [SerializeField] private int pistolDamage = 25, shotgunDamage = 50, smgDamage = 20, assaultDamage = 40, rocketDamage = 100, minigunDamage = 80;
+        [SerializeField] private int pistolDamage = 25, shotgunDamage = 50, smgDamage = 20, assaultDamage = 40, rocketDamage = 100, minigunDamage = 80, turretDamage = 60;
 
 
         #endregion
         #region Private Variables
         private EnemyData _data;
-        [ShowInInspector] private int _health = 100, 
-            _getDamageAmount = 50;
+        [ShowInInspector] private int _health = 100;
+        
         #endregion
         #endregion
 
@@ -88,6 +88,16 @@ namespace Controllers
             else if (other.CompareTag("MinigunBullet"))
             {
                 _health -= minigunDamage;
+
+                if (_health <= 0)
+                {
+                    manager.DieState(other.attachedRigidbody.velocity);
+                    PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
+                }
+            }
+            else if (other.CompareTag("TurretBullet"))
+            {
+                _health -= turretDamage;
 
                 if (_health <= 0)
                 {

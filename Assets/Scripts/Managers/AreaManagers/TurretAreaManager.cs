@@ -25,7 +25,6 @@ namespace Managers
 
         #region Serialized Variables
 
-
         #endregion
 
         #region Private Variables
@@ -35,7 +34,7 @@ namespace Managers
         #endregion
 
         #endregion
-
+        
 
 
         public override void Pay(int value = 1)
