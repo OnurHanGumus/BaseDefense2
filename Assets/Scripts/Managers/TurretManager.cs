@@ -10,6 +10,7 @@ using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Enums;
+using DG.Tweening;
 
 namespace Managers
 {
@@ -28,10 +29,12 @@ namespace Managers
 
         [SerializeField] private TurretRangeController rangeController;
 
+        [SerializeField] private Transform turretOwner;
         #endregion
 
         #region Private Variables
-
+        private bool _isPlayerUsing = false;
+        private float _xValue, _zValue;
 
 
         #endregion
@@ -58,12 +61,14 @@ namespace Managers
         private void SubscribeEvents()
         {
             PlayerSignals.Instance.onEnemyDie += rangeController.OnRemoveFromTargetList;
+            InputSignals.Instance.onInputDragged += OnInputDragged;
         }
 
         private void UnsubscribeEvents()
         {
 
             PlayerSignals.Instance.onEnemyDie -= rangeController.OnRemoveFromTargetList;
+            InputSignals.Instance.onInputDragged -= OnInputDragged;
 
         }
 
@@ -74,6 +79,39 @@ namespace Managers
 
         #endregion
 
+        public void PlayerUseTurret(Transform player)
+        {
+            _isPlayerUsing = true;
+            player.parent = turretOwner;
+            //player.transform.DOMove(turretOwner.position, 1f);
+            player.transform.position = turretOwner.position;
+            player.transform.rotation = turretOwner.rotation;
+        }
+        public void PlayerLeaveTurret(Transform player)
+        {
+            _isPlayerUsing = false;
 
+            player.parent = null;
+        }
+
+        public void OnInputDragged(InputParams param)
+        {
+            _xValue = param.XValue;
+            _zValue = param.ZValue;
+        }
+
+        private void FixedUpdate()
+        {
+            if (!_isPlayerUsing)
+            {
+                return;
+            }
+            Debug.Log(_zValue);
+
+            if (_zValue < -0.9f)
+            {
+                PlayerSignals.Instance.onPlayerUseTurret?.Invoke(false);
+            }
+        }
     }
 }

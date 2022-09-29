@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1240529674469304013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7151548076601985960}
+  m_Layer: 0
+  m_Name: ParentPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7151548076601985960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240529674469304013}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.020000458, y: -0.73, z: -2.18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4201852267820194798}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1595522707700501371
 GameObject:
   m_ObjectHideFlags: 0
@@ -5223,6 +5253,7 @@ Transform:
   - {fileID: 2433286451981839006}
   - {fileID: 6723708441959561933}
   - {fileID: 4211542401197397718}
+  - {fileID: 7151548076601985960}
   m_Father: {fileID: 5133162423150431507}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5241,6 +5272,7 @@ MonoBehaviour:
   HasOwner: 0
   AmmoBoxList: []
   rangeController: {fileID: 421417729820947117}
+  turretOwner: {fileID: 4211542401197397718}
 --- !u!1001 &4628081525630356686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5343,6 +5375,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurretPos
       objectReference: {fileID: 0}
+    - target: {fileID: 5480568568905223635, guid: d438233d28418a24baad5e0b1567e4b2, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 3656654836088043661}
     - target: {fileID: 7472795131235132578, guid: d438233d28418a24baad5e0b1567e4b2, type: 3}
       propertyPath: m_RootOrder
       value: 2

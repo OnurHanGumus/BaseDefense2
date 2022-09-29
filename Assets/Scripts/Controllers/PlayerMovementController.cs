@@ -21,6 +21,7 @@ namespace Controllers
         private PlayerManager2 _manager;
         private float _xValue, _zValue;
         private PlayerData _data;
+        private bool _isPlayerUseTurret = false;
         #endregion
         #endregion
 
@@ -39,6 +40,10 @@ namespace Controllers
 
         private void FixedUpdate()
         {
+            if (_isPlayerUseTurret)
+            {
+                return;
+            }
             _rig.velocity = new Vector3(_xValue * _data.Speed, 0, _zValue * _data.Speed);
 
             if (_rig.velocity != Vector3.zero)
@@ -53,6 +58,21 @@ namespace Controllers
         {
             _xValue = param.XValue;
             _zValue = param.ZValue;
+        }
+
+        public void OnPlayerUseTurret(bool value)
+        {
+            _isPlayerUseTurret = value;
+            if (value.Equals(true))
+            {
+                _rig.velocity = Vector3.zero;
+
+            }
+
+        }
+        public void OnPlayerLeaveTurret()
+        {
+            _isPlayerUseTurret = false;
         }
     }
 }

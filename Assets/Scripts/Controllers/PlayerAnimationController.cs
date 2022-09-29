@@ -17,7 +17,9 @@ namespace Controllers
 
 
         #endregion
-
+        #region Private Variables
+        private bool _isPlayerUseTurret = false;
+        #endregion
         #endregion
 
         public void SetAnimState(PlayerAnimStates animState)
@@ -38,9 +40,26 @@ namespace Controllers
 
         public void SetSpeedVariable(InputParams inputParams)
         {
+            if (_isPlayerUseTurret)
+            {
+                inputParams.XValue = 0;
+                inputParams.ZValue = 0;
+            }
             float speedX = Mathf.Abs(inputParams.XValue);
             float speedZ = Mathf.Abs(inputParams.ZValue);
             animator.SetFloat("Run", (speedX + speedZ) / 2);
         }
+
+        public void OnPlayerUseTurret(bool value)
+        {
+            _isPlayerUseTurret = value;
+
+            if (value.Equals(false))
+            {
+                SetAnimState(PlayerAnimStates.Base);
+            }
+        }
+
+
     }
 }

@@ -73,6 +73,8 @@ namespace Managers
             PlayerSignals.Instance.onGetPlayer += OnGetPlayer;
             PlayerSignals.Instance.onPlayerSelectGun += OnGunSelected;
             PlayerSignals.Instance.onEnemyDie += aimController.OnRemoveFromTargetList;
+            PlayerSignals.Instance.onPlayerUseTurret += _movementController.OnPlayerUseTurret;
+            PlayerSignals.Instance.onPlayerUseTurret += _animationController.OnPlayerUseTurret;
 
             SaveSignals.Instance.onInitializeSelectedGunId += OnGunSelected;
             SaveSignals.Instance.onInitializePlayerUpgrades += physicsController.OnGetHealthData;
@@ -86,6 +88,7 @@ namespace Managers
             PlayerSignals.Instance.onGetPlayer -= OnGetPlayer;
             PlayerSignals.Instance.onPlayerSelectGun -= OnGunSelected;
             PlayerSignals.Instance.onEnemyDie -= aimController.OnRemoveFromTargetList;
+            PlayerSignals.Instance.onPlayerUseTurret -= _movementController.OnPlayerUseTurret;
 
 
             SaveSignals.Instance.onInitializeSelectedGunId -= OnGunSelected;
@@ -130,6 +133,7 @@ namespace Managers
             CurrentGunId = id;
             aimController.SetGunSettings(Guns[CurrentGunId].transform.GetChild(0));
         }
+
 
 
 

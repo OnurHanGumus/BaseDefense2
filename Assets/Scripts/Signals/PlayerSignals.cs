@@ -25,5 +25,8 @@ namespace Signals
         public UnityAction onPlayerDie = delegate { };
         public UnityAction onPlayerSpawned = delegate { };
 
+
+        public UnityAction<bool> onPlayerUseTurret = delegate { };
+
     }
 }
