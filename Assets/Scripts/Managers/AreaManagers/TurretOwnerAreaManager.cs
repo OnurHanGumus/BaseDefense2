@@ -47,6 +47,10 @@ namespace Managers
 
         public override void Pay(int value = 1)
         {
+            if (turretManager.IsPlayerUsing)
+            {
+                return;
+            }
             UnlockValue -= value;
             UpdateText();
             ScoreSignals.Instance.onScoreDecrease?.Invoke(ScoreTypeEnums.Money, 1);
@@ -73,7 +77,5 @@ namespace Managers
         {
             turretOwnerGameObject.SetActive(true);
         }
-
-
     }
 }

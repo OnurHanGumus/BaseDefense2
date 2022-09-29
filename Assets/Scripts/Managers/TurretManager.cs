@@ -20,6 +20,8 @@ namespace Managers
 
         #region Public Variables
         public bool HasOwner = false;
+        public bool IsPlayerUsing = false;
+
         public List<Transform> AmmoBoxList = new List<Transform>();
 
 
@@ -30,10 +32,10 @@ namespace Managers
         [SerializeField] private TurretRangeController rangeController;
 
         [SerializeField] private Transform turretOwner;
+        [SerializeField] private Transform turretRotatableObj;
         #endregion
 
         #region Private Variables
-        private bool _isPlayerUsing = false;
         private float _xValue, _zValue;
 
 
@@ -81,7 +83,7 @@ namespace Managers
 
         public void PlayerUseTurret(Transform player)
         {
-            _isPlayerUsing = true;
+            IsPlayerUsing = true;
             player.parent = turretOwner;
             //player.transform.DOMove(turretOwner.position, 1f);
             player.transform.position = turretOwner.position;
@@ -89,7 +91,7 @@ namespace Managers
         }
         public void PlayerLeaveTurret(Transform player)
         {
-            _isPlayerUsing = false;
+            IsPlayerUsing = false;
 
             player.parent = null;
         }
@@ -102,16 +104,21 @@ namespace Managers
 
         private void FixedUpdate()
         {
-            if (!_isPlayerUsing)
+            if (!IsPlayerUsing)
             {
                 return;
             }
-            Debug.Log(_zValue);
-
+            if (_xValue.Equals(0))
+            {
+                return;
+            }
+            Debug.Log(_xValue);
             if (_zValue < -0.9f)
             {
                 PlayerSignals.Instance.onPlayerUseTurret?.Invoke(false);
             }
+
+            turretRotatableObj.rotation = Quaternion.Euler(new Vector3(0, 30 * _xValue * -1, 0));
         }
     }
 }

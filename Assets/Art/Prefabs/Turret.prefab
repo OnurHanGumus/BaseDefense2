@@ -5273,6 +5273,7 @@ MonoBehaviour:
   AmmoBoxList: []
   rangeController: {fileID: 421417729820947117}
   turretOwner: {fileID: 4211542401197397718}
+  turretRotatableObj: {fileID: 4201852267820194798}
 --- !u!1001 &4628081525630356686
 PrefabInstance:
   m_ObjectHideFlags: 0
