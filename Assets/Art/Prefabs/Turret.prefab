@@ -5270,9 +5270,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasOwner: 0
+  IsPlayerUsing: 0
   AmmoBoxList: []
   rangeController: {fileID: 421417729820947117}
-  turretOwner: {fileID: 4211542401197397718}
+  turretPlayerParentObj: {fileID: 7151548076601985960}
   turretRotatableObj: {fileID: 4201852267820194798}
 --- !u!1001 &4628081525630356686
 PrefabInstance:
@@ -5372,6 +5373,18 @@ PrefabInstance:
       propertyPath: manager
       value: 
       objectReference: {fileID: 3656654836088043661}
+    - target: {fileID: 3963583885456760699, guid: d438233d28418a24baad5e0b1567e4b2, type: 3}
+      propertyPath: m_Size.y
+      value: 41.36355
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963583885456760699, guid: d438233d28418a24baad5e0b1567e4b2, type: 3}
+      propertyPath: m_Size.z
+      value: 1.3818438
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963583885456760699, guid: d438233d28418a24baad5e0b1567e4b2, type: 3}
+      propertyPath: m_Center.z
+      value: -0.1909204
+      objectReference: {fileID: 0}
     - target: {fileID: 5474430727697661660, guid: d438233d28418a24baad5e0b1567e4b2, type: 3}
       propertyPath: m_Name
       value: TurretPos

@@ -31,7 +31,7 @@ namespace Managers
 
         [SerializeField] private TurretRangeController rangeController;
 
-        [SerializeField] private Transform turretOwner;
+        [SerializeField] private Transform turretPlayerParentObj;
         [SerializeField] private Transform turretRotatableObj;
         #endregion
 
@@ -84,10 +84,10 @@ namespace Managers
         public void PlayerUseTurret(Transform player)
         {
             IsPlayerUsing = true;
-            player.parent = turretOwner;
+            player.parent = turretPlayerParentObj;
             //player.transform.DOMove(turretOwner.position, 1f);
-            player.transform.position = turretOwner.position;
-            player.transform.rotation = turretOwner.rotation;
+            player.transform.position = turretPlayerParentObj.position;
+            player.transform.rotation = turretPlayerParentObj.rotation;
         }
         public void PlayerLeaveTurret(Transform player)
         {
