@@ -38,7 +38,7 @@ namespace Controllers
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Collectable"))
+            if (other.CompareTag("Collectable") || other.CompareTag("Ammo"))
             {
                 PlayerSignals.Instance.onInteractionCollectable?.Invoke(other.gameObject);
                 return;

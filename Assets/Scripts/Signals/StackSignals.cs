@@ -1,6 +1,7 @@
 using Enums;
 using Extentions;
 using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Signals
@@ -8,6 +9,8 @@ namespace Signals
     public class StackSignals : MonoSingleton<StackSignals>
     {
         public Func<int> onGetStackRemainPlace = delegate { return 0; };
-     
+        public UnityAction<Transform> onMoneyWorkerCollectMoney = delegate { };
+
+
     }
 }

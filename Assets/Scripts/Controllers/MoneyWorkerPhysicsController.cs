@@ -10,14 +10,14 @@ using System.Collections.Generic;
 
 namespace Controllers
 {
-    public class WorkerPhysicsController : MonoBehaviour
+    public class MoneyWorkerPhysicsController: MonoBehaviour
     {
         #region Self Variables
 
         #region Serialized Variables
 
         [SerializeField] private WorkerStackManager stackManager;
-
+        [SerializeField] private MoneyWorkerRangeController moneyWorkerRangeController;
 
 
         #endregion
@@ -36,16 +36,24 @@ namespace Controllers
         {
             if (other.CompareTag("Collectable"))
             {
+
+                if (!other.transform.Equals(moneyWorkerRangeController.MoneyList[0]))
+                {
+                    return;
+                }
                 if (stackManager.CollectableStack.Count < stackManager.Capacity)
                 {
+                    StackSignals.Instance.onMoneyWorkerCollectMoney?.Invoke(other.transform);
                     stackManager.InteractionWithCollectable(other.gameObject);
 
                 }
                 return;
             }
-            if (other.CompareTag("TurretAmmoArea"))
+            if (other.CompareTag("BaseTrigger"))
             {
-                stackManager.ReleaseAmmosToTurretArea(other.gameObject);
+
+                stackManager.ReleaseCollectablesToBase();
+
                 return;
             }
         }

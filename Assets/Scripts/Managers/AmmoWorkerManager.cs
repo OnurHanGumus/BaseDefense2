@@ -27,7 +27,6 @@ namespace Managers
 
         [SerializeField] private Transform selectedWayObject;
         [SerializeField] private List<Vector3> selectedWay;
-        [SerializeField] private List<Transform> childWays;
         [SerializeField] private Transform ammoManager;
 
         [SerializeField] private List<Transform> waysOnScene; 
@@ -39,9 +38,10 @@ namespace Managers
         #endregion
 
         #region Private Variables
-        public int _speed = 1;
-
+        private int _speed = 1;
         private int _indeks = 0;
+
+
 
         #endregion
 
@@ -72,7 +72,6 @@ namespace Managers
             GetOpenedTurrets();
 
         }
-        private EnemyData GetData() => Resources.Load<CD_Enemy>("Data/CD_Enemy").Data;
 
         #region Event Subscription
 
@@ -103,10 +102,6 @@ namespace Managers
 
         #endregion
 
-        //public EnemyData GetEnemyData()
-        //{
-        //    return _enemyData;
-        //}
         private void GoToAmmoManager()
         {
             transform.DOMove(ammoManager.position, 4 * _speed).SetSpeedBased(true).OnComplete(GoToTurret).SetEase(Ease.Linear);
@@ -139,7 +134,6 @@ namespace Managers
 
         private void SelectWay()
         {
-            Debug.Log(_indeks);
             selectedWay.Clear();
             selectedWayObject = waysOnScene[openedTurrets[_indeks] + 1]; //+1 ekliyoruz çünkü oyun baþýnda açýk olan taret numarasýz, diðerleri ise indeks 0'dan baþlayarak kaydediliyor.
         }

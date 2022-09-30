@@ -38,6 +38,7 @@ namespace Managers
 
         protected new void Start()
         {
+            UpdateText();
             if (UnlockValue.Equals(0))
             {
                 InstantiateWorker();
@@ -67,5 +68,12 @@ namespace Managers
         {
             Instantiate(worker, transform.position, new Quaternion(0,180f,0f,0f));
         }
+
+        public new void UpdateText()
+        {
+            valueText.text = UnlockValue.ToString();
+
+        }
+
     }
 }

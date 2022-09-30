@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 1100900423}
   m_Layer: 0
   m_Name: BulletBox
-  m_TagString: Collectable
+  m_TagString: Ammo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

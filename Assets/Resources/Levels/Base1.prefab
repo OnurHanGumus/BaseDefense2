@@ -1519,14 +1519,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MoneyWorkerManager
       objectReference: {fileID: 0}
-    - target: {fileID: 12265976546587227, guid: 854b75ac6ecbc7c468447f94e93035b9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1906995377594861985, guid: 854b75ac6ecbc7c468447f94e93035b9, type: 3}
-      propertyPath: type
-      value: 21
-      objectReference: {fileID: 0}
     - target: {fileID: 5549448291729722645, guid: 854b75ac6ecbc7c468447f94e93035b9, type: 3}
       propertyPath: m_RootOrder
       value: 8

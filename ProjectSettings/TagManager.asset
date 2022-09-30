@@ -33,6 +33,9 @@ TagManager:
   - TurretAmmoArea
   - CollectAmmoArea
   - TurretBullet
+  - ReleaseAmmoObj
+  - MoneyWay
+  - Ammo
   layers:
   - Default
   - TransparentFX
