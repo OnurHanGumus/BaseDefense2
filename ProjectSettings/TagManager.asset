@@ -36,6 +36,7 @@ TagManager:
   - ReleaseAmmoObj
   - MoneyWay
   - Ammo
+  - RescueFollowArea
   layers:
   - Default
   - TransparentFX

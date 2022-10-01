@@ -49,6 +49,11 @@ namespace Controllers
             }
         }
 
+        public void Idle()
+        {
+            _rig.velocity = Vector3.zero;
+        }
+
         public void MoveToDefaultTarget(Vector3 direction, Transform lookAtObject)
         {
             direction = new Vector3(direction.x, 0, direction.z);

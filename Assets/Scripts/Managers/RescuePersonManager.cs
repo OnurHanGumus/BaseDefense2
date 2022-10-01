@@ -112,8 +112,15 @@ namespace Managers
             //}
             else if (State.Equals(RescuePersonState.Run))
             {
+                _currentDirection = (_playerTransform.transform.position - transform.position).normalized;
+
                 _movementController.ChasePlayer(_currentDirection, _playerTransform);
                 _animationController.SetSpeedVariable(_rig.velocity.magnitude);
+            }
+            else if (State.Equals(RescuePersonState.Idle))
+            {
+                _movementController.Idle();
+
             }
 
         }
@@ -125,7 +132,8 @@ namespace Managers
 
         public void SetDirection(Vector3 direction, Transform lookAtObject)
         {
-            _currentDirection = direction;
+            
+            _currentDirection = (lookAtObject.transform.position - transform.position).normalized;
             _playerTransform = lookAtObject;
         }
 

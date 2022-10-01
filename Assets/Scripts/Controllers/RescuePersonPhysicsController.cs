@@ -34,14 +34,22 @@ namespace Controllers
         {
             if (other.CompareTag("PlayerOutOfBase"))
             {
-                Debug.Log("detected");
                 manager.ChangeState(RescuePersonState.Run);
                 manager.ChangeAnim(RescuePersonAnimStates.Taken);
 
                 return;
             }
 
+            if (other.CompareTag("RescueFollowArea"))
+            {
+                manager.ChangeState(RescuePersonState.Idle);
+
+                return;
+            }
+
         }
+
+
 
         private void OnTriggerStay(Collider other)
         {
