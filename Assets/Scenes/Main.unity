@@ -15176,6 +15176,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1743102234, guid: d9f5de72420e5ea48b003e2c75c2e598, type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679567609674270385, guid: d9f5de72420e5ea48b003e2c75c2e598, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 7081997607774326136, guid: d9f5de72420e5ea48b003e2c75c2e598, type: 3}
       propertyPath: m_Name
       value: RescuePerson
@@ -15223,6 +15231,10 @@ PrefabInstance:
     - target: {fileID: 7567067590938220482, guid: d9f5de72420e5ea48b003e2c75c2e598, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432790855353936597, guid: d9f5de72420e5ea48b003e2c75c2e598, type: 3}
+      propertyPath: speed
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9f5de72420e5ea48b003e2c75c2e598, type: 3}
