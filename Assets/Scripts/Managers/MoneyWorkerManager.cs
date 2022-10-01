@@ -26,24 +26,23 @@ namespace Managers
         #region Serialized Variables
 
         [SerializeField] private Transform initWayObj;
-        [SerializeField] private List<Vector3> selectedWay;
         [SerializeField] private Transform releaseMoneyPos;
 
 
         [SerializeField] private SphereCollider sphereCollider;
+        [SerializeField] private BoxCollider physicsCollider;
         [SerializeField] private WorkerStackManager stackManager;
         [SerializeField] private MoneyWorkerRangeController rangeController;
 
         [SerializeField] private Vector3 lastPositionBeforeBase;
-        Sequence sequence;
 
 
         #endregion
 
         #region Private Variables
         private int _speed = 1;
-        private int _indeks = 0;
-
+        private WorkerAnimationController _animationController;
+        private List<Vector3> _selectedWay = new List<Vector3>();
 
         #endregion
 
@@ -57,8 +56,7 @@ namespace Managers
         private void Init()
         {
             initWayObj = GameObject.FindGameObjectWithTag("MoneyWay").transform;
-            sequence = DOTween.Sequence();
-
+            _animationController = GetComponent<WorkerAnimationController>();
         }
 
         private void Start()
@@ -99,13 +97,13 @@ namespace Managers
 
         private void InitMove()
         {
-            selectedWay.Clear();
+            _selectedWay.Clear();
             for (int i = 0; i < initWayObj.childCount; i++)
             {
-                selectedWay.Add(initWayObj.GetChild(i).position);
+                _selectedWay.Add(initWayObj.GetChild(i).position);
 
             }
-            transform.DOPath(selectedWay.ToArray(), 4 * _speed, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(StartSearchForMoney);
+            transform.DOPath(_selectedWay.ToArray(), 4 * _speed, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(StartSearchForMoney);
         }
 
         private void StartSearchForMoney()
@@ -118,7 +116,11 @@ namespace Managers
             
             if (rangeController.MoneyList.Count > 0)
             {
-                Debug.Log("range miktari 0'dan büyük");
+                physicsCollider.enabled = false;
+                yield return new WaitForSeconds(0.05f);
+                physicsCollider.enabled = true;
+                _animationController.SetAnimationTrigger(WorkerAnimStates.Walk);
+                Debug.Log("asdasd");
 
                 MoveToMoney();
                 StopAllCoroutines();
@@ -126,8 +128,7 @@ namespace Managers
             }
             else
             {
-                Debug.Log("büyüyor");
-
+                _animationController.SetAnimationTrigger(WorkerAnimStates.Idle);
                 sphereCollider.radius += 0.1f;
                 yield return new WaitForSeconds(0.1f);
                 StartCoroutine(SearchForMoney());
@@ -158,21 +159,23 @@ namespace Managers
         {
             
             lastPositionBeforeBase = transform.position;
-            selectedWay.Clear();
+            _selectedWay.Clear();
             for (int i = 0; i < initWayObj.childCount; i++)
             {
-                selectedWay.Add(initWayObj.GetChild(i).position);
+                _selectedWay.Add(initWayObj.GetChild(i).position);
 
             }
-            selectedWay.Reverse();
-            selectedWay.RemoveAt(selectedWay.Count - 1);
-            transform.DOPath(selectedWay.ToArray(), 4 * _speed, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(GoToSearchArea);
+            _selectedWay.Reverse();
+            _selectedWay.RemoveAt(_selectedWay.Count - 1);
+            transform.DOPath(_selectedWay.ToArray(), 4 * _speed, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(GoToSearchArea);
         }
 
         private void GoToSearchArea()
         {
+            sphereCollider.radius = 1f;
+            rangeController.MoneyList.Clear();
             transform.DOMove(lastPositionBeforeBase, 4 * _speed).SetSpeedBased(true).OnComplete(CheckCapacity).SetEase(Ease.Linear);
-            transform.DOLookAt(initWayObj.GetChild(2).position, 1);
+            transform.DOLookAt(lastPositionBeforeBase, 1);
         }
 
 

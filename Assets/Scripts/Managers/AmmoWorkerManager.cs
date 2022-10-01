@@ -25,22 +25,17 @@ namespace Managers
 
         #region Serialized Variables
 
-        [SerializeField] private Transform selectedWayObject;
-        [SerializeField] private List<Vector3> selectedWay;
-        [SerializeField] private Transform ammoManager;
-
-        [SerializeField] private List<Transform> waysOnScene; 
-
-        [SerializeField] private List<int> openedTurrets;
-
-
-
         #endregion
 
         #region Private Variables
         private int _speed = 1;
         private int _indeks = 0;
+        private List<int> _openedTurrets = new List<int>();
+        private List<Transform> _waysOnScene = new List<Transform>();
+        private List<Vector3> _selectedWay = new List<Vector3>();
 
+        private Transform _selectedWayObject;
+        private Transform _ammoManager;
 
 
         #endregion
@@ -53,13 +48,13 @@ namespace Managers
         }
         private void Init()
         {
-            ammoManager = GameObject.FindGameObjectWithTag("CollectAmmoArea").transform;
+            _ammoManager = GameObject.FindGameObjectWithTag("CollectAmmoArea").transform;
 
-            waysOnScene.Add(GameObject.FindGameObjectWithTag("0way").transform);
-            waysOnScene.Add(GameObject.FindGameObjectWithTag("1way").transform);
-            waysOnScene.Add(GameObject.FindGameObjectWithTag("2way").transform);
-            waysOnScene.Add(GameObject.FindGameObjectWithTag("3way").transform);
-            waysOnScene.Add(GameObject.FindGameObjectWithTag("4way").transform);
+            _waysOnScene.Add(GameObject.FindGameObjectWithTag("0way").transform);
+            _waysOnScene.Add(GameObject.FindGameObjectWithTag("1way").transform);
+            _waysOnScene.Add(GameObject.FindGameObjectWithTag("2way").transform);
+            _waysOnScene.Add(GameObject.FindGameObjectWithTag("3way").transform);
+            _waysOnScene.Add(GameObject.FindGameObjectWithTag("4way").transform);
 
 
         }
@@ -104,29 +99,29 @@ namespace Managers
 
         private void GoToAmmoManager()
         {
-            transform.DOMove(ammoManager.position, 4 * _speed).SetSpeedBased(true).OnComplete(GoToTurret).SetEase(Ease.Linear);
-            transform.DOLookAt(ammoManager.position, 1);
+            transform.DOMove(_ammoManager.position, 4 * _speed).SetSpeedBased(true).OnComplete(GoToTurret).SetEase(Ease.Linear);
+            transform.DOLookAt(_ammoManager.position, 1);
         }
         private void GoToTurret()
         {
             SelectWay();
             
-            for (int i = 0; i < selectedWayObject.childCount; i++)
+            for (int i = 0; i < _selectedWayObject.childCount; i++)
             {
-                selectedWay.Add(selectedWayObject.GetChild(i).position);
+                _selectedWay.Add(_selectedWayObject.GetChild(i).position);
 
             }
-            transform.DOPath(selectedWay.ToArray(), 4 * _speed, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(GoBackToAmmoManager);
+            transform.DOPath(_selectedWay.ToArray(), 4 * _speed, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(GoBackToAmmoManager);
         }
 
         private void GoBackToAmmoManager()
         {
 
-            selectedWay.Reverse();
-            transform.DOPath(selectedWay.ToArray(), 4 * _speed, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(GoToAmmoManager);
+            _selectedWay.Reverse();
+            transform.DOPath(_selectedWay.ToArray(), 4 * _speed, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(GoToAmmoManager);
 
             _indeks++;
-            if (_indeks >= openedTurrets.Count)
+            if (_indeks >= _openedTurrets.Count)
             {
                 _indeks = 0;
             }
@@ -134,19 +129,19 @@ namespace Managers
 
         private void SelectWay()
         {
-            selectedWay.Clear();
-            selectedWayObject = waysOnScene[openedTurrets[_indeks] + 1]; //+1 ekliyoruz çünkü oyun baþýnda açýk olan taret numarasýz, diðerleri ise indeks 0'dan baþlayarak kaydediliyor.
+            _selectedWay.Clear();
+            _selectedWayObject = _waysOnScene[_openedTurrets[_indeks] + 1]; //+1 ekliyoruz çünkü oyun baþýnda açýk olan taret numarasýz, diðerleri ise indeks 0'dan baþlayarak kaydediliyor.
         }
 
         private void OnBuyTurrets(int turretId)
         {
-            this.openedTurrets.Add(turretId);
+            this._openedTurrets.Add(turretId);
         }
 
         private void GetOpenedTurrets()
         {
-            this.openedTurrets = SaveSignals.Instance.onGetOpenedTurrets();
-            openedTurrets.Insert(0, -1);
+            this._openedTurrets = SaveSignals.Instance.onGetOpenedTurrets();
+            _openedTurrets.Insert(0, -1);
 
         }
         public void GetSpeedData()

@@ -166,8 +166,8 @@ namespace Managers
             int count = Temp.Count;
             for (int i = count - 1; i >= 0; i--)
             {
-                Vector3 pos1 = new Vector3(Temp[i].transform.localPosition.x + Random.Range(-4, 4), Temp[i].transform.localPosition.y + 10, Temp[i].transform.localPosition.z + Random.Range(-4, 4));
-                Vector3 pos2 = new Vector3(Temp[i].transform.localPosition.x + Random.Range(-4, 4), Temp[i].transform.localPosition.y - 30, Temp[i].transform.localPosition.z + Random.Range(-4, 4));
+                Vector3 pos1 = new Vector3(Temp[i].transform.localPosition.x + Random.Range(-0.8f, 0.8f), Temp[i].transform.localPosition.y + 1, Temp[i].transform.localPosition.z + Random.Range(-0.8f, 0.8f));
+                Vector3 pos2 = new Vector3(Temp[i].transform.localPosition.x + Random.Range(-0.8f, 0.8f), Temp[i].transform.localPosition.y - 5, Temp[i].transform.localPosition.z + Random.Range(-0.8f, 0.8f));
                 Temp[i].transform.DOLocalPath(new Vector3[2] { pos1, pos2 }, 0.5f);
                 yield return new WaitForSeconds(0.1f);
             }

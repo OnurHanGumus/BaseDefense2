@@ -538,6 +538,7 @@ GameObject:
   - component: {fileID: 5631769000639049164}
   - component: {fileID: 5631769000639049165}
   - component: {fileID: 1931307392188721513}
+  - component: {fileID: 8124673504877357058}
   m_Layer: 0
   m_Name: MoneyWorker
   m_TagString: AmmoWorker
@@ -612,12 +613,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initWayObj: {fileID: 0}
-  selectedWay: []
   releaseMoneyPos: {fileID: 0}
-  openedTurrets: 
   sphereCollider: {fileID: 3387383677106188589}
+  physicsCollider: {fileID: 5314733324322909648}
   stackManager: {fileID: 3690567717010189577}
   rangeController: {fileID: 6282111320094281866}
+  lastPositionBeforeBase: {x: 0, y: 0, z: 0}
+--- !u!114 &8124673504877357058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631769000639049170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81da3f5eeac2454428221b03a9764589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5799519797336860526
 GameObject:
   m_ObjectHideFlags: 0

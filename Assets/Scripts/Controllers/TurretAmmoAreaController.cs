@@ -13,6 +13,7 @@ namespace Controllers
     {
         #region Self Variables
         #region Public Variables
+        public int Indeks = 0;
 
         #endregion
         #region Serialized Variables
@@ -21,7 +22,6 @@ namespace Controllers
         #endregion
 
         #region Private Variables
-        private int _indeks = 0;
         private List<Vector3> _locations;
         #endregion
         #endregion
@@ -39,11 +39,13 @@ namespace Controllers
         {
             if (other.CompareTag("Collected"))
             {
+                Indeks = manager.AmmoBoxList.Count;
+
                 manager.AmmoBoxList.Add(other.transform);
-                int moddedIndeks = _indeks %_locations.Count;
-                other.transform.DOLocalMove(new Vector3(_locations[moddedIndeks].x, (int)(_indeks / 4) * 0.5f , _locations[moddedIndeks].z), 1f);
+                int moddedIndeks = Indeks %_locations.Count;
+                other.transform.DOLocalMove(new Vector3(_locations[moddedIndeks].x, (int)(Indeks / 4) * 0.5f , _locations[moddedIndeks].z), 1f);
                 StartCoroutine(ResetCollectableRotation(other.transform));
-                ++_indeks;
+
                 return;
             }
     
