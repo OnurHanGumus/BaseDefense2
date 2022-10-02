@@ -77,6 +77,7 @@ namespace Managers
         {
             SaveSignals.Instance.onUpgradeWorker += OnUpgradeWorkerSpeedData;
             StackSignals.Instance.onMoneyWorkerCollectMoney += rangeController.OnMoneyOnListCollected;
+            PlayerSignals.Instance.onInteractionCollectable += rangeController.OnPlayerCollectedMoney;
 
         }
 
@@ -84,6 +85,7 @@ namespace Managers
         {
             SaveSignals.Instance.onUpgradeWorker -= OnUpgradeWorkerSpeedData;
             StackSignals.Instance.onMoneyWorkerCollectMoney -= rangeController.OnMoneyOnListCollected;
+            PlayerSignals.Instance.onInteractionCollectable -= rangeController.OnPlayerCollectedMoney;
 
 
         }

@@ -49,5 +49,13 @@ namespace Controllers
                 MoneyList.Remove(collectedMoney);
             }
         }
+
+        public void OnPlayerCollectedMoney(GameObject money)
+        {
+            if (MoneyList.Contains(money.transform))
+            {
+                MoneyList.Remove(money.transform);
+            }
+        }
     }
 }

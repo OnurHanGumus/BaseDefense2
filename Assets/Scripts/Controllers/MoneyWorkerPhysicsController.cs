@@ -51,9 +51,7 @@ namespace Controllers
             }
             if (other.CompareTag("BaseTrigger"))
             {
-
                 stackManager.ReleaseCollectablesToBase();
-
                 return;
             }
         }

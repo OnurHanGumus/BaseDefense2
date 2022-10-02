@@ -79,20 +79,15 @@ namespace Managers
             Vector3 newPos;
 
             newPos = new Vector3(0, (_stackData.OffsetY * 0.1f) * (CollectableStack.Count), 0);
-
-
-
             //collectableGameObject.transform.DOLocalMove(newPos, 1f).OnComplete(() => SetPosition(collectableGameObject, newPos)).SetEase(Ease.InOutBack);
             collectableGameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
             CollectableStack.Add(collectableGameObject);
             SetPosition(collectableGameObject, newPos);
-
         }
 
         private void SetPosition(GameObject _collectableGameObject, Vector3 newPos)
         {
             _collectableGameObject.transform.localPosition = newPos;
-
         }
 
         private void OnReset()
@@ -141,7 +136,6 @@ namespace Managers
 
 
         ////////////////////////////////////////////////
-        ///
         public void ReleaseCollectablesToBase()
         {
             if (CollectableStack.Count > 0)
@@ -183,6 +177,5 @@ namespace Managers
             }
             Temp.Clear();
         }
-
     }
 }
