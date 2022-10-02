@@ -74,5 +74,10 @@ namespace Controllers
         {
             _isPlayerUseTurret = false;
         }
+
+        public float OnGetPlayerSpeed()
+        {
+            return _data.Speed;
+        }
     }
 }

@@ -10,6 +10,9 @@ namespace Signals
     public class PlayerSignals : MonoSingleton<PlayerSignals>
     {
         public Func<Transform> onGetPlayer = delegate { return null;  };
+        public Func<float> onGetPlayerSpeed = delegate { return 0f; };
+        public Func<Transform> onGetLastRescuePerson = delegate { return null; };
+
         public UnityAction<GameObject> onInteractionCollectable = delegate { };
         public UnityAction onPlayerReachBase = delegate { };
         public UnityAction onPlayerLeaveBase = delegate { };
@@ -27,6 +30,11 @@ namespace Signals
 
 
         public UnityAction<bool> onPlayerUseTurret = delegate { };
+
+
+
+        public UnityAction<Transform> onRescuePersonAddedToStack = delegate { };
+
 
     }
 }

@@ -20,12 +20,14 @@ namespace Managers
 
         #region Public Variables
         public RescuePersonState State = RescuePersonState.Terrifie;
+        public bool IsTaken = false;
 
         #endregion
 
         #region Serialized Variables
 
-
+        [SerializeField] private float offset = 4f;
+        [SerializeField] private float currentOffset = 0f;
 
 
         #endregion
@@ -113,6 +115,11 @@ namespace Managers
             else if (State.Equals(RescuePersonState.Run))
             {
                 _currentDirection = (_playerTransform.transform.position - transform.position).normalized;
+                currentOffset = (_playerTransform.transform.position - transform.position).magnitude;
+                if (currentOffset < offset)
+                {
+                    ChangeState(RescuePersonState.Idle);
+                }
 
                 _movementController.ChasePlayer(_currentDirection, _playerTransform);
                 _animationController.SetSpeedVariable(_rig.velocity.magnitude);
@@ -120,6 +127,12 @@ namespace Managers
             else if (State.Equals(RescuePersonState.Idle))
             {
                 _movementController.Idle();
+                _animationController.SetSpeedVariable(_rig.velocity.magnitude);
+                currentOffset = (_playerTransform.transform.position - transform.position).magnitude;
+                if (currentOffset > offset)
+                {
+                    ChangeState(RescuePersonState.Run);
+                }
 
             }
 
@@ -130,10 +143,11 @@ namespace Managers
             State = state;
         }
 
-        public void SetDirection(Vector3 direction, Transform lookAtObject)
+        public void SetDirection(Transform lookAtObject)
         {
-            
-            _currentDirection = (lookAtObject.transform.position - transform.position).normalized;
+
+            //_currentDirection = (lookAtObject.transform.position - transform.position).normalized;
+            Debug.Log(lookAtObject.name);
             _playerTransform = lookAtObject;
         }
 

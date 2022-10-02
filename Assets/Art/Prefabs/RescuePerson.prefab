@@ -301,7 +301,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.2
+  m_Radius: 0.4
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.52, z: 0}
@@ -911,7 +911,7 @@ GameObject:
   - component: {fileID: 8432790855353936596}
   m_Layer: 0
   m_Name: RescuePerson
-  m_TagString: Untagged
+  m_TagString: RescuePerson
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -981,6 +981,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
+  IsTaken: 0
+  offset: 8
+  currentOffset: 0
 --- !u!114 &8432790855353936597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,7 +996,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20082f2ee2c94f347914a3141a184488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 35
 --- !u!114 &8432790855353936596
 MonoBehaviour:
   m_ObjectHideFlags: 0

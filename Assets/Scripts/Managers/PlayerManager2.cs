@@ -37,7 +37,7 @@ namespace Managers
         private PlayerMovementController _movementController;
         private PlayerAnimationController _animationController;
         private PlayerRiggingController1 _rigController;
-
+        [SerializeField] private List<Transform> _rescuePersonList = new List<Transform>();
 
         #endregion
 
@@ -75,6 +75,9 @@ namespace Managers
             PlayerSignals.Instance.onEnemyDie += aimController.OnRemoveFromTargetList;
             PlayerSignals.Instance.onPlayerUseTurret += _movementController.OnPlayerUseTurret;
             PlayerSignals.Instance.onPlayerUseTurret += _animationController.OnPlayerUseTurret;
+            PlayerSignals.Instance.onRescuePersonAddedToStack += OnRescuePersonAddedToStack;
+            PlayerSignals.Instance.onGetPlayerSpeed += _movementController.OnGetPlayerSpeed;
+            PlayerSignals.Instance.onGetLastRescuePerson += OnGetLastRescuePerson;
 
             SaveSignals.Instance.onInitializeSelectedGunId += OnGunSelected;
             SaveSignals.Instance.onInitializePlayerUpgrades += physicsController.OnGetHealthData;
@@ -89,6 +92,9 @@ namespace Managers
             PlayerSignals.Instance.onPlayerSelectGun -= OnGunSelected;
             PlayerSignals.Instance.onEnemyDie -= aimController.OnRemoveFromTargetList;
             PlayerSignals.Instance.onPlayerUseTurret -= _movementController.OnPlayerUseTurret;
+            PlayerSignals.Instance.onRescuePersonAddedToStack -= OnRescuePersonAddedToStack;
+            PlayerSignals.Instance.onGetPlayerSpeed -= _movementController.OnGetPlayerSpeed;
+            PlayerSignals.Instance.onGetLastRescuePerson -= OnGetLastRescuePerson;
 
 
             SaveSignals.Instance.onInitializeSelectedGunId -= OnGunSelected;
@@ -134,7 +140,23 @@ namespace Managers
             aimController.SetGunSettings(Guns[CurrentGunId].transform.GetChild(0));
         }
 
+        private void OnRescuePersonAddedToStack(Transform rescuePerson)
+        {
+            _rescuePersonList.Add(rescuePerson);
+        }
 
+        private Transform OnGetLastRescuePerson()
+        {
+
+            if (_rescuePersonList.Count.Equals(0))
+            {
+                return transform;
+            }
+            else
+            {
+                return _rescuePersonList[_rescuePersonList.Count - 1];
+            }
+        }
 
 
 

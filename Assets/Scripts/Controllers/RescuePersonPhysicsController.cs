@@ -17,7 +17,7 @@ namespace Controllers
         [SerializeField] private RescuePersonManager manager;
 
         #endregion
-
+        private Transform _followObjectTransform;
         #endregion
 
         private void Awake()
@@ -27,38 +27,27 @@ namespace Controllers
 
         private void Init()
         {
-
+            _followObjectTransform = transform;
 
         }
-        private void OnTriggerEnter(Collider other)
+
+        private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("PlayerOutOfBase"))
+
+            if (other.CompareTag("Player") && !manager.IsTaken)
             {
+                _followObjectTransform = PlayerSignals.Instance.onGetLastRescuePerson();
+                manager.SetDirection(_followObjectTransform);
                 manager.ChangeState(RescuePersonState.Run);
                 manager.ChangeAnim(RescuePersonAnimStates.Taken);
 
-                return;
-            }
-
-            if (other.CompareTag("RescueFollowArea"))
-            {
-                manager.ChangeState(RescuePersonState.Idle);
+                manager.IsTaken = true;
+                PlayerSignals.Instance.onRescuePersonAddedToStack?.Invoke(manager.transform);
 
                 return;
             }
 
-        }
 
-
-
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("PlayerOutOfBase"))
-            {
-                manager.SetDirection((other.transform.position - transform.position).normalized, other.transform);
-
-                return;
-            }
         }
     }
 }
