@@ -28,12 +28,10 @@ namespace Controllers
         private void Init()
         {
             _followObjectTransform = transform;
-
         }
 
         private void OnTriggerExit(Collider other)
         {
-
             if (other.CompareTag("Player") && !manager.IsTaken)
             {
                 _followObjectTransform = PlayerSignals.Instance.onGetLastRescuePerson();
@@ -46,8 +44,6 @@ namespace Controllers
 
                 return;
             }
-
-
         }
     }
 }

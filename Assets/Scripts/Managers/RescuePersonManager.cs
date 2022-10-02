@@ -34,10 +34,8 @@ namespace Managers
 
         #region Private Variables
 
-        private Vector3 _currentTarget;
         private Vector3 _currentDirection;
         private Transform _playerTransform;
-        private Transform _defaultTarget;
         private EnemyData _enemyData;
 
 
@@ -102,16 +100,8 @@ namespace Managers
         {
             if (State.Equals(RescuePersonState.Terrifie))
             {
-                //_movementController.DeathMove(_dieDirection);
-                //triggerRange.SetActive(false);
-                //Destroy(gameObject, _enemyData.DestroyDelay);
+                //do nothing
             }
-            //else if (State.Equals(RescuePersonState.Run))
-            //{
-            //    _currentTarget = _defaultTarget.position;
-            //    _currentDirection = (_defaultTarget.position - transform.position).normalized;
-            //    _movementController.MoveToDefaultTarget(_currentDirection, _defaultTarget);
-            //}
             else if (State.Equals(RescuePersonState.Run))
             {
                 _currentDirection = (_playerTransform.transform.position - transform.position).normalized;
@@ -133,9 +123,7 @@ namespace Managers
                 {
                     ChangeState(RescuePersonState.Run);
                 }
-
             }
-
         }
 
         public void ChangeState(RescuePersonState state)
@@ -145,9 +133,6 @@ namespace Managers
 
         public void SetDirection(Transform lookAtObject)
         {
-
-            //_currentDirection = (lookAtObject.transform.position - transform.position).normalized;
-            Debug.Log(lookAtObject.name);
             _playerTransform = lookAtObject;
         }
 
@@ -162,12 +147,9 @@ namespace Managers
             _animationController.SetAnimState(animState);
         }
 
-
         private void OnPlayerDisapear()
         {
             ChangeState(RescuePersonState.Terrifie);
-            //hepsi diz çökecek
-
         }
     }
 }

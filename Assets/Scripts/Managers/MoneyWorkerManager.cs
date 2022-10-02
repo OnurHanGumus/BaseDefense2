@@ -120,7 +120,6 @@ namespace Managers
                 yield return new WaitForSeconds(0.05f);
                 physicsCollider.enabled = true;
                 _animationController.SetAnimationTrigger(WorkerAnimStates.Walk);
-                Debug.Log("asdasd");
 
                 MoveToMoney();
                 StopAllCoroutines();
@@ -146,7 +145,6 @@ namespace Managers
         {
             if (stackManager.CollectableStack.Count >= 3)
             {
-                Debug.Log("stackmanager sayýsý 3ü geçti");
                 GoBackToBase();
             }
             else
