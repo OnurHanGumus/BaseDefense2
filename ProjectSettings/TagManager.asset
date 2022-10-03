@@ -4,21 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - 1
-  - 2
   - Area
   - Collectable
   - Collected
   - PlayerStackPos
   - OutTrigger
-  - BaseTrigger
-  - Base
   - Enemy
   - EnemyTarget
   - Damage
   - PistolBullet
   - ShotgunBullet
-  - SMGBullet
   - AssaultBullet
   - RocketBullet
   - MinigunBullet
@@ -37,6 +32,8 @@ TagManager:
   - MoneyWay
   - Ammo
   - RescuePerson
+  - SMGBullet
+  - Mine
   layers:
   - Default
   - TransparentFX
