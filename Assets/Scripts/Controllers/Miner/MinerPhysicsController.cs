@@ -42,5 +42,13 @@ public class MinerPhysicsController : MonoBehaviour
 
             }
         }
+        if (other.CompareTag("GemArea"))
+        {
+            if (manager.IsGemCollected)
+            {
+                manager.ReleaseGemsToGemArea(other.gameObject);
+
+            }
+        }
     }
 }

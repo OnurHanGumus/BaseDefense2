@@ -11,12 +11,17 @@ public class MinerManager : MonoBehaviour
 
     #region Public Variables
     public Transform SelectedMine;
+    public bool IsGemCollected = false;
 
     #endregion
 
     #region Serialized Variables
     [SerializeField] private GameObject[] minesOnScene;
     [SerializeField] private Transform gemArea;
+    [SerializeField] private GameObject gemPrefab;
+    [SerializeField] private Transform collectedGem;
+    [SerializeField] private Transform gemParent;
+
     #endregion
 
     #region Private Variables
@@ -97,14 +102,37 @@ public class MinerManager : MonoBehaviour
     private IEnumerator WorkCoroutine()
     {
         yield return new WaitForSeconds(2f);
+        CollectGem();
         _animationController.SetAnimState(MinerAnimStates.Run);
         ReturnGemToArea();
+    }
+
+    private void CollectGem()
+    {
+        IsGemCollected = true;
+        collectedGem = Instantiate(gemPrefab, gemParent.position, Quaternion.Euler(180,0,0)).transform;
+        collectedGem.parent = gemParent;
     }
 
     private void ReturnGemToArea()
     {
         transform.DOMove(gemArea.position, 20f).SetSpeedBased(true).SetEase(Ease.Linear).OnComplete(SelectRandomMine);
         transform.DOLookAt(gemArea.position, 0.5f);
+
+    }
+
+    public void ReleaseGemsToGemArea(GameObject releaseObject)
+    {
+        StartCoroutine(ReleaseGemToGemArea(releaseObject));
+    }
+    private IEnumerator ReleaseGemToGemArea(GameObject releaseObject)
+    {
+        yield return new WaitForSeconds(0.05f);
+
+        collectedGem.transform.parent = releaseObject.transform;
+        collectedGem.transform.position = new Vector3(releaseObject.transform.position.x, 0.75f, releaseObject.transform.position.z);
+        collectedGem = null;
+        IsGemCollected = false;
 
     }
 

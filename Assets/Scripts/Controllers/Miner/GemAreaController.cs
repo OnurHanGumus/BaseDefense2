@@ -54,7 +54,7 @@ namespace Controllers
                 _gemList.Add(other.transform);
                 int moddedIndeks = _indeks % _locations.Count;
                 other.transform.DOLocalMove(new Vector3(_locations[moddedIndeks].x, (int)(_indeks / 4) * 0.5f, _locations[moddedIndeks].z), 1f);
-                StartCoroutine(ResetCollectableRotation(other.transform));
+                //StartCoroutine(ResetCollectableRotation(other.transform));
 
                 return;
             }

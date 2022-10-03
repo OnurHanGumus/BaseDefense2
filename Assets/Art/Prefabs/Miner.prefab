@@ -797,6 +797,7 @@ Transform:
   - {fileID: 687123578682990367}
   - {fileID: 5726519748214417933}
   - {fileID: 125991394744139703}
+  - {fileID: 1383901781510212612}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -848,8 +849,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedMine: {fileID: 0}
+  IsGemCollected: 0
   minesOnScene: []
   gemArea: {fileID: 0}
+  gemPrefab: {fileID: 379725593890370474, guid: 5af2ad45c65c392438653a29acef5c06, type: 3}
+  collectedGem: {fileID: 0}
+  gemParent: {fileID: 1383901781510212612}
 --- !u!114 &8180710428468426130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,6 +1247,36 @@ Transform:
   m_Father: {fileID: 9035460707550190570}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -10.715155, y: 23.707039, z: -168.6205}
+--- !u!1 &8073357290498695866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1383901781510212612}
+  m_Layer: 0
+  m_Name: GemParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1383901781510212612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073357290498695866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.362, z: 0.083}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3545517529659685758}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8458232976969576925
 GameObject:
   m_ObjectHideFlags: 0
