@@ -28,7 +28,7 @@ namespace Managers
 
         [SerializeField] private float offset = 4f;
         [SerializeField] private float currentOffset = 0f;
-
+        [SerializeField] private GameObject minerPrefab;
 
         #endregion
 
@@ -75,12 +75,13 @@ namespace Managers
         private void SubscribeEvents()
         {
             PlayerSignals.Instance.onPlayerDie += OnPlayerDisapear;
+            PlayerSignals.Instance.onPlayerInMineArea += OnPlayerInMineArea;
         }
 
         private void UnsubscribeEvents()
         {
             PlayerSignals.Instance.onPlayerDie -= OnPlayerDisapear;
-
+            PlayerSignals.Instance.onPlayerInMineArea -= OnPlayerInMineArea;
 
         }
 
@@ -150,6 +151,15 @@ namespace Managers
         private void OnPlayerDisapear()
         {
             ChangeState(RescuePersonState.Terrifie);
+        }
+
+        private void OnPlayerInMineArea()
+        {
+            if (IsTaken)
+            {
+                Instantiate(minerPrefab, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -31,6 +31,16 @@ public class MinerPhysicsController : MonoBehaviour
                 manager.Work(MinerAnimStates.Dig);
 
             }
+            return;
+        }
+
+        if (other.CompareTag("Cave"))
+        {
+            if (other.transform.parent.Equals(manager.SelectedMine))
+            {
+                manager.Work(MinerAnimStates.Pick);
+
+            }
         }
     }
 }

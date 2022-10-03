@@ -8,5 +8,6 @@ namespace Enums
         Run, 
         Idle,
         Dig,
+        Pick,
     }
 }

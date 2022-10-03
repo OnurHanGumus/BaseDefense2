@@ -984,6 +984,7 @@ MonoBehaviour:
   IsTaken: 0
   offset: 8
   currentOffset: 0
+  minerPrefab: {fileID: 4215340406738084292, guid: a07bb0a56f15bf54eb1640512b7add8f, type: 3}
 --- !u!114 &8432790855353936597
 MonoBehaviour:
   m_ObjectHideFlags: 0

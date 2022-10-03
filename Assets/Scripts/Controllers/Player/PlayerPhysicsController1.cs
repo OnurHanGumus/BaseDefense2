@@ -82,6 +82,10 @@ namespace Controllers
                 }
                 return;
             }
+            if (other.CompareTag("MineEnter"))
+            {
+                PlayerSignals.Instance.onPlayerInMineArea?.Invoke();
+            }
         }
 
         public void OnGetHealthData(List<int> upgradeList)

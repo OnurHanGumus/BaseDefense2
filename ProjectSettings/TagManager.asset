@@ -37,6 +37,8 @@ TagManager:
   - Base
   - BaseTrigger
   - GemArea
+  - Cave
+  - MineEnter
   layers:
   - Default
   - TransparentFX

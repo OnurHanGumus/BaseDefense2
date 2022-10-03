@@ -22,6 +22,7 @@ public class MinerManager : MonoBehaviour
     #region Private Variables
 
     private MinerAnimationController _animationController;
+    private Tween tweenRef;
     #endregion
 
     #endregion
@@ -38,6 +39,7 @@ public class MinerManager : MonoBehaviour
         gemArea = GameObject.FindGameObjectWithTag("GemArea").transform;
 
         SelectRandomMine();
+
     }
 
     private void Start()
@@ -78,13 +80,16 @@ public class MinerManager : MonoBehaviour
 
     private void MoveToSelectedMine()
     {
-        transform.DOMove(SelectedMine.position, 20f).SetSpeedBased(true).SetEase(Ease.Linear);
+
+
+        tweenRef = transform.DOMove(SelectedMine.position, 20f).SetSpeedBased(true).SetEase(Ease.Linear);
         transform.DOLookAt(SelectedMine.position, 0.5f);
 
     }
 
     public void Work(MinerAnimStates state)// animation type as parameter
     {
+        tweenRef.Kill();
         _animationController.SetAnimState(state);
         StartCoroutine(WorkCoroutine());
     }
