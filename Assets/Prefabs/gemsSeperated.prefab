@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2720230424791435461}
+  - component: {fileID: 4849640943400146306}
   m_Layer: 0
   m_Name: gemsSeperated
   m_TagString: Mine
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4849640943400146306
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3354024504293003903}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8286239
+  m_Center: {x: 0, y: 0.6986295, z: -0}
 --- !u!1 &7574368896023027403
 GameObject:
   m_ObjectHideFlags: 0

@@ -1825,6 +1825,11 @@ Transform:
   m_Father: {fileID: 564270569}
   m_RootOrder: 72
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &240728260 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4215340406738084291, guid: a07bb0a56f15bf54eb1640512b7add8f, type: 3}
+  m_PrefabInstance: {fileID: 125991395146818433}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &246871656
 GameObject:
   m_ObjectHideFlags: 0
@@ -14976,6 +14981,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Miner
       objectReference: {fileID: 0}
+    - target: {fileID: 4215340406738084292, guid: a07bb0a56f15bf54eb1640512b7add8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180710428468426130, guid: a07bb0a56f15bf54eb1640512b7add8f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 240728260}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a07bb0a56f15bf54eb1640512b7add8f, type: 3}
 --- !u!4 &292859999710572967 stripped

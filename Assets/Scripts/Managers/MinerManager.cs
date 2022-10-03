@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Controllers;
+using Enums;
 
 public class MinerManager : MonoBehaviour
 {
     #region Self Variables
 
     #region Public Variables
+    public Transform SelectedMine;
 
     #endregion
 
     #region Serialized Variables
     [SerializeField] private GameObject[] minesOnScene;
-    [SerializeField] private Transform selectedMine;
     [SerializeField] private Transform gemArea;
     #endregion
 
@@ -31,7 +32,9 @@ public class MinerManager : MonoBehaviour
     }
     private void Init()
     {
-        minesOnScene = GameObject.FindGameObjectsWithTag("CollectAmmoArea");
+        _animationController = GetComponent<MinerAnimationController>();
+
+        minesOnScene = GameObject.FindGameObjectsWithTag("Mine");
         gemArea = GameObject.FindGameObjectWithTag("GemArea").transform;
 
         SelectRandomMine();
@@ -39,7 +42,6 @@ public class MinerManager : MonoBehaviour
 
     private void Start()
     {
-
 
     }
 
@@ -70,30 +72,34 @@ public class MinerManager : MonoBehaviour
 
     private void SelectRandomMine()
     {
-        selectedMine = minesOnScene[Random.Range(0, minesOnScene.Length)].transform;
+        SelectedMine = minesOnScene[Random.Range(0, minesOnScene.Length)].transform;
         MoveToSelectedMine();
     }
 
     private void MoveToSelectedMine()
     {
-        transform.DOMove(selectedMine.position, 5f).SetSpeedBased(true);
+        transform.DOMove(SelectedMine.position, 20f).SetSpeedBased(true).SetEase(Ease.Linear);
+        transform.DOLookAt(SelectedMine.position, 0.5f);
+
     }
 
-    public void Work()// animation type as parameter
+    public void Work(MinerAnimStates state)// animation type as parameter
     {
-        //_animationController.SetAnimState();
+        _animationController.SetAnimState(state);
         StartCoroutine(WorkCoroutine());
     }
 
     private IEnumerator WorkCoroutine()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
+        _animationController.SetAnimState(MinerAnimStates.Run);
         ReturnGemToArea();
     }
 
     private void ReturnGemToArea()
     {
-        transform.DOMove(gemArea.position, 5f).SetSpeedBased(true);
+        transform.DOMove(gemArea.position, 20f).SetSpeedBased(true).SetEase(Ease.Linear).OnComplete(SelectRandomMine);
+        transform.DOLookAt(gemArea.position, 0.5f);
 
     }
 

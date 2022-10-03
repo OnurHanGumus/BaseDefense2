@@ -11,7 +11,6 @@ namespace Controllers
 
         #region Serialized Variables
 
-        [SerializeField] private RescuePersonManager manager;
         [SerializeField] private Animator animator;
 
 
@@ -20,14 +19,10 @@ namespace Controllers
         #endregion
         #endregion
 
-        public void SetAnimState(RescuePersonAnimStates animState)
+        public void SetAnimState(MinerAnimStates animState)
         {
             animator.SetTrigger(animState.ToString());
         }
 
-        public void SetSpeedVariable(float speed)
-        {
-            animator.SetFloat("Speed", speed);
-        }
     }
 }

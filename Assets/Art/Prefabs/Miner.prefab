@@ -847,6 +847,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf1a3fa91894f6e419ed85c3ae8c095b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minesOnScene: []
+  selectedMine: {fileID: 0}
+  gemArea: {fileID: 0}
 --- !u!114 &8180710428468426130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,6 +1089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e74af09dc65ac4e87894e25ebd0fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 2598221670843157021}
 --- !u!1 &5906987174363602929
 GameObject:
   m_ObjectHideFlags: 0

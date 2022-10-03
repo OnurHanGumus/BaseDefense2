@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Enums;
 
 public class MinerPhysicsController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    #region Self Variables
+
+    #region Serialized Variables
+    [SerializeField] private MinerManager manager;
+
+
+
+    #endregion
+    #region Private Variables
+
+    #endregion
+    #endregion
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Mine"))
+        {
+            if (other.transform.Equals(manager.SelectedMine))
+            {
+                manager.Work(MinerAnimStates.Dig);
+
+            }
+        }
     }
 }

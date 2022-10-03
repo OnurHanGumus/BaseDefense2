@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2001691899360365547}
+  - component: {fileID: 7008898449610371734}
   m_Layer: 0
   m_Name: MineEnterance
   m_TagString: Mine
@@ -38,6 +39,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &7008898449610371734
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001691899360365546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.9751785
+  m_Center: {x: 0.18889427, y: 0.9352331, z: 1.070327}
 --- !u!1001 &2001691898105097000
 PrefabInstance:
   m_ObjectHideFlags: 0
