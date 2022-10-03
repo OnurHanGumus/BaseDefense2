@@ -118,7 +118,7 @@ namespace Managers
                 PlayerSignals.Instance.onPlayerUseTurret?.Invoke(false);
             }
 
-            turretRotatableObj.rotation = Quaternion.Euler(new Vector3(0, 30 * _xValue * -1, 0));
+            turretRotatableObj.rotation = Quaternion.Euler(new Vector3(0, 30 * _xValue * -1, 0)); //slerp
         }
     }
 }
