@@ -37,7 +37,7 @@ namespace Managers
         
 
 
-        public override void Pay(int value = 1)
+        public override void Pay(int value = 1, ScoreTypeEnums scoreType = ScoreTypeEnums.Money)
         {
             UnlockValue -= value;
             UpdateText();

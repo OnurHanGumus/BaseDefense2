@@ -41,6 +41,7 @@ namespace Managers
 
                 }
         }
+        [ShowInInspector]
 
         public int Gem
         {
@@ -103,14 +104,16 @@ namespace Managers
             if (type.Equals(ScoreTypeEnums.Money))
             {
                 _money += amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, _money);
+                SaveSignals.Instance.onSaveCollectables?.Invoke(SaveLoadStates.Money, _money);
+
             }
             else
             {
                 _gem += amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, _gem);
+                SaveSignals.Instance.onSaveCollectables?.Invoke(SaveLoadStates.Gem, _gem);
             }
-
-            UISignals.Instance.onSetChangedText?.Invoke(type, _money);
-            SaveSignals.Instance.onSaveCollectables?.Invoke(SaveLoadStates.Money, _money);
         }
 
         private void OnScoreDecrease(ScoreTypeEnums type, int amount)
@@ -118,16 +121,16 @@ namespace Managers
             if (type.Equals(ScoreTypeEnums.Money))
             {
                 _money -= amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, _money);
+                SaveSignals.Instance.onSaveCollectables?.Invoke(SaveLoadStates.Money, _money);
+
             }
             else
             {
                 _gem -= amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, _gem);
+                SaveSignals.Instance.onSaveCollectables?.Invoke(SaveLoadStates.Gem, _gem);
             }
-
-            UISignals.Instance.onSetChangedText?.Invoke(type, _money);
-            SaveSignals.Instance.onSaveCollectables?.Invoke(SaveLoadStates.Money, _money);
-
-
         }
 
         private int OnGetMoney()

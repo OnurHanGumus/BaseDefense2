@@ -45,7 +45,7 @@ namespace Managers
             InitializeOwners();
         }
 
-        public override void Pay(int value = 1)
+        public override void Pay(int value = 1, ScoreTypeEnums scoreTypeEnums= ScoreTypeEnums.Money)
         {
             if (turretManager.IsPlayerUsing)
             {

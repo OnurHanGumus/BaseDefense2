@@ -15,6 +15,7 @@ namespace Controllers
 
         [SerializeField] private AreaManager manager;
         [SerializeField] private SaveLoadStates type;
+        [SerializeField] private ScoreTypeEnums scoreType = ScoreTypeEnums.Money;
 
         #endregion
 
@@ -44,10 +45,21 @@ namespace Controllers
 
         private void HaveEnoughMoney()
         {
-            if (ScoreSignals.Instance.onGetMoney() >= manager.UnlockValue)
+            if (scoreType.Equals(ScoreTypeEnums.Money))
             {
-                StartCoroutine(Buy());
+                if (ScoreSignals.Instance.onGetMoney() >= manager.UnlockValue)
+                {
+                    StartCoroutine(Buy());
+                }
             }
+            else
+            {
+                if (ScoreSignals.Instance.onGetGem() >= manager.UnlockValue)
+                {
+                    StartCoroutine(Buy());
+                }
+            }
+            
                  
         }
         private IEnumerator Buy()

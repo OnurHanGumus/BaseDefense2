@@ -55,20 +55,24 @@ namespace Controllers
             if (other.CompareTag("Collected"))
             {
                 _indeks = _gemList.Count;
-
+                other.tag = "Gem";
                 _gemList.Add(other.transform);
                 int moddedIndeks = _indeks % _locations.Count;
                 other.transform.DOLocalMove(new Vector3(_locations[moddedIndeks].x, _locations[moddedIndeks].y + (int)(_indeks / 9) * 0.5f, _locations[moddedIndeks].z), 1f);
-                //StartCoroutine(ResetCollectableRotation(other.transform));
 
                 return;
             }
+
+            if (other.CompareTag("Player"))
+            {
+                foreach (var i in _gemList)
+                {
+                    i.DOMove(other.transform.position, 1f);
+                }
+                _gemList.Clear();
+            }
         }
 
-        private IEnumerator ResetCollectableRotation(Transform gem)
-        {
-            yield return new WaitForSeconds(0.5f);
-            gem.rotation = Quaternion.Euler(Vector3.zero);
-        }
+
     }
 }

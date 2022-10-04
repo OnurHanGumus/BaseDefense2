@@ -102,11 +102,11 @@ namespace Managers
             valueText.text = UnlockValue.ToString();
         }
 
-        public virtual void Pay(int value = 1)
+        public virtual void Pay(int value = 1, ScoreTypeEnums scoreType = ScoreTypeEnums.Money)
         {
             UnlockValue -= value;
             UpdateText();
-            ScoreSignals.Instance.onScoreDecrease?.Invoke(ScoreTypeEnums.Money, 1);
+            ScoreSignals.Instance.onScoreDecrease?.Invoke(scoreType, 1);
             if (UnlockValue.Equals(0))
             {
                 LevelSignals.Instance.onBuyArea?.Invoke(AreaID);

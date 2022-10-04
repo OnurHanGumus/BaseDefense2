@@ -43,11 +43,11 @@ namespace Managers
 
             InitializePanel();
         }
-        public override void Pay(int value = 1)
+        public override void Pay(int value = 1, ScoreTypeEnums scoreType = ScoreTypeEnums.Gem)
         {
             UnlockValue -= value;
             UpdateText();
-            ScoreSignals.Instance.onScoreDecrease?.Invoke(ScoreTypeEnums.Money, 1);
+            ScoreSignals.Instance.onScoreDecrease?.Invoke(ScoreTypeEnums.Gem, 1);
             if (UnlockValue.Equals(0))
             {
                 LevelSignals.Instance.onBuyEnemyArea?.Invoke(AreaID);

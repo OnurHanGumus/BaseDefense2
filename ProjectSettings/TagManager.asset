@@ -39,6 +39,7 @@ TagManager:
   - GemArea
   - Cave
   - MineEnter
+  - Gem
   layers:
   - Default
   - TransparentFX

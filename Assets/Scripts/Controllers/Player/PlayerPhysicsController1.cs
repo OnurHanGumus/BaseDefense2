@@ -43,6 +43,7 @@ namespace Controllers
                 PlayerSignals.Instance.onInteractionCollectable?.Invoke(other.gameObject);
                 return;
             }
+
             if (other.CompareTag("BaseTrigger"))
             {
                 PlayerSignals.Instance.onPlayerReachBase?.Invoke();
@@ -51,11 +52,13 @@ namespace Controllers
                 ChangeColliderActiveness(false);
                 return;
             }
+
             if (other.CompareTag("TurretAmmoArea"))
             {
                 PlayerSignals.Instance.onPlayerReachTurretAmmoArea?.Invoke(other.gameObject);
                 return;
             }
+
             if (other.CompareTag("OutTrigger"))
             {
                 manager.SetAnimBool(PlayerAnimStates.Base, false);
@@ -65,6 +68,7 @@ namespace Controllers
 
                 return;
             }
+
             if (other.CompareTag("Damage"))
             {
                 if (manager.IsPlayerDead)
@@ -82,9 +86,16 @@ namespace Controllers
                 }
                 return;
             }
+
             if (other.CompareTag("MineEnter"))
             {
                 PlayerSignals.Instance.onPlayerInMineArea?.Invoke();
+                return;
+            }
+            if (other.CompareTag("Gem"))
+            {
+                ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Gem, 1);
+                Destroy(other.gameObject, 0.5f);
             }
         }
 
