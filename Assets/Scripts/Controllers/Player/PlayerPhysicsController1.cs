@@ -90,6 +90,9 @@ namespace Controllers
             if (other.CompareTag("MineEnter"))
             {
                 PlayerSignals.Instance.onPlayerInMineArea?.Invoke();
+                LevelSignals.Instance.onMinerCountIncreased?.Invoke(manager.RescuePersonList.Count);
+                manager.RescuePersonList.Clear();
+
                 return;
             }
             if (other.CompareTag("Gem"))

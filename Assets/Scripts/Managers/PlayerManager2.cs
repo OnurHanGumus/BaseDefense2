@@ -20,6 +20,7 @@ namespace Managers
         public bool IsPlayerDead = false;
         public bool IsOnBase = true;
         public List<GameObject> Guns;
+        public List<Transform> RescuePersonList = new List<Transform>();
 
 
         #endregion
@@ -37,7 +38,6 @@ namespace Managers
         private PlayerMovementController _movementController;
         private PlayerAnimationController _animationController;
         private PlayerRiggingController1 _rigController;
-        [SerializeField] private List<Transform> _rescuePersonList = new List<Transform>();
 
         #endregion
 
@@ -142,19 +142,19 @@ namespace Managers
 
         private void OnRescuePersonAddedToStack(Transform rescuePerson)
         {
-            _rescuePersonList.Add(rescuePerson);
+            RescuePersonList.Add(rescuePerson);
         }
 
         private Transform OnGetLastRescuePerson()
         {
 
-            if (_rescuePersonList.Count.Equals(0))
+            if (RescuePersonList.Count.Equals(0))
             {
                 return transform;
             }
             else
             {
-                return _rescuePersonList[_rescuePersonList.Count - 1];
+                return RescuePersonList[RescuePersonList.Count - 1];
             }
         }
 

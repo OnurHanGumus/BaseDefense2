@@ -34,5 +34,8 @@ namespace Enums
         MoneyWorkerCounts,
         AmmoWorkerAreaCounts,
         MoneyWorkerAreaCounts,
+
+        MinerCount,
+        SoldierCount,
     }
 }

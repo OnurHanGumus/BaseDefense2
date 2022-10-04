@@ -13,6 +13,9 @@ namespace Signals
         public UnityAction<int> onBuyTurret = delegate { };
         public UnityAction<int> onBuyTurretOwners = delegate { };
 
+        public UnityAction<int> onMinerCountIncreased = delegate { };
+        public Func<int> onGetMinerCount = delegate { return 0; };
+
 
         public Func<int> onGetCurrentModdedLevel = delegate { return 0; };
 
