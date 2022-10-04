@@ -89,10 +89,32 @@ namespace Controllers
 
             if (other.CompareTag("MineEnter"))
             {
-                PlayerSignals.Instance.onPlayerInMineArea?.Invoke();
-                LevelSignals.Instance.onMinerCountIncreased?.Invoke(manager.RescuePersonList.Count);
-                manager.RescuePersonList.Clear();
+                int mineRemainCapacity = LevelSignals.Instance.onGetMineRemainCapacity();
+                if (mineRemainCapacity.Equals(0))
+                {
+                    return;
+                }
+                if (mineRemainCapacity >= manager.RescuePersonList.Count)
+                {
+                    PlayerSignals.Instance.onPlayerInMineArea?.Invoke();
+                    LevelSignals.Instance.onMinerCountIncreased?.Invoke(manager.RescuePersonList.Count);
+                    manager.RescuePersonList.Clear();
+                }
+                else
+                {
+                    //int remainPlace = manager.RescuePersonList.Count - mineRemainCapacity;
+                    Debug.Log(mineRemainCapacity);
 
+                    LevelSignals.Instance.onMinerCountIncreased?.Invoke(mineRemainCapacity);
+
+                    for (int i = 0; i < mineRemainCapacity; i++)
+                    {
+
+                        PlayerSignals.Instance.onPlayerInMineAreaLowCapacity?.Invoke(manager.RescuePersonList[manager.RescuePersonList.Count - 1]);
+                        manager.RescuePersonList.RemoveAt(manager.RescuePersonList.Count - 1);
+
+                    }
+                }
                 return;
             }
             if (other.CompareTag("Gem"))

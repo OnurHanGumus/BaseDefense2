@@ -2,6 +2,8 @@ using Signals;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using Data.UnityObject;
 
 public class MineManager : MonoBehaviour
 {
@@ -13,14 +15,26 @@ public class MineManager : MonoBehaviour
 
     #region Serialized Variables
     [SerializeField] private GameObject minerPrefab;
+    [SerializeField] private TextMeshPro minerCountText;
 
     #endregion
 
     #region Private Variables
-
+    private List<int> _unlockDatas = new List<int>();
     #endregion
 
     #endregion
+    private List<int> GetData() => Resources.Load<CD_Miner>("Data/Miner-SoliderCounts/CD_Miner").Data.prices;
+    private int _minerCount = 0;
+    private int _currentLevel;
+
+
+    public int MinerCount
+    {
+        get { return _minerCount; }
+        set { _minerCount = value; 
+            UpdateText(); }
+    }
 
     private void Awake()
     {
@@ -29,7 +43,11 @@ public class MineManager : MonoBehaviour
 
     private void Init()
     {
+        GetCurrentLevel();
+        _unlockDatas = GetData();
+        GetData();
         InitializeMiners();
+        UpdateText();
     }
 
 
@@ -41,13 +59,16 @@ public class MineManager : MonoBehaviour
     }
 
     private void SubscribeEvents()
-    { 
-
+    {
+        LevelSignals.Instance.onMinerCountIncreased += OnMinerCountIncreased;
+        LevelSignals.Instance.onGetMineRemainCapacity += OnGetRemainCapacity;
     }
 
     private void UnsubscribeEvents()
     {
 
+        LevelSignals.Instance.onMinerCountIncreased -= OnMinerCountIncreased;
+        LevelSignals.Instance.onGetMineRemainCapacity -= OnGetRemainCapacity;
 
 
     }
@@ -59,6 +80,11 @@ public class MineManager : MonoBehaviour
 
     #endregion
 
+
+    private void UpdateText()
+    {
+        minerCountText.text = MinerCount + "/" + _unlockDatas[_currentLevel];
+    }
     private void InitializeMiners()
     {
         int count = LevelSignals.Instance.onGetMinerCount();
@@ -66,5 +92,23 @@ public class MineManager : MonoBehaviour
         {
             Instantiate(minerPrefab, new Vector3(0,0, -100f), transform.rotation);
         }
+        MinerCount = count;
+
+    }
+
+    private void GetCurrentLevel()
+    {
+        _currentLevel = LevelSignals.Instance.onGetCurrentModdedLevel();
+    }
+
+    private void OnMinerCountIncreased(int amount)
+    {
+        MinerCount += amount;
+        UpdateText();
+    }
+
+    private int OnGetRemainCapacity()
+    {
+        return _unlockDatas[_currentLevel] - _minerCount;
     }
 }

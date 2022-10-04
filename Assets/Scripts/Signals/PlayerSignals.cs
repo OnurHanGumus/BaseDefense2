@@ -19,6 +19,7 @@ namespace Signals
 
         public UnityAction<GameObject> onPlayerReachTurretAmmoArea = delegate { };
         public UnityAction onPlayerInMineArea = delegate { };
+        public UnityAction<Transform> onPlayerInMineAreaLowCapacity = delegate { };
 
 
         public UnityAction<SaveLoadStates> onPlayerLeaveBuyArea = delegate { };

@@ -76,12 +76,14 @@ namespace Managers
         {
             PlayerSignals.Instance.onPlayerDie += OnPlayerDisapear;
             PlayerSignals.Instance.onPlayerInMineArea += OnPlayerInMineArea;
+            PlayerSignals.Instance.onPlayerInMineAreaLowCapacity += OnPlayerInMineAreaLowCapacity;
         }
 
         private void UnsubscribeEvents()
         {
             PlayerSignals.Instance.onPlayerDie -= OnPlayerDisapear;
             PlayerSignals.Instance.onPlayerInMineArea -= OnPlayerInMineArea;
+            PlayerSignals.Instance.onPlayerInMineAreaLowCapacity -= OnPlayerInMineAreaLowCapacity;
 
         }
 
@@ -159,6 +161,20 @@ namespace Managers
             {
                 Instantiate(minerPrefab, transform.position, transform.rotation);
                 Destroy(gameObject);
+            }
+        }
+
+        private void OnPlayerInMineAreaLowCapacity(Transform objTransform)
+        {
+            if (IsTaken)
+            {
+                if (transform.Equals(objTransform))
+                {
+                    Instantiate(minerPrefab, transform.position, transform.rotation);
+                    Destroy(gameObject);
+                }
+    
+
             }
         }
     }

@@ -15,6 +15,7 @@ namespace Signals
 
         public UnityAction<int> onMinerCountIncreased = delegate { };
         public Func<int> onGetMinerCount = delegate { return 0; };
+        public Func<int> onGetMineRemainCapacity = delegate { return 0; };
 
 
         public Func<int> onGetCurrentModdedLevel = delegate { return 0; };
