@@ -36,10 +36,15 @@ namespace Controllers
         private void Init()
         {
             _locations = new List<Vector3>() {
-                new Vector3(-0.2f, 0, 0.2f),
-                new Vector3(0.2f, 0, 0.2f),
-                new Vector3(0.2f, 0, -0.2f),
-                new Vector3(-0.2f, 0, -0.2f)
+                new Vector3(-0.4f, 0.75f, 0.4f),
+                new Vector3(-0.4f, 0.75f, 0f),
+                new Vector3(-0.4f, 0.75f, -0.4f),
+                new Vector3(0f, 0.75f, 0.4f),
+                new Vector3(0f, 0.75f, 0f),
+                new Vector3(0f, 0.75f, -0.4f),
+                new Vector3(0.4f, 0.75f, 0.4f),
+                new Vector3(0.4f, 0.75f, 0f),
+                new Vector3(0.4f, 0.75f, -0.4f),
             };
 
             _gemList = new List<Transform>();
@@ -53,7 +58,7 @@ namespace Controllers
 
                 _gemList.Add(other.transform);
                 int moddedIndeks = _indeks % _locations.Count;
-                other.transform.DOLocalMove(new Vector3(_locations[moddedIndeks].x, (int)(_indeks / 4) * 0.5f, _locations[moddedIndeks].z), 1f);
+                other.transform.DOLocalMove(new Vector3(_locations[moddedIndeks].x, _locations[moddedIndeks].y + (int)(_indeks / 9) * 0.5f, _locations[moddedIndeks].z), 1f);
                 //StartCoroutine(ResetCollectableRotation(other.transform));
 
                 return;
