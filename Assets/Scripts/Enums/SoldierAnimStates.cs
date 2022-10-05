@@ -3,12 +3,11 @@ using System;
 namespace Enums
 {
     [Serializable]
-    public enum RescuePersonState
+    public enum SoldierAnimStates
     {
-        Terrifie,
         Idle,
         Run,
+        Shoot,
         Die,
-
     }
 }

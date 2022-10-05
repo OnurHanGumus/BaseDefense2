@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72120979954acb4429ca7204615c1781, type: 3}
-  m_Name: CD_Enemy
+  m_Script: {fileID: 11500000, guid: f8ba8a012dcabc44e85152a50542372e, type: 3}
+  m_Name: CD_Soldier
   m_EditorClassIdentifier: 
   Data:
-    Speed: 15
+    Speed: 8
     Damage: 5
     Health: 100
-    DestroyDelay: 1
+    DestroyDelay: 1.5

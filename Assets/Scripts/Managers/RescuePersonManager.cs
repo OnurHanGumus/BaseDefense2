@@ -21,6 +21,7 @@ namespace Managers
         #region Public Variables
         public RescuePersonState State = RescuePersonState.Terrifie;
         public bool IsTaken = false;
+        public bool IsWaitingToSoldier = false;
 
         #endregion
 
@@ -44,7 +45,6 @@ namespace Managers
         private RescuePersonAnimationController _animationController;
 
 
-        private Vector3 _dieDirection;
         private Rigidbody _rig;
 
 
@@ -77,6 +77,8 @@ namespace Managers
             PlayerSignals.Instance.onPlayerDie += OnPlayerDisapear;
             PlayerSignals.Instance.onPlayerInMineArea += OnPlayerInMineArea;
             PlayerSignals.Instance.onPlayerInMineAreaLowCapacity += OnPlayerInMineAreaLowCapacity;
+            PlayerSignals.Instance.onPlayerInMilitaryArea += OnPlayerInMilitaryArea;
+            SoldierSignals.Instance.onBecomeSoldier += OnBecomeSoldier;
         }
 
         private void UnsubscribeEvents()
@@ -84,6 +86,8 @@ namespace Managers
             PlayerSignals.Instance.onPlayerDie -= OnPlayerDisapear;
             PlayerSignals.Instance.onPlayerInMineArea -= OnPlayerInMineArea;
             PlayerSignals.Instance.onPlayerInMineAreaLowCapacity -= OnPlayerInMineAreaLowCapacity;
+            PlayerSignals.Instance.onPlayerInMilitaryArea -= OnPlayerInMilitaryArea;
+            SoldierSignals.Instance.onBecomeSoldier -= OnBecomeSoldier;
 
         }
 
@@ -139,12 +143,6 @@ namespace Managers
             _playerTransform = lookAtObject;
         }
 
-        public void DieState(Vector3 dieVector)
-        {
-            ChangeState(RescuePersonState.Die);
-            _dieDirection = dieVector;
-        }
-
         public void ChangeAnim(RescuePersonAnimStates animState)
         {
             _animationController.SetAnimState(animState);
@@ -173,9 +171,26 @@ namespace Managers
                     Instantiate(minerPrefab, transform.position, transform.rotation);
                     Destroy(gameObject);
                 }
-    
+            }
+        }
+
+        private void OnPlayerInMilitaryArea()
+        {
+            if (IsTaken && !IsWaitingToSoldier)
+            {
+                SetDirection(GameObject.FindGameObjectWithTag("BecomeSoldierArea").transform);
+                IsWaitingToSoldier = true;
+            }
+        }
+
+        private void OnBecomeSoldier(Transform soldierTransform, Transform exitPoint)
+        {
+            if (soldierTransform.Equals(transform))
+            {
+                SetDirection(exitPoint);
 
             }
         }
+
     }
 }

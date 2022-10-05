@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50729bfa378e9bb4ebd5f4e214b6e55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 12
 --- !u!114 &1969818160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,6 +668,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1969818160}
+  pistolDamage: 25
+  shotgunDamage: 50
+  smgDamage: 20
+  assaultDamage: 40
+  rocketDamage: 100
+  minigunDamage: 80
+  turretDamage: 60
 --- !u!1 &2567888250319009307
 GameObject:
   m_ObjectHideFlags: 0

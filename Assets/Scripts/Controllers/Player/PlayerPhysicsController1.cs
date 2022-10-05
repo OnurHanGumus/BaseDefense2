@@ -117,6 +117,26 @@ namespace Controllers
                 }
                 return;
             }
+
+            if (other.CompareTag("MilitaryEnter"))
+            {
+                int militaryRemainCapacity = LevelSignals.Instance.onGetMilitaryTotalCapacity();
+                if (militaryRemainCapacity.Equals(0))
+                {
+                    return;
+                }
+                if (militaryRemainCapacity >= manager.RescuePersonList.Count)
+                {
+                    PlayerSignals.Instance.onPlayerInMilitaryArea?.Invoke();
+                    LevelSignals.Instance.onSoldierCountIncreased?.Invoke(manager.RescuePersonList.Count);
+                    manager.RescuePersonList.Clear();
+
+                }
+
+
+
+                return;
+            }
             if (other.CompareTag("Gem"))
             {
                 ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Gem, 1);

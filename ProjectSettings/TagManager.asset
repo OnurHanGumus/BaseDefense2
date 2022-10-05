@@ -40,6 +40,8 @@ TagManager:
   - Cave
   - MineEnter
   - Gem
+  - MilitaryEnter
+  - BecomeSoldierArea
   layers:
   - Default
   - TransparentFX

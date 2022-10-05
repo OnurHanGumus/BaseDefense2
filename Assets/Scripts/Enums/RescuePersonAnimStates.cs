@@ -9,8 +9,6 @@ namespace Enums
         Taken,
         Idle,
         Speed,
-        Dig,
-        Shoot,
         Die,
 
     }
