@@ -7348,6 +7348,7 @@ GameObject:
   - component: {fileID: 1025124296}
   - component: {fileID: 1025124298}
   - component: {fileID: 1025124299}
+  - component: {fileID: 1025124300}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -7387,6 +7388,7 @@ MonoBehaviour:
   levelLoader: {fileID: 1025124297}
   areaLoader: {fileID: 1025124298}
   turretLoader: {fileID: 1025124299}
+  mineLoader: {fileID: 1025124300}
   levelClearer: {fileID: 1025124296}
 --- !u!114 &1025124296
 MonoBehaviour:
@@ -7434,6 +7436,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9092b926cbbed17479767804a8d3350b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1025124300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025124293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5162c647fcf870a498a0adf9a240b0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1026241487

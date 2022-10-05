@@ -29,6 +29,7 @@ namespace Managers
         [SerializeField] private LevelLoaderCommand levelLoader;
         [SerializeField] private AreaLoaderCommand areaLoader;
         [SerializeField] private TurretLoaderCommand turretLoader;
+        [SerializeField] private MineLoaderCommand mineLoader;
         [SerializeField] private ClearActiveLevelCommand levelClearer;
         
 
@@ -66,6 +67,7 @@ namespace Managers
             _levelID = GetActiveLevel();
             Data = GetLevelData();
         }
+
 
         private int GetActiveLevel()
         {
@@ -147,6 +149,7 @@ namespace Managers
             OnInitializeLevel();
             InitializeAreas();
             InitializeTurrets();
+            MineInitialize();
             //InitializeTurretOwners();
             //InitializeEnemyAreas();
             
@@ -246,6 +249,11 @@ namespace Managers
         private void TurretInstantiate(int levelId, int turretId)
         {
             turretLoader.InitializeTurret(levelId, turretId, levelHolder.transform);
+        }
+
+        private void MineInitialize()
+        {
+            mineLoader.InitializeMine(_levelModdedValue + 1, levelHolder.transform);
         }
 
         private int OnGetCurrentModdedLevel()
