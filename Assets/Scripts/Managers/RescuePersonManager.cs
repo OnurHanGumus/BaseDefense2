@@ -78,6 +78,7 @@ namespace Managers
             PlayerSignals.Instance.onPlayerInMineArea += OnPlayerInMineArea;
             PlayerSignals.Instance.onPlayerInMineAreaLowCapacity += OnPlayerInMineAreaLowCapacity;
             PlayerSignals.Instance.onPlayerInMilitaryArea += OnPlayerInMilitaryArea;
+            PlayerSignals.Instance.onPlayerInMilitaryAreaLowCapacity += OnPlayerInMilitaryAreaLowCapacity;
             SoldierSignals.Instance.onBecomeSoldier += OnBecomeSoldier;
         }
 
@@ -87,6 +88,7 @@ namespace Managers
             PlayerSignals.Instance.onPlayerInMineArea -= OnPlayerInMineArea;
             PlayerSignals.Instance.onPlayerInMineAreaLowCapacity -= OnPlayerInMineAreaLowCapacity;
             PlayerSignals.Instance.onPlayerInMilitaryArea -= OnPlayerInMilitaryArea;
+            PlayerSignals.Instance.onPlayerInMilitaryAreaLowCapacity -= OnPlayerInMilitaryAreaLowCapacity;
             SoldierSignals.Instance.onBecomeSoldier -= OnBecomeSoldier;
 
         }
@@ -180,6 +182,18 @@ namespace Managers
             {
                 SetDirection(GameObject.FindGameObjectWithTag("BecomeSoldierArea").transform);
                 IsWaitingToSoldier = true;
+            }
+        }
+
+        private void OnPlayerInMilitaryAreaLowCapacity(Transform objTransform)
+        {
+            if (IsTaken && !IsWaitingToSoldier)
+            {
+                if (transform.Equals(objTransform))
+                {
+                    SetDirection(GameObject.FindGameObjectWithTag("BecomeSoldierArea").transform);
+                    IsWaitingToSoldier = true;
+                }
             }
         }
 

@@ -15,12 +15,14 @@ public class TentManager : MonoBehaviour
 
     #endregion
     #region Private Variables
-    private int _soldierPlaceCount = 0;
+    private int _readySoldiersEmptySlots = 0;
     #endregion
     #endregion
     void Start()
     {
         StartCoroutine(BecomeSoldier());
+        _readySoldiersEmptySlots = LevelSignals.Instance.onGetEmptyReadySoldiersCount();
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -31,6 +33,7 @@ public class TentManager : MonoBehaviour
                 return;
             }
             waitingSoldiers.Add(other.transform.parent);
+
             return;
         }
     }
@@ -48,17 +51,16 @@ public class TentManager : MonoBehaviour
     private IEnumerator BecomeSoldier()
     {
 
-        if (waitingSoldiers.Count > 0)
+        if (waitingSoldiers.Count > 0 && _readySoldiersEmptySlots > 0)
         {
             SoldierSignals.Instance.onBecomeSoldier?.Invoke(waitingSoldiers[0], exitPoint);
             waitingSoldiers.RemoveAt(0);
+            yield return new WaitForSeconds(1f);
+            _readySoldiersEmptySlots = LevelSignals.Instance.onGetEmptyReadySoldiersCount();
         }
         yield return new WaitForSeconds(1f);
         StartCoroutine(BecomeSoldier());
     }
 
-    private void GetReadyTotalSoldiersAreaAllCapacity()
-    {
-        
-    }
+    
 }

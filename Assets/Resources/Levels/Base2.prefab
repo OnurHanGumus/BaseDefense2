@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53f66726518ac74eaa878b6c70d1062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soldierWaitAreas:
+  readySoldierAreas:
   - {fileID: 2847949856807847770}
   - {fileID: 8089303245966214425}
   - {fileID: 7252356769642315481}

@@ -57,7 +57,6 @@ namespace Managers
         {
             _soldierData = GetData();
             _movementController = GetComponent<SoldierMovementController>();
-            GetSoldierAreaPosition();
         }
 
 
@@ -118,9 +117,14 @@ namespace Managers
 
         }
 
+        private void Start()
+        {
+            GetSoldierAreaPosition();
+
+        }
         public void Move()
         {
-            if (_targetTransform.Equals(null))
+            if (_targetTransform == null)
             {
                 return;
             }

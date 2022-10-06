@@ -48,7 +48,7 @@ public class MilitaryManager : MonoBehaviour
         GetCurrentLevel();
         _unlockDatas = GetData();
         GetData();
-        //InitializeMiners();
+        InitializeSoldiers();
         UpdateText();
     }
 
@@ -62,14 +62,14 @@ public class MilitaryManager : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        LevelSignals.Instance.onSoldierCountIncreased += OnSoldierCountIncreased;
+        LevelSignals.Instance.onMilitaryPopulationIncreased += OnMilitaryPopulationIncreased;
         LevelSignals.Instance.onGetMilitaryTotalCapacity += OnGetMilitaryAreaRemainCapacity;
     }
 
     private void UnsubscribeEvents()
     {
 
-        LevelSignals.Instance.onSoldierCountIncreased -= OnSoldierCountIncreased;
+        LevelSignals.Instance.onMilitaryPopulationIncreased -= OnMilitaryPopulationIncreased;
         LevelSignals.Instance.onGetMilitaryTotalCapacity -= OnGetMilitaryAreaRemainCapacity;
 
 
@@ -87,23 +87,23 @@ public class MilitaryManager : MonoBehaviour
     {
         soldierCountText.text = SoldierCount + "/" + _unlockDatas[_currentLevel];
     }
-    //private void InitializeMiners()
-    //{
-    //    int count = LevelSignals.Instance.onGetMinerCount();
-    //    for (int i = 0; i < count; i++)
-    //    {
-    //        Instantiate(soldierPrefab, new Vector3(0, 0, -100f), transform.rotation);
-    //    }
-    //    SoldierCount = count;
+    private void InitializeSoldiers()
+    {
+        int count = LevelSignals.Instance.onGetSoldierCount();
+        for (int i = 0; i < count; i++)
+        {
+            Instantiate(soldierPrefab, new Vector3(0, 0, -100f), transform.rotation);
+        }
+        SoldierCount = count;
 
-    //}
+    }
 
     private void GetCurrentLevel()
     {
         _currentLevel = LevelSignals.Instance.onGetCurrentModdedLevel();
     }
 
-    private void OnSoldierCountIncreased(int amount)
+    private void OnMilitaryPopulationIncreased(int amount)
     {
         SoldierCount += amount;
         UpdateText();

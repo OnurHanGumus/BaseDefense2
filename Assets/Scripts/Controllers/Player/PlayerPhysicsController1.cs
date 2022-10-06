@@ -128,11 +128,25 @@ namespace Controllers
                 if (militaryRemainCapacity >= manager.RescuePersonList.Count)
                 {
                     PlayerSignals.Instance.onPlayerInMilitaryArea?.Invoke();
-                    LevelSignals.Instance.onSoldierCountIncreased?.Invoke(manager.RescuePersonList.Count);
+                    LevelSignals.Instance.onMilitaryPopulationIncreased?.Invoke(manager.RescuePersonList.Count);
                     manager.RescuePersonList.Clear();
 
                 }
+                else
+                {
+                    //int remainPlace = manager.RescuePersonList.Count - mineRemainCapacity;
+                    Debug.Log(militaryRemainCapacity);
 
+                    LevelSignals.Instance.onMilitaryPopulationIncreased?.Invoke(militaryRemainCapacity);
+
+                    for (int i = 0; i < militaryRemainCapacity; i++)
+                    {
+
+                        PlayerSignals.Instance.onPlayerInMilitaryAreaLowCapacity?.Invoke(manager.RescuePersonList[manager.RescuePersonList.Count - 1]);
+                        manager.RescuePersonList.RemoveAt(manager.RescuePersonList.Count - 1);
+
+                    }
+                }
 
 
                 return;

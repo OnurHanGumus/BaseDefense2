@@ -77,6 +77,8 @@ namespace Managers
             LevelSignals.Instance.onBuyTurretOwners += OnBuyTurretOwners;
             LevelSignals.Instance.onMinerCountIncreased += OnIncreaseMinerCount;
             LevelSignals.Instance.onGetMinerCount += OnGetMinerCount;
+            LevelSignals.Instance.onSoldierCountIncreased += OnIncreaseSoldierCount;
+            LevelSignals.Instance.onGetSoldierCount += OnGetSoldierCount;
             CoreGameSignals.Instance.onSaveGameData += OnSaveGameData;
             PlayerSignals.Instance.onPlayerLeaveBuyArea += SetSaveValues;
             PlayerSignals.Instance.onPlayerSelectGun += OnChangeGun;
@@ -100,6 +102,8 @@ namespace Managers
             LevelSignals.Instance.onBuyTurretOwners -= OnBuyTurretOwners;
             LevelSignals.Instance.onMinerCountIncreased -= OnIncreaseMinerCount;
             LevelSignals.Instance.onGetMinerCount -= OnGetMinerCount;
+            LevelSignals.Instance.onSoldierCountIncreased -= OnIncreaseSoldierCount;
+            LevelSignals.Instance.onGetSoldierCount -= OnGetSoldierCount;
             CoreGameSignals.Instance.onSaveGameData -= OnSaveGameData;
             PlayerSignals.Instance.onPlayerLeaveBuyArea -= SetSaveValues;
             PlayerSignals.Instance.onPlayerSelectGun -= OnChangeGun;
@@ -176,6 +180,10 @@ namespace Managers
         {
             int currentCount = _loadGameCommand.OnLoadGameData(SaveLoadStates.MinerCount, SaveFiles.WorkerCurrentCounts.ToString());
             _saveGameCommand.OnSaveData(SaveLoadStates.MinerCount, currentCount + increaseAmount, SaveFiles.WorkerCurrentCounts.ToString());
+        }
+        private void OnIncreaseSoldierCount(int newValue)
+        {
+            _saveGameCommand.OnSaveData(SaveLoadStates.SoldierCount, newValue, SaveFiles.WorkerCurrentCounts.ToString());
         }
 
         private void OnSaveGameData()
@@ -321,6 +329,10 @@ namespace Managers
         private int OnGetMinerCount()
         {
             return _loadGameCommand.OnLoadGameData(SaveLoadStates.MinerCount, SaveFiles.WorkerCurrentCounts.ToString());
+        }
+        private int OnGetSoldierCount()
+        {
+            return _loadGameCommand.OnLoadGameData(SaveLoadStates.SoldierCount, SaveFiles.WorkerCurrentCounts.ToString());
         }
         private List<int> OnGetGunLevels()
         {
