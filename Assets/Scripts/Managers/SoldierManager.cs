@@ -28,6 +28,7 @@ namespace Managers
 
         [SerializeField] private float offset = 0.5f;
         [SerializeField] private float currentOffset = 0f;
+        [SerializeField] private List<Transform> getOutBasePoints;
         #endregion
 
         #region Private Variables
@@ -38,7 +39,9 @@ namespace Managers
         private SoldierData _soldierData;
         private SoldierMovementController _movementController;
         private SoldierAnimationController _animationController;
-        
+        private Rigidbody _rig;
+        private Transform _wayTransform;
+
 
 
 
@@ -55,11 +58,15 @@ namespace Managers
         }
         private void Init()
         {
+            _wayTransform = GameObject.FindGameObjectWithTag("SoldierWay").transform;
+            SetWays();
             _soldierData = GetData();
             _movementController = GetComponent<SoldierMovementController>();
+            _animationController = GetComponent<SoldierAnimationController>();
+            _rig = GetComponent<Rigidbody>();
         }
 
-
+        
 
         private SoldierData GetData() => Resources.Load<CD_Soldier>("Data/CD_Soldier").Data;
 
@@ -96,17 +103,23 @@ namespace Managers
         {
             if (State.Equals(SoldierStates.Init))
             {
-                Move();
+                Move(_targetTransform, SoldierStates.Wait);
                 return;
             }
             if (State.Equals(SoldierStates.Wait))
             {
-                _movementController.Idle(); ;
+                _movementController.Idle();
+                _animationController.SetSpeedVariable(_rig.velocity.magnitude);
                 return;
             }
-            if (State.Equals(SoldierStates.GetOutTheBase))
+            if (State.Equals(SoldierStates.GetOutTheBase0))
             {
-                //do nothing
+                Move(getOutBasePoints[0], SoldierStates.GetOutTheBase1);
+                return;
+            }
+            if (State.Equals(SoldierStates.GetOutTheBase1))
+            {
+                Move(getOutBasePoints[1], SoldierStates.Wait);
                 return;
             }
             if (State.Equals(SoldierStates.Fight))
@@ -122,28 +135,40 @@ namespace Managers
             GetSoldierAreaPosition();
 
         }
-        public void Move()
+        private void SetWays()
         {
-            if (_targetTransform == null)
+            for (int i = 0; i < _wayTransform.childCount; i++)
+            {
+                getOutBasePoints.Add(_wayTransform.GetChild(i));
+            }
+        }
+        public void Move(Transform target, SoldierStates newState)
+        {
+            if (target == null)
             {
                 return;
             }
 
-            _currentDirection = (_targetTransform.position - transform.position).normalized;
-            currentOffset = (_targetTransform.transform.position - transform.position).magnitude;
+            _currentDirection = (target.position - transform.position).normalized;
+            currentOffset = (target.transform.position - transform.position).magnitude;
 
             if (currentOffset < offset)
             {
-                ChangeState(SoldierStates.Wait);
+                ChangeState(newState);
             }
 
-            _movementController.MoveToTarget(_currentDirection, _targetTransform);
-            //_animationController.SetSpeedVariable(_rig.velocity.magnitude);
+            _movementController.MoveToTarget(_currentDirection, target);
+            _animationController.SetSpeedVariable(_rig.velocity.magnitude);
 
         }
         public void ChangeState(SoldierStates state)
         {
             State = state;
+        }
+
+        public void ChangeAnimState(SoldierAnimStates state)
+        {
+            _animationController.SetAnimState(state);
         }
 
         public void SetDirection(Transform lookAtObject)

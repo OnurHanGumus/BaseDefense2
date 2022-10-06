@@ -7,7 +7,8 @@ namespace Enums
     {
         Init,
         Wait,
-        GetOutTheBase,
+        GetOutTheBase0,
+        GetOutTheBase1,
         Fight,
         Die,
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CD_Soldier
   m_EditorClassIdentifier: 
   Data:
-    Speed: 8
+    Speed: 16
     Damage: 5
     Health: 100
     DestroyDelay: 1.5

@@ -42,6 +42,8 @@ TagManager:
   - Gem
   - MilitaryEnter
   - BecomeSoldierArea
+  - Soldier
+  - SoldierWay
   layers:
   - Default
   - TransparentFX
