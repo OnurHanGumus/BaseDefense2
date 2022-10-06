@@ -23,6 +23,7 @@ namespace Controllers
         private SoldierData _data;
         private float _speed = 5f;
 
+
         #endregion
         #endregion
 
@@ -77,6 +78,13 @@ namespace Controllers
         {
             _rig.velocity = Vector3.zero;
             _rig.AddForce(dieDirection * 500);
+        }
+
+        public void Aim(Transform lookAtObject)
+        {
+            _rig.velocity = Vector3.zero;
+            transform.LookAt(lookAtObject);
+
         }
     }
 }

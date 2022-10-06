@@ -29,6 +29,9 @@ namespace Managers
         [SerializeField] private float offset = 0.5f;
         [SerializeField] private float currentOffset = 0f;
         [SerializeField] private List<Transform> getOutBasePoints;
+        [SerializeField] private SoldierAimController rangeController;
+        [SerializeField] private SoldierShootRangeTrigger shootrangeTrigger;
+
         #endregion
 
         #region Private Variables
@@ -42,7 +45,7 @@ namespace Managers
         private Rigidbody _rig;
         private Transform _wayTransform;
 
-
+        private bool _isThereNearEnemy = false;
 
 
         private Vector3 _dieDirection;
@@ -79,11 +82,13 @@ namespace Managers
 
         private void SubscribeEvents()
         {
+            PlayerSignals.Instance.onEnemyDie += rangeController.OnRemoveFromTargetList;
         }
 
         private void UnsubscribeEvents()
         {
 
+            PlayerSignals.Instance.onEnemyDie -= rangeController.OnRemoveFromTargetList;
 
         }
 
@@ -103,7 +108,7 @@ namespace Managers
         {
             if (State.Equals(SoldierStates.Init))
             {
-                Move(_targetTransform, SoldierStates.Wait);
+                Move(_targetTransform, SoldierStates.Wait, 0.5f);
                 return;
             }
             if (State.Equals(SoldierStates.Wait))
@@ -114,20 +119,36 @@ namespace Managers
             }
             if (State.Equals(SoldierStates.GetOutTheBase0))
             {
-                Move(getOutBasePoints[0], SoldierStates.GetOutTheBase1);
+                Move(getOutBasePoints[0], SoldierStates.GetOutTheBase1, 0.5f);
                 return;
             }
             if (State.Equals(SoldierStates.GetOutTheBase1))
             {
-                Move(getOutBasePoints[1], SoldierStates.Wait);
+                Move(getOutBasePoints[1], SoldierStates.Fight, 0.5f);
                 return;
             }
             if (State.Equals(SoldierStates.Fight))
             {
-                //do nothing
+                if (shootrangeTrigger.IsEnemyNear)
+                {
+                    _movementController.Aim(shootrangeTrigger.ShootTarget);
+                    _animationController.SetSpeedVariable(_rig.velocity.magnitude);
+                }
+                else
+                {
+                    if (rangeController.TargetList.Count <= 0) //çevrede düþman yok collideri büyüt
+                    {
+                        _movementController.Idle();
+                        _animationController.SetSpeedVariable(_rig.velocity.magnitude);
+                        rangeController.SearchEnemy();
+                    }
+                    else//bulduðun düþmana yaklaþ
+                    {
+
+                        Move(rangeController.TargetList[0], SoldierStates.Fight, 2f);
+                    }
+                } 
             }
-
-
         }
 
         private void Start()
@@ -142,7 +163,7 @@ namespace Managers
                 getOutBasePoints.Add(_wayTransform.GetChild(i));
             }
         }
-        public void Move(Transform target, SoldierStates newState)
+        public void Move(Transform target, SoldierStates newState, float offset)
         {
             if (target == null)
             {
@@ -155,6 +176,7 @@ namespace Managers
             if (currentOffset < offset)
             {
                 ChangeState(newState);
+                return;
             }
 
             _movementController.MoveToTarget(_currentDirection, target);

@@ -21,6 +21,7 @@ namespace Controllers
         private Rigidbody _rig;
         private EnemyManager _manager;
         private EnemyData _data;
+        private CapsuleCollider _col;
 
         #endregion
         #endregion
@@ -33,6 +34,7 @@ namespace Controllers
         private void Init()
         {
             _rig = GetComponent<Rigidbody>();
+            _col = GetComponent<CapsuleCollider>();
             _manager = GetComponent<EnemyManager>();
             _data = _manager.GetEnemyData();
             speed = _data.Speed;
