@@ -66,6 +66,7 @@ public class SoldierAimController : MonoBehaviour
         if (TargetList.Contains(deadEnemy))
         {
             TargetList.Remove(deadEnemy);
+
         }
     }
 

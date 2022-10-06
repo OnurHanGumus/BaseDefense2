@@ -146,5 +146,10 @@ namespace Managers
             ChangeState(EnemyState.Walk);
 
         }
+
+        private void OnDestroy()
+        {
+            PlayerSignals.Instance.onEnemyDie?.Invoke(transform);
+        }
     }
 }

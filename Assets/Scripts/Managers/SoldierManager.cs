@@ -83,12 +83,14 @@ namespace Managers
         private void SubscribeEvents()
         {
             PlayerSignals.Instance.onEnemyDie += rangeController.OnRemoveFromTargetList;
+            PlayerSignals.Instance.onEnemyDie += shootrangeTrigger.OnRemoveFromTargetList;
         }
 
         private void UnsubscribeEvents()
         {
 
             PlayerSignals.Instance.onEnemyDie -= rangeController.OnRemoveFromTargetList;
+            PlayerSignals.Instance.onEnemyDie -= shootrangeTrigger.OnRemoveFromTargetList;
 
         }
 
