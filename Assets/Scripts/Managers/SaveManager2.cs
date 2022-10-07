@@ -202,6 +202,10 @@ namespace Managers
             _saveGameCommand.OnResetArray(SaveLoadStates.OpenedEnemyAreaCounts, SaveFiles.WorkerCurrentCounts.ToString());
 
             _saveGameCommand.OnResetArray(SaveLoadStates.AmmoWorkerAreaCounts, SaveFiles.WorkerCurrentCounts.ToString());
+            _saveGameCommand.OnResetArray(SaveLoadStates.MoneyWorkerAreaCounts, SaveFiles.WorkerCurrentCounts.ToString());
+
+            _saveGameCommand.OnSaveData(SaveLoadStates.MinerCount, 0,SaveFiles.WorkerCurrentCounts.ToString());
+            _saveGameCommand.OnSaveData(SaveLoadStates.SoldierCount, 0,SaveFiles.WorkerCurrentCounts.ToString());
         }
         //Area
         private void WriteSavesToScriptable(SaveLoadStates type, ref List<int> scriptableData, SaveFiles saveFile)
