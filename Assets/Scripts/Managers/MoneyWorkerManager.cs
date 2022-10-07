@@ -41,6 +41,7 @@ namespace Managers
 
         #region Private Variables
         private int _speed = 1;
+        private int _capacity = 3;
         private WorkerAnimationController _animationController;
         private List<Vector3> _selectedWay = new List<Vector3>();
 
@@ -61,7 +62,7 @@ namespace Managers
 
         private void Start()
         {
-            GetSpeedData();
+            GetData();
 
             InitMove();
         }
@@ -75,7 +76,7 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            SaveSignals.Instance.onUpgradeWorker += OnUpgradeWorkerSpeedData;
+            SaveSignals.Instance.onUpgradeWorker += OnUpgradeWorkerData;
             StackSignals.Instance.onMoneyWorkerCollectMoney += rangeController.OnMoneyOnListCollected;
             PlayerSignals.Instance.onInteractionCollectable += rangeController.OnPlayerCollectedMoney;
 
@@ -83,7 +84,7 @@ namespace Managers
 
         private void UnsubscribeEvents()
         {
-            SaveSignals.Instance.onUpgradeWorker -= OnUpgradeWorkerSpeedData;
+            SaveSignals.Instance.onUpgradeWorker -= OnUpgradeWorkerData;
             StackSignals.Instance.onMoneyWorkerCollectMoney -= rangeController.OnMoneyOnListCollected;
             PlayerSignals.Instance.onInteractionCollectable -= rangeController.OnPlayerCollectedMoney;
 
@@ -129,8 +130,11 @@ namespace Managers
             }
             else
             {
+                if (sphereCollider.radius < 20)
+                {
+                    sphereCollider.radius += 0.1f;
+                }
                 _animationController.SetAnimationTrigger(WorkerAnimStates.Idle);
-                sphereCollider.radius += 0.1f;
                 yield return new WaitForSeconds(0.1f);
                 StartCoroutine(SearchForMoney());
             }
@@ -145,7 +149,7 @@ namespace Managers
 
         private void CheckCapacity()
         {
-            if (stackManager.CollectableStack.Count >= 3)
+            if (stackManager.CollectableStack.Count >= _capacity)
             {
                 GoBackToBase();
             }
@@ -167,6 +171,7 @@ namespace Managers
             }
             _selectedWay.Reverse();
             _selectedWay.RemoveAt(_selectedWay.Count - 1);
+            _selectedWay.Add(_selectedWay[0]);
             transform.DOPath(_selectedWay.ToArray(), 4 * _speed, PathType.Linear, PathMode.Full3D).SetSpeedBased(true).SetEase(Ease.Linear).SetLookAt(0.05f).OnComplete(GoToSearchArea);
         }
 
@@ -181,22 +186,24 @@ namespace Managers
 
 
 
-        public void GetSpeedData()
+        public void GetData()
         {
             List<int> upgradeList = SaveSignals.Instance.onGetWorkerUpgrades();
             if (upgradeList.Count < 2)
             {
                 upgradeList = new List<int>() { 2, 0 };
             }
+            _capacity = upgradeList[0] + 1;
             _speed = upgradeList[1] + 1;
         }
 
-        public void OnUpgradeWorkerSpeedData(List<int> upgradeList)
+        public void OnUpgradeWorkerData(List<int> upgradeList)
         {
             if (upgradeList.Count < 2)
             {
                 upgradeList = new List<int>() { 2, 0 };
             }
+            _capacity = upgradeList[0] + 1;
             _speed = upgradeList[1] + 1;
         }
     }

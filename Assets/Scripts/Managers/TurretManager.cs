@@ -112,7 +112,6 @@ namespace Managers
             {
                 return;
             }
-            Debug.Log(_xValue);
             if (_zValue < -0.9f)
             {
                 PlayerSignals.Instance.onPlayerUseTurret?.Invoke(false);

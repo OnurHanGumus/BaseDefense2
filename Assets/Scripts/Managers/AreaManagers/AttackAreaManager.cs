@@ -54,7 +54,6 @@ public class AttackAreaManager : MonoBehaviour
 
     private int OnGetEmptyReadySoldiersCount()
     {
-        Debug.Log(readySoldierAreas.Count - indeks);
         return readySoldierAreas.Count - indeks;
     }
 

@@ -107,6 +107,7 @@ namespace Managers
         {
             foreach (var i in CollectableStack)
             {
+                i.tag = "CollectedAmmo";
                 yield return new WaitForSeconds(0.05f);
                 i.transform.parent = releaseObject.transform;
                 //i.transform.DOMove(releaseObject.transform.position, 0.2f);

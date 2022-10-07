@@ -38,7 +38,7 @@ namespace Controllers
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Collected"))
+            if (other.CompareTag("CollectedAmmo"))
             {
                 _indeks = manager.AmmoBoxList.Count;
 
