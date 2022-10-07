@@ -36,6 +36,7 @@ namespace Managers
         private ItemRemoveOnStackCommand _itemRemoveOnStackCommand;
         private Transform _playerTransform;
         private bool _canReleaseCollectablesToBase = true;
+        private bool _isReleasingAmmos = false;
 
 
         #endregion
@@ -183,6 +184,11 @@ namespace Managers
 
         private void OnReleaseAmmosToTurretArea(GameObject releaseObject)
         {
+            if (_isReleasingAmmos)
+            {
+                return;
+            }
+            _isReleasingAmmos = true;
             ItemAddOnStack.ResetTowerCount();
             StartCoroutine(ReleaseAmmosToTurret(releaseObject));
         }
@@ -196,6 +202,8 @@ namespace Managers
                 i.transform.position = releaseObject.transform.position;
             }
             CollectableStack.Clear();
+            _isReleasingAmmos = false;
+
         }
 
         private void OnPlayerDie()
