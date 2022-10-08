@@ -24,6 +24,8 @@ namespace Signals
         public Func<int> onGetSoldierCount = delegate { return 0; };
 
 
+        public UnityAction onBossDefeated = delegate { };
+        public UnityAction onPlayerReachedToNewBase = delegate { };
 
 
 

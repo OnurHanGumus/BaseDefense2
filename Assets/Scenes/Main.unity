@@ -5947,6 +5947,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 408904, guid: 4cc487e002327cb43995ca1871bd142e, type: 3}
   m_PrefabInstance: {fileID: 1576614689}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &364626999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 364627001}
+  - component: {fileID: 364627000}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &364627000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364626999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534351e853d4ed047af9a9f72b7396b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 647243243688216903, guid: a8394d752f121854085e69fa40cba983, type: 3}
+  spawnPosX: 20
+--- !u!4 &364627001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364626999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 258.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &365177845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 408904, guid: 4cc487e002327cb43995ca1871bd142e, type: 3}
@@ -19990,7 +20036,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3033296354188740054, guid: 66c9b5fe22f69c94aa673167cde01766, type: 3}
       propertyPath: m_Name
-      value: LockPanel
+      value: EnemyBarricats
       objectReference: {fileID: 0}
     - target: {fileID: 3517967987458128021, guid: 66c9b5fe22f69c94aa673167cde01766, type: 3}
       propertyPath: m_RootOrder
@@ -21451,7 +21497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3033296354188740054, guid: 66c9b5fe22f69c94aa673167cde01766, type: 3}
       propertyPath: m_Name
-      value: LockPanel (1)
+      value: EnemyBarricats
       objectReference: {fileID: 0}
     - target: {fileID: 3517967987458128021, guid: 66c9b5fe22f69c94aa673167cde01766, type: 3}
       propertyPath: m_RootOrder
