@@ -155,22 +155,22 @@ namespace Managers
             ChangeState(RescuePersonState.Terrifie);
         }
 
-        private void OnPlayerInMineArea()
+        private void OnPlayerInMineArea(Transform parent)
         {
             if (IsTaken)
             {
-                Instantiate(minerPrefab, transform.position, transform.rotation);
+                Instantiate(minerPrefab, transform.position, transform.rotation, parent);
                 Destroy(gameObject);
             }
         }
 
-        private void OnPlayerInMineAreaLowCapacity(Transform objTransform)
+        private void OnPlayerInMineAreaLowCapacity(Transform objTransform, Transform parent)
         {
             if (IsTaken)
             {
                 if (transform.Equals(objTransform))
                 {
-                    Instantiate(minerPrefab, transform.position, transform.rotation);
+                    Instantiate(minerPrefab, transform.position, transform.rotation, parent);
                     Destroy(gameObject);
                 }
             }

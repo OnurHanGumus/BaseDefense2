@@ -42,7 +42,7 @@ public class TentManager : MonoBehaviour
         if (other.CompareTag("RescuePerson"))
         {
             waitingSoldiers.Remove(other.transform.parent);
-            Instantiate(soldierPrefab, other.transform.position, other.transform.rotation);
+            Instantiate(soldierPrefab, other.transform.position, other.transform.rotation, transform);
             Destroy(other.transform.parent.gameObject);
             return;
         }

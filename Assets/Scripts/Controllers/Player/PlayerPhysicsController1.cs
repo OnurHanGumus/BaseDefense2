@@ -96,7 +96,7 @@ namespace Controllers
                 }
                 if (mineRemainCapacity >= manager.RescuePersonList.Count)
                 {
-                    PlayerSignals.Instance.onPlayerInMineArea?.Invoke();
+                    PlayerSignals.Instance.onPlayerInMineArea?.Invoke(other.transform);
                     LevelSignals.Instance.onMinerCountIncreased?.Invoke(manager.RescuePersonList.Count);
                     manager.RescuePersonList.Clear();
                 }
@@ -110,7 +110,7 @@ namespace Controllers
                     for (int i = 0; i < mineRemainCapacity; i++)
                     {
 
-                        PlayerSignals.Instance.onPlayerInMineAreaLowCapacity?.Invoke(manager.RescuePersonList[manager.RescuePersonList.Count - 1]);
+                        PlayerSignals.Instance.onPlayerInMineAreaLowCapacity?.Invoke(manager.RescuePersonList[manager.RescuePersonList.Count - 1], other.transform);
                         manager.RescuePersonList.RemoveAt(manager.RescuePersonList.Count - 1);
 
                     }

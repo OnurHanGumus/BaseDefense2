@@ -10,6 +10,6 @@ namespace Enums
         GunStorePanel,
         PlayerImprovementsPanel,
         WorkerImprovementsPanel,
-
+        BaseCompletedPanel,
     }
 }
