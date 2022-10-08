@@ -79,7 +79,7 @@ namespace Managers
             LevelSignals.Instance.onGetMinerCount += OnGetMinerCount;
             LevelSignals.Instance.onSoldierCountIncreased += OnIncreaseSoldierCount;
             LevelSignals.Instance.onGetSoldierCount += OnGetSoldierCount;
-            CoreGameSignals.Instance.onSaveGameData += OnSaveGameData;
+            CoreGameSignals.Instance.onSaveAndResetGameData += OnSaveGameData;
             PlayerSignals.Instance.onPlayerLeaveBuyArea += SetSaveValues;
             PlayerSignals.Instance.onPlayerSelectGun += OnChangeGun;
             SaveSignals.Instance.onSaveCollectables += OnSaveCollectables;
@@ -104,7 +104,7 @@ namespace Managers
             LevelSignals.Instance.onGetMinerCount -= OnGetMinerCount;
             LevelSignals.Instance.onSoldierCountIncreased -= OnIncreaseSoldierCount;
             LevelSignals.Instance.onGetSoldierCount -= OnGetSoldierCount;
-            CoreGameSignals.Instance.onSaveGameData -= OnSaveGameData;
+            CoreGameSignals.Instance.onSaveAndResetGameData -= OnSaveGameData;
             PlayerSignals.Instance.onPlayerLeaveBuyArea -= SetSaveValues;
             PlayerSignals.Instance.onPlayerSelectGun -= OnChangeGun;
             SaveSignals.Instance.onSaveCollectables -= OnSaveCollectables;

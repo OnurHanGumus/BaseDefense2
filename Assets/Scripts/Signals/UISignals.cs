@@ -14,6 +14,7 @@ namespace Signals
         public UnityAction<UIPanels> onCloseStorePanel;
         public UnityAction<int> onUpdateStageData;
         public UnityAction<int> onSetLevelText;
+        public UnityAction onMoveOnAfterSuccessfulPanel;
 
         public UnityAction<ScoreTypeEnums,int> onSetChangedText;
 

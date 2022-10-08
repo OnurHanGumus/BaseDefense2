@@ -62,6 +62,7 @@ namespace Managers
         {
             PlayerSignals.Instance.onPlayerUseTurret += OnPlayerUseTurret;
             LevelSignals.Instance.onBossDefeated += OnBossDefeated;
+            UISignals.Instance.onMoveOnAfterSuccessfulPanel += OnAfterBossDefeated;
 
         }
 
@@ -69,6 +70,7 @@ namespace Managers
         {
             PlayerSignals.Instance.onPlayerUseTurret -= OnPlayerUseTurret;
             LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
+            UISignals.Instance.onMoveOnAfterSuccessfulPanel -= OnAfterBossDefeated;
         }
 
         private void OnDisable()
@@ -136,6 +138,12 @@ namespace Managers
         private void OnBossDefeated()
         {
             ChangeGameState(CameraStates.LevelComplatedCam);
+
+        }
+
+        private void OnAfterBossDefeated()
+        {
+            ChangeGameState(CameraStates.IdleCam);
 
         }
 

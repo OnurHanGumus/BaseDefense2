@@ -40,6 +40,7 @@ namespace Managers
             CoreGameSignals.Instance.onLevelSuccessful += OnLevelSuccessful;
 
             UISignals.Instance.onSetChangedText += OnChangeCollectableAmounts;
+            LevelSignals.Instance.onBossDefeated += OnBossDefeated;
         }
 
         private void UnsubscribeEvents()
@@ -55,6 +56,7 @@ namespace Managers
             CoreGameSignals.Instance.onLevelSuccessful -= OnLevelSuccessful;
 
             UISignals.Instance.onSetChangedText -= OnChangeCollectableAmounts;
+            LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
 
         }
 
@@ -163,8 +165,17 @@ namespace Managers
         {
             LevelSignals.Instance.onBossDefeated?.Invoke();
         }
+        public void CloseSuccessfulPanel()
+        {
+            UISignals.Instance.onCloseStorePanel?.Invoke(UIPanels.BaseCompletedPanel);
+            UISignals.Instance.onMoveOnAfterSuccessfulPanel?.Invoke();
+            CoreGameSignals.Instance.onNextLevel?.Invoke();
 
 
-
+        }
+        private void OnBossDefeated()
+        {
+            UISignals.Instance.onOpenStorePanel?.Invoke(UIPanels.BaseCompletedPanel);
+        }
     }
 }
