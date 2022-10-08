@@ -60,16 +60,15 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            //CoreGameSignals.Instance.onPlay += OnSetCameraTarget;
             PlayerSignals.Instance.onPlayerUseTurret += OnPlayerUseTurret;
+            LevelSignals.Instance.onBossDefeated += OnBossDefeated;
 
         }
 
         private void UnsubscribeEvents()
         {
-            //CoreGameSignals.Instance.onPlay -= OnSetCameraTarget;
-
             PlayerSignals.Instance.onPlayerUseTurret -= OnPlayerUseTurret;
+            LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
         }
 
         private void OnDisable()
@@ -94,6 +93,10 @@ namespace Managers
             {
                 _camAnimator.Play(CameraStateController.ToString());
             }
+            else if (CameraStateController == CameraStates.LevelComplatedCam)
+            {
+                _camAnimator.Play(CameraStateController.ToString());
+            }
         }
         
         private void GetInitialPosition()
@@ -113,7 +116,7 @@ namespace Managers
         }
         private void OnLevelSuccessful()
         {
-            CameraStateController = CameraStates.BaseComplatedCam;
+            CameraStateController = CameraStates.LevelComplatedCam;
         }
 
         private void OnPlayerUseTurret(bool value)
@@ -130,8 +133,10 @@ namespace Managers
             }
         }
 
-        private void OnPlayerLeaveTurret()
+        private void OnBossDefeated()
         {
+            ChangeGameState(CameraStates.LevelComplatedCam);
+
         }
 
 

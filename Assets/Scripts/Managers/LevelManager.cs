@@ -31,8 +31,6 @@ namespace Managers
         [SerializeField] private TurretLoaderCommand turretLoader;
         [SerializeField] private MineLoaderCommand mineLoader;
         [SerializeField] private ClearActiveLevelCommand levelClearer;
-        
-
         #endregion
 
         #region Private Variables
@@ -43,8 +41,7 @@ namespace Managers
         private SaveGameCommand _saveGameCommand;
         private List<int> _openAreas;
         private List<int> _openTurrets;
-        //private List<int> _openTurretOwners;
-        //private List<int> _openEnemyAreas;
+
 
         #endregion
 
@@ -61,8 +58,6 @@ namespace Managers
             _saveGameCommand = new SaveGameCommand();
             _openAreas = new List<int>();
             _openTurrets = new List<int>();
-            //_openTurretOwners = new List<int>();
-            //_openEnemyAreas = new List<int>();
 
             _levelID = GetActiveLevel();
             Data = GetLevelData();
@@ -116,6 +111,9 @@ namespace Managers
             LevelSignals.Instance.onBuyArea += OnBuyArea;
             LevelSignals.Instance.onBuyTurret += OnBuyTurret;
             LevelSignals.Instance.onGetCurrentModdedLevel += OnGetCurrentModdedLevel;
+            LevelSignals.Instance.onBossDefeated += OnBossDefeated;
+
+            
         }
 
         private void UnsubscribeEvents()
@@ -129,6 +127,7 @@ namespace Managers
             LevelSignals.Instance.onBuyArea -= OnBuyArea;
             LevelSignals.Instance.onBuyTurret -= OnBuyTurret;
             LevelSignals.Instance.onGetCurrentModdedLevel -= OnGetCurrentModdedLevel;
+            LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
 
         }
 
@@ -143,16 +142,11 @@ namespace Managers
         {
             _openAreas = GetActiveAreas();
             _openTurrets = GetActiveTurrets();
-            //_openTurretOwners = GetActiveTurretOwners();
-            //_openEnemyAreas = GetActiveOpenedEnemyAreas();
 
             OnInitializeLevel();
             InitializeAreas();
             InitializeTurrets();
-            MineInitialize();
-            //InitializeTurretOwners();
-            //InitializeEnemyAreas();
-            
+            MineInitialize(); 
         }
 
         private void OnNextLevel()
@@ -215,24 +209,6 @@ namespace Managers
             }
         }
 
-        //private void InitializeTurretOwners()
-        //{
-        //    if (_openTurrets.Equals(null))
-        //    {
-        //        return;
-        //    }
-        //    SaveSignals.Instance.onInitializeTurretOwners?.Invoke(_openTurretOwners);
-        //}
-
-        //private void InitializeEnemyAreas()
-        //{
-        //    if (_openEnemyAreas.Equals(null))
-        //    {
-        //        return;
-        //    }
-        //    SaveSignals.Instance.onInitializeEnemyAreas?.Invoke(_openEnemyAreas);
-        //}
-
         private void OnBuyArea(int id)
         {
             AreaInstantiate(_levelModdedValue + 1, id);
@@ -259,6 +235,18 @@ namespace Managers
         private int OnGetCurrentModdedLevel()
         {
             return _levelModdedValue;
+        }
+
+        private void OnBossDefeated()
+        {
+            Transform player = PlayerSignals.Instance.onGetPlayer();
+            player.position = new Vector3(player.position.x, player.position.y, player.position.z - 450f);
+            Vector3 oldBasePos = levelHolder.transform.GetChild(0).transform.position;
+            levelHolder.transform.GetChild(0).transform.position = new Vector3(oldBasePos.x, oldBasePos.y, -450f);
+            Vector3 newBase = levelHolder.transform.GetChild(1).transform.position;
+            levelHolder.transform.GetChild(1).transform.position = new Vector3(newBase.x, newBase.y, 0f);
+            
+
         }
     }
 }

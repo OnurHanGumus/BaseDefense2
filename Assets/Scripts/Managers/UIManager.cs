@@ -154,32 +154,17 @@ namespace Managers
             }
         }
 
-        public void UpgradeGun(int id)
-        {
-
-        }
-        public void BuyGun(int id)
-        {
-
-        }
-
         public void SelectGun(int id)
         {
             PlayerSignals.Instance.onPlayerSelectGun?.Invoke(id);
         }
 
-        public void PlayerUpgradeCapacity()
+        public void BossIsDead()
         {
-            //SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerCapacity, 1);
+            LevelSignals.Instance.onBossDefeated?.Invoke();
         }
-        public void PlayerUpgradeSpeed()
-        {
-            //SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerMoveSpeed, 1);
-        }
-        public void PlayerUpgradeHealth()
-        {
-            //SaveSignals.Instance.onUpgradePlayer?.Invoke(SaveLoadStates.UpgradePlayerHealth, 1);
-        }
+
+
 
     }
 }

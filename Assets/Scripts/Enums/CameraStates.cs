@@ -4,6 +4,6 @@
     {
         IdleCam,
         TurretCam,
-        BaseComplatedCam,
+        LevelComplatedCam,
     }
 }
