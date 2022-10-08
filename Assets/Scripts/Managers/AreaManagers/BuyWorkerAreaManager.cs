@@ -66,7 +66,7 @@ namespace Managers
 
         public void InstantiateWorker()
         {
-            Instantiate(worker, transform.position, new Quaternion(0,180f,0f,0f));
+            Instantiate(worker, transform.position, new Quaternion(0,180f,0f,0f), transform);
         }
 
         public new void UpdateText()

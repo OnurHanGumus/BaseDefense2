@@ -10,6 +10,7 @@ public class EnemySpawnManager : MonoBehaviour
     #region Serialized Variables
 
     [SerializeField] private List<GameObject> enemyPrefabs;
+    [SerializeField] private List<Transform> activeEnemies;
     [SerializeField] private int spawnPosX = 20;
 
 
@@ -40,6 +41,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         LevelSignals.Instance.onBossDefeated += OnBossDefeated;
         LevelSignals.Instance.onPlayerReachedToNewBase += OnPlayerReachedToNewBase;
+        PlayerSignals.Instance.onEnemyDie += OnEnemyDie;
     }
 
     private void UnsubscribeEvents()
@@ -47,6 +49,7 @@ public class EnemySpawnManager : MonoBehaviour
 
         LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
         LevelSignals.Instance.onPlayerReachedToNewBase -= OnPlayerReachedToNewBase;
+        PlayerSignals.Instance.onEnemyDie -= OnEnemyDie;
 
     }
 
@@ -58,9 +61,13 @@ public class EnemySpawnManager : MonoBehaviour
     #endregion
     private IEnumerator SpawnEnemy()
     {
+        if (activeEnemies.Count < 25)
+        {
+            activeEnemies.Add(Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], new Vector3(Random.Range(-spawnPosX, spawnPosX), transform.position.y, transform.position.z), transform.rotation, transform).transform);
+        }
         yield return new WaitForSeconds(2f);
-        Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], new Vector3(Random.Range(-spawnPosX, spawnPosX), transform.position.y, transform.position.z), transform.rotation, transform);
         StartCoroutine(SpawnEnemy());
+
     }
 
     private void OnBossDefeated()
@@ -70,5 +77,13 @@ public class EnemySpawnManager : MonoBehaviour
     private void OnPlayerReachedToNewBase()
     {
         StartCoroutine(SpawnEnemy());
+    }
+
+    private void OnEnemyDie(Transform diedEnemy)
+    {
+        if (activeEnemies.Contains(diedEnemy))
+        {
+            activeEnemies.Remove(diedEnemy);
+        }
     }
 }

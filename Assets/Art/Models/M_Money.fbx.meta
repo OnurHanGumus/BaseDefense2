@@ -1,9 +1,19 @@
 fileFormatVersion: 2
 guid: 6afe4dd127a10984ab87126308ee96c6
 ModelImporter:
-  serializedVersion: 20200
+  serializedVersion: 20300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_AtlasTEX
+    second: {fileID: 2100000, guid: 7d7689a5616df264a935eabeec9a9ee6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Money
+    second: {fileID: 2100000, guid: f00c459b4b95ed84d930c1042efe6997, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -96,6 +106,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

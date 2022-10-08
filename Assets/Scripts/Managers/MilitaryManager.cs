@@ -92,7 +92,7 @@ public class MilitaryManager : MonoBehaviour
         int count = LevelSignals.Instance.onGetSoldierCount();
         for (int i = 0; i < count; i++)
         {
-            Instantiate(soldierPrefab, new Vector3(0, 0, -100f), transform.rotation);
+            Instantiate(soldierPrefab, new Vector3(0, 0, -100f), transform.rotation, transform);
         }
         SoldierCount = count;
 

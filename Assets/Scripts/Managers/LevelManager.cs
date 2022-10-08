@@ -216,7 +216,7 @@ namespace Managers
 
         private void AreaInstantiate(int levelId, int areaId)
         {
-            areaLoader.InitializeLevel(levelId, areaId, levelHolder.transform);
+            areaLoader.InitializeLevel(levelId, areaId, levelHolder.transform.GetChild(0));
         }
         private void OnBuyTurret(int id)
         {
@@ -224,12 +224,12 @@ namespace Managers
         }
         private void TurretInstantiate(int levelId, int turretId)
         {
-            turretLoader.InitializeTurret(levelId, turretId, levelHolder.transform);
+            turretLoader.InitializeTurret(levelId, turretId, levelHolder.transform.GetChild(0));
         }
 
         private void MineInitialize()
         {
-            mineLoader.InitializeMine(_levelModdedValue + 1, levelHolder.transform);
+            mineLoader.InitializeMine(_levelModdedValue + 1, levelHolder.transform.GetChild(0));
         }
 
         private int OnGetCurrentModdedLevel()
