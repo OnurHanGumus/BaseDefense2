@@ -63,7 +63,14 @@ public class EnemySpawnManager : MonoBehaviour
     {
         if (activeEnemies.Count < 25)
         {
-            activeEnemies.Add(Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], new Vector3(Random.Range(-spawnPosX, spawnPosX), transform.position.y, transform.position.z), transform.rotation, transform).transform);
+            GameObject enemy = PoolSignals.Instance.onGetEnemyFromPool();
+            if (enemy == null)
+            {
+                enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)]);
+            }
+            enemy.gameObject.SetActive(true);
+            enemy.transform.position = new Vector3(Random.Range(-spawnPosX, spawnPosX), transform.position.y, transform.position.z);
+            activeEnemies.Add(enemy.transform);
         }
         yield return new WaitForSeconds(2f);
         StartCoroutine(SpawnEnemy());

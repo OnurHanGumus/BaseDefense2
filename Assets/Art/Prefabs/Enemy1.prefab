@@ -178,6 +178,7 @@ MonoBehaviour:
   State: 0
   targets: []
   attackController: {fileID: 8110676992962542484}
+  physicsController: {fileID: 3817830957950128015}
   triggerRange: {fileID: 2439606927713403635}
 --- !u!1 &810385151177468444
 GameObject:

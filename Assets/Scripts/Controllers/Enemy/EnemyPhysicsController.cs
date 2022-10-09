@@ -30,7 +30,6 @@ namespace Controllers
         private void Start()
         {
             _data = manager.GetEnemyData();
-            _health = _data.Health;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -105,6 +104,12 @@ namespace Controllers
                     PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
                 }
             }
+        }
+
+        public void ResetData()
+        {
+            _health = _data.Health;
+
         }
 
     }

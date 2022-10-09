@@ -27,6 +27,7 @@ namespace Managers
 
         [SerializeField] private GameObject[] targets;
         [SerializeField] private EnemyAttackController attackController;
+        [SerializeField] private EnemyPhysicsController physicsController;
         [SerializeField] private GameObject triggerRange;
 
 
@@ -72,6 +73,9 @@ namespace Managers
         private void OnEnable()
         {
             SubscribeEvents();
+            State = EnemyState.Walk;
+            triggerRange.SetActive(true);
+
         }
 
         private void SubscribeEvents()
@@ -105,7 +109,11 @@ namespace Managers
                 attackController.SetAnimation(EnemyAnimationState.Die);
                 _movementController.DeathMove(_dieDirection);
                 triggerRange.SetActive(false);
-                Destroy(gameObject, _enemyData.DestroyDelay);
+
+                physicsController.ResetData();
+                StartCoroutine(DeactivateEnemy());
+                    //PoolSignals.Instance.onAddEnemyToPool?.Invoke(transform);
+                //Destroy(gameObject, _enemyData.DestroyDelay);
             }
             else if (State.Equals(EnemyState.Walk))
             {
@@ -150,6 +158,12 @@ namespace Managers
         private void OnDestroy()
         {
             PlayerSignals.Instance.onEnemyDie?.Invoke(transform);
+        }
+
+        private IEnumerator DeactivateEnemy()
+        {
+            yield return new WaitForSeconds(_enemyData.DestroyDelay);
+            gameObject.SetActive(false);
         }
     }
 }
