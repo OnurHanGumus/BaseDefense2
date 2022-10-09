@@ -17269,8 +17269,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 647243243688216903, guid: a8394d752f121854085e69fa40cba983, type: 3}
+  gemPrefab: {fileID: 0}
   enemyPool: []
-  amountToPool: 25
+  gemPool: []
+  amountEnemyToPool: 25
+  amountGemToPool: 45
 --- !u!4 &1108203324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 408904, guid: 4cc487e002327cb43995ca1871bd142e, type: 3}

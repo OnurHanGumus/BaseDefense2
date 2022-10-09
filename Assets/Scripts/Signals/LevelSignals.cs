@@ -27,6 +27,8 @@ namespace Signals
         public UnityAction onBossDefeated = delegate { };
         public UnityAction onPlayerReachedToNewBase = delegate { };
 
+        public UnityAction onMineGemCapacityFull = delegate { };
+        public UnityAction onMineGemCapacityCleared = delegate { };
 
 
         public Func<int> onGetCurrentModdedLevel = delegate { return 0; };

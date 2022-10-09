@@ -12,6 +12,7 @@ namespace Signals
         public Func<Transform> onGetPlayer = delegate { return null;  };
         public Func<float> onGetPlayerSpeed = delegate { return 0f; };
         public Func<Transform> onGetLastRescuePerson = delegate { return null; };
+        public Func<int> onGetGems = delegate { return 0; };
 
         public UnityAction<GameObject> onInteractionCollectable = delegate { };
         public UnityAction onPlayerReachBase = delegate { };

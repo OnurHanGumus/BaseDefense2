@@ -151,10 +151,11 @@ namespace Controllers
 
                 return;
             }
-            if (other.CompareTag("Gem"))
+            if (other.CompareTag("GemArea"))
             {
-                ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Gem, 1);
-                Destroy(other.gameObject, 0.5f);
+                int gemCount = PlayerSignals.Instance.onGetGems();
+                ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Gem, gemCount);
+                //Destroy(other.gameObject, 0.5f);
             }
         }
 

@@ -11,8 +11,11 @@ public class PoolManager : MonoBehaviour
     #region Serialized Variables
 
     [SerializeField] private List<GameObject> enemyPrefabs;
+    [SerializeField] private Transform gemPrefab;
     [SerializeField] private List<GameObject> enemyPool;
-    [SerializeField] private int amountToPool = 25;
+    [SerializeField] private List<GameObject> gemPool;
+    [SerializeField] private int amountEnemyToPool = 25;
+    [SerializeField] private int amountGemToPool = 45;
 
 
     #endregion
@@ -31,14 +34,7 @@ public class PoolManager : MonoBehaviour
     #region Event Subscriptions
     void Start()
     {
-        enemyPool = new List<GameObject>();
-        GameObject tmp;
-        for (int i = 0; i < amountToPool; i++)
-        {
-            tmp = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], transform);
-            tmp.SetActive(false);
-            enemyPool.Add(tmp);
-        }
+        InitializeEnemyPool();
     }
     private void OnEnable()
     {
@@ -63,9 +59,21 @@ public class PoolManager : MonoBehaviour
 
     #endregion
 
+
+    private void InitializeEnemyPool()
+    {
+        enemyPool = new List<GameObject>();
+        GameObject tmp;
+        for (int i = 0; i < amountEnemyToPool; i++)
+        {
+            tmp = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], transform);
+            tmp.SetActive(false);
+            enemyPool.Add(tmp);
+        }
+    }
     public GameObject OnGetEnemy()
     {
-        for (int i = 0; i < amountToPool; i++)
+        for (int i = 0; i < amountEnemyToPool; i++)
         {
             if (!enemyPool[i].activeInHierarchy)
             {

@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Controllers;
 using Enums;
+using Signals;
 
 public class MinerManager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class MinerManager : MonoBehaviour
     private MinerAnimationController _animationController;
     private Tween tweenRef;
     #endregion
-
+    private bool _mineFull = false;
     #endregion
 
     private void Awake()
@@ -60,12 +61,15 @@ public class MinerManager : MonoBehaviour
     }
 
     private void SubscribeEvents()
-    { 
-
+    {
+        LevelSignals.Instance.onMineGemCapacityFull += OnGemCapacityFull;
+        LevelSignals.Instance.onMineGemCapacityCleared += OnGemCapacityCleared;
     }
 
     private void UnsubscribeEvents()
     {
+        LevelSignals.Instance.onMineGemCapacityFull -= OnGemCapacityFull;
+        LevelSignals.Instance.onMineGemCapacityCleared -= OnGemCapacityCleared;
 
 
     }
@@ -116,6 +120,10 @@ public class MinerManager : MonoBehaviour
 
     private void ReturnGemToArea()
     {
+        if (_mineFull)
+        {
+            return;
+        }
         transform.DOMove(gemArea.position, 20f).SetSpeedBased(true).SetEase(Ease.Linear).OnComplete(SelectRandomMine);
         transform.DOLookAt(gemArea.position, 0.5f);
 
@@ -134,6 +142,17 @@ public class MinerManager : MonoBehaviour
         collectedGem = null;
         IsGemCollected = false;
 
+    }
+
+    private void OnGemCapacityFull()
+    {
+        _mineFull = true;
+    }
+
+    private void OnGemCapacityCleared()
+    {
+        _mineFull = false;
+        ReturnGemToArea();
     }
 
 }

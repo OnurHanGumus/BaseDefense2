@@ -2233,6 +2233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minerPrefab: {fileID: 4215340406738084292, guid: a07bb0a56f15bf54eb1640512b7add8f, type: 3}
   minerCountText: {fileID: 5228167387617566783}
+  gemAreaController: {fileID: 8776973476145843851}
 --- !u!1 &3632868150102561172
 GameObject:
   m_ObjectHideFlags: 0

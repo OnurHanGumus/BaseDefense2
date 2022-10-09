@@ -399,6 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minerPrefab: {fileID: 4215340406738084292, guid: a07bb0a56f15bf54eb1640512b7add8f, type: 3}
   minerCountText: {fileID: 182689929872009557}
+  gemAreaController: {fileID: 3731575148911200225}
 --- !u!1 &8115259594661379507
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +851,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c180e6be0713c243bfb30859c005bee, type: 3}
+--- !u!114 &3731575148911200225 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5651950240255479892, guid: 7c180e6be0713c243bfb30859c005bee, type: 3}
+  m_PrefabInstance: {fileID: 9054193616869365685}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8408ee52d1291584db059548932e29af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7859809556208268949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1203958886283354400, guid: 7c180e6be0713c243bfb30859c005bee, type: 3}

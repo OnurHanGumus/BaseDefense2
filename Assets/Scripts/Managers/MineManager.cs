@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Data.UnityObject;
+using Controllers;
 
 public class MineManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MineManager : MonoBehaviour
     #region Serialized Variables
     [SerializeField] private GameObject minerPrefab;
     [SerializeField] private TextMeshPro minerCountText;
+    [SerializeField] private GemAreaController gemAreaController;
 
     #endregion
 
@@ -62,6 +64,7 @@ public class MineManager : MonoBehaviour
     {
         LevelSignals.Instance.onMinerCountIncreased += OnMinerCountIncreased;
         LevelSignals.Instance.onGetMineRemainCapacity += OnGetRemainCapacity;
+        PlayerSignals.Instance.onGetGems += gemAreaController.OnGetGems;
     }
 
     private void UnsubscribeEvents()
@@ -69,6 +72,7 @@ public class MineManager : MonoBehaviour
 
         LevelSignals.Instance.onMinerCountIncreased -= OnMinerCountIncreased;
         LevelSignals.Instance.onGetMineRemainCapacity -= OnGetRemainCapacity;
+        PlayerSignals.Instance.onGetGems -= gemAreaController.OnGetGems;
 
 
     }

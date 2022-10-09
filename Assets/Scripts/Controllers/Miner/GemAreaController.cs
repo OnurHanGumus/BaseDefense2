@@ -59,18 +59,36 @@ namespace Controllers
                 _gemList.Add(other.transform);
                 int moddedIndeks = _indeks % _locations.Count;
                 other.transform.DOLocalMove(new Vector3(_locations[moddedIndeks].x, _locations[moddedIndeks].y + (int)(_indeks / 9) * 0.5f, _locations[moddedIndeks].z), 1f);
-
+                if (_gemList.Count > 45)
+                {
+                    LevelSignals.Instance.onMineGemCapacityFull?.Invoke();
+                }
                 return;
             }
 
             if (other.CompareTag("Player"))
             {
+                if (_gemList.Count >= 45)
+                {
+                    LevelSignals.Instance.onMineGemCapacityCleared?.Invoke();
+
+                }
                 foreach (var i in _gemList)
                 {
-                    i.DOMove(other.transform.position, 1f);
+                    i.DOMove(other.transform.position, 1f).OnComplete(() => DestroyGems(i));
                 }
                 _gemList.Clear();
             }
+        }
+
+        private void DestroyGems(Transform gem)
+        {
+            Destroy(gem.gameObject);
+        }
+
+        public int OnGetGems()
+        {
+            return _gemList.Count;
         }
 
 
