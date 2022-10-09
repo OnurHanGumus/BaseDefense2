@@ -20,7 +20,7 @@ public class MinerManager : MonoBehaviour
     [SerializeField] private GameObject[] minesOnScene;
     [SerializeField] private Transform gemArea;
     [SerializeField] private GameObject gemPrefab;
-    [SerializeField] private Transform collectedGem;
+    [SerializeField] private GameObject collectedGem;
     [SerializeField] private Transform gemParent;
 
     #endregion
@@ -114,8 +114,16 @@ public class MinerManager : MonoBehaviour
     private void CollectGem()
     {
         IsGemCollected = true;
-        collectedGem = Instantiate(gemPrefab, gemParent.position, Quaternion.Euler(180,0,0)).transform;
-        collectedGem.parent = gemParent;
+        collectedGem = PoolSignals.Instance.onGetGemFromPool();
+        //if (collectedGem == null)
+        //{
+        //    collectedGem = Instantiate(gemPrefab, gemParent.position, Quaternion.Euler(180, 0, 0));
+        //}
+        collectedGem.tag = "Collected";
+        collectedGem.gameObject.SetActive(true);
+        collectedGem.transform.position = gemParent.position;
+        collectedGem.transform.rotation = Quaternion.Euler(180, 0, 0);
+        collectedGem.transform.parent = gemParent;
     }
 
     private void ReturnGemToArea()

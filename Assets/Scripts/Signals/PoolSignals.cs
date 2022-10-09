@@ -9,7 +9,7 @@ namespace Signals
     public class PoolSignals : MonoSingleton<PoolSignals>
     {
         public Func<GameObject> onGetEnemyFromPool = delegate { return null; };
-        public UnityAction<Transform> onAddEnemyToPool = delegate { };
+        public Func<GameObject> onGetGemFromPool = delegate { return null; };
 
 
     }

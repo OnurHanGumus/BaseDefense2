@@ -11,11 +11,11 @@ public class PoolManager : MonoBehaviour
     #region Serialized Variables
 
     [SerializeField] private List<GameObject> enemyPrefabs;
-    [SerializeField] private Transform gemPrefab;
+    [SerializeField] private GameObject gemPrefab;
     [SerializeField] private List<GameObject> enemyPool;
     [SerializeField] private List<GameObject> gemPool;
     [SerializeField] private int amountEnemyToPool = 25;
-    [SerializeField] private int amountGemToPool = 45;
+    [SerializeField] private int amountGemToPool = 70;
 
 
     #endregion
@@ -30,11 +30,13 @@ public class PoolManager : MonoBehaviour
     private void Init()
     {
         _levelId = LevelSignals.Instance.onGetCurrentModdedLevel();
+        InitializeEnemyPool();
+        InitializeGemPool();
     }
     #region Event Subscriptions
     void Start()
     {
-        InitializeEnemyPool();
+
     }
     private void OnEnable()
     {
@@ -44,11 +46,13 @@ public class PoolManager : MonoBehaviour
     private void SubscribeEvents()
     {
         PoolSignals.Instance.onGetEnemyFromPool += OnGetEnemy;
+        PoolSignals.Instance.onGetGemFromPool += OnGetGem;
     }
 
     private void UnsubscribeEvents()
     {
         PoolSignals.Instance.onGetEnemyFromPool -= OnGetEnemy;
+        PoolSignals.Instance.onGetGemFromPool -= OnGetGem;
 
     }
 
@@ -71,6 +75,18 @@ public class PoolManager : MonoBehaviour
             enemyPool.Add(tmp);
         }
     }
+
+    private void InitializeGemPool()
+    {
+        gemPool = new List<GameObject>();
+        GameObject tmp;
+        for (int i = 0; i < amountGemToPool; i++)
+        {
+            tmp = Instantiate(gemPrefab, transform);
+            tmp.SetActive(false);
+            gemPool.Add(tmp);
+        }
+    }
     public GameObject OnGetEnemy()
     {
         for (int i = 0; i < amountEnemyToPool; i++)
@@ -78,6 +94,18 @@ public class PoolManager : MonoBehaviour
             if (!enemyPool[i].activeInHierarchy)
             {
                 return enemyPool[i];
+            }
+        }
+        return null;
+    }
+
+    public GameObject OnGetGem()
+    {
+        for (int i = 0; i < amountGemToPool; i++)
+        {
+            if (!gemPool[i].activeInHierarchy)
+            {
+                return gemPool[i];
             }
         }
         return null;

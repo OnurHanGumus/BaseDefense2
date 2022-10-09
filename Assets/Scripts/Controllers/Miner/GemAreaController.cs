@@ -21,7 +21,7 @@ namespace Controllers
 
         #region Private Variables
         private List<Vector3> _locations;
-        private List<Transform> _gemList;
+        [SerializeField] private List<Transform> _gemList;
         private int _indeks = 0;
 
         #endregion
@@ -83,7 +83,7 @@ namespace Controllers
 
         private void DestroyGems(Transform gem)
         {
-            Destroy(gem.gameObject);
+            gem.gameObject.SetActive(false);
         }
 
         public int OnGetGems()
