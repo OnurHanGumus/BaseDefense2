@@ -169,7 +169,6 @@ namespace Managers
         {
             UISignals.Instance.onCloseStorePanel?.Invoke(UIPanels.BaseCompletedPanel);
             UISignals.Instance.onMoveOnAfterSuccessfulPanel?.Invoke();
-            CoreGameSignals.Instance.onNextLevel?.Invoke();
 
 
         }

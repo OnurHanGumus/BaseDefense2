@@ -75,6 +75,7 @@ namespace Managers
             SubscribeEvents();
             State = EnemyState.Walk;
             triggerRange.SetActive(true);
+            SetDefaultTarget();
 
         }
 

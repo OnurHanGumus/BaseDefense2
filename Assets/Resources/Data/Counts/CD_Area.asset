@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalLevelAreaData:
     Base:
-    - UnlockValues: 0e00000064000000
-    - UnlockValues: 96000000c80000005e01000090010000
+    - UnlockValues: 1400000064000000
+    - UnlockValues: 1e000000640000005e01000090010000

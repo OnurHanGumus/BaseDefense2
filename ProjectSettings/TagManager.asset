@@ -45,6 +45,8 @@ TagManager:
   - Soldier
   - SoldierWay
   - CollectedAmmo
+  - BaseBackDoor
+  - Portal
   layers:
   - Default
   - TransparentFX

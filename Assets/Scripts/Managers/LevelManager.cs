@@ -42,7 +42,6 @@ namespace Managers
         private SaveGameCommand _saveGameCommand;
         private List<int> _openAreas;
         private List<int> _openTurrets;
-        private int _passedBaseCount = 0;
 
 
         public int LevelModdedValue
@@ -111,7 +110,7 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            CoreGameSignals.Instance.onLevelInitialize += OnInitializeNextLevel;
+            CoreGameSignals.Instance.onLevelInitialize += OnInitializeLevel;
             CoreGameSignals.Instance.onClearActiveLevel += OnClearActiveLevel;
             CoreGameSignals.Instance.onNextLevel += OnNextLevel;
             CoreGameSignals.Instance.onRestartLevel += OnRestartLevel;
@@ -120,14 +119,14 @@ namespace Managers
             LevelSignals.Instance.onBuyArea += OnBuyArea;
             LevelSignals.Instance.onBuyTurret += OnBuyTurret;
             LevelSignals.Instance.onGetCurrentModdedLevel += OnGetCurrentModdedLevel;
-            LevelSignals.Instance.onBossDefeated += OnBossDefeated;
+            LevelSignals.Instance.onPlayerReachedToNewBase += OnPlayerReachedNewBase;
 
             
         }
 
         private void UnsubscribeEvents()
         {
-            CoreGameSignals.Instance.onLevelInitialize -= OnInitializeNextLevel;
+            CoreGameSignals.Instance.onLevelInitialize -= OnInitializeLevel;
             CoreGameSignals.Instance.onClearActiveLevel -= OnClearActiveLevel;
             CoreGameSignals.Instance.onNextLevel -= OnNextLevel;
             CoreGameSignals.Instance.onRestartLevel -= OnRestartLevel;
@@ -136,7 +135,7 @@ namespace Managers
             LevelSignals.Instance.onBuyArea -= OnBuyArea;
             LevelSignals.Instance.onBuyTurret -= OnBuyTurret;
             LevelSignals.Instance.onGetCurrentModdedLevel -= OnGetCurrentModdedLevel;
-            LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
+            LevelSignals.Instance.onPlayerReachedToNewBase -= OnPlayerReachedNewBase;
 
         }
 
@@ -153,21 +152,19 @@ namespace Managers
             _openTurrets = GetActiveTurrets();
 
             OnInitializeLevel();
-            OnInitializeNextLevel();
+            //OnInitializeNextLevel();
             InitializeAreas();
             InitializeTurrets();
-            MineInitialize();
-            WorkerManagerInitialize();
         }
 
         private void OnNextLevel()
         {
             _levelID++;
-            _passedBaseCount++;
+            CoreGameSignals.Instance.onClearActiveLevel?.Invoke();
             CoreGameSignals.Instance.onReset?.Invoke();
             CoreGameSignals.Instance.onSaveAndResetGameData?.Invoke();
-            MineInitialize();
-            WorkerManagerInitialize();
+            //MineInitialize();
+            //WorkerManagerInitialize();
             CoreGameSignals.Instance.onLevelInitialize?.Invoke();
         }
 
@@ -195,15 +192,15 @@ namespace Managers
 
         private void OnInitializeNextLevel()
         {
-            UnityEngine.Object[] Levels = Resources.LoadAll("Levels");
-            int nextLevelId = (_levelID + 1) % Levels.Length;
-            levelLoader.InitializeLevel((GameObject)Levels[nextLevelId], levelHolder.transform, new Vector3(0, 0, 450f));
+            //UnityEngine.Object[] Levels = Resources.LoadAll("Levels");
+            //int nextLevelId = (_levelID + 1) % Levels.Length;
+            //levelLoader.InitializeLevel((GameObject)Levels[nextLevelId], levelHolder.transform, new Vector3(0, 0, 450f));
 
         }
 
         private void OnClearActiveLevel()
         {
-            //levelClearer.ClearActiveLevel(levelHolder.transform);
+            levelClearer.ClearActiveLevel(levelHolder.transform);
         }
         private void InitializeAreas()
         {
@@ -236,7 +233,7 @@ namespace Managers
 
         private void AreaInstantiate(int levelId, int areaId)
         {
-            areaLoader.InitializeLevel(levelId, areaId, levelHolder.transform.GetChild(_passedBaseCount));
+            areaLoader.InitializeLevel(levelId, areaId, levelHolder.transform.GetChild(0));
         }
         private void OnBuyTurret(int id)
         {
@@ -247,30 +244,19 @@ namespace Managers
             turretLoader.InitializeTurret(levelId, turretId, levelHolder.transform.GetChild(0));
         }
 
-        private void MineInitialize()
-        {
-            Debug.Log(LevelModdedValue + 1);
-            mineLoader.InitializeMine(LevelModdedValue + 1, levelHolder.transform.GetChild(0));
-        }
-        private void WorkerManagerInitialize()
-        {
-            workerLoader.InitializeWorkerManagers(levelHolder.transform.GetChild(_passedBaseCount).GetChild(0));
-        }
-
         private int OnGetCurrentModdedLevel()
         {
             return _levelModdedValue = _levelID % Resources.Load<CD_Level>("Data/CD_Level").Levels.Count;
 
         }
 
-        private void OnBossDefeated()
+        private void OnPlayerReachedNewBase()
         {
             Transform player = PlayerSignals.Instance.onGetPlayer();
             player.position = new Vector3(player.position.x, player.position.y, player.position.z - 450f);
             Vector3 oldBasePos = levelHolder.transform.GetChild(0).transform.position;
             levelHolder.transform.GetChild(0).transform.position = new Vector3(oldBasePos.x, oldBasePos.y, -450f);
-            Vector3 newBase = levelHolder.transform.GetChild(1).transform.position;
-            levelHolder.transform.GetChild(1).transform.position = new Vector3(newBase.x, newBase.y, 0f);
+
             
 
         }

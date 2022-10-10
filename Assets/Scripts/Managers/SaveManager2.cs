@@ -229,7 +229,8 @@ namespace Managers
         }
         private void SetScriptableValues(int[] saveArray, ref List<int> scriptableData)
         {
-            for (int i = 0; i < scriptableData.Count; i++)
+            int loopCount = Mathf.Min(saveArray.Length, scriptableData.Count);
+            for (int i = 0; i < loopCount; i++)
             {
                 scriptableData[i] = saveArray[i];
             }

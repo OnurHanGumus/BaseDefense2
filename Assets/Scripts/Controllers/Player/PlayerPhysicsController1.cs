@@ -157,8 +157,17 @@ namespace Controllers
                 ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Gem, gemCount);
                 //Destroy(other.gameObject, 0.5f);
             }
+            
         }
 
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Portal"))
+            {
+                CoreGameSignals.Instance.onNextLevel?.Invoke();
+                LevelSignals.Instance.onPlayerReachedToNewBase?.Invoke();
+            }
+        }
         public void OnGetHealthData(List<int> upgradeList)
         {
             if (upgradeList.Count < 3)
