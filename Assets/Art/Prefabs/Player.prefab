@@ -320,9 +320,9 @@ MonoBehaviour:
   - {fileID: 170343792137285829}
   - {fileID: 2576764983488559624}
   - {fileID: 170787363572782234}
+  RescuePersonList: []
   aimController: {fileID: 7146503969275144216}
   physicsController: {fileID: 5126579835510109439}
-  _rescuePersonList: []
 --- !u!114 &569411625863441415
 MonoBehaviour:
   m_ObjectHideFlags: 0
