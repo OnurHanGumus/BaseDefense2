@@ -77,9 +77,18 @@ namespace Managers
 
         public void UpgradeItem(int id)
         {
-            itemLevels[id] = itemLevels[id] + 1;
-            UISignals.Instance.onChangeGunLevels?.Invoke(itemLevels);
-            UpdateTexts();
+            if (ScoreSignals.Instance.onGetMoney() > _data.itemPrices[id].prices[itemLevels[id]])
+            {
+                ScoreSignals.Instance.onScoreDecrease?.Invoke(ScoreTypeEnums.Money, _data.itemPrices[id].prices[itemLevels[id]]); //paramýz azaldý
+
+                itemLevels[id] = itemLevels[id] + 1; //item leveli arttý
+                UISignals.Instance.onChangeGunLevels?.Invoke(itemLevels);
+                PlayerSignals.Instance.onPlayerSelectGun?.Invoke(id);
+
+
+                UpdateTexts();
+            }
+            
         }
 
         public void SelectGun(int id)
