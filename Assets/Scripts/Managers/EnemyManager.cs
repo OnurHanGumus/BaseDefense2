@@ -29,6 +29,7 @@ namespace Managers
         [SerializeField] private EnemyAttackController attackController;
         [SerializeField] private EnemyPhysicsController physicsController;
         [SerializeField] private GameObject triggerRange;
+        [SerializeField] private GameObject moneyPrefab;
 
 
 
@@ -48,7 +49,7 @@ namespace Managers
 
 
         private Vector3 _dieDirection;
-
+        private bool _isMoneyInstantiated = false;
 
         #endregion
 
@@ -76,6 +77,7 @@ namespace Managers
             State = EnemyState.Walk;
             triggerRange.SetActive(true);
             SetDefaultTarget();
+            _isMoneyInstantiated = false;
 
         }
 
@@ -155,16 +157,33 @@ namespace Managers
             ChangeState(EnemyState.Walk);
 
         }
-
-        private void OnDestroy()
-        {
-            PlayerSignals.Instance.onEnemyDie?.Invoke(transform);
-        }
-
         private IEnumerator DeactivateEnemy()
         {
+            InstantiateMoneys();
             yield return new WaitForSeconds(_enemyData.DestroyDelay);
+            PlayerSignals.Instance.onEnemyDie?.Invoke(transform);
             gameObject.SetActive(false);
+        }
+
+        private void InstantiateMoneys()
+        {
+            if (!_isMoneyInstantiated)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    //Instantiate(moneyPrefab, transform.position, transform.rotation);
+                    GameObject tmp = PoolSignals.Instance.onGetMoneyFromPool();
+                    if (tmp == null)
+                    {
+                        tmp = Instantiate(moneyPrefab, transform.position, transform.rotation);
+                    }
+                    tmp.transform.position = transform.position;
+                    tmp.transform.rotation = transform.rotation;
+                    tmp.SetActive(true);
+
+                }
+                _isMoneyInstantiated = true;
+            }
         }
     }
 }

@@ -30,11 +30,12 @@ namespace Managers
         #region Private Variables
         
         private StackData _stackData;
+        private Transform _poolObj;
 
 
         #endregion
         #endregion
-        
+
         private void Awake()
         {
             _stackData = GetStackData();
@@ -46,6 +47,7 @@ namespace Managers
         private void Init()
         {
             GetCapacityData();
+            _poolObj = PoolSignals.Instance.onGetPoolManagerObj();
         }
 
         #region Event Subscription
@@ -174,7 +176,9 @@ namespace Managers
         {
             foreach (var i in Temp)
             {
-                Destroy(i.gameObject);
+                //Destroy(i.gameObject);
+                i.transform.parent = _poolObj;
+                i.gameObject.SetActive(false);
             }
             Temp.Clear();
         }

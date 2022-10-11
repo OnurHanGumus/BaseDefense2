@@ -41,6 +41,7 @@ namespace Controllers
             if (other.CompareTag("Collectable") || other.CompareTag("Ammo"))
             {
                 PlayerSignals.Instance.onInteractionCollectable?.Invoke(other.gameObject);
+           
                 return;
             }
 

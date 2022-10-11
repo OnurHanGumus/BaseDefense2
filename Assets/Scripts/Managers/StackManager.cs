@@ -37,6 +37,7 @@ namespace Managers
         private Transform _playerTransform;
         private bool _canReleaseCollectablesToBase = true;
         private bool _isReleasingAmmos = false;
+        private Transform _poolObj;
 
 
         #endregion
@@ -61,6 +62,7 @@ namespace Managers
         {
             ItemAddOnStack = new ItemAddOnStackCommand(ref CollectableStack, transform, _stackData);
             _itemRemoveOnStackCommand = new ItemRemoveOnStackCommand(ref CollectableStack, ref levelHolder);
+            _poolObj = PoolSignals.Instance.onGetPoolManagerObj();
         }
 
         #region Event Subscription
@@ -176,7 +178,9 @@ namespace Managers
         {
             foreach (var i in Temp)
             {
-                Destroy(i.gameObject);
+                //Destroy(i.gameObject);
+                i.transform.parent = _poolObj;
+                i.gameObject.SetActive(false);
             }
             Temp.Clear();
             _canReleaseCollectablesToBase = true;
@@ -213,11 +217,15 @@ namespace Managers
 
             foreach (var i in CollectableStack)
             {
-                Destroy(i.gameObject);
+                //Destroy(i.gameObject);
+                i.transform.parent = _poolObj;
+                i.gameObject.SetActive(false);
             }
             foreach (var i in Temp)
             {
-                Destroy(i.gameObject);
+                //Destroy(i.gameObject);
+                i.transform.parent = null;
+                i.gameObject.SetActive(false);
             }
             CollectableStack.Clear();
             Temp.Clear();

@@ -69,7 +69,7 @@ public class EnemySpawnManager : MonoBehaviour
                 enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)]);
             }
             enemy.gameObject.SetActive(true);
-            enemy.transform.position = new Vector3(Random.Range(-spawnPosX, spawnPosX), transform.position.y, transform.position.z);
+            enemy.transform.position = new Vector3(Random.Range(-spawnPosX, spawnPosX), enemy.transform.position.y, transform.position.z);
             activeEnemies.Add(enemy.transform);
         }
         yield return new WaitForSeconds(2f);

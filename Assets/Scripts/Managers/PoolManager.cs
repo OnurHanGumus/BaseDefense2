@@ -12,10 +12,15 @@ public class PoolManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> enemyPrefabs;
     [SerializeField] private GameObject gemPrefab;
+    [SerializeField] private GameObject moneyPrefab;
+
     [SerializeField] private List<GameObject> enemyPool;
     [SerializeField] private List<GameObject> gemPool;
+    [SerializeField] private List<GameObject> moneyPool;
+
     [SerializeField] private int amountEnemyToPool = 25;
     [SerializeField] private int amountGemToPool = 70;
+    [SerializeField] private int amountMoneyToPool = 100;
 
 
     #endregion
@@ -32,6 +37,7 @@ public class PoolManager : MonoBehaviour
         _levelId = LevelSignals.Instance.onGetCurrentModdedLevel();
         InitializeEnemyPool();
         InitializeGemPool();
+        InitializeMoneyPool();
     }
     #region Event Subscriptions
     void Start()
@@ -47,12 +53,20 @@ public class PoolManager : MonoBehaviour
     {
         PoolSignals.Instance.onGetEnemyFromPool += OnGetEnemy;
         PoolSignals.Instance.onGetGemFromPool += OnGetGem;
+        PoolSignals.Instance.onGetMoneyFromPool += OnGetMoney;
+
+
+        PoolSignals.Instance.onGetPoolManagerObj += OnGetPoolManagerObj;
+
     }
 
     private void UnsubscribeEvents()
     {
         PoolSignals.Instance.onGetEnemyFromPool -= OnGetEnemy;
         PoolSignals.Instance.onGetGemFromPool -= OnGetGem;
+        PoolSignals.Instance.onGetMoneyFromPool -= OnGetMoney;
+
+        PoolSignals.Instance.onGetPoolManagerObj -= OnGetPoolManagerObj;
 
     }
 
@@ -87,6 +101,17 @@ public class PoolManager : MonoBehaviour
             gemPool.Add(tmp);
         }
     }
+    private void InitializeMoneyPool()
+    {
+        moneyPool = new List<GameObject>();
+        GameObject tmp;
+        for (int i = 0; i < amountMoneyToPool; i++)
+        {
+            tmp = Instantiate(moneyPrefab, transform);
+            tmp.SetActive(false);
+            moneyPool.Add(tmp);
+        }
+    }
     public GameObject OnGetEnemy()
     {
         for (int i = 0; i < amountEnemyToPool; i++)
@@ -109,5 +134,22 @@ public class PoolManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public GameObject OnGetMoney()
+    {
+        for (int i = 0; i < amountMoneyToPool; i++)
+        {
+            if (!moneyPool[i].activeInHierarchy)
+            {
+                return moneyPool[i];
+            }
+        }
+        return null;
+    }
+
+    public Transform OnGetPoolManagerObj()
+    {
+        return transform;
     }
 }

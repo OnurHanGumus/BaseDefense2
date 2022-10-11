@@ -91,7 +91,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647243243688216903}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.87}
+  m_LocalPosition: {x: 0, y: -0.4, z: -7.87}
   m_LocalScale: {x: 12, y: 12, z: 12}
   m_Children:
   - {fileID: 5755875395600708457}
@@ -128,10 +128,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: f718b9a7529eae641b85a538af5a5ee0, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.12
-  m_Height: 0.7969957
+  m_Radius: 0.16972442
+  m_Height: 0.6790969
   m_Direction: 1
-  m_Center: {x: 0, y: 0.3453616, z: 0}
+  m_Center: {x: 0.049724467, y: 0.34207186, z: 0}
 --- !u!95 &647243243688216902
 Animator:
   serializedVersion: 3
@@ -180,6 +180,7 @@ MonoBehaviour:
   attackController: {fileID: 8110676992962542484}
   physicsController: {fileID: 3817830957950128015}
   triggerRange: {fileID: 2439606927713403635}
+  moneyPrefab: {fileID: 4241539800598019036, guid: c970efbc22f03f148b419dc333d150bd, type: 3}
 --- !u!1 &810385151177468444
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2439606927713403635}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 265898064986674173}
