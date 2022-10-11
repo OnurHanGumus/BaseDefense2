@@ -94,11 +94,7 @@ namespace Managers
 
         private void OnReset()
         {
-            foreach (Transform childs in transform)
-            {
-                Destroy(childs.gameObject);
-            }
-            CollectableStack.Clear();
+
         }
 
         public void ReleaseAmmosToTurretArea(GameObject releaseObject)

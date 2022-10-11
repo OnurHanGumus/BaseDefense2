@@ -25,7 +25,6 @@ namespace Managers
         [SerializeField] private List<TextMeshProUGUI> levelTxt;
         [SerializeField] private List<TextMeshProUGUI> upgradeTxt;
         [SerializeField] private List<int> itemLevels;
-        [SerializeField] private int currentSelectedGun;
 
 
         #endregion

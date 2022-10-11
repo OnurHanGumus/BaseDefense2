@@ -65,4 +65,13 @@ public class MoneyController : MonoBehaviour
         _col.enabled = true;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+
+            gameObject.SetActive(false);
+        }
+    }
+
 }

@@ -83,6 +83,7 @@ namespace Managers
 
             StackSignals.Instance.onGetStackRemainPlace += OnGetStackCount;
             
+            
 
         }
         private void UnSubscribeEvent()
@@ -124,15 +125,26 @@ namespace Managers
             ItemAddOnStack.Execute(collectableGameObject);
         }
 
-
-
-        private void OnReset()
+        private void OnPlayerCloseWinPanel()
         {
             foreach (Transform childs in transform)
             {
-                Destroy(childs.gameObject);
+                //Destroy(childs.gameObject);
+                childs.transform.parent = null;
+                childs.gameObject.SetActive(false);
             }
             CollectableStack.Clear();
+        }
+
+        private void OnReset()
+        {
+            //foreach (Transform childs in transform)
+            //{
+            //    //Destroy(childs.gameObject);
+            //    childs.transform.parent = null;
+            //    childs.gameObject.SetActive(false);
+            //}
+            //CollectableStack.Clear();
         }
 
         private void OnReleaseCollectablesToBase()
