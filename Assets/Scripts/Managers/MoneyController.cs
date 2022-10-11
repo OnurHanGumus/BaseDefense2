@@ -70,7 +70,7 @@ public class MoneyController : MonoBehaviour
         if (other.CompareTag("Wall"))
         {
 
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 

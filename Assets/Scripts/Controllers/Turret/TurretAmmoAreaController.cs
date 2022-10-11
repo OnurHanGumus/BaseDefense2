@@ -54,7 +54,10 @@ namespace Controllers
         private IEnumerator ResetCollectableRotation(Transform ammoBox)
         {
             yield return new WaitForSeconds(0.5f);
-            ammoBox.rotation = Quaternion.Euler(Vector3.zero);
+            if (ammoBox != null)
+            {
+                ammoBox.rotation = Quaternion.Euler(Vector3.zero);
+            }
         }
     }
 }
