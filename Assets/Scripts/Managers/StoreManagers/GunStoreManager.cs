@@ -77,6 +77,11 @@ namespace Managers
 
         public void UpgradeItem(int id)
         {
+            if (itemLevels[id] >= 5)
+            {
+                return;
+            }
+
             if (ScoreSignals.Instance.onGetMoney() > _data.itemPrices[id].prices[itemLevels[id]])
             {
                 ScoreSignals.Instance.onScoreDecrease?.Invoke(ScoreTypeEnums.Money, _data.itemPrices[id].prices[itemLevels[id]]); //paramýz azaldý
@@ -119,10 +124,15 @@ namespace Managers
                     levelTxt[i].text = "LOCKED";
                     upgradeTxt[i].text = "BUY\n" + _data.itemPrices[i].prices[itemLevels[i]];
                 }
-                else
+                else if(itemLevels[i] < 5)
                 {
                     levelTxt[i].text = "LEVEL " + itemLevels[i].ToString();
                     upgradeTxt[i].text = "UPGRADE\n" + _data.itemPrices[i].prices[itemLevels[i]];
+                }
+                else
+                {
+                    levelTxt[i].text = "LEVEL " + itemLevels[i].ToString();
+                    upgradeTxt[i].text = "MAX";
                 }
             }
         }

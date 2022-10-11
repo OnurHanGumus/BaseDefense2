@@ -29293,10 +29293,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 438382620243570782, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_text
-      value: SMG
-      objectReference: {fileID: 0}
     - target: {fileID: 438382620257960477, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -29321,14 +29317,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 438382620336169386, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_text
-      value: Assault Riffle
-      objectReference: {fileID: 0}
-    - target: {fileID: 438382620418538426, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_text
-      value: Minigun
-      objectReference: {fileID: 0}
     - target: {fileID: 438382620597194734, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -29348,22 +29336,6 @@ PrefabInstance:
     - target: {fileID: 438382620597194734, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 438382620693955181, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b150be3f29bcf8d49aeb731ea753b7e1, type: 3}
-    - target: {fileID: 438382620693955181, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 438382620693955181, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 438382620693955181, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 438382620722550295, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
       propertyPath: m_AnchorMax.y
@@ -29411,38 +29383,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 438382620849193678, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 438382621064728902, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 386d6ff4ac7435349b9644f809b02ead, type: 3}
-    - target: {fileID: 438382621211597375, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_text
-      value: Shotgun
-      objectReference: {fileID: 0}
-    - target: {fileID: 438382621220111131, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_text
-      value: Rocket Launcher
-      objectReference: {fileID: 0}
-    - target: {fileID: 438382621284174799, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c3d3858877b0d1c44adb177903e991f6, type: 3}
-    - target: {fileID: 438382621571515577, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ef89ecca61f23e149aa10e9078f50fe8, type: 3}
-    - target: {fileID: 438382621588613659, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: cdf08b766f5a23b4e9bc708a85f9870c, type: 3}
-    - target: {fileID: 438382621617439258, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f52961008ac80a9458e557989dc30b14, type: 3}
-    - target: {fileID: 438382621755241161, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
-      propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 438382621755241162, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}

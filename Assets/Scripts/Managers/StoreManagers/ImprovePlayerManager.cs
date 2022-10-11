@@ -78,9 +78,18 @@ namespace Managers
 
         public void UpgradeItem(int id)
         {
-            itemLevels[id] = itemLevels[id] + 1;
-            SaveSignals.Instance.onUpgradePlayer?.Invoke(itemLevels);
-            UpdateTexts();
+            if (itemLevels[id] >= 4)
+            {
+                return;
+            }
+
+            if (ScoreSignals.Instance.onGetMoney() > _data.itemPrices[id].prices[itemLevels[id]])
+            {
+
+                itemLevels[id] = itemLevels[id] + 1;
+                SaveSignals.Instance.onUpgradePlayer?.Invoke(itemLevels);
+                UpdateTexts();
+            }
         }
 
         private void OnGetItemLevels(List<int> levels)
@@ -98,8 +107,17 @@ namespace Managers
         {
             for (int i = 0; i < itemLevels.Count; i++)//textleri initialize et
             {
-                levelTxt[i].text = "LEVEL " + (itemLevels[i] + 1).ToString();
-                upgradeTxt[i].text =  _data.itemPrices[i].prices[itemLevels[i]].ToString();
+                if (itemLevels[i] < 4) { 
+
+                    levelTxt[i].text = "LEVEL " + (itemLevels[i] + 1).ToString();
+                    upgradeTxt[i].text =  _data.itemPrices[i].prices[itemLevels[i]].ToString();
+                }
+                else
+                {
+                    levelTxt[i].text = "LEVEL " + (itemLevels[i] + 1).ToString();
+                    upgradeTxt[i].text = "MAX";
+
+                }
             }
         }
 
