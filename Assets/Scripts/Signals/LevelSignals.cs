@@ -1,6 +1,7 @@
 using Enums;
 using Extentions;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,6 +33,10 @@ namespace Signals
 
 
         public Func<int> onGetCurrentModdedLevel = delegate { return 0; };
+
+        //-----areas
+        public Func<SaveLoadStates, int[]> onGetAreasCount = delegate { return null; };
+
 
 
     }

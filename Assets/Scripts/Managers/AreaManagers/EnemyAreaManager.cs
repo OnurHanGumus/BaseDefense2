@@ -51,6 +51,9 @@ namespace Managers
             if (UnlockValue.Equals(0))
             {
                 LevelSignals.Instance.onBuyEnemyArea?.Invoke(AreaID);
+                AreaCounts[AreaID] = UnlockValue;
+
+                PlayerSignals.Instance.onPlayerLeaveBuyArea?.Invoke(SaveType, AreaCounts);
                 SetDeactivePanel();
 
                 //SetDeactive();

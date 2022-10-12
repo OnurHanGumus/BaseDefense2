@@ -45,6 +45,9 @@ namespace Managers
             if (UnlockValue.Equals(0))
             {
                 LevelSignals.Instance.onBuyTurret?.Invoke(AreaID);
+                AreaCounts[AreaID] = UnlockValue;
+
+                PlayerSignals.Instance.onPlayerLeaveBuyArea?.Invoke(SaveType, AreaCounts);
                 SetDeactive();
             }
         }

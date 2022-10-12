@@ -87,14 +87,6 @@ namespace Managers
         {
             return _loadGameCommand.OnLoadList(Enums.SaveLoadStates.OpenedTurrets, SaveFiles.WorkerCurrentCounts.ToString());
         }
-        private List<int> GetActiveTurretOwners()
-        {
-            return _loadGameCommand.OnLoadList(Enums.SaveLoadStates.OpenedTurretOwners, SaveFiles.WorkerCurrentCounts.ToString());
-        }
-        private List<int> GetActiveOpenedEnemyAreas()
-        {
-            return _loadGameCommand.OnLoadList(Enums.SaveLoadStates.OpenedEnemyAreas, SaveFiles.WorkerCurrentCounts.ToString());
-        }
 
         private CurrentLevelAreaData GetLevelData()
         {
@@ -152,7 +144,6 @@ namespace Managers
             _openTurrets = GetActiveTurrets();
 
             OnInitializeLevel();
-            //OnInitializeNextLevel();
             InitializeAreas();
             InitializeTurrets();
         }
@@ -163,8 +154,6 @@ namespace Managers
             CoreGameSignals.Instance.onClearActiveLevel?.Invoke();
             CoreGameSignals.Instance.onReset?.Invoke();
             CoreGameSignals.Instance.onSaveAndResetGameData?.Invoke();
-            //MineInitialize();
-            //WorkerManagerInitialize();
             CoreGameSignals.Instance.onLevelInitialize?.Invoke();
         }
 
@@ -187,14 +176,6 @@ namespace Managers
             UnityEngine.Object[] Levels = Resources.LoadAll("Levels");
             int newLevelId = _levelID % Levels.Length;
             levelLoader.InitializeLevel((GameObject)Levels[newLevelId], levelHolder.transform);
-
-        }
-
-        private void OnInitializeNextLevel()
-        {
-            //UnityEngine.Object[] Levels = Resources.LoadAll("Levels");
-            //int nextLevelId = (_levelID + 1) % Levels.Length;
-            //levelLoader.InitializeLevel((GameObject)Levels[nextLevelId], levelHolder.transform, new Vector3(0, 0, 450f));
 
         }
 
@@ -256,9 +237,6 @@ namespace Managers
             player.position = new Vector3(player.position.x, player.position.y, player.position.z - 450f);
             Vector3 oldBasePos = levelHolder.transform.GetChild(0).transform.position;
             levelHolder.transform.GetChild(0).transform.position = new Vector3(oldBasePos.x, oldBasePos.y, -450f);
-
-            
-
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Controllers
         #region Serialized Variables
 
         [SerializeField] private AreaManager manager;
-        [SerializeField] private SaveLoadStates type;
+
         [SerializeField] private ScoreTypeEnums scoreType = ScoreTypeEnums.Money;
 
         #endregion
@@ -37,7 +37,7 @@ namespace Controllers
             if (other.CompareTag("Player"))
             {
                 Debug.Log("playerExit");
-                PlayerSignals.Instance.onPlayerLeaveBuyArea?.Invoke(type);
+                manager.PlayerLeaveArea();
                 StopAllCoroutines();
                 return;
             }

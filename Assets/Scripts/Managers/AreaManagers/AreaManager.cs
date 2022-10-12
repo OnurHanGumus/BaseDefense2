@@ -20,6 +20,8 @@ namespace Managers
 
         #region Public Variables
         public int AreaID = 1;
+        public int[] AreaCounts;
+        public SaveLoadStates SaveType;
 
 
         #endregion
@@ -35,10 +37,12 @@ namespace Managers
         private CurrentLevelAreaData _data;
         private Material _material;
 
+        private int _currentValue;
+
         public int UnlockValue
         {
-            get { return _data.UnlockValues[AreaID]; }
-            set { _data.UnlockValues[AreaID] = value; }
+            get { return _currentValue; }
+            set { _currentValue = value; }
         }
 
 
@@ -56,6 +60,7 @@ namespace Managers
             _data = GetAreaData();
             _material = GetMaterial();
             meshRenderer.material = _material;
+            GetDatas();
             
         }
         public CurrentLevelAreaData GetAreaData() => Resources.Load<CD_Area>("Data/Counts/" + areaDataType.ToString()).totalLevelAreaData.Base[LevelSignals.Instance.onGetCurrentModdedLevel()];
@@ -79,12 +84,12 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            //LevelSignals.Instance.onBuyEnemyArea += OnBuy;
+            PlayerSignals.Instance.onPlayerLeaveBuyArea += OnPlayerLeaveArea;
         }
 
         private void UnsubscribeEvents()
         {
-            //LevelSignals.Instance.onBuyEnemyArea -= OnBuy;
+            PlayerSignals.Instance.onPlayerLeaveBuyArea -= OnPlayerLeaveArea;
 
         }
 
@@ -110,6 +115,10 @@ namespace Managers
             if (UnlockValue.Equals(0))
             {
                 LevelSignals.Instance.onBuyArea?.Invoke(AreaID);
+                AreaCounts[AreaID] = UnlockValue;
+
+                PlayerSignals.Instance.onPlayerLeaveBuyArea?.Invoke(SaveType, AreaCounts);
+
                 SetDeactive();
             }
         }
@@ -117,6 +126,32 @@ namespace Managers
         public virtual void SetDeactive()
         {
             gameObject.SetActive(false);
+        }
+
+        private void OnPlayerLeaveArea(SaveLoadStates saveState, int[] newArray)
+        {
+            if (saveState.Equals(SaveType))
+            {
+                AreaCounts = newArray;
+            }
+        }
+
+        public void PlayerLeaveArea()
+        {
+            AreaCounts[AreaID] = UnlockValue;
+            PlayerSignals.Instance.onPlayerLeaveBuyArea?.Invoke(SaveType, AreaCounts);
+        }
+
+        private void GetDatas()
+        {
+            AreaCounts = LevelSignals.Instance.onGetAreasCount(SaveType);
+            _currentValue = AreaCounts[AreaID];
+            if (UnlockValue.Equals(-1))
+            {
+                AreaCounts = _data.UnlockValues.ToArray();
+                _currentValue = AreaCounts[AreaID];
+
+            }
         }
 
 

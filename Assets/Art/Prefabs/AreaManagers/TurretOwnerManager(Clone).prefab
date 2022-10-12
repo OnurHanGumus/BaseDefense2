@@ -277,7 +277,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
-  type: 10
   scoreType: 0
 --- !u!114 &288257019436473928
 MonoBehaviour:
@@ -292,6 +291,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreaID: 0
+  AreaCounts: 
+  SaveType: 10
   valueText: {fileID: 0}
   areaDataType: 2
   meshRenderer: {fileID: 9180181086536905747}

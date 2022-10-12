@@ -57,6 +57,9 @@ namespace Managers
             if (UnlockValue.Equals(0))
             {
                 LevelSignals.Instance.onBuyTurretOwners?.Invoke(AreaID);
+                AreaCounts[AreaID] = UnlockValue;
+
+                PlayerSignals.Instance.onPlayerLeaveBuyArea?.Invoke(SaveType, AreaCounts);
                 SetActiveOwner();
                 turretManager.HasOwner = true;
 

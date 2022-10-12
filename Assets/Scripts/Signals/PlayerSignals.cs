@@ -25,7 +25,7 @@ namespace Signals
         public UnityAction<Transform> onPlayerInMilitaryAreaLowCapacity = delegate { };
 
 
-        public UnityAction<SaveLoadStates> onPlayerLeaveBuyArea = delegate { };
+        public UnityAction<SaveLoadStates, int[]> onPlayerLeaveBuyArea = delegate { };
 
         public UnityAction<int> onPlayerSelectGun = delegate { };
 

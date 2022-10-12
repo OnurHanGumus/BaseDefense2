@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 8112365398960156057}
-  type: 21
+  scoreType: 0
 --- !u!1 &1588083718533170546
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,6 +674,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreaID: 0
+  AreaCounts: 
+  SaveType: 21
   valueText: {fileID: 8784348830099365165}
   areaDataType: 4
   meshRenderer: {fileID: 6049053918623167070}
