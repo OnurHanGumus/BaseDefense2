@@ -9,8 +9,8 @@ public class SoldierShootRangeTrigger : MonoBehaviour
 {
     #region Self Variables
     #region Public Variables
-    public bool IsEnemyNear = false;
-    public Transform ShootTarget;
+    //public bool IsEnemyNear = false;
+    public List<Transform> TargetList;
 
     #endregion
 
@@ -22,12 +22,16 @@ public class SoldierShootRangeTrigger : MonoBehaviour
 
 
     #region Private Variables
-    private AllGunsData _data;
-    private int _firedBulletIndex = 0;
-    private bool _isShooting = false;
 
     #endregion
     #endregion
+
+
+    public bool IsEnemyNear
+    {
+        get { return TargetList.Count > 0; }
+    }
+
 
     #endregion
     private void Awake()
@@ -37,7 +41,7 @@ public class SoldierShootRangeTrigger : MonoBehaviour
 
     private void Init()
     {
-        _data = GetData();
+
     }
 
     private void Start()
@@ -49,16 +53,19 @@ public class SoldierShootRangeTrigger : MonoBehaviour
    
 
     
-    private AllGunsData GetData() => Resources.Load<CD_Gun>("Data/CD_Gun").Data;
     private GameObject GetBullet() => Resources.Load<GameObject>("Bullets/TurretBullet");
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            ShootTarget = other.transform;
-            IsEnemyNear = true;
+            if (TargetList.Contains(other.transform))
+            {
+                return;
+            }
+            TargetList.Add(other.transform);
             return;
         }
+        
 
     }
 
@@ -66,19 +73,17 @@ public class SoldierShootRangeTrigger : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            ShootTarget = null;
-            IsEnemyNear = false;
-
+            TargetList.Remove(other.transform);
             return;
         }
     }
 
     public void OnRemoveFromTargetList(Transform deadEnemy)
     {
-        if (ShootTarget == deadEnemy)
+        if (TargetList.Contains(deadEnemy))
         {
-            ShootTarget = null;
-            IsEnemyNear = false;
+            TargetList.Remove(deadEnemy);
+
         }
     }
 

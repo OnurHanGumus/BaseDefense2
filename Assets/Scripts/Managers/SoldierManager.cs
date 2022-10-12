@@ -133,7 +133,7 @@ namespace Managers
             {
                 if (shootrangeTrigger.IsEnemyNear)
                 {
-                    _movementController.Aim(shootrangeTrigger.ShootTarget);
+                    _movementController.Aim(shootrangeTrigger.TargetList[0]);
                     _animationController.SetSpeedVariable(_rig.velocity.magnitude);
                 }
                 else

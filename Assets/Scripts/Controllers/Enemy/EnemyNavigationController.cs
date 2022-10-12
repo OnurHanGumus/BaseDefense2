@@ -32,7 +32,7 @@ namespace Controllers
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("PlayerOutOfBase"))
+            if (other.CompareTag("PlayerOutOfBase") || other.CompareTag("Soldier"))
             {
                 manager.ChangeState(EnemyState.Run);
 
@@ -42,7 +42,7 @@ namespace Controllers
         }
         private void OnTriggerStay(Collider other)
         {
-            if (other.CompareTag("PlayerOutOfBase"))
+            if (other.CompareTag("PlayerOutOfBase") || other.CompareTag("Soldier"))
             {
                 manager.SetDirection((other.transform.position - transform.position).normalized, other.transform);
 
@@ -52,7 +52,7 @@ namespace Controllers
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("PlayerOutOfBase"))
+            if (other.CompareTag("PlayerOutOfBase") || other.CompareTag("Soldier"))
             {
                 manager.ChangeState(EnemyState.Walk);
 

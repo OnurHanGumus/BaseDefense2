@@ -51,7 +51,7 @@ namespace Controllers
             direction = new Vector3(direction.x, 0, direction.z);
 
             Vector3 tarpos = new Vector3(lookAtObject.position.x, 0, lookAtObject.position.z);
-            _rig.velocity = direction * _speed;
+            _rig.velocity = new Vector3(0, _rig.velocity.y, 0) + (direction * _speed);
             if (_rig.velocity != Vector3.zero)
             {
                 transform.LookAt(tarpos);
@@ -60,14 +60,14 @@ namespace Controllers
 
         public void Idle()
         {
-            _rig.velocity = Vector3.zero;
+            _rig.velocity = new Vector3(0, _rig.velocity.y, 0); 
         }
 
         public void MoveToDefaultTarget(Vector3 direction, Transform lookAtObject)
         {
             direction = new Vector3(direction.x, 0, direction.z);
             Vector3 tarpos = new Vector3(lookAtObject.position.x, 0, lookAtObject.position.z);
-            _rig.velocity = direction * _speed;
+            _rig.velocity = new Vector3(0, _rig.velocity.y, 0) + (direction * _speed);
             if (_rig.velocity != Vector3.zero)
             {
                 transform.LookAt(tarpos);
