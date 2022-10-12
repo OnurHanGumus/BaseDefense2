@@ -159,7 +159,7 @@ namespace Commands
 
         public void OnResetArray(SaveLoadStates states, string fileName = "SaveFile")
         {
-            int[] tempArray = new int[2] { -1, -1 };
+            int[] tempArray = new int[4] { -1, -1, -1, -1 };
             ES3.Save(states.ToString(), tempArray, fileName+".es3");
 
             //if (states.Equals(SaveLoadStates.OpenedAreasCounts))

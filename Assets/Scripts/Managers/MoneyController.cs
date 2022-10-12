@@ -19,7 +19,6 @@ public class MoneyController : MonoBehaviour
     #endregion
 
     #region Private Variables
-    private Rigidbody _rig;
     private BoxCollider _col;
 
     #endregion
@@ -31,7 +30,6 @@ public class MoneyController : MonoBehaviour
     }
     private void Init()
     {
-        _rig = GetComponent<Rigidbody>();
         _col = GetComponent<BoxCollider>();
     }
 

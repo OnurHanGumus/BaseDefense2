@@ -80,6 +80,8 @@ namespace Managers
             PlayerSignals.Instance.onPlayerInMilitaryArea += OnPlayerInMilitaryArea;
             PlayerSignals.Instance.onPlayerInMilitaryAreaLowCapacity += OnPlayerInMilitaryAreaLowCapacity;
             SoldierSignals.Instance.onBecomeSoldier += OnBecomeSoldier;
+
+            LevelSignals.Instance.onBossDefeated += OnBossDefeated;
         }
 
         private void UnsubscribeEvents()
@@ -90,6 +92,8 @@ namespace Managers
             PlayerSignals.Instance.onPlayerInMilitaryArea -= OnPlayerInMilitaryArea;
             PlayerSignals.Instance.onPlayerInMilitaryAreaLowCapacity -= OnPlayerInMilitaryAreaLowCapacity;
             SoldierSignals.Instance.onBecomeSoldier -= OnBecomeSoldier;
+
+            LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
 
         }
 
@@ -204,6 +208,11 @@ namespace Managers
                 SetDirection(exitPoint);
 
             }
+        }
+
+        private void OnBossDefeated()
+        {
+            Destroy(gameObject);
         }
 
     }
