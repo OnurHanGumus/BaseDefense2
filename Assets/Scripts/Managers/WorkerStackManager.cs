@@ -60,12 +60,14 @@ namespace Managers
         {
             CoreGameSignals.Instance.onReset += OnReset; 
             SaveSignals.Instance.onUpgradeWorker += OnUpgradeWorkerCapacityData;
+            LevelSignals.Instance.onBossDefeated += OnBossDefeated;
 
         }
         private void UnSubscribeEvent()
         {
             CoreGameSignals.Instance.onReset -= OnReset;
             SaveSignals.Instance.onUpgradeWorker -= OnUpgradeWorkerCapacityData;
+            LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
 
         }
         private void OnDisable()
@@ -177,6 +179,25 @@ namespace Managers
                 i.gameObject.SetActive(false);
             }
             Temp.Clear();
+        }
+
+        private void OnBossDefeated()
+        {
+            if (transform.parent.CompareTag("MoneyWorker"))
+            {
+                foreach (var i in CollectableStack)
+                {
+                    i.transform.parent = _poolObj;
+                    i.SetActive(false);
+                }
+                foreach (var i in Temp)
+                {
+                    i.transform.parent = _poolObj;
+                    i.SetActive(false);
+                }
+            }
+ 
+
         }
     }
 }

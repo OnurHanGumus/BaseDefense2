@@ -44,6 +44,7 @@ namespace Managers
         private int _capacity = 3;
         private WorkerAnimationController _animationController;
         private List<Vector3> _selectedWay = new List<Vector3>();
+        private bool _isBossDefeated = false;
 
         #endregion
 
@@ -80,6 +81,8 @@ namespace Managers
             StackSignals.Instance.onMoneyWorkerCollectMoney += rangeController.OnMoneyOnListCollected;
             PlayerSignals.Instance.onInteractionCollectable += rangeController.OnPlayerCollectedMoney;
 
+            LevelSignals.Instance.onBossDefeated += OnBossDefeated;
+
         }
 
         private void UnsubscribeEvents()
@@ -88,6 +91,7 @@ namespace Managers
             StackSignals.Instance.onMoneyWorkerCollectMoney -= rangeController.OnMoneyOnListCollected;
             PlayerSignals.Instance.onInteractionCollectable -= rangeController.OnPlayerCollectedMoney;
 
+            LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
 
         }
 
@@ -116,7 +120,7 @@ namespace Managers
 
         private IEnumerator SearchForMoney()
         {
-            
+
             if (rangeController.MoneyList.Count > 0)
             {
                 physicsCollider.enabled = false;
@@ -143,6 +147,11 @@ namespace Managers
 
         private void MoveToMoney()
         {
+            if (_isBossDefeated)
+            {
+                return;
+            }
+
             transform.DOMove(rangeController.MoneyList[0].position, 4 * _speed).SetSpeedBased(true).OnComplete(CheckCapacity).SetEase(Ease.Linear);
             transform.DOLookAt(rangeController.MoneyList[0].position, 1);
         }
@@ -205,6 +214,13 @@ namespace Managers
             }
             _capacity = upgradeList[0] + 1;
             _speed = upgradeList[1] + 1;
+        }
+
+        private void OnBossDefeated()
+        {
+
+            _isBossDefeated = true;
+
         }
     }
 }

@@ -23,9 +23,37 @@ namespace Controllers
         private List<Vector3> _locations;
         [SerializeField] private List<Transform> _gemList;
         private int _indeks = 0;
+        private Transform _poolObj;
 
         #endregion
         #endregion
+
+        #region Event Subscriptions
+
+        private void OnEnable()
+        {
+            SubscribeEvents();
+        }
+
+        private void SubscribeEvents()
+        {
+
+            LevelSignals.Instance.onBossDefeated += OnBossDefeated;
+        }
+
+        private void UnsubscribeEvents()
+        {
+            LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
+
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeEvents();
+        }
+
+        #endregion
+
 
         private void Awake()
         {
@@ -48,6 +76,7 @@ namespace Controllers
             };
 
             _gemList = new List<Transform>();
+            _poolObj = PoolSignals.Instance.onGetPoolManagerObj();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -63,6 +92,7 @@ namespace Controllers
                 {
                     LevelSignals.Instance.onMineGemCapacityFull?.Invoke();
                 }
+
                 return;
             }
 
@@ -89,6 +119,16 @@ namespace Controllers
         public int OnGetGems()
         {
             return _gemList.Count;
+        }
+
+        private void OnBossDefeated()
+        {
+            foreach (var i in _gemList)
+            {
+                i.parent = _poolObj;
+                i.gameObject.SetActive(false);
+            }
+
         }
 
 

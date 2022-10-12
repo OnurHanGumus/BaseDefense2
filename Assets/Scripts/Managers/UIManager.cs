@@ -174,6 +174,7 @@ namespace Managers
         }
         private void OnBossDefeated()
         {
+            Debug.Log("UI");
             UISignals.Instance.onOpenStorePanel?.Invoke(UIPanels.BaseCompletedPanel);
         }
     }

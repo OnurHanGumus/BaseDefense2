@@ -29,8 +29,10 @@ public class MinerManager : MonoBehaviour
 
     private MinerAnimationController _animationController;
     private Tween tweenRef;
+    private Transform _poolObj;
     #endregion
     private bool _mineFull = false;
+    private bool _isBossDefeated = false;
     #endregion
 
     private void Awake()
@@ -43,6 +45,7 @@ public class MinerManager : MonoBehaviour
 
         minesOnScene = GameObject.FindGameObjectsWithTag("Mine");
         gemArea = GameObject.FindGameObjectWithTag("GemArea").transform;
+        _poolObj = PoolSignals.Instance.onGetPoolManagerObj();
 
         SelectRandomMine();
 
@@ -64,12 +67,14 @@ public class MinerManager : MonoBehaviour
     {
         LevelSignals.Instance.onMineGemCapacityFull += OnGemCapacityFull;
         LevelSignals.Instance.onMineGemCapacityCleared += OnGemCapacityCleared;
+        LevelSignals.Instance.onBossDefeated += OnBossDefeated;
     }
 
     private void UnsubscribeEvents()
     {
         LevelSignals.Instance.onMineGemCapacityFull -= OnGemCapacityFull;
         LevelSignals.Instance.onMineGemCapacityCleared -= OnGemCapacityCleared;
+        LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
 
 
     }
@@ -106,19 +111,22 @@ public class MinerManager : MonoBehaviour
     private IEnumerator WorkCoroutine()
     {
         yield return new WaitForSeconds(2f);
-        CollectGem();
-        _animationController.SetAnimState(MinerAnimStates.Run);
-        ReturnGemToArea();
+        if (!_isBossDefeated)
+        {
+            CollectGem();
+            ReturnGemToArea();
+        }
+
     }
 
     private void CollectGem()
     {
         IsGemCollected = true;
         collectedGem = PoolSignals.Instance.onGetGemFromPool();
-        //if (collectedGem == null)
-        //{
-        //    collectedGem = Instantiate(gemPrefab, gemParent.position, Quaternion.Euler(180, 0, 0));
-        //}
+        if (collectedGem == null)
+        {
+            collectedGem = Instantiate(gemPrefab, gemParent.position, Quaternion.Euler(180, 0, 0), _poolObj);
+        }
         collectedGem.tag = "Collected";
         collectedGem.gameObject.SetActive(true);
         collectedGem.transform.position = gemParent.position;
@@ -128,10 +136,12 @@ public class MinerManager : MonoBehaviour
 
     private void ReturnGemToArea()
     {
-        if (_mineFull)
+        if (_mineFull || _isBossDefeated)
         {
+            _animationController.SetAnimState(MinerAnimStates.Idle);
             return;
         }
+        _animationController.SetAnimState(MinerAnimStates.Run);
         transform.DOMove(gemArea.position, 20f).SetSpeedBased(true).SetEase(Ease.Linear).OnComplete(SelectRandomMine);
         transform.DOLookAt(gemArea.position, 0.5f);
 
@@ -144,11 +154,14 @@ public class MinerManager : MonoBehaviour
     private IEnumerator ReleaseGemToGemArea(GameObject releaseObject)
     {
         yield return new WaitForSeconds(0.05f);
-
-        collectedGem.transform.parent = releaseObject.transform;
-        collectedGem.transform.position = new Vector3(releaseObject.transform.position.x, 0.75f, releaseObject.transform.position.z);
-        collectedGem = null;
-        IsGemCollected = false;
+        if (collectedGem != null)
+        {
+            collectedGem.transform.parent = releaseObject.transform;
+            collectedGem.transform.position = new Vector3(releaseObject.transform.position.x, 0.75f, releaseObject.transform.position.z);
+            collectedGem = null;
+            IsGemCollected = false;
+        }
+        
 
     }
 
@@ -159,8 +172,22 @@ public class MinerManager : MonoBehaviour
 
     private void OnGemCapacityCleared()
     {
-        _mineFull = false;
+        _animationController.SetAnimState(MinerAnimStates.Run);
+        _mineFull = false;;
         ReturnGemToArea();
+    }
+
+    private void OnBossDefeated()
+    {
+        StopAllCoroutines();
+        if (collectedGem != null)
+        {
+            collectedGem.transform.parent = _poolObj;
+            collectedGem.SetActive(false);
+        }
+        collectedGem = null;
+        _animationController.SetAnimState(MinerAnimStates.Idle);
+        _isBossDefeated = true;
     }
 
 }

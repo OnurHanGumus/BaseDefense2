@@ -47,6 +47,7 @@ TagManager:
   - CollectedAmmo
   - BaseBackDoor
   - Portal
+  - MoneyWorker
   layers:
   - Default
   - TransparentFX

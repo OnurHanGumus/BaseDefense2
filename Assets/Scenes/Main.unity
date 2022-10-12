@@ -15702,7 +15702,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107801432}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -15730,7 +15730,7 @@ MonoBehaviour:
   moneyPool: []
   amountEnemyToPool: 25
   amountGemToPool: 70
-  amountMoneyToPool: 100
+  amountMoneyToPool: 150
 --- !u!4 &1108203324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 408904, guid: 4cc487e002327cb43995ca1871bd142e, type: 3}
@@ -29745,6 +29745,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1648766380}
+    - target: {fileID: 5976397606005767054, guid: 5ad723caad2c0b34bb393a807f606ca3, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5976397606005767088, guid: 5ad723caad2c0b34bb393a807f606ca3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
