@@ -10545,6 +10545,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2537567334125057999, guid: f55cc82f1435a374d92c4557c8049e5f, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2869806781701919911, guid: f55cc82f1435a374d92c4557c8049e5f, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -10560,6 +10564,10 @@ PrefabInstance:
     - target: {fileID: 4825496020072456149, guid: f55cc82f1435a374d92c4557c8049e5f, type: 3}
       propertyPath: m_Name
       value: EnterTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825496020072456149, guid: f55cc82f1435a374d92c4557c8049e5f, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5359771657706483123, guid: f55cc82f1435a374d92c4557c8049e5f, type: 3}
       propertyPath: m_TagString
@@ -10616,6 +10624,10 @@ PrefabInstance:
     - target: {fileID: 6691904177953530866, guid: f55cc82f1435a374d92c4557c8049e5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7961220295105372255, guid: f55cc82f1435a374d92c4557c8049e5f, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f55cc82f1435a374d92c4557c8049e5f, type: 3}

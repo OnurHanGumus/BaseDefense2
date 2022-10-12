@@ -12059,9 +12059,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 1.1739
       objectReference: {fileID: 0}
+    - target: {fileID: 2196955577875567680, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2355736271047058980, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
       propertyPath: m_Name
       value: EnterTriggers
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355736271047058980, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2862952497269069569, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3383223962840997128, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
       propertyPath: m_IsActive
