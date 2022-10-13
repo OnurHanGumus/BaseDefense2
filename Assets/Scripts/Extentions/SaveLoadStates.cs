@@ -6,7 +6,6 @@ namespace Enums
     public enum SaveLoadStates
     {
         Level,
-        CurrentBossHealth,
         CurrentLevelOpenedAreas,
         Money,
         Gem,
@@ -37,5 +36,7 @@ namespace Enums
 
         MinerCount,
         SoldierCount,
+
+        BossHealth
     }
 }

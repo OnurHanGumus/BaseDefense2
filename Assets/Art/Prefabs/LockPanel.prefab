@@ -139,6 +139,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1442999587, guid: c79ed97ee865b4f41b1afb615f123fd7, type: 3}
+      propertyPath: SaveType
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442999587, guid: c79ed97ee865b4f41b1afb615f123fd7, type: 3}
       propertyPath: enemyPanel
       value: 
       objectReference: {fileID: 3033296354188740054}

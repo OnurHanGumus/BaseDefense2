@@ -67,6 +67,8 @@ namespace Managers
             SaveSignals.Instance.onUpgradeWorker += OnUpgradeWorker;
             SaveSignals.Instance.onGetOpenedTurrets += OnGetOpenedTurrets;
             SaveSignals.Instance.onGetWorkerUpgrades += OnGetWorkerUpgrades;
+            SaveSignals.Instance.onGetBossHealth += OnGetBossHealth;
+            SaveSignals.Instance.onBossTakedDamage += OnBossTakedDamage;
 
             UISignals.Instance.onChangeGunLevels += OnUpgradeGuns;
             UISignals.Instance.onGetGunLevels += OnGetGunLevels;
@@ -94,6 +96,8 @@ namespace Managers
             SaveSignals.Instance.onUpgradeWorker -= OnUpgradeWorker;
             SaveSignals.Instance.onGetWorkerUpgrades -= OnGetWorkerUpgrades;
             SaveSignals.Instance.onGetOpenedTurrets -= OnGetOpenedTurrets;
+            SaveSignals.Instance.onGetBossHealth -= OnGetBossHealth;
+            SaveSignals.Instance.onBossTakedDamage -= OnBossTakedDamage;
             UISignals.Instance.onChangeGunLevels -= OnUpgradeGuns;
             UISignals.Instance.onGetGunLevels -= OnGetGunLevels;
 
@@ -162,6 +166,10 @@ namespace Managers
         private void OnIncreaseSoldierCount(int newValue)
         {
             _saveGameCommand.OnSaveData(SaveLoadStates.SoldierCount, newValue, SaveFiles.WorkerCurrentCounts.ToString());
+        }
+        private void OnBossTakedDamage(int newValue)
+        {
+            _saveGameCommand.OnSaveData(SaveLoadStates.BossHealth, newValue, SaveFiles.SaveFile.ToString());
         }
 
         private void OnSaveGameData()
@@ -252,6 +260,10 @@ namespace Managers
         private int[] OnGetAreaCounts(SaveLoadStates saveType)
         {
             return _loadGameCommand.OnLoadArray(saveType, SaveFiles.WorkerCurrentCounts.ToString());
+        }
+        private int OnGetBossHealth()
+        {
+            return _loadGameCommand.OnLoadGameData(SaveLoadStates.BossHealth, SaveFiles.SaveFile.ToString());
         }
     }
 }

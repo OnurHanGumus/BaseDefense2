@@ -45,6 +45,10 @@ namespace Signals
         public UnityAction<int> onInitializeMoneyWorkerCount = delegate { };
         public UnityAction<int> onInitializeAmmoWorkerCount = delegate { };
 
+        public Func<int> onGetBossHealth = delegate { return 0; };
+        public UnityAction<int> onBossTakedDamage = delegate { };
+
+
 
     }
 }

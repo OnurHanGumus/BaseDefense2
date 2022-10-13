@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using Signals;
 
 public class BossManager : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class BossManager : MonoBehaviour
     {
         _rotationController = GetComponent<BossRotationController>();
     }
-    private SoldierData GetData() => Resources.Load<CD_Soldier>("Data/CD_Soldier").Data;
+    public BossData GetData() => Resources.Load<CD_Boss>("Data/CD_Boss").Data[LevelSignals.Instance.onGetCurrentModdedLevel()];
 
     #region Event Subscription
 
