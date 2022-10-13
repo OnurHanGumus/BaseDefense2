@@ -51,7 +51,7 @@ namespace Controllers
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("Enemy") || other.CompareTag("Boss"))
             {
                 if (targetList.Contains(other.transform))
                 {
@@ -65,7 +65,7 @@ namespace Controllers
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("Enemy")|| other.CompareTag("Boss"))
             {
                 targetList.Remove(other.transform);
                 return;
