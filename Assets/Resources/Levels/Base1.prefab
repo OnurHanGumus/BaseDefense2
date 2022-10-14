@@ -2752,7 +2752,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7389210259924913236}
-  - component: {fileID: 7616483503892353350}
   m_Layer: 0
   m_Name: 2
   m_TagString: Untagged
@@ -2780,21 +2779,6 @@ Transform:
   m_Father: {fileID: 3459638653490659575}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7616483503892353350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106823291345370062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c50b409707ba1d47876da05728d8875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minerPrefab: {fileID: 4215340406738084292, guid: a07bb0a56f15bf54eb1640512b7add8f, type: 3}
-  minerCountText: {fileID: 8662362779225955547}
-  gemAreaController: {fileID: 5293657398074733167}
 --- !u!1 &2190679497350920495
 GameObject:
   m_ObjectHideFlags: 0
@@ -15813,14 +15797,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
---- !u!4 &8072711648679536480 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3944214472193625376, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
-  m_PrefabInstance: {fileID: 5094875557787462208}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9058367529236354359 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4251797262187708279, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
+  m_PrefabInstance: {fileID: 5094875557787462208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8072711648679536480 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3944214472193625376, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
   m_PrefabInstance: {fileID: 5094875557787462208}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7401537636183850668
