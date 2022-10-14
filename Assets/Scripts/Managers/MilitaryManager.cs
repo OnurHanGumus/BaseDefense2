@@ -64,6 +64,7 @@ public class MilitaryManager : MonoBehaviour
     {
         LevelSignals.Instance.onMilitaryPopulationIncreased += OnMilitaryPopulationIncreased;
         LevelSignals.Instance.onGetMilitaryTotalCapacity += OnGetMilitaryAreaRemainCapacity;
+        SoldierSignals.Instance.onSoldierAttack += OnSoldierAttack;
     }
 
     private void UnsubscribeEvents()
@@ -71,6 +72,7 @@ public class MilitaryManager : MonoBehaviour
 
         LevelSignals.Instance.onMilitaryPopulationIncreased -= OnMilitaryPopulationIncreased;
         LevelSignals.Instance.onGetMilitaryTotalCapacity -= OnGetMilitaryAreaRemainCapacity;
+        SoldierSignals.Instance.onSoldierAttack += OnSoldierAttack;
 
 
     }
@@ -108,6 +110,13 @@ public class MilitaryManager : MonoBehaviour
         SoldierCount += amount;
         UpdateText();
     }
+
+    private void OnSoldierAttack()
+    {
+        SoldierCount = 0;
+        UpdateText();
+    }
+
 
     private int OnGetMilitaryAreaRemainCapacity()
     {

@@ -215,7 +215,11 @@ namespace Managers
 
         private void OnSoldierAttack()
         {
-            ChangeState(SoldierStates.GetOutTheBase0);
+            if (State.Equals(SoldierStates.Wait) || State.Equals(SoldierStates.Init))
+            {
+                ChangeState(SoldierStates.GetOutTheBase0);
+
+            }
         }
     }
 }

@@ -21,6 +21,7 @@ public class AttackButtonController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             SoldierSignals.Instance.onSoldierAttack?.Invoke();
+            LevelSignals.Instance.onSoldierCountIncreased?.Invoke(0);
         }
     }
 }
