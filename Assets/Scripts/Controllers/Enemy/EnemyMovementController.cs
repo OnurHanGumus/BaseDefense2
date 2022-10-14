@@ -72,5 +72,11 @@ namespace Controllers
             _rig.velocity = Vector3.zero;
             _rig.AddForce(dieDirection * 500);
         }
+
+        public void Deactive(Transform playerTransform)
+        {
+            _rig.velocity = Vector3.zero;
+            transform.LookAt(playerTransform);
+        }
     }
 }

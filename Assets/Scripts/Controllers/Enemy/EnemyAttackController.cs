@@ -22,10 +22,14 @@ namespace Controllers
 
       private void OnTriggerEnter(Collider other)
         {
+            if (manager.State.Equals(EnemyState.Die))
+            {
+                return;
+            }
             if (other.CompareTag("Player") || other.CompareTag("Soldier"))
             {
                 SetAnimation(EnemyAnimationState.Attack);
-
+                manager.ChangeState(EnemyState.Deactive);
                 return;
             }
 
@@ -33,9 +37,15 @@ namespace Controllers
 
         private void OnTriggerExit(Collider other)
         {
+            if (manager.State.Equals(EnemyState.Die))
+            {
+                return;
+            }
             if (other.CompareTag("Player") || other.CompareTag("Soldier"))
             {
                 SetAnimation(EnemyAnimationState.Walk);
+                manager.ChangeState(EnemyState.Run);
+
 
                 return;
             }

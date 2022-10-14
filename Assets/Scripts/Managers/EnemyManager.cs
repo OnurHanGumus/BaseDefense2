@@ -89,8 +89,6 @@ namespace Managers
         private void UnsubscribeEvents()
         {
             PlayerSignals.Instance.onPlayerReachBase -= OnPlayerDisapear;
-
-
         }
 
         private void OnDisable()
@@ -109,14 +107,16 @@ namespace Managers
         {
             if (State.Equals(EnemyState.Deactive))
             {
+                _movementController.Deactive(_playerTransform);
+            }
+            else if (State.Equals(EnemyState.Die))
+            {
                 attackController.SetAnimation(EnemyAnimationState.Die);
                 _movementController.DeathMove(_dieDirection);
                 triggerRange.SetActive(false);
 
                 physicsController.ResetData();
                 StartCoroutine(DeactivateEnemy());
-                    //PoolSignals.Instance.onAddEnemyToPool?.Invoke(transform);
-                //Destroy(gameObject, _enemyData.DestroyDelay);
             }
             else if (State.Equals(EnemyState.Walk))
             {
@@ -148,7 +148,7 @@ namespace Managers
 
         public void DieState(Vector3 dieVector)
         {
-            ChangeState(EnemyState.Deactive);
+            ChangeState(EnemyState.Die);
             _dieDirection = dieVector;
         }
 

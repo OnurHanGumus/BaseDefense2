@@ -5,8 +5,9 @@ namespace Enums
     [Serializable]
     public enum EnemyState
     {
+        Deactive,
         Walk,
         Run,
-        Deactive,
+        Die,
     }
 }
