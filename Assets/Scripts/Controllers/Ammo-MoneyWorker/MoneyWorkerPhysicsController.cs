@@ -36,11 +36,14 @@ namespace Controllers
         {
             if (other.CompareTag("Collectable"))
             {
-
-                if (!other.transform.Equals(moneyWorkerRangeController.MoneyList[0]))
+                if (moneyWorkerRangeController.MoneyList.Count > 0)
                 {
-                    return;
+                    if (!other.transform.Equals(moneyWorkerRangeController.MoneyList[0]))
+                    {
+                        return;
+                    }
                 }
+       
                 if (stackManager.CollectableStack.Count < stackManager.Capacity)
                 {
                     StackSignals.Instance.onMoneyWorkerCollectMoney?.Invoke(other.transform);
