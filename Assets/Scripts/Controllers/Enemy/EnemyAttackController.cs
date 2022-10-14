@@ -14,7 +14,6 @@ namespace Controllers
         #region Serialized Variables
 
         [SerializeField] private EnemyManager manager;
-        [SerializeField] private Animator animator;
 
         #endregion
 
@@ -28,7 +27,7 @@ namespace Controllers
             }
             if (other.CompareTag("Player") || other.CompareTag("Soldier"))
             {
-                SetAnimation(EnemyAnimationState.Attack);
+                manager.ChangeAnimState(EnemyAnimationState.Attack);
                 manager.ChangeState(EnemyState.Deactive);
                 return;
             }
@@ -43,7 +42,7 @@ namespace Controllers
             }
             if (other.CompareTag("Player") || other.CompareTag("Soldier"))
             {
-                SetAnimation(EnemyAnimationState.Walk);
+                manager.ChangeAnimState(EnemyAnimationState.Walk);
                 manager.ChangeState(EnemyState.Run);
 
 
@@ -52,10 +51,6 @@ namespace Controllers
 
         }
 
-        public void SetAnimation(EnemyAnimationState animationState)
-        {
-            animator.SetTrigger(animationState.ToString());
-
-        }
+        
     }
 }

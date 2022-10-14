@@ -21,6 +21,7 @@ namespace Managers
         #region Public Variables
         public SoldierStates State = SoldierStates.Init;
         public SoldierAnimStates AnimState = SoldierAnimStates.Run;
+        public bool IsSoldierDead = false;
 
         #endregion
 
@@ -152,6 +153,11 @@ namespace Managers
                         Move(rangeController.TargetList[0], SoldierStates.Fight, 2f);
                     }
                 } 
+            }
+            if (State.Equals(SoldierStates.Die))
+            {
+                _movementController.DeathMove();
+       
             }
         }
 

@@ -74,10 +74,9 @@ namespace Controllers
             }
         }
 
-        public void DeathMove(Vector3 dieDirection)
+        public void DeathMove()
         {
             _rig.velocity = Vector3.zero;
-            _rig.AddForce(dieDirection * 500);
         }
 
         public void Aim(Transform lookAtObject)

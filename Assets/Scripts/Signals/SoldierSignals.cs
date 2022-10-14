@@ -14,5 +14,6 @@ namespace Signals
         public Func<int> onGetReadySoldierAreaTotalCount = delegate { return 0; };
 
         public UnityAction onSoldierAttack = delegate { };
+        public UnityAction<Transform> onSoldierDeath = delegate { };
     }
 }

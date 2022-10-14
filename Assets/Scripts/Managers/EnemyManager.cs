@@ -40,12 +40,13 @@ namespace Managers
         private Material _material;
         private Vector3 _currentTarget;
         private Vector3 _currentDirection;
-        private Transform _playerTransform;
+        public Transform _playerTransform;
         private Transform _defaultTarget;
         private EnemyData _enemyData;
         
 
         private EnemyMovementController _movementController;
+        private EnemyAnimationController _animationController;
 
 
         private Vector3 _dieDirection;
@@ -65,6 +66,7 @@ namespace Managers
             _enemyData = GetData();
             targets = GameObject.FindGameObjectsWithTag("EnemyTarget");
 
+            _animationController = GetComponent<EnemyAnimationController>();
             SetDefaultTarget();
         }
         private EnemyData GetData() => Resources.Load<CD_Enemy>("Data/CD_Enemy").Data;
@@ -84,16 +86,20 @@ namespace Managers
         private void SubscribeEvents()
         {
             PlayerSignals.Instance.onPlayerReachBase += OnPlayerDisapear;
+            SoldierSignals.Instance.onSoldierDeath += OnSoldierDisapear;
         }
 
         private void UnsubscribeEvents()
         {
             PlayerSignals.Instance.onPlayerReachBase -= OnPlayerDisapear;
+            SoldierSignals.Instance.onSoldierDeath -= OnSoldierDisapear;
         }
 
         private void OnDisable()
         {
             UnsubscribeEvents();
+            State = EnemyState.Walk;
+
         }
 
         #endregion
@@ -111,7 +117,7 @@ namespace Managers
             }
             else if (State.Equals(EnemyState.Die))
             {
-                attackController.SetAnimation(EnemyAnimationState.Die);
+                _animationController.SetAnimation(EnemyAnimationState.Die);
                 _movementController.DeathMove(_dieDirection);
                 triggerRange.SetActive(false);
 
@@ -126,6 +132,10 @@ namespace Managers
             }
             else if (State.Equals(EnemyState.Run))
             {
+                if (_playerTransform == null)
+                {
+                    ChangeState(EnemyState.Walk);
+                }
                 _movementController.ChasePlayer(_currentDirection, _playerTransform);
             }
             
@@ -157,6 +167,16 @@ namespace Managers
             ChangeState(EnemyState.Walk);
 
         }
+        private void OnSoldierDisapear(Transform soldierTransform)
+        {
+            if (_playerTransform == soldierTransform)
+            {
+                ChangeState(EnemyState.Walk);
+                ChangeAnimState(EnemyAnimationState.Walk);
+                Debug.Log("öldü");
+            }
+
+        }
         private IEnumerator DeactivateEnemy()
         {
             InstantiateMoneys();
@@ -184,6 +204,11 @@ namespace Managers
                 }
                 _isMoneyInstantiated = true;
             }
+        }
+
+        public void ChangeAnimState(EnemyAnimationState state)
+        {
+            _animationController.SetAnimation(state);
         }
     }
 }
