@@ -31,8 +31,9 @@ public class BossPhysicsController : MonoBehaviour
         {
 
             _health = value;
-            if (_health < 0)
+            if (_health <= 0)
             {
+                _health = -1;
                 return;
             }
             SaveSignals.Instance.onBossTakedDamage?.Invoke(Health);
@@ -47,14 +48,21 @@ public class BossPhysicsController : MonoBehaviour
     {
         _data = manager.GetData();
         int savedHealth = SaveSignals.Instance.onGetBossHealth();
-        if (savedHealth > 0)
-        {
-            Health = savedHealth;
-        }
-        else
+
+        if(savedHealth == 0)
         {
             Health = _data.Health;
         }
+        if (savedHealth == -1)
+        {
+            LevelSignals.Instance.onBossDefeated?.Invoke();
+            Destroy(transform.parent.gameObject,0.2f);
+        }
+        else if (savedHealth > 0)
+        {
+            Health = savedHealth;
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)

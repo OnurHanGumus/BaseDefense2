@@ -63,7 +63,8 @@ namespace Managers
             PlayerSignals.Instance.onPlayerUseTurret += OnPlayerUseTurret;
             LevelSignals.Instance.onBossDefeated += OnBossDefeated;
             UISignals.Instance.onMoveOnAfterSuccessfulPanel += OnAfterBossDefeated;
-            CoreGameSignals.Instance.onNextLevel += OnNextLevel;
+            //CoreGameSignals.Instance.onNextLevel += OnNextLevel;
+            LevelSignals.Instance.onPlayerReachedToNewBase += OnNextLevel;
 
         }
 
@@ -72,7 +73,9 @@ namespace Managers
             PlayerSignals.Instance.onPlayerUseTurret -= OnPlayerUseTurret;
             LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
             UISignals.Instance.onMoveOnAfterSuccessfulPanel -= OnAfterBossDefeated;
-            CoreGameSignals.Instance.onNextLevel -= OnNextLevel;
+            //CoreGameSignals.Instance.onNextLevel -= OnNextLevel;
+            LevelSignals.Instance.onPlayerReachedToNewBase -= OnNextLevel;
+
         }
 
         private void OnDisable()
@@ -151,10 +154,7 @@ namespace Managers
 
         private void OnNextLevel()
         {
-            idleCamera.Follow = null;
-            idleCamera.transform.position = new Vector3(idleCamera.transform.position.x, idleCamera.transform.position.y, idleCamera.transform.position.z - 450f);
-            idleCamera.Follow = PlayerSignals.Instance.onGetPlayer();
-
+            idleCamera.ForceCameraPosition(new Vector3(idleCamera.transform.position.x, idleCamera.transform.position.y, idleCamera.transform.position.z - 450f), Quaternion.Euler(45, 0, 0));
         }
 
 
