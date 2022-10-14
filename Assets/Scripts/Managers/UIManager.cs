@@ -165,10 +165,10 @@ namespace Managers
         {
             LevelSignals.Instance.onBossDefeated?.Invoke();
         }
-        public void CloseSuccessfulPanel()
+        public void CloseSuccessfulPanel(bool isTrue)
         {
             UISignals.Instance.onCloseStorePanel?.Invoke(UIPanels.BaseCompletedPanel);
-            UISignals.Instance.onMoveOnAfterSuccessfulPanel?.Invoke();
+            UISignals.Instance.onCloseSuccessfulPanel?.Invoke(isTrue);
 
 
         }

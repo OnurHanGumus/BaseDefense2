@@ -44,15 +44,13 @@ public class BossManager : MonoBehaviour
     }
 
     private void SubscribeEvents()
-    { 
-
+    {
+        PlayerSignals.Instance.onPlayerDie += OnPlayerDie;
     }
 
     private void UnsubscribeEvents()
     {
-
-
-
+        PlayerSignals.Instance.onPlayerDie -= OnPlayerDie;
     }
 
     private void OnDisable()
@@ -83,5 +81,10 @@ public class BossManager : MonoBehaviour
             _rotationController.RotateCharacterToTarget(aimController.Target.position);
 
         }
+    }
+
+    private void OnPlayerDie()
+    {
+        aimController.Target = null;
     }
 }

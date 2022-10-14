@@ -13,5 +13,6 @@ namespace Signals
         public Func<Transform> onGetSoldierAreaTransform = delegate { return null; };
         public Func<int> onGetReadySoldierAreaTotalCount = delegate { return 0; };
 
+        public UnityAction onSoldierAttack = delegate { };
     }
 }

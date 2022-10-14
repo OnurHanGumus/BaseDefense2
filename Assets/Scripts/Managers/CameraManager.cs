@@ -62,7 +62,7 @@ namespace Managers
         {
             PlayerSignals.Instance.onPlayerUseTurret += OnPlayerUseTurret;
             LevelSignals.Instance.onBossDefeated += OnBossDefeated;
-            UISignals.Instance.onMoveOnAfterSuccessfulPanel += OnAfterBossDefeated;
+            UISignals.Instance.onCloseSuccessfulPanel += OnAfterBossDefeated;
             //CoreGameSignals.Instance.onNextLevel += OnNextLevel;
             LevelSignals.Instance.onPlayerReachedToNewBase += OnNextLevel;
 
@@ -72,7 +72,7 @@ namespace Managers
         {
             PlayerSignals.Instance.onPlayerUseTurret -= OnPlayerUseTurret;
             LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
-            UISignals.Instance.onMoveOnAfterSuccessfulPanel -= OnAfterBossDefeated;
+            UISignals.Instance.onCloseSuccessfulPanel -= OnAfterBossDefeated;
             //CoreGameSignals.Instance.onNextLevel -= OnNextLevel;
             LevelSignals.Instance.onPlayerReachedToNewBase -= OnNextLevel;
 
@@ -146,7 +146,7 @@ namespace Managers
 
         }
 
-        private void OnAfterBossDefeated()
+        private void OnAfterBossDefeated(bool isTrue)
         {
             ChangeGameState(CameraStates.IdleCam);
 

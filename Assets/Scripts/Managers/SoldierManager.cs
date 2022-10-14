@@ -84,6 +84,7 @@ namespace Managers
         {
             PlayerSignals.Instance.onEnemyDie += rangeController.OnRemoveFromTargetList;
             PlayerSignals.Instance.onEnemyDie += shootrangeTrigger.OnRemoveFromTargetList;
+            SoldierSignals.Instance.onSoldierAttack += OnSoldierAttack;
         }
 
         private void UnsubscribeEvents()
@@ -91,6 +92,7 @@ namespace Managers
 
             PlayerSignals.Instance.onEnemyDie -= rangeController.OnRemoveFromTargetList;
             PlayerSignals.Instance.onEnemyDie -= shootrangeTrigger.OnRemoveFromTargetList;
+            SoldierSignals.Instance.onSoldierAttack -= OnSoldierAttack;
 
         }
 
@@ -209,6 +211,11 @@ namespace Managers
         private void GetSoldierAreaPosition()
         {
             SetDirection(SoldierSignals.Instance.onGetSoldierAreaTransform());
+        }
+
+        private void OnSoldierAttack()
+        {
+            ChangeState(SoldierStates.GetOutTheBase0);
         }
     }
 }
