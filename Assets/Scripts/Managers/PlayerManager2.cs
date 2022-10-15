@@ -78,6 +78,7 @@ namespace Managers
             PlayerSignals.Instance.onRescuePersonAddedToStack += OnRescuePersonAddedToStack;
             PlayerSignals.Instance.onGetPlayerSpeed += _movementController.OnGetPlayerSpeed;
             PlayerSignals.Instance.onGetLastRescuePerson += OnGetLastRescuePerson;
+            PlayerSignals.Instance.onPlayerReachBase += OnPlayerReachToNewBase;
 
             SaveSignals.Instance.onInitializeSelectedGunId += OnGunSelected;
             SaveSignals.Instance.onInitializePlayerUpgrades += physicsController.OnGetHealthData;
@@ -95,6 +96,7 @@ namespace Managers
             PlayerSignals.Instance.onRescuePersonAddedToStack -= OnRescuePersonAddedToStack;
             PlayerSignals.Instance.onGetPlayerSpeed -= _movementController.OnGetPlayerSpeed;
             PlayerSignals.Instance.onGetLastRescuePerson -= OnGetLastRescuePerson;
+            PlayerSignals.Instance.onPlayerReachBase -= OnPlayerReachToNewBase;
 
 
             SaveSignals.Instance.onInitializeSelectedGunId -= OnGunSelected;
@@ -156,6 +158,11 @@ namespace Managers
             {
                 return RescuePersonList[RescuePersonList.Count - 1];
             }
+        }
+
+        private void OnPlayerReachToNewBase()
+        {
+            RescuePersonList.Clear();
         }
 
 
