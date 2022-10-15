@@ -6,6 +6,7 @@ using Managers;
 using Enums;
 using Data.ValueObject;
 using Sirenix.OdinInspector;
+using Data.UnityObject;
 
 namespace Controllers
 {
@@ -16,13 +17,13 @@ namespace Controllers
         #region Serialized Variables
 
         [SerializeField] private EnemyManager manager;
-        [SerializeField] private int pistolDamage = 25, shotgunDamage = 50, smgDamage = 20, assaultDamage = 40, rocketDamage = 100, minigunDamage = 80, turretDamage = 60;
-
 
         #endregion
         #region Private Variables
         private EnemyData _data;
+        private AllGunsData _gunData;
         [ShowInInspector] private int _health = 100;
+        private int _damage = 25;
         
         #endregion
         #endregion
@@ -30,87 +31,41 @@ namespace Controllers
         private void Start()
         {
             _data = manager.GetEnemyData();
+            _health = _data.Health;
+            _gunData = GetData();
+            _damage = GetDamageNumber();
         }
+        private AllGunsData GetData() => Resources.Load<CD_Gun>("Data/CD_Gun").Data;
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("PistolBullet"))
+            if (other.CompareTag("Bullet"))
             {
-                _health -= pistolDamage;
+                _health -= _damage;
 
-                if (_health <= 0)
-                {
-                    manager.DieState(other.attachedRigidbody.velocity);
-                    PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
-                }
-            }
-            else if (other.CompareTag("ShotgunBullet"))
-            {
-                _health -= shotgunDamage;
 
-                if (_health <= 0)
-                {
-                    manager.DieState(other.attachedRigidbody.velocity);
-                    PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
-                }
-            }
-            else if (other.CompareTag("SMGBullet"))
-            {
-                _health -= smgDamage;
-
-                if (_health <= 0)
-                {
-                    manager.DieState(other.attachedRigidbody.velocity);
-                    PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
-                }
-            }
-            else if (other.CompareTag("AssaultBullet"))
-            {
-                _health -= assaultDamage;
-
-                if (_health <= 0)
-                {
-                    manager.DieState(other.attachedRigidbody.velocity);
-                    PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
-                }
-            }
-            else if (other.CompareTag("RocketBullet"))
-            {
-                _health -= rocketDamage;
-
-                if (_health <= 0)
-                {
-                    manager.DieState(other.attachedRigidbody.velocity);
-                    PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
-                }
-            }
-            else if (other.CompareTag("MinigunBullet"))
-            {
-                _health -= minigunDamage;
-
-                if (_health <= 0)
-                {
-                    manager.DieState(other.attachedRigidbody.velocity);
-                    PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
-                }
             }
             else if (other.CompareTag("TurretBullet"))
             {
-                _health -= turretDamage;
+                int damage = 60;
+                _health -= damage;
+            }
 
-                if (_health <= 0)
-                {
-                    manager.DieState(other.attachedRigidbody.velocity);
-                    PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
-                }
+            if (_health <= 0)
+            {
+                manager.DieState(other.attachedRigidbody.velocity);
+                PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
             }
         }
 
         public void ResetData()
         {
             _health = _data.Health;
-
         }
 
+        private int GetDamageNumber()
+        {
+            return _gunData.guns[SaveSignals.Instance.onGetSelectedGun()].StartDamage;
+        }
     }
 }

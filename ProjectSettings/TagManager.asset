@@ -12,11 +12,6 @@ TagManager:
   - Enemy
   - EnemyTarget
   - Damage
-  - PistolBullet
-  - ShotgunBullet
-  - AssaultBullet
-  - RocketBullet
-  - MinigunBullet
   - Wall
   - PlayerOutOfBase
   - AmmoWorker
@@ -49,6 +44,7 @@ TagManager:
   - Portal
   - MoneyWorker
   - Boss
+  - Bullet
   layers:
   - Default
   - TransparentFX

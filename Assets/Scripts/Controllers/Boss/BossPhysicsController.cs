@@ -8,6 +8,7 @@ using Managers;
 using Sirenix.OdinInspector;
 using Signals;
 using TMPro;
+using Data.UnityObject;
 
 public class BossPhysicsController : MonoBehaviour
 {
@@ -16,13 +17,15 @@ public class BossPhysicsController : MonoBehaviour
     #region Serialized Variables
 
     [SerializeField] private BossManager manager;
-    [SerializeField] private int pistolDamage = 25, shotgunDamage = 50, smgDamage = 20, assaultDamage = 40, rocketDamage = 100, minigunDamage = 80, turretDamage = 60;
     [SerializeField] private TextMeshPro healthTxt;
 
     #endregion
     #region Private Variables
     private BossData _data;
     [ShowInInspector] private int _health = 100;
+    private AllGunsData _gunData;
+    private int _damage = 25;
+
 
     public int Health
     {
@@ -47,107 +50,28 @@ public class BossPhysicsController : MonoBehaviour
     private void Start()
     {
         _data = manager.GetData();
-        int savedHealth = SaveSignals.Instance.onGetBossHealth();
+        _gunData = GetData();
+        _damage = GetDamageNumber();
 
-        if(savedHealth == 0)
-        {
-            Health = _data.Health;
-        }
-        if (savedHealth == -1)
-        {
-            LevelSignals.Instance.onBossDefeated?.Invoke();
-            Destroy(transform.parent.gameObject,0.2f);
-        }
-        else if (savedHealth > 0)
-        {
-            Health = savedHealth;
-        }
-        
+        SetHealth();
     }
+    private AllGunsData GetData() => Resources.Load<CD_Gun>("Data/CD_Gun").Data;
+
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PistolBullet"))
+        if (other.CompareTag("Bullet"))
         {
-            Health -= pistolDamage;
-            SaveSignals.Instance.onBossTakedDamage?.Invoke(Health);
-            if (Health <= 0)
-            {
-                LevelSignals.Instance.onBossDefeated?.Invoke();
-                Destroy(transform.parent.gameObject, 0.5f);
-            }
+            Health -= _damage;
+
+
         }
-        else if (other.CompareTag("ShotgunBullet"))
+
+        if (_health <= 0)
         {
-            Health -= shotgunDamage;
-            SaveSignals.Instance.onBossTakedDamage?.Invoke(Health);
-
-            if (Health <= 0)
-            {
-                LevelSignals.Instance.onBossDefeated?.Invoke();
-                Destroy(transform.parent.gameObject, 0.5f);
-
-            }
-        }
-        else if (other.CompareTag("SMGBullet"))
-        {
-            Health -= smgDamage;
-            SaveSignals.Instance.onBossTakedDamage?.Invoke(Health);
-
-            if (Health <= 0)
-            {
-                LevelSignals.Instance.onBossDefeated?.Invoke();
-                Destroy(transform.parent.gameObject, 0.5f);
-
-            }
-        }
-        else if (other.CompareTag("AssaultBullet"))
-        {
-            Health -= assaultDamage;
-            SaveSignals.Instance.onBossTakedDamage?.Invoke(Health);
-
-            if (Health <= 0)
-            {
-                LevelSignals.Instance.onBossDefeated?.Invoke();
-                Destroy(transform.parent.gameObject, 0.5f);
-
-            }
-        }
-        else if (other.CompareTag("RocketBullet"))
-        {
-            Health -= rocketDamage;
-            SaveSignals.Instance.onBossTakedDamage?.Invoke(Health);
-
-            if (Health <= 0)
-            {
-                LevelSignals.Instance.onBossDefeated?.Invoke();
-                Destroy(transform.parent.gameObject, 0.5f);
-
-            }
-        }
-        else if (other.CompareTag("MinigunBullet"))
-        {
-            Health -= minigunDamage;
-            SaveSignals.Instance.onBossTakedDamage?.Invoke(Health);
-
-            if (Health <= 0)
-            {
-                LevelSignals.Instance.onBossDefeated?.Invoke();
-                Destroy(transform.parent.gameObject, 0.5f);
-
-            }
-        }
-        else if (other.CompareTag("TurretBullet"))
-        {
-            Health -= turretDamage;
-            SaveSignals.Instance.onBossTakedDamage?.Invoke(Health);
-
-            if (Health <= 0)
-            {
-                LevelSignals.Instance.onBossDefeated?.Invoke();
-                Destroy(transform.parent.gameObject, 0.5f);
-
-            }
+            LevelSignals.Instance.onBossDefeated?.Invoke();
+            Destroy(transform.parent.gameObject, 0.5f);
         }
     }
 
@@ -155,5 +79,28 @@ public class BossPhysicsController : MonoBehaviour
     {
         Health = _data.Health;
 
+    }
+    private int GetDamageNumber()
+    {
+        return _gunData.guns[SaveSignals.Instance.onGetSelectedGun()].StartDamage;
+    }
+
+    private void SetHealth()
+    {
+        int savedHealth = SaveSignals.Instance.onGetBossHealth();
+
+        if (savedHealth == 0)
+        {
+            Health = _data.Health;
+        }
+        if (savedHealth == -1)
+        {
+            LevelSignals.Instance.onBossDefeated?.Invoke();
+            Destroy(transform.parent.gameObject, 0.2f);
+        }
+        else if (savedHealth > 0)
+        {
+            Health = savedHealth;
+        }
     }
 }
