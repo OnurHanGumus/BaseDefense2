@@ -83,13 +83,15 @@ namespace Controllers
                     targetList.RemoveAt(0);
                     return;
                 }
-                targetGameObject.position = currentTarget.position;
+                targetGameObject.position = Vector3.Lerp(targetGameObject.position, currentTarget.position, 0.1f);
             }
 
             else if (targetList.Count == 0)
             {
                 //targetGameObject.localPosition = Vector3.MoveTowards(targetGameObject.transform.localPosition, new Vector3(0, 7.5f, 10f), 1f);
-                targetGameObject.localPosition = new Vector3(0, 7.5f, 10f);
+                targetGameObject.localPosition = Vector3.Lerp(targetGameObject.localPosition, new Vector3(0, 7.5f, 10f), 0.1f);
+
+                //targetGameObject.localPosition = new Vector3(0, 7.5f, 10f);
 
             }
         }
