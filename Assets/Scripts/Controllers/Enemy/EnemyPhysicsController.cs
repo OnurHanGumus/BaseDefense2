@@ -43,19 +43,25 @@ namespace Controllers
             {
                 _health -= _damage;
 
-
+                if (_health <= 0)
+                {
+                    manager.DieState(other.attachedRigidbody.velocity);
+                    PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
+                }
             }
             else if (other.CompareTag("TurretBullet"))
             {
                 int damage = 60;
                 _health -= damage;
+
+                if (_health <= 0)
+                {
+                    manager.DieState(other.attachedRigidbody.velocity);
+                    PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
+                }
             }
 
-            if (_health <= 0)
-            {
-                manager.DieState(other.attachedRigidbody.velocity);
-                PlayerSignals.Instance.onEnemyDie?.Invoke(manager.transform);
-            }
+            
         }
 
         public void ResetData()

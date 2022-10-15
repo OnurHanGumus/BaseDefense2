@@ -69,7 +69,7 @@ public class RescuePersonSpawnManager : MonoBehaviour
 
         if (activeRescuePersons.Count < 5)
         {
-            GameObject person = Instantiate(rescuePersonPrefab);
+            GameObject person = Instantiate(rescuePersonPrefab, transform);
 
             person.gameObject.SetActive(true);
             person.transform.position = new Vector3(Random.Range(-spawnPosX, spawnPosX), person.transform.position.y, Random.Range(50, 280));
