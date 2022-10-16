@@ -28,17 +28,29 @@ namespace Controllers
             _rig = GetComponent<Rigidbody>();
 
         }
-        private void Start()
+
+        private void OnEnable()
         {
             Move();
-            Destroy(gameObject, 3f);
+            StartCoroutine(Destroy(3f));
+
+        }
+
+        private void OnDisable()
+        {
+            _rig.velocity = Vector3.zero;
+        }
+        private void Start()
+        {
+            //Move();
+            //Destroy(gameObject, 3f);
 
         }
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Enemy"))
             {
-                Destroy(gameObject);
+                StartCoroutine(Destroy(0f));
                 return;
             }
 
@@ -47,6 +59,12 @@ namespace Controllers
         private void Move()
         {
             _rig.AddRelativeForce(Vector3.forward * bulletThrowForce, ForceMode.Force);
+        }
+
+        private IEnumerator Destroy(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -1,6 +1,7 @@
 using Data.UnityObject;
 using Data.ValueObject;
 using Managers;
+using Signals;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,16 +16,17 @@ namespace Controllers
 
         [SerializeField] private PlayerManager2 manager;
         [SerializeField] private List<Transform> targetList;
-        //[SerializeField] private Transform playerRotatablePart;
+        [SerializeField] private Transform playerRotatablePart;
         [SerializeField] private Transform currentTarget;
         [SerializeField] private Transform targetGameObject;
 
         [SerializeField] private GameObject currentBullet;
         [SerializeField] private Transform nisangah;
+        [SerializeField] private Transform playerTransform;
 
         #region Private Variables
         private AllGunsData _data;
-
+        private Transform _poolObj;
         #endregion
         #endregion
 
@@ -39,6 +41,7 @@ namespace Controllers
         private void Init()
         {
             _data = GetData();
+            _poolObj = PoolSignals.Instance.onGetPoolManagerObj();
         }
         private AllGunsData GetData() => Resources.Load<CD_Gun>("Data/CD_Gun").Data;
         private GameObject GetBullet() => Resources.Load<GameObject>("Bullets/" + manager.CurrentGunId.ToString());
@@ -83,7 +86,17 @@ namespace Controllers
                     targetList.RemoveAt(0);
                     return;
                 }
-                targetGameObject.position = Vector3.Lerp(targetGameObject.position, currentTarget.position, 0.1f);
+                targetGameObject.position = Vector3.Lerp(targetGameObject.position, currentTarget.position, 0.2f);
+                Quaternion quat = playerRotatablePart.localRotation;
+
+                if (quat.y <= -0.8)
+                { 
+                    playerTransform.Rotate(Vector3.up, -2f);
+                }
+                else if (quat.y >= 0.8)
+                {
+                    playerTransform.Rotate(Vector3.up, 2f);
+                }
             }
 
             else if (targetList.Count == 0)
@@ -105,7 +118,16 @@ namespace Controllers
 
             else if (targetList.Count > 0)
             {
-                Instantiate(currentBullet, nisangah.transform.position, nisangah.rotation);
+                GameObject temp = PoolSignals.Instance.onGetBulletFromPool();
+                if (temp == null)
+                {
+                    temp = Instantiate(currentBullet, nisangah.transform.position, nisangah.rotation, _poolObj);
+                    PoolSignals.Instance.onAddBulletToPool?.Invoke(temp);
+                }
+                temp.transform.position = nisangah.transform.position;
+                temp.transform.rotation = nisangah.transform.rotation;
+                temp.SetActive(true);
+
             }
             yield return new WaitForSeconds(_data.guns[manager.CurrentGunId].Delay);
             StartCoroutine(Shoot());

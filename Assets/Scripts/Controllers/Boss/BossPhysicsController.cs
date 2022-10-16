@@ -64,8 +64,6 @@ public class BossPhysicsController : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             Health -= _damage;
-
-
         }
 
         if (_health <= 0)

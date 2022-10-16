@@ -15330,6 +15330,7 @@ MonoBehaviour:
   enemyPool: []
   gemPool: []
   moneyPool: []
+  bulletPool: []
   amountEnemyToPool: 25
   amountGemToPool: 70
   amountMoneyToPool: 150
@@ -19737,6 +19738,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 408904, guid: 4cc487e002327cb43995ca1871bd142e, type: 3}
   m_PrefabInstance: {fileID: 1469690896}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1476688833 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1500702725214804556, guid: 0b75df46d92acbc489847240b5280674, type: 3}
+  m_PrefabInstance: {fileID: 569411625863441412}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1477624401
 PrefabInstance:
@@ -28951,6 +28957,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.4593551
       objectReference: {fileID: 0}
+    - target: {fileID: 7146503969275144216, guid: 0b75df46d92acbc489847240b5280674, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 292859999710572967}
+    - target: {fileID: 7146503969275144216, guid: 0b75df46d92acbc489847240b5280674, type: 3}
+      propertyPath: playerRotatablePart
+      value: 
+      objectReference: {fileID: 1476688833}
     - target: {fileID: 7368051609774080981, guid: 0b75df46d92acbc489847240b5280674, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 68.40151
