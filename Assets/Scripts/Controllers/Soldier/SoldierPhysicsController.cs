@@ -16,7 +16,7 @@ public class SoldierPhysicsController : MonoBehaviour
 
     #endregion
     #region Private Variables
-    private int _health = 10;
+    private int _health = 50;
 
     #endregion
     #endregion

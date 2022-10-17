@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 3583169514536199248}
   m_Layer: 11
   m_Name: Physics (1)
-  m_TagString: AmmoWorker
+  m_TagString: MoneyWorker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
