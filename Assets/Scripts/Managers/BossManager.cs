@@ -86,5 +86,7 @@ public class BossManager : MonoBehaviour
     private void OnPlayerDie()
     {
         aimController.Target = null;
+        aimController.PlayerTransform = null;
+
     }
 }

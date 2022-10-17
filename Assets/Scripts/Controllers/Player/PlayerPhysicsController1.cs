@@ -82,7 +82,7 @@ namespace Controllers
                 {
                     manager.IsPlayerDead = true;
                     manager.SetAnimState(PlayerAnimStates.Die);
-                    PlayerSignals.Instance.onPlayerDie?.Invoke();
+                    //PlayerSignals.Instance.onPlayerDie?.Invoke();
                     StartCoroutine(PlayerRespawn());
                 }
                 return;
@@ -186,7 +186,10 @@ namespace Controllers
 
         private IEnumerator PlayerRespawn()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
+            PlayerSignals.Instance.onPlayerDie?.Invoke();
+
+            yield return new WaitForSeconds(1.0f);
             manager.IsPlayerDead = false;
             PlayerSignals.Instance.onPlayerSpawned?.Invoke();
             SetHealth();

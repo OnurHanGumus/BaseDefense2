@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AreaID: 1
   AreaCounts: 
-  SaveType: 9
+  SaveType: 8
   valueText: {fileID: 8810261834492478448}
   areaDataType: 1
   meshRenderer: {fileID: 1482128926676216834}
