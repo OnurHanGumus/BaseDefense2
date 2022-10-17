@@ -32,8 +32,8 @@ public class BombController : MonoBehaviour
 
     private IEnumerator InstantiateParticle()
     {
-        yield return new WaitForSeconds(1f);
-        Instantiate(particle, transform.position, transform.rotation).transform.parent = transform;
+        yield return new WaitForSeconds(0.7f);
+        Instantiate(particle, new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), transform.rotation).transform.parent = transform;
 
     }
 }

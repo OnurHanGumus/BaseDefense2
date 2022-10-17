@@ -5513,7 +5513,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 647243243688216903, guid: a8394d752f121854085e69fa40cba983, type: 3}
   activeEnemies: []
-  spawnPosX: 20
+  spawnPosX: 110
 --- !u!4 &364627001
 Transform:
   m_ObjectHideFlags: 0
@@ -29055,11 +29055,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9036900712685964401, guid: 0b75df46d92acbc489847240b5280674, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.095
       objectReference: {fileID: 0}
     - target: {fileID: 9036900712685964401, guid: 0b75df46d92acbc489847240b5280674, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.492
+      value: 0.357
       objectReference: {fileID: 0}
     - target: {fileID: 9036900712685964401, guid: 0b75df46d92acbc489847240b5280674, type: 3}
       propertyPath: m_LocalRotation.w
@@ -29080,6 +29080,10 @@ PrefabInstance:
     - target: {fileID: 9036900712685964401, guid: 0b75df46d92acbc489847240b5280674, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042330193736453223, guid: 0b75df46d92acbc489847240b5280674, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9203113461998334215, guid: 0b75df46d92acbc489847240b5280674, type: 3}
       propertyPath: playOnAwake
