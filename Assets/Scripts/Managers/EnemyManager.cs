@@ -86,12 +86,14 @@ namespace Managers
         private void SubscribeEvents()
         {
             PlayerSignals.Instance.onPlayerReachBase += OnPlayerDisapear;
+            PlayerSignals.Instance.onPlayerSelectGun += physicsController.OnPlayerChangeGun;
             SoldierSignals.Instance.onSoldierDeath += OnSoldierDisapear;
         }
 
         private void UnsubscribeEvents()
         {
             PlayerSignals.Instance.onPlayerReachBase -= OnPlayerDisapear;
+            PlayerSignals.Instance.onPlayerSelectGun -= physicsController.OnPlayerChangeGun;
             SoldierSignals.Instance.onSoldierDeath -= OnSoldierDisapear;
         }
 
@@ -173,7 +175,6 @@ namespace Managers
             {
                 ChangeState(EnemyState.Walk);
                 ChangeAnimState(EnemyAnimationState.Walk);
-                Debug.Log("öldü");
             }
 
         }

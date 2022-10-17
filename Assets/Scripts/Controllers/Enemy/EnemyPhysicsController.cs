@@ -42,7 +42,7 @@ namespace Controllers
             if (other.CompareTag("Bullet"))
             {
                 _health -= _damage;
-
+                Debug.Log(_damage);
                 if (_health <= 0)
                 {
                     manager.DieState(other.attachedRigidbody.velocity);
@@ -72,6 +72,11 @@ namespace Controllers
         private int GetDamageNumber()
         {
             return _gunData.guns[SaveSignals.Instance.onGetSelectedGun()].StartDamage;
+        }
+
+        public void OnPlayerChangeGun(int gunId)
+        {
+            _damage = _gunData.guns[gunId].StartDamage;
         }
     }
 }
