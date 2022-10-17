@@ -23,6 +23,7 @@ namespace Controllers
         [SerializeField] private GameObject currentBullet;
         [SerializeField] private Transform nisangah;
         [SerializeField] private Transform playerTransform;
+        [SerializeField] private ParticleSystem shootingParticle;
 
         #region Private Variables
         private AllGunsData _data;
@@ -127,9 +128,11 @@ namespace Controllers
                 temp.transform.position = nisangah.transform.position;
                 temp.transform.rotation = nisangah.transform.rotation;
                 temp.SetActive(true);
+                shootingParticle.Play();
 
             }
             yield return new WaitForSeconds(_data.guns[manager.CurrentGunId].Delay);
+
             StartCoroutine(Shoot());
 
         }

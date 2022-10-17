@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Controllers
 {
-    public class ShotgunBulletController : BulletController
+    public class ShotgunBulletController : MonoBehaviour
     {
         #region Self Variables
 
