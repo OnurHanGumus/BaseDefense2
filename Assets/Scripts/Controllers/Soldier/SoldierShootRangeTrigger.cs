@@ -93,7 +93,7 @@ public class SoldierShootRangeTrigger : MonoBehaviour
         {
             Instantiate(currentBullet, nisangah.transform.position, nisangah.rotation);
         }
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         StartCoroutine(ShootEnemy());
 
     }

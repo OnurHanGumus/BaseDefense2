@@ -22,7 +22,7 @@ namespace Controllers
         #region Private Variables
         private EnemyData _data;
         private AllGunsData _gunData;
-        [ShowInInspector] private int _health = 100;
+        [ShowInInspector] private int _health = 50;
         private int _damage = 25;
         
         #endregion

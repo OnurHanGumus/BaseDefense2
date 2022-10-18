@@ -88,6 +88,9 @@ namespace Managers
             PlayerSignals.Instance.onPlayerReachBase += OnPlayerDisapear;
             PlayerSignals.Instance.onPlayerSelectGun += physicsController.OnPlayerChangeGun;
             SoldierSignals.Instance.onSoldierDeath += OnSoldierDisapear;
+
+            LevelSignals.Instance.onBossDefeated += OnBossDefeated;
+
         }
 
         private void UnsubscribeEvents()
@@ -95,7 +98,11 @@ namespace Managers
             PlayerSignals.Instance.onPlayerReachBase -= OnPlayerDisapear;
             PlayerSignals.Instance.onPlayerSelectGun -= physicsController.OnPlayerChangeGun;
             SoldierSignals.Instance.onSoldierDeath -= OnSoldierDisapear;
+
+            LevelSignals.Instance.onBossDefeated -= OnBossDefeated;
+
         }
+
 
         private void OnDisable()
         {
@@ -210,6 +217,11 @@ namespace Managers
         public void ChangeAnimState(EnemyAnimationState state)
         {
             _animationController.SetAnimation(state);
+        }
+
+        private void OnBossDefeated()
+        {
+            ChangeState(EnemyState.Die);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Controllers
             {
                 return;
             }
-            if (other.CompareTag("Player") || other.CompareTag("Soldier"))
+            if (other.CompareTag("PlayerOutOfBase") || other.CompareTag("Soldier"))
             {
                 manager.ChangeAnimState(EnemyAnimationState.Attack);
                 manager.ChangeState(EnemyState.Deactive);
@@ -40,7 +40,7 @@ namespace Controllers
             {
                 return;
             }
-            if (other.CompareTag("Player") || other.CompareTag("Soldier"))
+            if (other.CompareTag("PlayerOutOfBase") || other.CompareTag("Soldier"))
             {
                 manager.ChangeAnimState(EnemyAnimationState.Walk);
                 manager.ChangeState(EnemyState.Run);

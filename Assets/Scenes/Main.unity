@@ -28556,6 +28556,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 438382621583217009, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 985.8118
+      objectReference: {fileID: 0}
+    - target: {fileID: 438382621755241161, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 438382621755241162, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
       propertyPath: m_Name
       value: GunStorePanel
@@ -28595,6 +28603,18 @@ PrefabInstance:
     - target: {fileID: 438382621755241163, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438382621755241163, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 438382621755241163, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 438382621755241163, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 438382621755241163, guid: b90df94199ad4944198d6bc2c0b63486, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29192,6 +29212,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6728048470896858004, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728048470896858004, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728048470896858004, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728048470896858004, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -29242,6 +29274,14 @@ PrefabInstance:
     - target: {fileID: 6728048470896858007, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
       propertyPath: m_Name
       value: UpgradeWorkerStorePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728048470896858026, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728048471105932767, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 985.8118
       objectReference: {fileID: 0}
     - target: {fileID: 6728048472102393922, guid: 5e265cb396b1063459c4005281bbb691, type: 3}
       propertyPath: m_AnchorMax.y
@@ -29351,6 +29391,18 @@ PrefabInstance:
     - target: {fileID: 5976397606005767088, guid: 5ad723caad2c0b34bb393a807f606ca3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976397606005767088, guid: 5ad723caad2c0b34bb393a807f606ca3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976397606005767088, guid: 5ad723caad2c0b34bb393a807f606ca3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976397606005767088, guid: 5ad723caad2c0b34bb393a807f606ca3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5976397606005767088, guid: 5ad723caad2c0b34bb393a807f606ca3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29564,6 +29616,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8843076630479343549, guid: eb51d2bed5d3c2e4d979a4f978b28d3f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 985.8118
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843076630689370568, guid: eb51d2bed5d3c2e4d979a4f978b28d3f, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8843076630689370613, guid: eb51d2bed5d3c2e4d979a4f978b28d3f, type: 3}
       propertyPath: m_Name
       value: UpgradeStorePanel
@@ -29603,6 +29663,18 @@ PrefabInstance:
     - target: {fileID: 8843076630689370614, guid: eb51d2bed5d3c2e4d979a4f978b28d3f, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843076630689370614, guid: eb51d2bed5d3c2e4d979a4f978b28d3f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843076630689370614, guid: eb51d2bed5d3c2e4d979a4f978b28d3f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843076630689370614, guid: eb51d2bed5d3c2e4d979a4f978b28d3f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8843076630689370614, guid: eb51d2bed5d3c2e4d979a4f978b28d3f, type: 3}
       propertyPath: m_LocalPosition.x

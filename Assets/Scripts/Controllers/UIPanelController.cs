@@ -31,12 +31,15 @@ namespace Controllers
         public void OpenStoreMenu(UIPanels storeMenu)
         {
             Debug.Log((int)storeMenu);
-            panels[(int)storeMenu].GetComponent<CanvasGroup>().DOFade(1f, 0.5f);
+            panels[(int)storeMenu].GetComponent<CanvasGroup>().DOFade(1f, 0.5f).SetEase(Ease.OutBack);
+            //panels[(int)storeMenu].transform.DOScale(1, 0.5f).SetEase(Ease.OutBack);
+
             panels[(int)storeMenu].GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
         public void CloseStoreMenu(UIPanels storeMenu)
         {
             panels[(int)storeMenu].GetComponent<CanvasGroup>().DOFade(0f, 0.5f);
+            //panels[(int)storeMenu].transform.DOScale(0,0.5f).SetEase(Ease.Linear);
             panels[(int)storeMenu].GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
     }
