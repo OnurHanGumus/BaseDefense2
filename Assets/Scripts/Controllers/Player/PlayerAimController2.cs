@@ -88,16 +88,8 @@ namespace Controllers
                     return;
                 }
                 targetGameObject.position = Vector3.Lerp(targetGameObject.position, currentTarget.position, 0.2f);
-                Quaternion quat = playerRotatablePart.localRotation;
 
-                if (quat.y <= -0.8)
-                { 
-                    playerTransform.Rotate(Vector3.up, -2f);
-                }
-                else if (quat.y >= 0.8)
-                {
-                    playerTransform.Rotate(Vector3.up, 2f);
-                }
+        
             }
 
             else if (targetList.Count == 0)

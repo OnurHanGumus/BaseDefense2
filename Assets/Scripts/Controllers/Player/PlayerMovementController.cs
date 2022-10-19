@@ -12,7 +12,7 @@ namespace Controllers
         #region Self Variables
 
         #region Serialized Variables
-
+        [SerializeField] private Transform rotatedSpine;
 
         #endregion
 
@@ -46,11 +46,28 @@ namespace Controllers
             }
             _rig.velocity = new Vector3(_xValue * _data.Speed, 0, _zValue * _data.Speed);
 
+            Quaternion quat = rotatedSpine.localRotation;
+
+            if (quat.y <= -0.8)
+            {
+                transform.Rotate(Vector3.up, -2f);
+                rotatedSpine.Rotate(Vector3.up, 2f, Space.Self);
+                return;
+            }
+            else if (quat.y >= 0.8)
+            {
+                transform.Rotate(Vector3.up, 2f);
+                rotatedSpine.Rotate(Vector3.up, -2f, Space.Self);
+                return;
+            }
+
             if (_rig.velocity != Vector3.zero)
             {
+                
+
                 Quaternion toRotation = Quaternion.LookRotation(_rig.velocity, Vector3.up);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation,
-                                _data.RotationSpeed * Time.fixedDeltaTime);
+                                _data.RotationSpeed);
             }
         }
 

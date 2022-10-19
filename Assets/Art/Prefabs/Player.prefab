@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c45313019077854bb64acb160f9eac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotatedSpine: {fileID: 1500702725214804556}
 --- !u!114 &964196589902088739
 MonoBehaviour:
   m_ObjectHideFlags: 0
