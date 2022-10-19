@@ -53,12 +53,12 @@ public class GateController : MonoBehaviour
 
     private void Open()
     {
-        gate.DORotate(new Vector3(0,0,-90), 0.2f);
+        gate.DORotate(new Vector3(0,0,-90), 0.4f).SetEase(Ease.InOutBack);
     }
 
     private void Close()
     {
-        _closeTween = gate.DORotate(new Vector3(0, 0, 0), 0.2f);
+        _closeTween = gate.DORotate(new Vector3(0, 0, 0), 0.4f).SetEase(Ease.InOutBack);
 
     }
 

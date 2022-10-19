@@ -32,8 +32,6 @@ namespace Managers
         #region Private Variables
 
         private StackData _stackData;
-        //private StackMoveController _stackMoveController;
-        private ItemRemoveOnStackCommand _itemRemoveOnStackCommand;
         private Transform _playerTransform;
         private bool _canReleaseCollectablesToBase = true;
         private bool _isReleasingAmmos = false;
@@ -61,7 +59,6 @@ namespace Managers
         private void Init()
         {
             ItemAddOnStack = new ItemAddOnStackCommand(ref CollectableStack, transform, _stackData);
-            _itemRemoveOnStackCommand = new ItemRemoveOnStackCommand(ref CollectableStack, ref levelHolder);
             _poolObj = PoolSignals.Instance.onGetPoolManagerObj();
         }
 
@@ -73,7 +70,6 @@ namespace Managers
 
         private void SubscribeEvent()
         {
-            CoreGameSignals.Instance.onReset += OnReset;
             PlayerSignals.Instance.onInteractionCollectable += OnInteractionWithCollectable;
             PlayerSignals.Instance.onPlayerReachBase += OnReleaseCollectablesToBase;
             PlayerSignals.Instance.onPlayerReachTurretAmmoArea += OnReleaseAmmosToTurretArea;
@@ -88,7 +84,6 @@ namespace Managers
         }
         private void UnSubscribeEvent()
         {
-            CoreGameSignals.Instance.onReset -= OnReset;
             PlayerSignals.Instance.onInteractionCollectable -= OnInteractionWithCollectable;
             PlayerSignals.Instance.onPlayerReachBase -= OnReleaseCollectablesToBase;
             PlayerSignals.Instance.onPlayerReachTurretAmmoArea -= OnReleaseAmmosToTurretArea;
@@ -136,16 +131,6 @@ namespace Managers
             CollectableStack.Clear();
         }
 
-        private void OnReset()
-        {
-            //foreach (Transform childs in transform)
-            //{
-            //    //Destroy(childs.gameObject);
-            //    childs.transform.parent = null;
-            //    childs.gameObject.SetActive(false);
-            //}
-            //CollectableStack.Clear();
-        }
 
         private void OnReleaseCollectablesToBase()
         {
@@ -179,10 +164,10 @@ namespace Managers
             {
                 Vector3 pos1 = new Vector3(Temp[i].transform.localPosition.x + Random.Range(-4, 4), Temp[i].transform.localPosition.y + 10, Temp[i].transform.localPosition.z + Random.Range(-4, 4));
                 Vector3 pos2 = new Vector3(Temp[i].transform.localPosition.x + Random.Range(-4, 4), Temp[i].transform.localPosition.y - 30, Temp[i].transform.localPosition.z + Random.Range(-4, 4));
-                Temp[i].transform.DOLocalPath(new Vector3[2] { pos1, pos2 }, 0.5f);
+                Temp[i].transform.DOLocalPath(new Vector3[2] { pos1, pos2 }, 0.3f);
                 yield return new WaitForSeconds(0.1f);
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             RemoveItem();
         }
 
