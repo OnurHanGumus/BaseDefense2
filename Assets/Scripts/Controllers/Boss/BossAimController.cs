@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 using DG.Tweening;
+using Signals;
+
 public class BossAimController : MonoBehaviour
 {
     #region Self Variables
@@ -73,8 +75,18 @@ public class BossAimController : MonoBehaviour
         if (PlayerTransform != null)
         {
             targetSprite.transform.position = PlayerTransform.position;
-            Target = targetSprite.transform; Transform bomb = Instantiate(bombPrefab, bombInstantiateTransform.transform.position, bombPrefab.transform.rotation).transform;
-            bomb.DOPath(new Vector3[] { new Vector3((targetSprite.transform.position.x + transform.position.x) / 2, 40, (targetSprite.transform.position.z + transform.position.z) / 2), new Vector3(targetSprite.transform.position.x, targetSprite.transform.position.y -10f, targetSprite.transform.position.z) }, 1f);
+            Target = targetSprite.transform;
+
+
+            Transform bomb = PoolSignals.Instance.onGetBombFromPool().transform;
+            bomb.position = bombInstantiateTransform.transform.position;
+            bomb.gameObject.SetActive(true);
+                //Instantiate(bombPrefab, bombInstantiateTransform.transform.position, bombPrefab.transform.rotation).transform;
+
+
+
+            bomb.DOPath(new Vector3[] { new Vector3((targetSprite.transform.position.x + transform.position.x) / 2, 40, (targetSprite.transform.position.z + transform.position.z) / 2), 
+                new Vector3(targetSprite.transform.position.x, targetSprite.transform.position.y -10f, targetSprite.transform.position.z) }, 1f);
             yield return new WaitForSeconds(1f);
             targetSprite.transform.DOScale(0, 0.5f);
             targetSprite.DOFade(0, 0.5f);

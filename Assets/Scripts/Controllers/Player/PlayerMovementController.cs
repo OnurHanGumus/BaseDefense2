@@ -63,8 +63,6 @@ namespace Controllers
 
             if (_rig.velocity != Vector3.zero)
             {
-                
-
                 Quaternion toRotation = Quaternion.LookRotation(_rig.velocity, Vector3.up);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation,
                                 _data.RotationSpeed);

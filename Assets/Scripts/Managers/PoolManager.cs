@@ -13,6 +13,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private List<GameObject> enemyPrefabs;
     [SerializeField] private GameObject gemPrefab;
     [SerializeField] private GameObject moneyPrefab;
+    [SerializeField] private GameObject bossBombPrefab;
     //[SerializeField] private List<GameObject> gunPrefabs;
 
 
@@ -20,6 +21,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private List<GameObject> gemPool;
     [SerializeField] private List<GameObject> moneyPool;
     [SerializeField] private List<GameObject> bulletPool;
+    [SerializeField] private List<GameObject> bossBombPool;
 
     //[SerializeField] private List<GameObject> pistolBulletPool;
     //[SerializeField] private List<GameObject> shotgunBulletPool;
@@ -33,6 +35,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private int amountEnemyToPool = 25;
     [SerializeField] private int amountGemToPool = 70;
     [SerializeField] private int amountMoneyToPool = 100;
+    [SerializeField] private int amountBombToPool = 10;
     //[SerializeField] private int amountPistolBulletToPool = 20, amountSMGBulletToPool = 25, amountShotgunBulletToPool = 20, amountAssaultRiffleBulletToPool = 30, amountRocketBulletToPool = 15, amountMinigunBulletToPool = 60;
 
 
@@ -51,10 +54,12 @@ public class PoolManager : MonoBehaviour
         InitializeEnemyPool();
         InitializeGemPool();
         InitializeMoneyPool();
+        InitializeMBombPool();
         //InitializeBulletPool();
     }
 
     
+
     #region Event Subscriptions
     void Start()
     {
@@ -71,6 +76,7 @@ public class PoolManager : MonoBehaviour
         PoolSignals.Instance.onGetGemFromPool += OnGetGem;
         PoolSignals.Instance.onGetMoneyFromPool += OnGetMoney;
         PoolSignals.Instance.onGetBulletFromPool += OnGetBullet;
+        PoolSignals.Instance.onGetBombFromPool += OnGetBomb;
 
 
         PoolSignals.Instance.onGetPoolManagerObj += OnGetPoolManagerObj;
@@ -87,6 +93,7 @@ public class PoolManager : MonoBehaviour
         PoolSignals.Instance.onGetGemFromPool -= OnGetGem;
         PoolSignals.Instance.onGetMoneyFromPool -= OnGetMoney;
         PoolSignals.Instance.onGetBulletFromPool -= OnGetBullet;
+        PoolSignals.Instance.onGetBombFromPool -= OnGetBomb;
 
         PoolSignals.Instance.onGetPoolManagerObj -= OnGetPoolManagerObj;
 
@@ -140,53 +147,20 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    //private void InitializeBulletPool()
-    //{
-    //    pistolBulletPool = new List<GameObject>();
-    //    shotgunBulletPool = new List<GameObject>();
-    //    smgBulletPool = new List<GameObject>();
-    //    assaultRiffleBulletPool = new List<GameObject>();
-    //    rocketLauncherBulletPool = new List<GameObject>();
-    //    minigunBulletPool = new List<GameObject>();
+    private void InitializeMBombPool()
+    {
+        bossBombPool = new List<GameObject>();
+        GameObject tmp;
+        for (int i = 0; i < amountBombToPool; i++)
+        {
+            tmp = Instantiate(bossBombPrefab, transform);
+            tmp.SetActive(false);
+            bossBombPool.Add(tmp);
+        }
+    }
 
-    //    GameObject tmp;
-    //    for (int i = 0; i < amountPistolBulletToPool; i++)
-    //    {
-    //        tmp = Instantiate(gunPrefabs[0], transform);
-    //        tmp.SetActive(false);
-    //        pistolBulletPool.Add(tmp);
-    //    }
-    //    for (int i = 0; i < amountShotgunBulletToPool; i++)
-    //    {
-    //        tmp = Instantiate(gunPrefabs[1], transform);
-    //        tmp.SetActive(false);
-    //        shotgunBulletPool.Add(tmp);
-    //    }
-    //    for (int i = 0; i < amountSMGBulletToPool; i++)
-    //    {
-    //        tmp = Instantiate(gunPrefabs[2], transform);
-    //        tmp.SetActive(false);
-    //        smgBulletPool.Add(tmp);
-    //    }
-    //    for (int i = 0; i < amountAssaultRiffleBulletToPool; i++)
-    //    {
-    //        tmp = Instantiate(gunPrefabs[3], transform);
-    //        tmp.SetActive(false);
-    //        assaultRiffleBulletPool.Add(tmp);
-    //    }
-    //    for (int i = 0; i < amountRocketBulletToPool; i++)
-    //    {
-    //        tmp = Instantiate(gunPrefabs[4], transform);
-    //        tmp.SetActive(false);
-    //        rocketLauncherBulletPool.Add(tmp);
-    //    }
-    //    for (int i = 0; i < amountMinigunBulletToPool; i++)
-    //    {
-    //        tmp = Instantiate(gunPrefabs[5], transform);
-    //        tmp.SetActive(false);
-    //        minigunBulletPool.Add(tmp);
-    //    }
-    //}
+
+  
     public GameObject OnGetEnemy()
     {
         for (int i = 0; i < amountEnemyToPool; i++)
@@ -235,6 +209,17 @@ public class PoolManager : MonoBehaviour
             if (!bulletPool[i].activeInHierarchy)
             {
                 return bulletPool[i];
+            }
+        }
+        return null;
+    }
+    public GameObject OnGetBomb()
+    {
+        for (int i = 0; i < amountBombToPool; i++)
+        {
+            if (!bossBombPool[i].activeInHierarchy)
+            {
+                return bossBombPool[i];
             }
         }
         return null;

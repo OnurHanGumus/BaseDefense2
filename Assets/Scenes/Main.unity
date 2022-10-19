@@ -15327,13 +15327,16 @@ MonoBehaviour:
   - {fileID: 647243243688216903, guid: a8394d752f121854085e69fa40cba983, type: 3}
   gemPrefab: {fileID: 379725593890370474, guid: 5af2ad45c65c392438653a29acef5c06, type: 3}
   moneyPrefab: {fileID: 4241539800598019036, guid: c970efbc22f03f148b419dc333d150bd, type: 3}
+  bossBombPrefab: {fileID: 4092540209600978600, guid: 0c409b296c56b4a4c834326e83858c04, type: 3}
   enemyPool: []
   gemPool: []
   moneyPool: []
   bulletPool: []
+  bossBombPool: []
   amountEnemyToPool: 25
   amountGemToPool: 70
   amountMoneyToPool: 150
+  amountBombToPool: 10
 --- !u!4 &1108203324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 408904, guid: 4cc487e002327cb43995ca1871bd142e, type: 3}
