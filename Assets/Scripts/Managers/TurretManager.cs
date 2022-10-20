@@ -33,10 +33,13 @@ namespace Managers
 
         [SerializeField] private Transform turretPlayerParentObj;
         [SerializeField] private Transform turretRotatableObj;
+        [SerializeField] private List <MeshRenderer> meshRenderer;
+
         #endregion
 
         #region Private Variables
         private float _xValue, _zValue;
+        private Material _material;
 
 
         #endregion
@@ -49,7 +52,11 @@ namespace Managers
         }
         private void Init()
         {
-
+            _material = GetMaterial();
+            foreach (var i in meshRenderer)
+            {
+                i.material = _material;
+            }
         }
         public Material GetMaterial() => Resources.Load<Material>("Materials/TurretFloor/" + (LevelSignals.Instance.onGetCurrentModdedLevel() + 1).ToString());
 

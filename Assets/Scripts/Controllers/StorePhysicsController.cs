@@ -13,10 +13,25 @@ namespace Controllers
 
         #region Serialized Variables
         [SerializeField] private UIPanels releatedPanel;
+        [SerializeField] private MeshRenderer meshRenderer;
 
         #endregion
+        #region
+        private Material _material;
 
         #endregion
+        #endregion
+        private void Awake()
+        {
+            Init();
+        }
+        private void Init()
+        {
+            _material = GetMaterial();
+            meshRenderer.material = _material;
+
+        }
+        public virtual Material GetMaterial() => Resources.Load<Material>("Materials/TurretFloor/" + (LevelSignals.Instance.onGetCurrentModdedLevel() + 1).ToString());
 
         private void OnTriggerEnter(Collider other)
         {

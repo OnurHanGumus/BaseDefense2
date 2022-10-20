@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   releatedPanel: 2
+  meshRenderer: {fileID: 4770390034813807208}
 --- !u!65 &844066591731429339
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -24,10 +24,12 @@ namespace Managers
 
         #region Serialized Variables
 
+        [SerializeField] private MeshRenderer meshRenderer;
 
         #endregion
 
         #region Private Variables
+        private Material _material;
 
 
         #endregion
@@ -41,7 +43,11 @@ namespace Managers
         private void Init()
         {
             GetCapacityData();
+            _material = GetMaterial();
+            meshRenderer.material = _material;
         }
+        public Material GetMaterial() => Resources.Load<Material>("Materials/TurretFloor/" + (LevelSignals.Instance.onGetCurrentModdedLevel() + 1).ToString());
+
         #region Event Subscription
 
         private void OnEnable()

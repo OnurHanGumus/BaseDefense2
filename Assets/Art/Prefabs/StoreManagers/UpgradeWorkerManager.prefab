@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   releatedPanel: 4
+  meshRenderer: {fileID: 956608340514674055}
 --- !u!65 &4955050675986976820
 BoxCollider:
   m_ObjectHideFlags: 0

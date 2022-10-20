@@ -173,3 +173,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorkerCapacity: 3
+  meshRenderer: {fileID: 2128697956663707507}

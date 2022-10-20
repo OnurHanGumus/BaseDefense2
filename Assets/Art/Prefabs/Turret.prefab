@@ -5275,6 +5275,10 @@ MonoBehaviour:
   rangeController: {fileID: 421417729820947117}
   turretPlayerParentObj: {fileID: 7151548076601985960}
   turretRotatableObj: {fileID: 4201852267820194798}
+  meshRenderer:
+  - {fileID: 6718203596496182036}
+  - {fileID: 7790227925790530200}
+  - {fileID: 8371102774006013085}
 --- !u!1001 &4628081525630356686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5450,5 +5454,20 @@ PrefabInstance:
 --- !u!4 &278475156739741088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7472795131235132578, guid: d438233d28418a24baad5e0b1567e4b2, type: 3}
+  m_PrefabInstance: {fileID: 7235565212776509698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6718203596496182036 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4130432708677446166, guid: d438233d28418a24baad5e0b1567e4b2, type: 3}
+  m_PrefabInstance: {fileID: 7235565212776509698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7790227925790530200 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 609559624045374362, guid: d438233d28418a24baad5e0b1567e4b2, type: 3}
+  m_PrefabInstance: {fileID: 7235565212776509698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8371102774006013085 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1172560600230653343, guid: d438233d28418a24baad5e0b1567e4b2, type: 3}
   m_PrefabInstance: {fileID: 7235565212776509698}
   m_PrefabAsset: {fileID: 0}
