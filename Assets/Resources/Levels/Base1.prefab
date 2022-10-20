@@ -13529,6 +13529,7 @@ MonoBehaviour:
   rangeController: {fileID: 2109705473141742126}
   turretPlayerParentObj: {fileID: 8908515714130092843}
   turretRotatableObj: {fileID: 2509062043217130349}
+  meshRenderer: []
 --- !u!1 &7591589488758596698
 GameObject:
   m_ObjectHideFlags: 0
@@ -15703,6 +15704,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 1.1739
       objectReference: {fileID: 0}
+    - target: {fileID: 1708361336193869868, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6902a1eee373b8249936f226835279d0, type: 2}
+    - target: {fileID: 2133076992426331051, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6902a1eee373b8249936f226835279d0, type: 2}
     - target: {fileID: 2169171633330013176, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
       propertyPath: SaveType
       value: 21
@@ -15727,6 +15736,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3662840623519116271, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6902a1eee373b8249936f226835279d0, type: 2}
     - target: {fileID: 3944214472193625376, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -15771,6 +15784,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4076934662174379207, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6902a1eee373b8249936f226835279d0, type: 2}
     - target: {fileID: 4465172275259119514, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
       propertyPath: m_Name
       value: Base1
