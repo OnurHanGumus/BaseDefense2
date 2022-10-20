@@ -26,7 +26,7 @@ public class GateController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("MoneyWorker"))
+        if (other.CompareTag("Player") || other.CompareTag("MoneyWorker") || other.CompareTag("Soldier"))
         {
             if (_closeTween!= null)
             {
@@ -39,7 +39,7 @@ public class GateController : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("MoneyWorker"))
+        if (other.CompareTag("Player") || other.CompareTag("MoneyWorker") || other.CompareTag("Soldier"))
         {
             enteredCount--;
 

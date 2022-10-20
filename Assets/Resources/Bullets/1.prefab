@@ -222,7 +222,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &1447946273474579832
@@ -237,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6afab0d162f9b46a8a0aff659ad295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletThrowForce: 1500
   bulletThrowForce: 1500
   rotation: 10
 --- !u!1 &5337394776331445156
@@ -300,7 +299,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &7638537564982886143
@@ -315,7 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6afab0d162f9b46a8a0aff659ad295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletThrowForce: 1500
   bulletThrowForce: 1500
   rotation: -10
 --- !u!1 &5337394776605894729
@@ -492,7 +490,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &3643847970687505795
@@ -507,6 +505,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6afab0d162f9b46a8a0aff659ad295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletThrowForce: 1500
   bulletThrowForce: 1500
   rotation: 0

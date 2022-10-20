@@ -17,6 +17,7 @@ namespace Signals
         public UnityAction<GameObject> onInteractionCollectable = delegate { };
         public UnityAction onPlayerReachBase = delegate { };
         public UnityAction onPlayerLeaveBase = delegate { };
+        public UnityAction onPlayerReachNewBase = delegate { };
 
         public UnityAction<GameObject> onPlayerReachTurretAmmoArea = delegate { };
         public UnityAction<Transform> onPlayerInMineArea = delegate { };

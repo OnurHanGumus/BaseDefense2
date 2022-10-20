@@ -107,6 +107,7 @@ public class MineManager : MonoBehaviour
 
     private void OnMinerCountIncreased(int amount)
     {
+        Debug.Log(amount);
         MinerCount += amount;
         UpdateText();
     }

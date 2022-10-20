@@ -53,7 +53,7 @@ public class SoldierShootRangeTrigger : MonoBehaviour
    
 
     
-    private GameObject GetBullet() => Resources.Load<GameObject>("Bullets/TurretBullet");
+    private GameObject GetBullet() => Resources.Load<GameObject>("Bullets/0");
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))

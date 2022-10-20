@@ -15,5 +15,5 @@ MonoBehaviour:
   Data:
     Speed: 15
     Damage: 5
-    Health: 50
+    Health: 100
     DestroyDelay: 0.5

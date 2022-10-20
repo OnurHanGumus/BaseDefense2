@@ -16,7 +16,7 @@ MonoBehaviour:
     guns:
     - GunId: 0
       GunName: Pistol
-      StartDamage: 25
+      StartDamage: 20
       CurrentDamage: 5
       Delay: 0.5
       Level: 1

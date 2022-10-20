@@ -158,7 +158,16 @@ namespace Controllers
                 ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Gem, gemCount);
                 //Destroy(other.gameObject, 0.5f);
             }
-            
+
+            if (other.CompareTag("Portal"))
+            {
+                PlayerSignals.Instance.onPlayerReachNewBase?.Invoke();
+                manager.SetAnimBool(PlayerAnimStates.Base, true);
+                manager.IsOnBase = true;
+                ChangeColliderActiveness(false);
+                return;
+            }
+
         }
 
         private void OnTriggerExit(Collider other)

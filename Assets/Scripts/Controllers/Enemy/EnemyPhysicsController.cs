@@ -42,7 +42,6 @@ namespace Controllers
             if (other.CompareTag("Bullet"))
             {
                 _health -= _damage;
-                Debug.Log(_damage);
                 if (_health <= 0)
                 {
                     manager.DieState(other.attachedRigidbody.velocity);

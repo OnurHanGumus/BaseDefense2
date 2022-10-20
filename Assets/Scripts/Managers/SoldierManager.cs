@@ -111,6 +111,10 @@ namespace Managers
 
         private void FixedUpdate()
         {
+            if (IsSoldierDead == true)
+            {
+                return;
+            }
             if (State.Equals(SoldierStates.Init))
             {
                 Move(_targetTransform, SoldierStates.Wait, 0.5f);
@@ -157,6 +161,7 @@ namespace Managers
             if (State.Equals(SoldierStates.Die))
             {
                 _movementController.DeathMove();
+                IsSoldierDead = true;
        
             }
         }
