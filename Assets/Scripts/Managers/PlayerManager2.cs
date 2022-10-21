@@ -82,6 +82,8 @@ namespace Managers
 
             SaveSignals.Instance.onInitializeSelectedGunId += OnGunSelected;
             SaveSignals.Instance.onInitializePlayerUpgrades += physicsController.OnGetHealthData;
+            SaveSignals.Instance.onUpgradePlayer += physicsController.OnGetHealthLevel;
+
         }
 
         private void UnsubscribeEvents()
@@ -101,6 +103,7 @@ namespace Managers
 
             SaveSignals.Instance.onInitializeSelectedGunId -= OnGunSelected;
             SaveSignals.Instance.onInitializePlayerUpgrades -= physicsController.OnGetHealthData;
+            SaveSignals.Instance.onUpgradePlayer -= physicsController.OnGetHealthLevel;
 
         }
 

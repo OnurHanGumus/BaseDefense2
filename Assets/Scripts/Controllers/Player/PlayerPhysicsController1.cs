@@ -19,6 +19,7 @@ namespace Controllers
         [SerializeField] private PlayerManager2 manager;
 
         [SerializeField] private BoxCollider boxCollider;
+        [SerializeField] private HealthBarManager healthBarManager;
 
 
         #endregion
@@ -28,6 +29,14 @@ namespace Controllers
         private int _healtLevel = 1;
         #endregion
         #endregion
+
+        public int Health
+        {
+            get { return _health; }
+            set { _health = value;
+                healthBarManager.HealthText.text = Health.ToString();
+            }
+        }
 
 
         private void Start()
@@ -76,9 +85,9 @@ namespace Controllers
                 {
                     return;
                 }
-                _health -= 10;
-                Debug.Log(_health);
-                if (_health <= 0)
+                Health -= 10;
+                Debug.Log(Health);
+                if (Health <= 0)
                 {
                     manager.IsPlayerDead = true;
                     manager.SetAnimState(PlayerAnimStates.Die);
@@ -184,12 +193,12 @@ namespace Controllers
             {
                 upgradeList = new List<int>() { 0, 0, 0 };
             }
-            _healtLevel = upgradeList[0] + 1;
+            _healtLevel = upgradeList[2] + 1;
         }
 
         private void SetHealth()
         {
-            _health = _data.Health + (10 * _healtLevel);
+            Health = _data.Health + (10 * _healtLevel);
 
         }
 
@@ -209,6 +218,16 @@ namespace Controllers
         private void ChangeColliderActiveness(bool state)
         {
             boxCollider.enabled = state;
+        }
+
+        public void OnGetHealthLevel(List<int> upgradeList)
+        {
+            if (upgradeList.Count < 3)
+            {
+                upgradeList = new List<int>() { 0, 0, 0 };
+            }
+            _healtLevel = upgradeList[2] + 1;
+            SetHealth();
         }
     }
 }

@@ -1,11 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Commands;
-using Controllers;
-using Data.UnityObject;
-using Data.ValueObject;
-using Extentions;
-using Keys;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -69,12 +64,9 @@ namespace Managers
             SaveSignals.Instance.onGetWorkerUpgrades += OnGetWorkerUpgrades;
             SaveSignals.Instance.onGetBossHealth += OnGetBossHealth;
             SaveSignals.Instance.onBossTakedDamage += OnBossTakedDamage;
-
             UISignals.Instance.onChangeGunLevels += OnUpgradeGuns;
             UISignals.Instance.onGetGunLevels += OnGetGunLevels;
-
             LevelSignals.Instance.onGetAreasCount += OnGetAreaCounts;
-
         }
 
         private void UnsubscribeEvents()
@@ -100,9 +92,7 @@ namespace Managers
             SaveSignals.Instance.onBossTakedDamage -= OnBossTakedDamage;
             UISignals.Instance.onChangeGunLevels -= OnUpgradeGuns;
             UISignals.Instance.onGetGunLevels -= OnGetGunLevels;
-
             LevelSignals.Instance.onGetAreasCount -= OnGetAreaCounts;
-
         }
 
         private void OnDisable()
@@ -199,9 +189,6 @@ namespace Managers
         {
             _saveGameCommand.OnSaveArray(type, newArray, SaveFiles.WorkerCurrentCounts.ToString());
         }
-
-
-        //Store
         private void SendCollectablesInformation()
         {
             SaveSignals.Instance.onInitializeSetMoney?.Invoke(_loadGameCommand.OnLoadGameData(SaveLoadStates.Money));
@@ -257,7 +244,6 @@ namespace Managers
 
         }
 
-        //---------------------------------
         private int[] OnGetAreaCounts(SaveLoadStates saveType)
         {
             return _loadGameCommand.OnLoadArray(saveType, SaveFiles.WorkerCurrentCounts.ToString());
