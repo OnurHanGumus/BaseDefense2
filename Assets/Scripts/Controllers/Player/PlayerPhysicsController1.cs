@@ -27,6 +27,8 @@ namespace Controllers
         private PlayerData _data;
         private int _health = 100;
         private int _healtLevel = 1;
+        [ShowInInspector] private int _maxHealth = 100;
+        private bool _isHealing = false;
         #endregion
         #endregion
 
@@ -34,7 +36,13 @@ namespace Controllers
         {
             get { return _health; }
             set { _health = value;
+                
+                if (_health > _maxHealth)
+                {
+                    _maxHealth = _health;
+                }
                 healthBarManager.HealthText.text = Health.ToString();
+                healthBarManager.SetHealthBarScale(_health, _maxHealth);
             }
         }
 
@@ -60,6 +68,11 @@ namespace Controllers
                 manager.SetAnimBool(PlayerAnimStates.Base, true);
                 manager.IsOnBase = true;
                 ChangeColliderActiveness(false);
+                if (_isHealing || Health >= _maxHealth)
+                {
+                    return;
+                }
+                StartCoroutine(StartHealing());
                 return;
             }
 
@@ -73,6 +86,8 @@ namespace Controllers
             {
                 manager.SetAnimBool(PlayerAnimStates.Base, false);
                 manager.IsOnBase = false;
+                StopAllCoroutines();
+                _isHealing = false;
 
                 ChangeColliderActiveness(true);
 
@@ -185,6 +200,7 @@ namespace Controllers
             {
                 CoreGameSignals.Instance.onNextLevel?.Invoke();
                 LevelSignals.Instance.onPlayerReachedToNewBase?.Invoke();
+                return;
             }
         }
         public void OnGetHealthData(List<int> upgradeList)
@@ -193,7 +209,7 @@ namespace Controllers
             {
                 upgradeList = new List<int>() { 0, 0, 0 };
             }
-            _healtLevel = upgradeList[2] + 1;
+            _healtLevel = upgradeList[2];
         }
 
         private void SetHealth()
@@ -226,8 +242,26 @@ namespace Controllers
             {
                 upgradeList = new List<int>() { 0, 0, 0 };
             }
-            _healtLevel = upgradeList[2] + 1;
+            _healtLevel = upgradeList[2];
             SetHealth();
+        }
+
+        private IEnumerator StartHealing()
+        {
+            _isHealing = true;
+            yield return new WaitForSeconds(0.3f);
+            if (Health >= _maxHealth)
+            {
+                _isHealing = false;
+
+                StopAllCoroutines();
+            }
+            else
+            {
+                Health += 1;
+                StartCoroutine(StartHealing());
+            }
+
         }
     }
 }
