@@ -64,10 +64,7 @@ namespace Controllers
 
             if (other.CompareTag("BaseTrigger"))
             {
-                PlayerSignals.Instance.onPlayerReachBase?.Invoke();
-                manager.SetAnimBool(PlayerAnimStates.Base, true);
-                manager.IsOnBase = true;
-                ChangeColliderActiveness(false);
+                PlayerOnBase();
                 if (_isHealing || Health >= _maxHealth)
                 {
                     return;
@@ -88,6 +85,7 @@ namespace Controllers
                 manager.IsOnBase = false;
                 StopAllCoroutines();
                 _isHealing = false;
+                PlayerSignals.Instance.onPlayerLeaveBase?.Invoke();
 
                 ChangeColliderActiveness(true);
 
@@ -127,9 +125,6 @@ namespace Controllers
                 }
                 else
                 {
-                    //int remainPlace = manager.RescuePersonList.Count - mineRemainCapacity;
-                    Debug.Log(mineRemainCapacity);
-
                     LevelSignals.Instance.onMinerCountIncreased?.Invoke(mineRemainCapacity);
 
                     for (int i = 0; i < mineRemainCapacity; i++)
@@ -226,6 +221,7 @@ namespace Controllers
             yield return new WaitForSeconds(1.0f);
             manager.IsPlayerDead = false;
             PlayerSignals.Instance.onPlayerSpawned?.Invoke();
+            PlayerOnBase();
             SetHealth();
             transform.parent.position = new Vector3(0, 0.4f, 0);
             manager.SetAnimState(PlayerAnimStates.Idle);
@@ -262,6 +258,15 @@ namespace Controllers
                 StartCoroutine(StartHealing());
             }
 
+        }
+
+        private void PlayerOnBase()
+        {
+            PlayerSignals.Instance.onPlayerReachBase?.Invoke();
+
+            manager.SetAnimBool(PlayerAnimStates.Base, true);
+            manager.IsOnBase = true;
+            ChangeColliderActiveness(false);
         }
     }
 }

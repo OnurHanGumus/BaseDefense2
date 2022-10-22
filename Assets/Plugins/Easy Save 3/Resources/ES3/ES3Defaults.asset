@@ -31,19 +31,19 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
+    - Boxophobic.PolyverseSkies.Runtime
     - Cinemachine
     - ToonyColorsPro2.Demo
+    - Boxophobic.Utils.Scripts
     - Sirenix.OdinInspector.CompatibilityLayer
     - ToonyColorsPro.Runtime
-    - Boxophobic.Utils.Scripts
-    - Boxophobic.PolyverseSkies.Runtime
     - Boxophobic.PolyverseSkies.Scripts
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
+    - Boxophobic.Utils.Editor
     - ToonyColorsPro.Editor
+    - Boxophobic.PolyverseSkies.Editor
     - ToonyColorsPro.Demo.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
-    - Boxophobic.Utils.Editor
-    - Boxophobic.PolyverseSkies.Editor
     showAdvancedSettings: 1
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

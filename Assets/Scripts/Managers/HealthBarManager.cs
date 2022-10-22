@@ -21,6 +21,7 @@ public class HealthBarManager : MonoBehaviour
     [SerializeField] private StackManager stackManager;
 
     [SerializeField] private int stackCurrentNumber = 0;
+    [SerializeField] private GameObject healthBarGameObj;
     #endregion
 
     #region Private Variables
@@ -44,12 +45,17 @@ public class HealthBarManager : MonoBehaviour
     {
         StackSignals.Instance.onStackIncreased += OnStackIncreased;
         StackSignals.Instance.onStackDecreased += OnStackDecreased;
+
+        PlayerSignals.Instance.onPlayerReachBase += OnPlayerReachToBase;
+        PlayerSignals.Instance.onPlayerLeaveBase += OnPlayerLeaveTheBase;
     }
     private void UnSubscribeEvent()
     {
         StackSignals.Instance.onStackIncreased -= OnStackIncreased;
         StackSignals.Instance.onStackDecreased -= OnStackDecreased;
 
+        PlayerSignals.Instance.onPlayerReachBase -= OnPlayerReachToBase;
+        PlayerSignals.Instance.onPlayerLeaveBase -= OnPlayerLeaveTheBase;
     }
     private void OnDisable()
     {
@@ -95,5 +101,15 @@ public class HealthBarManager : MonoBehaviour
         
         stackCurrentNumber = value;
 
+    }
+
+    private void OnPlayerReachToBase()
+    {
+        healthBarGameObj.SetActive(false);
+
+    }
+    private void OnPlayerLeaveTheBase()
+    {
+        healthBarGameObj.SetActive(true);
     }
 }
