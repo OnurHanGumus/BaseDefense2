@@ -141,7 +141,8 @@ public class MinerManager : MonoBehaviour
             _animationController.SetAnimState(MinerAnimStates.Idle);
             return;
         }
-        _animationController.SetAnimState(MinerAnimStates.Run);
+        _animationController.SetAnimState(MinerAnimStates.Carry);
+
         transform.DOMove(gemArea.position, 20f).SetSpeedBased(true).SetEase(Ease.Linear).OnComplete(SelectRandomMine);
         transform.DOLookAt(gemArea.position, 0.5f);
 
@@ -161,7 +162,9 @@ public class MinerManager : MonoBehaviour
             collectedGem = null;
             IsGemCollected = false;
         }
-        
+        _animationController.SetAnimState(MinerAnimStates.Run);
+
+
 
     }
 

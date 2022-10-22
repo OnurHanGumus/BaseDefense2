@@ -9,5 +9,6 @@ namespace Enums
         Idle,
         Dig,
         Pick,
+        Carry,
     }
 }

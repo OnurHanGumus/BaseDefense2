@@ -20,7 +20,14 @@ public class SoldierPhysicsController : MonoBehaviour
 
     #endregion
     #endregion
-
+    private void Awake()
+    {
+        Init();
+    }
+    private void Init()
+    {
+        _health = manager.GetSoldierData().Health;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Damage"))
