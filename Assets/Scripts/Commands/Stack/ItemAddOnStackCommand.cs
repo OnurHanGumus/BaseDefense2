@@ -48,6 +48,7 @@ namespace Commands
             _collectableGameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
             _collectableStack.Add(_collectableGameObject);
             _currentTowerCount = (_collectableStack.Count / _maxHeight) + 1;
+            StackSignals.Instance.onStackIncreased?.Invoke(_collectableStack.Count);
         }
 
         private void SetPosition(GameObject _collectableGameObject, Vector3 newPos)

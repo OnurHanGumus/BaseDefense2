@@ -145,6 +145,8 @@ namespace Managers
                 _canReleaseCollectablesToBase = false;
                 StartCoroutine(Wait05s());
             }
+            StackSignals.Instance.onStackIncreased?.Invoke(0);
+
 
         }
 

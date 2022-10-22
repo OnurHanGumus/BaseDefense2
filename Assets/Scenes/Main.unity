@@ -2776,6 +2776,8 @@ MonoBehaviour:
   HealthText: {fileID: 1501202502}
   playerTransform: {fileID: 292859999710572967}
   healthBar: {fileID: 1992320138}
+  stackManager: {fileID: 0}
+  stackCurrentNumber: 0
 --- !u!1001 &200872130
 PrefabInstance:
   m_ObjectHideFlags: 0
