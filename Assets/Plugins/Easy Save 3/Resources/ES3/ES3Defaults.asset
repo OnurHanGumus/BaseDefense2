@@ -35,10 +35,15 @@ MonoBehaviour:
     - ToonyColorsPro2.Demo
     - Sirenix.OdinInspector.CompatibilityLayer
     - ToonyColorsPro.Runtime
+    - Boxophobic.Utils.Scripts
+    - Boxophobic.PolyverseSkies.Runtime
+    - Boxophobic.PolyverseSkies.Scripts
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - ToonyColorsPro.Editor
     - ToonyColorsPro.Demo.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
+    - Boxophobic.Utils.Editor
+    - Boxophobic.PolyverseSkies.Editor
     showAdvancedSettings: 1
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
