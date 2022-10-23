@@ -14,8 +14,11 @@ namespace Controllers
         #region Serialized Variables
         [SerializeField] private int bulletThrowForce = 1500;
         #endregion
+        #region Private Variables
 
+        private TrailRenderer _trailRenderer;
         private Rigidbody _rig;
+        #endregion
         #endregion
         private void Awake()
         {
@@ -25,18 +28,23 @@ namespace Controllers
         private void Init()
         {
             _rig = GetComponent<Rigidbody>();
-
+            _trailRenderer = GetComponent<TrailRenderer>();
         }
 
         private void OnEnable()
         {
+            _rig.velocity = Vector3.zero;
             Move();
+            _trailRenderer.enabled = true;
             StartCoroutine(Destroy(3f));
 
         }
 
         private void OnDisable()
         {
+            _trailRenderer.enabled = false;
+
+            transform.localPosition = Vector3.zero;
             _rig.velocity = Vector3.zero;
         }
 
@@ -51,6 +59,7 @@ namespace Controllers
 
         private void Move()
         {
+            _trailRenderer.Clear();
             _rig.AddRelativeForce(Vector3.forward * bulletThrowForce, ForceMode.Force);
         }
 

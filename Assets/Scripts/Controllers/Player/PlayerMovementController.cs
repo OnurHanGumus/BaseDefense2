@@ -13,6 +13,7 @@ namespace Controllers
 
         #region Serialized Variables
         [SerializeField] private Transform rotatedSpine;
+        [SerializeField] private PlayerAimController2 aimController;
 
         #endregion
 
@@ -22,6 +23,8 @@ namespace Controllers
         private float _xValue, _zValue;
         private PlayerData _data;
         private bool _isPlayerUseTurret = false;
+
+
         #endregion
         #endregion
 
@@ -48,20 +51,21 @@ namespace Controllers
 
             Quaternion quat = rotatedSpine.localRotation;
 
-            if (quat.y <= -0.8)
+            if (quat.y <= -0.6f)
             {
                 transform.Rotate(Vector3.up, -2f);
-                rotatedSpine.Rotate(Vector3.up, 2f, Space.Self);
+
+                //rotatedSpine.Rotate(Vector3.up, 2f);
                 return;
             }
-            else if (quat.y >= 0.8)
+            else if (quat.y >= 0.6f)
             {
                 transform.Rotate(Vector3.up, 2f);
-                rotatedSpine.Rotate(Vector3.up, -2f, Space.Self);
+                //rotatedSpine.Rotate(Vector3.up, -2f);
                 return;
             }
 
-            if (_rig.velocity != Vector3.zero)
+            if (_rig.velocity != Vector3.zero && aimController.TargetList.Count == 0)
             {
                 Quaternion toRotation = Quaternion.LookRotation(_rig.velocity, Vector3.up);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation,

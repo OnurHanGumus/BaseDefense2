@@ -49,6 +49,7 @@ MonoBehaviour:
   healthBar: {fileID: 1992320138}
   stackManager: {fileID: 0}
   stackCurrentNumber: 0
+  healthBarGameObj: {fileID: 0}
 --- !u!1 &657227434
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotatedSpine: {fileID: 1500702725214804556}
+  aimController: {fileID: 7146503969275144216}
 --- !u!114 &964196589902088739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2666,8 +2668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c99d131f1ac7314ca6e786492240078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetList: []
   manager: {fileID: 8156410998605304248}
-  targetList: []
   playerRotatablePart: {fileID: 1500702725214804556}
   currentTarget: {fileID: 0}
   targetGameObject: {fileID: 5930617826244063657}
@@ -2823,7 +2825,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8743736832961910351}
   m_LocalRotation: {x: 1.7347235e-18, y: -2.9353358e-14, z: 6.8282137e-13, w: 1}
-  m_LocalPosition: {x: -0, y: 0.042684507, z: 8.623528e-12}
+  m_LocalPosition: {x: -0, y: 0.04, z: 8.623528e-12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 101565565858687527}

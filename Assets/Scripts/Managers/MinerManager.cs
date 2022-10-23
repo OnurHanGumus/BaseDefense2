@@ -96,7 +96,7 @@ public class MinerManager : MonoBehaviour
     {
 
 
-        tweenRef = transform.DOMove(SelectedMine.position, 20f).SetSpeedBased(true).SetEase(Ease.Linear);
+        tweenRef = transform.DOMove(new Vector3(SelectedMine.position.x, 0, SelectedMine.position.z), 20f).SetSpeedBased(true).SetEase(Ease.Linear);
         transform.DOLookAt(SelectedMine.position, 0.5f);
 
     }

@@ -40,8 +40,8 @@ namespace Commands
 
         public int[] OnLoadArray(SaveLoadStates saveLoadStates, string fileName = "SaveFile")
         {
-            if (!ES3.FileExists(fileName + ".es3")) { Debug.Log("çalışmadı"); return new int[4] { -1, -1, -1, -1 }; }
-            return ES3.Load(saveLoadStates.ToString(), fileName + ".es3", new int[4] { -1, -1, -1, -1 });
+            if (!ES3.FileExists(fileName + ".es3")) { Debug.Log("çalışmadı"); return new int[5] { -1, -1, -1, -1 , -1}; }
+            return ES3.Load(saveLoadStates.ToString(), fileName + ".es3", new int[5] { -1, -1, -1, -1 , -1});
 
             //if (saveLoadStates == SaveLoadStates.OpenedAreasCounts) return ES3.Load(saveLoadStates.ToString(), "WorkerCurrentCounts.es3", new int[4] { -1,-1,-1,-1 });
             //else if (saveLoadStates == SaveLoadStates.OpenedTurretsCounts) return ES3.Load(saveLoadStates.ToString(), "WorkerCurrentCounts.es3", new int[4] { -1,-1,-1,-1 });

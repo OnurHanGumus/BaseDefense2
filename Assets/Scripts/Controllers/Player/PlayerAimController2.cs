@@ -11,11 +11,14 @@ namespace Controllers
     public class PlayerAimController2 : MonoBehaviour
     {
         #region Self Variables
+        #region Public Variables
+
+        public List<Transform> TargetList;
+        #endregion
 
         #region Serialized Variables
 
         [SerializeField] private PlayerManager2 manager;
-        [SerializeField] private List<Transform> targetList;
         [SerializeField] private Transform playerRotatablePart;
         [SerializeField] private Transform currentTarget;
         [SerializeField] private Transform targetGameObject;
@@ -57,11 +60,11 @@ namespace Controllers
         {
             if (other.CompareTag("Enemy") || other.CompareTag("Boss"))
             {
-                if (targetList.Contains(other.transform))
+                if (TargetList.Contains(other.transform))
                 {
                     return;
                 }
-                targetList.Add(other.transform);
+                TargetList.Add(other.transform);
                 return;
             }
 
@@ -71,28 +74,28 @@ namespace Controllers
         {
             if (other.CompareTag("Enemy")|| other.CompareTag("Boss"))
             {
-                targetList.Remove(other.transform);
+                TargetList.Remove(other.transform);
                 return;
             }
         }
 
         private void Update()
         {
-            if (targetList.Count > 0)
+            if (TargetList.Count > 0)
             {
                 
-                currentTarget = targetList[0];
+                currentTarget = TargetList[0];
                 if (currentTarget.Equals(null))
                 {
-                    targetList.RemoveAt(0);
+                    TargetList.RemoveAt(0);
                     return;
                 }
-                targetGameObject.position = Vector3.Lerp(targetGameObject.position, currentTarget.position, 0.2f);
+                targetGameObject.position = Vector3.Lerp(targetGameObject.position, currentTarget.position, 0.1f);
 
         
             }
 
-            else if (targetList.Count == 0)
+            else if (TargetList.Count == 0)
             {
                 //targetGameObject.localPosition = Vector3.MoveTowards(targetGameObject.transform.localPosition, new Vector3(0, 7.5f, 10f), 1f);
                 targetGameObject.localPosition = Vector3.Lerp(targetGameObject.localPosition, new Vector3(0, 7.5f, 10f), 0.1f);
@@ -109,7 +112,7 @@ namespace Controllers
                 //just wait
             }
 
-            else if (targetList.Count > 0)
+            else if (TargetList.Count > 0)
             {
                 GameObject temp = PoolSignals.Instance.onGetBulletFromPool();
                 if (temp == null)
@@ -131,9 +134,9 @@ namespace Controllers
 
         public void OnRemoveFromTargetList(Transform deadEnemy)
         {
-            if (targetList.Contains(deadEnemy))
+            if (TargetList.Contains(deadEnemy))
             {
-                targetList.Remove(deadEnemy);
+                TargetList.Remove(deadEnemy);
             }
         }
 
