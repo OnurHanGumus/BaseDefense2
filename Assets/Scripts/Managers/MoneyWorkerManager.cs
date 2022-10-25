@@ -152,7 +152,7 @@ namespace Managers
                 return;
             }
 
-            transform.DOMove(rangeController.MoneyList[0].position, 4 * _speed).SetSpeedBased(true).OnComplete(CheckCapacity).SetEase(Ease.Linear);
+            transform.DOMove(new Vector3(rangeController.MoneyList[0].position.x, transform.position.y, rangeController.MoneyList[0].position.z), 4 * _speed).SetSpeedBased(true).OnComplete(CheckCapacity).SetEase(Ease.Linear);
             transform.DOLookAt(rangeController.MoneyList[0].position, 1);
         }
 
