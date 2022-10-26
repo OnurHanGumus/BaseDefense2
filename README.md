@@ -1,4 +1,4 @@
-# BaseDefense2
+# BaseDefenseClone
 Solid prensiplerine uygun olarak hazırladığım bu projede ayrıca aşağıdaki pattern'leri ve optimizasyon yöntemlerini kullandım.
 
 1. Observer Pattern
