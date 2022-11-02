@@ -8,7 +8,7 @@ using Enums;
 
 namespace Managers
 {
-    public class SaveManager2 : MonoBehaviour
+    public class SaveManager : MonoBehaviour
     {
         #region Self Variables
         #region Private Variables

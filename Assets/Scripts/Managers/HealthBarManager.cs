@@ -79,12 +79,12 @@ public class HealthBarManager : MonoBehaviour
         transform.position = new Vector3(transform.position.x, 12 + stackCurrentNumber, transform.position.z);
     }
 
-    public void SetHealthBarScale(int currentValue, int maxValue)
+    public void SetHealthBarScale(int currentValue, int maxValue)//HealthBar increase or decrease with this method. This method can also listen a signal.
     {
         healthBar.localScale = new Vector3((float)currentValue / maxValue, 1, 1);
     }
 
-    private void OnStackIncreased(int value)
+    private void OnStackIncreased(int value)//If collectables preventing to see healthbar, we can increase healthbar's position y.
     {
         if (value > 10)
         {
@@ -102,7 +102,7 @@ public class HealthBarManager : MonoBehaviour
         stackCurrentNumber = value;
 
     }
-
+    //HEALTHBAR VISIBILITY
     private void OnPlayerReachToBase()
     {
         healthBarGameObj.SetActive(false);

@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Controllers
 {
-    public class PlayerPhysicsController1 : MonoBehaviour
+    public class PlayerPhysicController : MonoBehaviour
     {
         #region Self Variables
 
         #region Serialized Variables
 
-        [SerializeField] private PlayerManager2 manager;
+        [SerializeField] private PlayerManager manager;
 
         [SerializeField] private BoxCollider boxCollider;
         [SerializeField] private HealthBarManager healthBarManager;

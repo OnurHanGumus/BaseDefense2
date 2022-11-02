@@ -13,13 +13,13 @@ namespace Controllers
 
         #region Serialized Variables
         [SerializeField] private Transform rotatedSpine;
-        [SerializeField] private PlayerAimController2 aimController;
+        [SerializeField] private PlayerAimingController aimController;
 
         #endregion
 
         #region Private Variables
         private Rigidbody _rig;
-        private PlayerManager2 _manager;
+        private PlayerManager _manager;
         private float _xValue, _zValue;
         private PlayerData _data;
         private bool _isPlayerUseTurret = false;
@@ -36,7 +36,7 @@ namespace Controllers
         private void Init()
         {
             _rig = GetComponent<Rigidbody>();
-            _manager = GetComponent<PlayerManager2>();
+            _manager = GetComponent<PlayerManager>();
             _data = _manager.GetPlayerData();
         }
 

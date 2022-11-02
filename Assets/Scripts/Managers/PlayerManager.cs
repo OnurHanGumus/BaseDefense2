@@ -16,13 +16,19 @@ namespace Managers
         #region Self Variables
 
         #region Public Variables
+        public int CurrentGunId = 0;
+        public bool IsPlayerDead = false;
+        public bool IsOnBase = true;
+        public List<GameObject> Guns;
+        public List<Transform> RescuePersonList = new List<Transform>();
 
 
         #endregion
 
         #region Serialized Variables
 
-
+        [SerializeField] private PlayerAimingController aimController;
+        [SerializeField] private PlayerPhysicController physicsController;
 
 
         #endregion
@@ -33,10 +39,8 @@ namespace Managers
         private PlayerAnimationController _animationController;
         private PlayerRiggingController _rigController;
 
-
         #endregion
 
-        private int _currentGunId = 0;
         #endregion
 
         private void Awake()
@@ -46,14 +50,14 @@ namespace Managers
 
         private void Init()
         {
- 
-            _data = GetPlayerData();
+
+            _data = GetData();
             _movementController = GetComponent<PlayerMovementController>();
             _animationController = GetComponent<PlayerAnimationController>();
             _rigController = GetComponent<PlayerRiggingController>();
         }
-        public PlayerData GetPlayerData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
-        
+        private PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
+
 
         #region Event Subscription
 
@@ -68,6 +72,18 @@ namespace Managers
             InputSignals.Instance.onInputDragged += _animationController.SetSpeedVariable;
             PlayerSignals.Instance.onGetPlayer += OnGetPlayer;
             PlayerSignals.Instance.onPlayerSelectGun += OnGunSelected;
+            PlayerSignals.Instance.onEnemyDie += aimController.OnRemoveFromTargetList;
+            PlayerSignals.Instance.onPlayerUseTurret += _movementController.OnPlayerUseTurret;
+            PlayerSignals.Instance.onPlayerUseTurret += _animationController.OnPlayerUseTurret;
+            PlayerSignals.Instance.onRescuePersonAddedToStack += OnRescuePersonAddedToStack;
+            PlayerSignals.Instance.onGetPlayerSpeed += _movementController.OnGetPlayerSpeed;
+            PlayerSignals.Instance.onGetLastRescuePerson += OnGetLastRescuePerson;
+            PlayerSignals.Instance.onPlayerReachNewBase += OnPlayerReachToNewBase;
+
+            SaveSignals.Instance.onInitializeSelectedGunId += OnGunSelected;
+            SaveSignals.Instance.onInitializePlayerUpgrades += physicsController.OnGetHealthData;
+            SaveSignals.Instance.onUpgradePlayer += physicsController.OnGetHealthLevel;
+
         }
 
         private void UnsubscribeEvents()
@@ -77,23 +93,30 @@ namespace Managers
             InputSignals.Instance.onInputDragged -= _animationController.SetSpeedVariable;
             PlayerSignals.Instance.onGetPlayer -= OnGetPlayer;
             PlayerSignals.Instance.onPlayerSelectGun -= OnGunSelected;
+            PlayerSignals.Instance.onEnemyDie -= aimController.OnRemoveFromTargetList;
+            PlayerSignals.Instance.onPlayerUseTurret -= _movementController.OnPlayerUseTurret;
+            PlayerSignals.Instance.onRescuePersonAddedToStack -= OnRescuePersonAddedToStack;
+            PlayerSignals.Instance.onGetPlayerSpeed -= _movementController.OnGetPlayerSpeed;
+            PlayerSignals.Instance.onGetLastRescuePerson -= OnGetLastRescuePerson;
+            PlayerSignals.Instance.onPlayerReachNewBase -= OnPlayerReachToNewBase;
 
 
+            SaveSignals.Instance.onInitializeSelectedGunId -= OnGunSelected;
+            SaveSignals.Instance.onInitializePlayerUpgrades -= physicsController.OnGetHealthData;
+            SaveSignals.Instance.onUpgradePlayer -= physicsController.OnGetHealthLevel;
 
         }
 
+        public PlayerData GetPlayerData()
+        {
+            return _data;
+        }
         private void OnDisable()
         {
             UnsubscribeEvents();
         }
 
         #endregion
-
-        private void Start()
-        {
-            _currentGunId = SaveSignals.Instance.onGetSelectedGun();
-
-        }
 
         private Transform OnGetPlayer()
         {
@@ -108,7 +131,7 @@ namespace Managers
         public void SetAnimBool(PlayerAnimStates state, bool value)
         {
             _animationController.SetAnimBool(state, value);
-            _rigController.SetAnimationRig(value, _currentGunId);
+            _rigController.SetAnimationRig(value, CurrentGunId);
         }
 
         public void ResetAnimState(PlayerAnimStates state)
@@ -118,7 +141,31 @@ namespace Managers
 
         public void OnGunSelected(int id)
         {
-            _currentGunId = id;
+            CurrentGunId = id;
+            aimController.SetGunSettings(Guns[CurrentGunId].transform.GetChild(0));
+        }
+
+        private void OnRescuePersonAddedToStack(Transform rescuePerson)
+        {
+            RescuePersonList.Add(rescuePerson);
+        }
+
+        private Transform OnGetLastRescuePerson()
+        {
+
+            if (RescuePersonList.Count.Equals(0))
+            {
+                return transform;
+            }
+            else
+            {
+                return RescuePersonList[RescuePersonList.Count - 1];
+            }
+        }
+
+        private void OnPlayerReachToNewBase()
+        {
+            RescuePersonList.Clear();
         }
 
 

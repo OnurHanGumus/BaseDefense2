@@ -11,7 +11,7 @@ namespace Controllers
 
         #region Serialized Variables
 
-        [SerializeField] private PlayerManager2 manager;
+        [SerializeField] private PlayerManager manager;
         //[SerializeField] private PlayerPhysicsController physicsController;
         [SerializeField] private Animator animator;
 

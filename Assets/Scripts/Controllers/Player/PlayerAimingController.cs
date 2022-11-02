@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class PlayerAimController2 : MonoBehaviour
+    public class PlayerAimingController : MonoBehaviour
     {
         #region Self Variables
         #region Public Variables
@@ -18,7 +18,7 @@ namespace Controllers
 
         #region Serialized Variables
 
-        [SerializeField] private PlayerManager2 manager;
+        [SerializeField] private PlayerManager manager;
         [SerializeField] private Transform playerRotatablePart;
         [SerializeField] private Transform currentTarget;
         [SerializeField] private Transform targetGameObject;

@@ -1183,6 +1183,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 408904, guid: 4cc487e002327cb43995ca1871bd142e, type: 3}
   m_PrefabInstance: {fileID: 86367134}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &88197943 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5232839523800613542, guid: 0b75df46d92acbc489847240b5280674, type: 3}
+  m_PrefabInstance: {fileID: 569411625863441412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &89871773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30604,6 +30609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4051895780343114193, guid: 0b75df46d92acbc489847240b5280674, type: 3}
+      propertyPath: boxCollider
+      value: 
+      objectReference: {fileID: 88197943}
     - target: {fileID: 8552803310827270884, guid: 0b75df46d92acbc489847240b5280674, type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -7,13 +7,13 @@ using UnityEngine.Animations.Rigging;
 
 namespace Controllers
 {
-    public class PlayerRiggingController1 : MonoBehaviour
+    public class PlayerRiggingController : MonoBehaviour
     {
         #region Self Variables
 
         #region Serialized Variables
 
-        [SerializeField] private PlayerManager2 manager;
+        [SerializeField] private PlayerManager manager;
         [SerializeField] private RigBuilder rigBuilder;
 
 
