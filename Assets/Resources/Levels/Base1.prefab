@@ -15808,6 +15808,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4749411533292640404, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
+      propertyPath: AreaID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4903321500030184535, guid: ed8c29a1969d6be4390f6dd524a097d7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

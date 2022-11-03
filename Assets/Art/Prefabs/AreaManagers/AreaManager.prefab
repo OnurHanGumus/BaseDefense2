@@ -179,7 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5276337235250558865}
-  - component: {fileID: 1193200907198097497}
+  - component: {fileID: 413254212051310450}
   m_Layer: 0
   m_Name: AreaManager
   m_TagString: Untagged
@@ -204,7 +204,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &1193200907198097497
+--- !u!114 &413254212051310450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 293115248738928863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a6ecda94466b0e4caf42e462058cbb3, type: 3}
+  m_Script: {fileID: 11500000, guid: 236356b1cfad26d4e9a6953b2f2757c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AreaID: 1
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4c73821f9156f4586a44c6bb3b5c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1193200907198097497}
+  manager: {fileID: 413254212051310450}
   scoreType: 0
 --- !u!1 &7988990043344308191
 GameObject:

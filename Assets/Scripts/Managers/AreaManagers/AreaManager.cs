@@ -14,7 +14,7 @@ using TMPro;
 
 namespace Managers
 {
-    public class AreaManager : MonoBehaviour
+    public abstract class AreaManager : MonoBehaviour
     {
         #region Self Variables
 
@@ -44,8 +44,6 @@ namespace Managers
             get { return _currentValue; }
             set { _currentValue = value; }
         }
-
-
 
         #endregion
 
@@ -100,8 +98,6 @@ namespace Managers
 
         #endregion
 
-
-
         public void UpdateText()
         {
             valueText.text = UnlockValue.ToString();
@@ -150,10 +146,7 @@ namespace Managers
             {
                 AreaCounts = _data.UnlockValues.ToArray();
                 _currentValue = AreaCounts[AreaID];
-
             }
         }
-
-
     }
 }

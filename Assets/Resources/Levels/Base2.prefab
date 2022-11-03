@@ -13415,6 +13415,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6902a1eee373b8249936f226835279d0, type: 2}
+    - target: {fileID: 5690184246682321291, guid: f55cc82f1435a374d92c4557c8049e5f, type: 3}
+      propertyPath: AreaID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6003713104622129704, guid: f55cc82f1435a374d92c4557c8049e5f, type: 3}
       propertyPath: meshRenderer
       value: 

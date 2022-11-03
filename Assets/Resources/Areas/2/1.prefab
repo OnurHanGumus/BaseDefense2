@@ -249,6 +249,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AreaManager
       objectReference: {fileID: 0}
+    - target: {fileID: 413254212051310450, guid: e58c3824ae0f1594fadffe174e946f91, type: 3}
+      propertyPath: AreaID
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1193200907198097497, guid: e58c3824ae0f1594fadffe174e946f91, type: 3}
       propertyPath: AreaID
       value: 2

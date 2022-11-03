@@ -53,7 +53,7 @@ namespace Managers
             }
             UnlockValue -= value;
             UpdateText();
-            ScoreSignals.Instance.onScoreDecrease?.Invoke(ScoreTypeEnums.Money, 1);
+            ScoreSignals.Instance.onScoreDecrease?.Invoke(scoreTypeEnums, 1);
             if (UnlockValue.Equals(0))
             {
                 LevelSignals.Instance.onBuyTurretOwners?.Invoke(AreaID);
